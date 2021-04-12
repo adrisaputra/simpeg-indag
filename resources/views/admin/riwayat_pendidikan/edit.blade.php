@@ -70,13 +70,10 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('lembaga')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Lembaga') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Sekolah / Institusi') }}</label>
 						<div class="col-sm-10">
 							@if ($errors->has('lembaga'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('lembaga') }}</label>@endif
-							<select class="form-control" name="lembaga">
-                                        <option value=""> -Pilih Lembaga-</option>
-                                        <option value="SD" @if($riwayat_pendidikan->lembaga=="SD") selected @endif> SD</option>
-                                    </select>
+							<input type="text" class="form-control" placeholder="Sekolah / Institusi" name="lembaga" value="{{ $riwayat_pendidikan->lembaga }}" >
 						</div>
 					</div>
 					
@@ -84,10 +81,7 @@
 						<label class="col-sm-2 control-label">{{ __('Fakultas') }}</label>
 						<div class="col-sm-10">
 							@if ($errors->has('fakultas'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('fakultas') }}</label>@endif
-							<select class="form-control" name="fakultas">
-                                        <option value=""> -Pilih Fakultas-</option>
-                                        <option value="SD" @if($riwayat_pendidikan->fakultas=="SD") selected @endif> SD</option>
-                                    </select>
+							<input type="text" class="form-control" placeholder="Fakultas" name="fakultas" value="{{ $riwayat_pendidikan->fakultas }}" >
 						</div>
 					</div>
 					

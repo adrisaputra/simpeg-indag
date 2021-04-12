@@ -56,7 +56,10 @@
 							@if ($errors->has('tingkat_seminar'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tingkat_seminar') }}</label>@endif
 							<select class="form-control" name="tingkat_seminar">
                                         <option value=""> -Pilih Tingkat Seminar-</option>
-                                        <option value="SD" @if(old('tingkat_seminar')=="SD") selected @endif> SD</option>
+                                        <option value="Seminar Lokal" @if(old('tingkat_seminar')=="Seminar Lokal") selected @endif> Seminar Lokal</option>
+                                        <option value="Seminar Regional" @if(old('tingkat_seminar')=="Seminar Regional") selected @endif> Seminar Regional</option>
+                                        <option value="Seminar Nasional" @if(old('tingkat_seminar')=="Seminar Nasional") selected @endif> Seminar Nasional</option>
+                                        <option value="Seminar Internasional" @if(old('tingkat_seminar')=="Seminar Internasional") selected @endif> Seminar Internasional</option>
                                     </select>
 						</div>
 					</div>

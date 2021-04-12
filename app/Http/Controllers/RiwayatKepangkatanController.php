@@ -79,42 +79,57 @@ class RiwayatKepangkatanController extends Controller
         $input['pegawai_id'] = $id;
         $input['periode_kp'] = $request->periode_kp;
         $input['golongan'] = $request->golongan;
-        if($request->golongan=="Golongan II/a"){
+        if($request->golongan=="Golongan I/a"){
             $input['jenis_golongan'] = 1;
+            $input['nama_pangkat'] = 'Juru Muda';
+        } else if($request->golongan=="Golongan I/b"){
+            $input['jenis_golongan'] = 2;
+            $input['nama_pangkat'] = 'Juru Muda  Tingkat 1';
+        } else if($request->golongan=="Golongan I/c"){
+            $input['jenis_golongan'] = 3;
+            $input['nama_pangkat'] = 'Juru';
+        } else if($request->golongan=="Golongan I/d"){
+            $input['jenis_golongan'] = 4;
+            $input['nama_pangkat'] = 'Juru Tingkat 1';
+        } else if($request->golongan=="Golongan II/a"){
+            $input['jenis_golongan'] = 5;
             $input['nama_pangkat'] = 'Pengatur Muda';
         } else if($request->golongan=="Golongan II/b"){
-            $input['jenis_golongan'] = 2;
+            $input['jenis_golongan'] = 6;
             $input['nama_pangkat'] = 'Pengatur Muda Tingkat 1';
         } else if($request->golongan=="Golongan II/c"){
-            $input['jenis_golongan'] = 3;
+            $input['jenis_golongan'] = 7;
             $input['nama_pangkat'] = 'Pengatur';
         } else if($request->golongan=="Golongan II/d"){
-            $input['jenis_golongan'] = 4;
+            $input['jenis_golongan'] = 8;
             $input['nama_pangkat'] = 'Pengatur Tingkat 1';
         } else if($request->golongan=="Golongan III/a"){
-            $input['jenis_golongan'] = 5;
+            $input['jenis_golongan'] = 9;
             $input['nama_pangkat'] = 'Penata Muda';
         } else if($request->golongan=="Golongan III/b"){
-            $input['jenis_golongan'] = 6;
+            $input['jenis_golongan'] = 10;
             $input['nama_pangkat'] = 'Penata Muda Tingkat 1';
         } else if($request->golongan=="Golongan III/c"){
-            $input['jenis_golongan'] = 7;
+            $input['jenis_golongan'] = 11;
             $input['nama_pangkat'] = 'Penata';
         } else if($request->golongan=="Golongan III/d"){
-            $input['jenis_golongan'] = 8;
+            $input['jenis_golongan'] = 12;
             $input['nama_pangkat'] = 'Penata Tingkat 1';
         } else if($request->golongan=="Golongan IV/a"){
-            $input['jenis_golongan'] = 9;
+            $input['jenis_golongan'] = 13;
             $input['nama_pangkat'] = 'Pembina';
         } else if($request->golongan=="Golongan IV/b"){
-            $input['jenis_golongan'] = 10;
+            $input['jenis_golongan'] = 14;
             $input['nama_pangkat'] = 'Pembina Tingkat 1';
         } else if($request->golongan=="Golongan IV/c"){
-            $input['jenis_golongan'] = 11;
+            $input['jenis_golongan'] = 15;
             $input['nama_pangkat'] = 'Pembina Utama Muda';
         } else if($request->golongan=="Golongan IV/d"){
-            $input['jenis_golongan'] = 12;
+            $input['jenis_golongan'] = 16;
             $input['nama_pangkat'] = 'Pembina Utama Madya';
+        }  else if($request->golongan=="Golongan IV/e"){
+            $input['jenis_golongan'] = 17;
+            $input['nama_pangkat'] = 'Pembina Utama';
         }   
 
         $input['status'] = $request->status;
@@ -173,43 +188,58 @@ class RiwayatKepangkatanController extends Controller
 
         $riwayat_kepangkatan->fill($request->all());
        
-        if($request->golongan=="Golongan II/a"){
+        if($request->golongan=="Golongan I/a"){
             $riwayat_kepangkatan->jenis_golongan = 1;
+            $riwayat_kepangkatan->nama_pangkat = 'Juru Muda';
+        } else if($request->golongan=="Golongan I/b"){
+            $riwayat_kepangkatan->jenis_golongan = 2;
+            $riwayat_kepangkatan->nama_pangkat = 'Juru Muda Tingkat 1';
+        } else if($request->golongan=="Golongan I/c"){
+            $riwayat_kepangkatan->jenis_golongan = 3;
+            $riwayat_kepangkatan->nama_pangkat = 'Juru';
+        } else if($request->golongan=="Golongan I/d"){
+            $riwayat_kepangkatan->jenis_golongan = 4;
+            $riwayat_kepangkatan->nama_pangkat = 'Juru Tingkat 1';
+        } else if($request->golongan=="Golongan II/a"){
+            $riwayat_kepangkatan->jenis_golongan = 5;
             $riwayat_kepangkatan->nama_pangkat = 'Pengatur Muda';
         } else if($request->golongan=="Golongan II/b"){
-            $riwayat_kepangkatan->jenis_golongan = 2;
+            $riwayat_kepangkatan->jenis_golongan = 6;
             $riwayat_kepangkatan->nama_pangkat = 'Pengatur Muda Tingkat 1';
         } else if($request->golongan=="Golongan II/c"){
-            $riwayat_kepangkatan->jenis_golongan = 3;
+            $riwayat_kepangkatan->jenis_golongan = 7;
             $riwayat_kepangkatan->nama_pangkat = 'Pengatur';
         } else if($request->golongan=="Golongan II/d"){
-            $riwayat_kepangkatan->jenis_golongan = 4;
+            $riwayat_kepangkatan->jenis_golongan = 8;
             $riwayat_kepangkatan->nama_pangkat = 'Pengatur Tingkat 1';
         } else if($request->golongan=="Golongan III/a"){
-            $riwayat_kepangkatan->jenis_golongan = 5;
+            $riwayat_kepangkatan->jenis_golongan = 9;
             $riwayat_kepangkatan->nama_pangkat = 'Penata Muda';
         } else if($request->golongan=="Golongan III/b"){
-            $riwayat_kepangkatan->jenis_golongan = 6;
+            $riwayat_kepangkatan->jenis_golongan = 10;
             $riwayat_kepangkatan->nama_pangkat = 'Penata Muda Tingkat 1';
         } else if($request->golongan=="Golongan III/c"){
-            $riwayat_kepangkatan->jenis_golongan = 7;
+            $riwayat_kepangkatan->jenis_golongan = 11;
             $riwayat_kepangkatan->nama_pangkat = 'Penata';
         } else if($request->golongan=="Golongan III/d"){
-            $riwayat_kepangkatan->jenis_golongan = 8;
+            $riwayat_kepangkatan->jenis_golongan = 12;
             $riwayat_kepangkatan->nama_pangkat = 'Penata Tingkat 1';
         } else if($request->golongan=="Golongan IV/a"){
-            $riwayat_kepangkatan->jenis_golongan = 9;
+            $riwayat_kepangkatan->jenis_golongan = 13;
             $riwayat_kepangkatan->nama_pangkat = 'Pembina';
         } else if($request->golongan=="Golongan IV/b"){
-            $riwayat_kepangkatan->jenis_golongan = 10;
+            $riwayat_kepangkatan->jenis_golongan = 14;
             $riwayat_kepangkatan->nama_pangkat = 'Pembina Tingkat 1';
         } else if($request->golongan=="Golongan IV/c"){
-            $riwayat_kepangkatan->jenis_golongan = 11;
+            $riwayat_kepangkatan->jenis_golongan = 15;
             $riwayat_kepangkatan->nama_pangkat = 'Pembina Utama Muda';
         } else if($request->golongan=="Golongan IV/d"){
-            $riwayat_kepangkatan->jenis_golongan = 12;
+            $riwayat_kepangkatan->jenis_golongan = 16;
             $riwayat_kepangkatan->nama_pangkat = 'Pembina Utama Madya';
-        }     
+        } else if($request->golongan=="Golongan IV/e"){
+            $riwayat_kepangkatan->jenis_golongan = 17;
+            $riwayat_kepangkatan->nama_pangkat = 'Pembina Utama';
+        }   
 
         if($request->file('arsip_kepangkatan')){
             $filename = time().'.'.$request->arsip_kepangkatan->getClientOriginalExtension();

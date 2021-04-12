@@ -100,9 +100,13 @@
 							@if ($errors->has('jabatan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jabatan') }}</label>@endif
 							<select class="form-control" name="jabatan">
                                         <option value=""> -Pilih Jabatan-</option>
-                                        <option value="Struktural" @if(old('jabatan')=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if(old('jabatan')=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if(old('jabatan')=="Fungsional Umum") selected @endif> Fungsional Umum</option>
+                                        <option value="Kepala Dinas" @if(old('jabatan')=="Kepala Dinas") selected @endif> Kepala Dinas</option>
+                                        <option value="Sekretaris" @if(old('jabatan')=="Sekretaris") selected @endif> Sekretaris</option>
+                                        <option value="Kepala Bidang" @if(old('jabatan')=="Kepala Bidang") selected @endif> Kepala Bidang</option>
+                                        <option value="Kepala UPTD" @if(old('jabatan')=="Kepala UPTD") selected @endif> Kepala UPTD</option>
+                                        <option value="Kepala Sub Bagian" @if(old('jabatan')=="Kepala Sub Bagian") selected @endif> Kepala Sub Bagian</option>
+                                        <option value="Kepala Seksi" @if(old('jabatan')=="Kepala Seksi") selected @endif> Kepala Seksi</option>
+                                        <option value="Staf" @if(old('jabatan')=="Staf") selected @endif> Staf</option>
                                     </select>
 						</div>
 					</div>

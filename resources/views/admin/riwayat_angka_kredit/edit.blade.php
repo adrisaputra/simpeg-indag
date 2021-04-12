@@ -51,19 +51,13 @@
 							@if ($errors->has('jabatan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jabatan') }}</label>@endif
 							<select class="form-control" name="jabatan">
                                         <option value=""> -Pilih Jabatan-</option>
-                                        <option value="Jabatan II/a" @if($riwayat_angka_kredit->jabatan=="Jabatan II/a") selected @endif> Jabatan II/a</option>
-                                        <option value="Jabatan II/b" @if($riwayat_angka_kredit->jabatan=="Jabatan II/b") selected @endif> Jabatan II/b</option>
-                                        <option value="Jabatan II/c" @if($riwayat_angka_kredit->jabatan=="Jabatan II/c")selected @endif> Jabatan II/c</option>
-                                        <option value="Jabatan II/d" @if($riwayat_angka_kredit->jabatan=="Jabatan II/d") selected @endif> Jabatan II/d</option>
-                                        <option value="Jabatan III/a" @if($riwayat_angka_kredit->jabatan=="Jabatan III/a") selected @endif> Jabatan III/a</option>
-                                        <option value="Jabatan III/b" @if($riwayat_angka_kredit->jabatan=="Jabatan III/b") selected @endif> Jabatan III/b</option>
-                                        <option value="Jabatan III/c" @if($riwayat_angka_kredit->jabatan=="Jabatan III/c") selected @endif> Jabatan III/c</option>
-                                        <option value="Jabatan III/d" @if($riwayat_angka_kredit->jabatan=="Jabatan III/d") selected @endif> Jabatan III/d</option>
-                                        <option value="Jabatan IV/a" @if($riwayat_angka_kredit->jabatan=="Jabatan IV/a") selected @endif> Jabatan IV/a</option>
-                                        <option value="Jabatan IV/b" @if($riwayat_angka_kredit->jabatan=="Jabatan IV/b") selected @endif> Jabatan IV/b</option>
-                                        <option value="Jabatan IV/c" @if($riwayat_angka_kredit->jabatan=="Jabatan IV/c") selected @endif> Jabatan IV/c</option>
-                                        <option value="Jabatan IV/d" @if($riwayat_angka_kredit->jabatan=="Jabatan IV/d") selected @endif> Jabatan IV/d</option>
-                                       
+                                        <option value="Kepala Dinas" @if($riwayat_angka_kredit->jabatan=="Kepala Dinas") selected @endif> Kepala Dinas</option>
+                                        <option value="Sekretaris" @if($riwayat_angka_kredit->jabatan=="Sekretaris") selected @endif> Sekretaris</option>
+                                        <option value="Kepala Bidang" @if($riwayat_angka_kredit->jabatan=="Kepala Bidang") selected @endif> Kepala Bidang</option>
+                                        <option value="Kepala UPTD" @if($riwayat_angka_kredit->jabatan=="Kepala UPTD") selected @endif> Kepala UPTD</option>
+                                        <option value="Kepala Sub Bagian" @if($riwayat_angka_kredit->jabatan=="Kepala Sub Bagian") selected @endif> Kepala Sub Bagian</option>
+                                        <option value="Kepala Seksi" @if($riwayat_angka_kredit->jabatan=="Kepala Seksi") selected @endif> Kepala Seksi</option>
+                                        <option value="Staf" @if($riwayat_angka_kredit->jabatan=="Staf") selected @endif> Staf</option>
                                     </select>
 						</div>
 					</div>

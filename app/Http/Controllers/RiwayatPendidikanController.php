@@ -64,7 +64,6 @@ class RiwayatPendidikanController extends Controller
         $this->validate($request, [
             'tingkat' => 'required',
             'lembaga' => 'required',
-            'jurusan' => 'required',
             'arsip_ijazah' => 'required|mimes:jpg,jpeg,png,pdf|max:500',
             'arsip_transkrip_nilai' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
         ]);
@@ -140,7 +139,6 @@ class RiwayatPendidikanController extends Controller
         $this->validate($request, [
             'tingkat' => 'required',
             'lembaga' => 'required',
-            'jurusan' => 'required',
             'arsip_ijazah' => 'mimes:jpg,jpeg,png,pdf|max:500',
             'arsip_transkrip_nilai' => 'mimes:jpg,jpeg,png,pdf|max:500'
         ]);

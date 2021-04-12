@@ -48,19 +48,13 @@
 							@if ($errors->has('jabatan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jabatan') }}</label>@endif
 							<select class="form-control" name="jabatan">
                                         <option value=""> -Pilih Jabatan-</option>
-                                        <option value="Jabatan II/a" @if(old('jabatan')=="Jabatan II/a") selected @endif> Jabatan II/a</option>
-                                        <option value="Jabatan II/b" @if(old('jabatan')=="Jabatan II/b") selected @endif> Jabatan II/b</option>
-                                        <option value="Jabatan II/c" @if(old('jabatan')=="Jabatan II/c")selected @endif> Jabatan II/c</option>
-                                        <option value="Jabatan II/d" @if(old('jabatan')=="Jabatan II/d") selected @endif> Jabatan II/d</option>
-                                        <option value="Jabatan III/a" @if(old('jabatan')=="Jabatan III/a") selected @endif> Jabatan III/a</option>
-                                        <option value="Jabatan III/b" @if(old('jabatan')=="Jabatan III/b") selected @endif> Jabatan III/b</option>
-                                        <option value="Jabatan III/c" @if(old('jabatan')=="Jabatan III/c") selected @endif> Jabatan III/c</option>
-                                        <option value="Jabatan III/d" @if(old('jabatan')=="Jabatan III/d") selected @endif> Jabatan III/d</option>
-                                        <option value="Jabatan IV/a" @if(old('jabatan')=="Jabatan IV/a") selected @endif> Jabatan IV/a</option>
-                                        <option value="Jabatan IV/b" @if(old('jabatan')=="Jabatan IV/b") selected @endif> Jabatan IV/b</option>
-                                        <option value="Jabatan IV/c" @if(old('jabatan')=="Jabatan IV/c") selected @endif> Jabatan IV/c</option>
-                                        <option value="Jabatan IV/d" @if(old('jabatan')=="Jabatan IV/d") selected @endif> Jabatan IV/d</option>
-                                       
+                                        <option value="Kepala Dinas" @if(old('jabatan')=="Kepala Dinas") selected @endif> Kepala Dinas</option>
+                                        <option value="Sekretaris" @if(old('jabatan')=="Sekretaris") selected @endif> Sekretaris</option>
+                                        <option value="Kepala Bidang" @if(old('jabatan')=="Kepala Bidang") selected @endif> Kepala Bidang</option>
+                                        <option value="Kepala UPTD" @if(old('jabatan')=="Kepala UPTD") selected @endif> Kepala UPTD</option>
+                                        <option value="Kepala Sub Bagian" @if(old('jabatan')=="Kepala Sub Bagian") selected @endif> Kepala Sub Bagian</option>
+                                        <option value="Kepala Seksi" @if(old('jabatan')=="Kepala Seksi") selected @endif> Kepala Seksi</option>
+                                        <option value="Staf" @if(old('jabatan')=="Staf") selected @endif> Staf</option>
                                     </select>
 						</div>
 					</div>

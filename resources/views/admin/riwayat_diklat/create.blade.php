@@ -48,11 +48,11 @@
 							@if ($errors->has('kelompok_diklat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('kelompok_diklat') }}</label>@endif
 							<select class="form-control" name="kelompok_diklat">
                                         <option value=""> -Pilih kelompok Diklat-</option>
-                                        <option value="kelompok Diklat Fungsional" @if(old('kelompok_diklat')=="kelompok Diklat Fungsional") selected @endif> kelompok Diklat Fungsional</option>
-                                        <option value="kelompok Diklat Struktural" @if(old('kelompok_diklat')=="kelompok Diklat Struktural") selected @endif> kelompok Diklat Struktural</option>
-                                        <option value="kelompok Diklat Teknis" @if(old('kelompok_diklat')=="kelompok Diklat Teknis") selected @endif> kelompok Diklat Teknis</option>
-                                        <option value="kelompok Diklat Prakelompok_diklat" @if(old('kelompok_diklat')=="kelompok Diklat Prakelompok_diklat") selected @endif> kelompok Diklat Prakelompok_diklat</option>
-                                    </select>
+                                        <option value="Diklat Prajabatan" @if(old('kelompok_diklat')=="Diklat Prajabatan") selected @endif> Diklat Prajabatan</option>
+                                        <option value="Diklat Kepemimpinan" @if(old('kelompok_diklat')=="Diklat Kepemimpinan") selected @endif> Diklat Kepemimpinan</option>
+                                        <option value="Diklat Fungsional" @if(old('kelompok_diklat')=="Diklat Fungsional") selected @endif> Diklat Fungsional</option>
+                                        <option value="Diklat Teknis" @if(old('kelompok_diklat')=="Diklat Teknis") selected @endif> Diklat Teknis</option>
+                                   </select>
 						</div>
 					</div>
 					
@@ -62,10 +62,13 @@
 							@if ($errors->has('jenis_diklat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jenis_diklat') }}</label>@endif
 							<select class="form-control" name="jenis_diklat">
                                         <option value=""> -Pilih Jenis Diklat -</option>
-                                        <option value="Jenis Diklat  Fungsional" @if(old('jenis_diklat')=="Jenis Diklat  Fungsional") selected @endif> Jenis Diklat  Fungsional</option>
-                                        <option value="Jenis Diklat  Struktural" @if(old('jenis_diklat')=="Jenis Diklat  Struktural") selected @endif> Jenis Diklat  Struktural</option>
-                                        <option value="Jenis Diklat  Teknis" @if(old('jenis_diklat')=="Jenis Diklat  Teknis") selected @endif> Jenis Diklat  Teknis</option>
-                                        <option value="Jenis Diklat  Prajenis_diklat" @if(old('jenis_diklat')=="Jenis Diklat  Prajenis_diklat") selected @endif> Jenis Diklat  Prajenis_diklat</option>
+                                        <option value="Diklat Prajab Gol. I" @if(old('jenis_diklat')=="Diklat Prajab Gol. I") selected @endif> Diklat Prajab Gol. I</option>
+                                        <option value="Diklat Prajab Gol. II" @if(old('jenis_diklat')=="Diklat Prajab Gol. II") selected @endif> Diklat Prajab Gol. II</option>
+                                        <option value="Diklat Prajab Gol. III" @if(old('jenis_diklat')=="Diklat Prajab Gol. III") selected @endif> Diklat Prajab Gol. III</option>
+                                        <option value="Diklatpim Tk. IV" @if(old('jenis_diklat')=="Diklatpim Tk. IV") selected @endif> Diklatpim Tk. IV</option>
+                                        <option value="Diklatpim Tk. III" @if(old('jenis_diklat')=="Diklatpim Tk. III") selected @endif> Diklatpim Tk. III</option>
+                                        <option value="Diklatpim Tk. II" @if(old('jenis_diklat')=="Diklatpim Tk. II") selected @endif> Diklatpim Tk. II</option>
+                                        <option value="Diklatpim Tk. I" @if(old('jenis_diklat')=="Diklatpim Tk. I") selected @endif> Diklatpim Tk. I</option>
                                     </select>
 						</div>
 					</div>

@@ -61,6 +61,10 @@
 							@if ($errors->has('golongan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('golongan') }}</label>@endif
 							<select class="form-control" name="golongan"  @if($riwayat_kepangkatan->golongan) style="border-color: #d3d7df;" @endif>
                                         <option value=""> -Pilih Golongan-</option>
+								<option value="Golongan I/a" @if($riwayat_kepangkatan->golongan=="Golongan I/a") selected @endif> Golongan I/a</option>
+                                        <option value="Golongan I/b" @if($riwayat_kepangkatan->golongan=="Golongan I/b") selected @endif> Golongan I/b</option>
+                                        <option value="Golongan I/c" @if($riwayat_kepangkatan->golongan=="Golongan I/c")selected @endif> Golongan I/c</option>
+                                        <option value="Golongan I/d" @if($riwayat_kepangkatan->golongan=="Golongan I/d") selected @endif> Golongan I/d</option>
                                         <option value="Golongan II/a" @if($riwayat_kepangkatan->golongan=="Golongan II/a") selected @endif> Golongan II/a</option>
                                         <option value="Golongan II/b" @if($riwayat_kepangkatan->golongan=="Golongan II/b") selected @endif> Golongan II/b</option>
                                         <option value="Golongan II/c" @if($riwayat_kepangkatan->golongan=="Golongan II/c")selected @endif> Golongan II/c</option>
@@ -73,6 +77,7 @@
                                         <option value="Golongan IV/b" @if($riwayat_kepangkatan->golongan=="Golongan IV/b") selected @endif> Golongan IV/b</option>
                                         <option value="Golongan IV/c" @if($riwayat_kepangkatan->golongan=="Golongan IV/c") selected @endif> Golongan IV/c</option>
                                         <option value="Golongan IV/d" @if($riwayat_kepangkatan->golongan=="Golongan IV/d") selected @endif> Golongan IV/d</option>
+                                        <option value="Golongan IV/e" @if($riwayat_kepangkatan->golongan=="Golongan IV/e") selected @endif> Golongan IV/e</option>
                                        
                                     </select>
 						</div>

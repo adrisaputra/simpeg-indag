@@ -102,9 +102,13 @@
 							@if ($errors->has('jabatan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jabatan') }}</label>@endif
 							<select class="form-control" name="jabatan">
                                         <option value=""> -Pilih Jabatan-</option>
-                                        <option value="Struktural" @if($riwayat_jabatan->jabatan=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if($riwayat_jabatan->jabatan=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if($riwayat_jabatan->jabatan=="Fungsional Umum") selected @endif> Fungsional Umum</option>
+                                        <option value="Kepala Dinas" @if($riwayat_jabatan->jabatan=="Kepala Dinas") selected @endif> Kepala Dinas</option>
+                                        <option value="Sekretaris" @if($riwayat_jabatan->jabatan=="Sekretaris") selected @endif> Sekretaris</option>
+                                        <option value="Kepala Bidang" @if($riwayat_jabatan->jabatan=="Kepala Bidang") selected @endif> Kepala Bidang</option>
+                                        <option value="Kepala UPTD" @if($riwayat_jabatan->jabatan=="Kepala UPTD") selected @endif> Kepala UPTD</option>
+                                        <option value="Kepala Sub Bagian" @if($riwayat_jabatan->jabatan=="Kepala Sub Bagian") selected @endif> Kepala Sub Bagian</option>
+                                        <option value="Kepala Seksi" @if($riwayat_jabatan->jabatan=="Kepala Seksi") selected @endif> Kepala Seksi</option>
+                                        <option value="Staf" @if($riwayat_jabatan->jabatan=="Staf") selected @endif> Staf</option>
                                     </select>
 						</div>
 					</div>
