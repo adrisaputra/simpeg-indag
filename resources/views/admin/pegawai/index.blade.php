@@ -83,7 +83,7 @@
 									<li><a href="{{ url('riwayat_seminar/'.$v->id) }}">Seminar</a></li>
 									<li><a href="{{ url('riwayat_diklat/'.$v->id) }}">Diklat/Sertifikasi</a></li>
 									<li><a href="{{ url('riwayat_tugas/'.$v->id) }}">Tugas/Izin Belajar</a></li>
-									<li><a href="{{ url('riwayat_karya_iliah/'.$v->id) }}">Karya Ilmiah</a></li>
+									<li><a href="{{ url('riwayat_karya_ilmiah/'.$v->id) }}">Karya Ilmiah</a></li>
 								</ul>
 							</div><br>
 							<div class="btn-group" style="display: block;padding-bottom:7px">

@@ -16,6 +16,7 @@ use App\Http\Controllers\RiwayatPendidikanController;
 use App\Http\Controllers\RiwayatSeminarController;
 use App\Http\Controllers\RiwayatDiklatController;
 use App\Http\Controllers\RiwayatTugasController;
+use App\Http\Controllers\RiwayatKaryaIlmiahController;
 use App\Http\Controllers\RiwayatPenghargaanController;
 use App\Http\Controllers\RiwayatKursusController;
 use App\Http\Controllers\RiwayatHukumanController;
@@ -168,6 +169,15 @@ Route::post('/riwayat_tugas/{id}', [RiwayatTugasController::class, 'store']);
 Route::get('/riwayat_tugas/edit/{id}/{riwayat_tugas}', [RiwayatTugasController::class, 'edit']);
 Route::put('/riwayat_tugas/edit/{id}/{riwayat_tugas}', [RiwayatTugasController::class, 'update']);
 Route::get('/riwayat_tugas/hapus/{id}/{riwayat_tugas}',[RiwayatTugasController::class, 'delete']);
+
+## Riwayat Karya Ilmiah
+Route::get('/riwayat_karya_ilmiah/{id}', [RiwayatKaryaIlmiahController::class, 'index']);
+Route::get('/riwayat_karya_ilmiah/search/{id}', [RiwayatKaryaIlmiahController::class, 'search']);
+Route::get('/riwayat_karya_ilmiah/create/{id}', [RiwayatKaryaIlmiahController::class, 'create']);
+Route::post('/riwayat_karya_ilmiah/{id}', [RiwayatKaryaIlmiahController::class, 'store']);
+Route::get('/riwayat_karya_ilmiah/edit/{id}/{riwayat_karya_ilmiah}', [RiwayatKaryaIlmiahController::class, 'edit']);
+Route::put('/riwayat_karya_ilmiah/edit/{id}/{riwayat_karya_ilmiah}', [RiwayatKaryaIlmiahController::class, 'update']);
+Route::get('/riwayat_karya_ilmiah/hapus/{id}/{riwayat_karya_ilmiah}',[RiwayatKaryaIlmiahController::class, 'delete']);
 
 ## Riwayat Penghargaan
 Route::get('/riwayat_penghargaan/{id}', [RiwayatPenghargaanController::class, 'index']);
