@@ -13,136 +13,159 @@ use Illuminate\Support\Facades\Hash;
 class RiwayatDiklatController extends Controller
 {
      ## Cek Login
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
-     
-     ## Tampikan Data
-     public function index($id)
-     {
-         $riwayat_diklat = RiwayatDiklat::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-         $pegawai = Pegawai::where('id',$id)->get();
-         $pegawai->toArray();
-         return view('admin.riwayat_diklat.index',compact('riwayat_diklat','pegawai'));
-     }
- 
-     ## Tampilkan Data Search
-     public function search(Request $request, $id)
-     {
-         $riwayat_diklat = $request->get('search');
-         $riwayat_diklat = RiwayatDiklat::where('pegawai_id',$id)
-                             ->where(function ($query) use ($riwayat_diklat) {
-                                 $query->where('diklat', 'LIKE', '%'.$riwayat_diklat.'%')
-                                     ->orWhere('nama_sekolah', 'LIKE', '%'.$riwayat_diklat.'%')
-                                     ->orWhere('jurusan', 'LIKE', '%'.$riwayat_diklat.'%')
-                                     ->orWhere('no_ijazah', 'LIKE', '%'.$riwayat_diklat.'%')
-                                     ->orWhere('tahun_ijazah', 'LIKE', '%'.$riwayat_diklat.'%');
-                             })
-                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-         $pegawai = Pegawai::where('id',$id)->get();
-         $pegawai->toArray();
-         return view('admin.riwayat_diklat.index',compact('riwayat_diklat','pegawai'));
-     }
- 
-    ## Tampilkan Form Create
-    public function create($id)
+    public function __construct()
     {
-         $pegawai = Pegawai::where('id',$id)->get();
-         $pegawai->toArray();
-         $view=view('admin.riwayat_diklat.create',compact('pegawai'));
-         $view=$view->render();
-         return $view;
+        $this->middleware('auth');
     }
- 
-    ## Simpan Data
-    public function store($id, Request $request)
+    
+    ## Tampikan Data
+    public function index($id)
     {
+        $riwayat_diklat = RiwayatDiklat::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        $pegawai = Pegawai::where('id',$id)->get();
+        $pegawai->toArray();
+        return view('admin.riwayat_diklat.index',compact('riwayat_diklat','pegawai'));
+    }
+
+    ## Tampilkan Data Search
+    public function search(Request $request, $id)
+    {
+        $riwayat_diklat = $request->get('search');
+        $riwayat_diklat = RiwayatDiklat::where('pegawai_id',$id)
+                            ->where(function ($query) use ($riwayat_diklat) {
+                                $query->where('kelompok_diklat', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('jenis_diklat', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('nama_diklat', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('negara', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('lokasi', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('kota', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('tmt_mulai', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('tmt_selesai', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('hari', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('jam', 'LIKE', '%'.$riwayat_diklat.'%')
+                                    ->orWhere('kualitas', 'LIKE', '%'.$riwayat_diklat.'%');
+                            })
+                            ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        $pegawai = Pegawai::where('id',$id)->get();
+        $pegawai->toArray();
+        return view('admin.riwayat_diklat.index',compact('riwayat_diklat','pegawai'));
+    }
+
+   ## Tampilkan Form Create
+   public function create($id)
+   {
+        $pegawai = Pegawai::where('id',$id)->get();
+        $pegawai->toArray();
+        $view=view('admin.riwayat_diklat.create',compact('pegawai'));
+        $view=$view->render();
+        return $view;
+   }
+
+   ## Simpan Data
+   public function store($id, Request $request)
+   {
         $this->validate($request, [
-            'diklat' => 'required',
+            'kelompok_diklat' => 'required',
+            'jenis_diklat' => 'required',
             'nama_diklat' => 'required',
-            'tempat' => 'required',
-            'penyelenggara' => 'required',
-            'no_sertifikat' => 'required',
-            'tanggal_sertifikat' => 'required',
-            'jam' => 'numeric'
+            'negara' => 'required',
+            'lokasi' => 'required',
+            'kota' => 'required',
+            'tmt_mulai' => 'required',
+            'tmt_selesai' => 'required',
+            'hari' => 'required|numeric',
+            'jam' => 'required|numeric',
+            'kualitas' => 'required',
+            'arsip_diklat' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
         ]);
 
         $input['pegawai_id'] = $id;
-        $input['diklat'] = $request->diklat;
-        
-        if($request->diklat=="Diklat Fungsional"){
-            $input['jenis_diklat'] = 1;
-        } else if($request->diklat=="Diklat Struktural"){
-            $input['jenis_diklat'] = 2;
-        } else if($request->diklat=="Diklat Teknis"){
-            $input['jenis_diklat'] = 3;
-        }  else if($request->diklat=="Diklat Pradiklat"){
-            $input['jenis_diklat'] = 4;
-        }  
- 
+        $input['kelompok_diklat'] = $request->kelompok_diklat;
+        $input['jenis_diklat'] = $request->jenis_diklat;
         $input['nama_diklat'] = $request->nama_diklat;
-        $input['tempat'] = $request->tempat;
-        $input['penyelenggara'] = $request->penyelenggara;
-        $input['no_sertifikat'] = $request->no_sertifikat;
-        $input['tanggal_sertifikat'] = $request->tanggal_sertifikat;
-        $input['tanggal_mulai'] = $request->tanggal_mulai;
-        $input['tanggal_selesai'] = $request->tanggal_selesai;
+        $input['negara'] = $request->negara;
+        $input['lokasi'] = $request->lokasi;
+        $input['kota'] = $request->kota;
+        $input['tmt_mulai'] = $request->tmt_mulai;
+        $input['tmt_selesai'] = $request->tmt_selesai;
+        $input['hari'] = $request->hari;
         $input['jam'] = $request->jam;
-        $input['angkatan'] = $request->angkatan;
+        $input['kualitas'] = $request->kualitas;
+        $input['arsip_diklat'] = $request->arsip_diklat;
+        
+		if($request->file('arsip_diklat')){
+			$input['arsip_diklat'] = time().'.'.$request->arsip_diklat->getClientOriginalExtension();
+			$request->arsip_diklat->move(public_path('upload/arsip_diklat'), $input['arsip_diklat']);
+    	}	
+		
         $input['user_id'] = Auth::user()->id;
-    
+       
         RiwayatDiklat::create($input);
 
         return redirect('/riwayat_diklat/'.$id)->with('status','Data Tersimpan');
-    }
- 
-    ## Tampilkan Form Edit
-    public function edit($id, RiwayatDiklat $riwayat_diklat)
-    {
-         $pegawai = Pegawai::where('id',$id)->get();
-         $pegawai->toArray();
-         $view=view('admin.riwayat_diklat.edit', compact('pegawai','riwayat_diklat'));
-         $view=$view->render();
-         return $view;
-    }
- 
-    ## Edit Data
-    public function update(Request $request, $id, RiwayatDiklat $riwayat_diklat)
-    {
+   }
+
+   ## Tampilkan Form Edit
+   public function edit($id, RiwayatDiklat $riwayat_diklat)
+   {
+        $pegawai = Pegawai::where('id',$id)->get();
+        $pegawai->toArray();
+        $view=view('admin.riwayat_diklat.edit', compact('pegawai','riwayat_diklat'));
+        $view=$view->render();
+        return $view;
+   }
+
+   ## Edit Data
+   public function update(Request $request, $id, RiwayatDiklat $riwayat_diklat)
+   {
         $this->validate($request, [
-            'diklat' => 'required',
+            'kelompok_diklat' => 'required',
+            'jenis_diklat' => 'required',
             'nama_diklat' => 'required',
-            'tempat' => 'required',
-            'penyelenggara' => 'required',
-            'no_sertifikat' => 'required',
-            'tanggal_sertifikat' => 'required',
-            'jam' => 'numeric'
+            'negara' => 'required',
+            'lokasi' => 'required',
+            'kota' => 'required',
+            'tmt_mulai' => 'required',
+            'tmt_selesai' => 'required',
+            'hari' => 'required|numeric',
+            'jam' => 'required|numeric',
+            'kualitas' => 'required',
+            'arsip_diklat' => 'mimes:jpg,jpeg,png,pdf|max:500'
         ]);
- 
-         $riwayat_diklat->fill($request->all());
-         
-        if($request->diklat=="Diklat Fungsional"){
-            $riwayat_diklat->jenis_diklat = 1;
-        } else if($request->diklat=="Diklat Struktural"){
-            $riwayat_diklat->jenis_diklat = 2;
-        } else if($request->diklat=="Diklat Teknis"){
-            $riwayat_diklat->jenis_diklat = 3;
-        }  else if($request->diklat=="Diklat Pradiklat"){
-            $riwayat_diklat->jenis_diklat = 4;
-        }  
-  
+        
+        if($request->file('arsip_diklat') && $riwayat_diklat->arsip_diklat){
+            $pathToYourFile = public_path('upload/arsip_diklat/'.$riwayat_diklat->arsip_diklat);
+            if(file_exists($pathToYourFile))
+            {
+                unlink($pathToYourFile);
+            }
+		}
+
+        $riwayat_diklat->fill($request->all());
+       
+        if($request->file('arsip_diklat')){
+            $filename = time().'.'.$request->arsip_diklat->getClientOriginalExtension();
+            $request->arsip_diklat->move(public_path('upload/arsip_diklat'), $filename);
+            $riwayat_diklat->arsip_diklat = $filename;
+		}
+
         $riwayat_diklat->user_id = Auth::user()->id;
         $riwayat_diklat->save();
-    
+       
         return redirect('/riwayat_diklat/'.$id)->with('status', 'Data Berhasil Diubah');
-    }
- 
-    ## Hapus Data
-    public function delete($id, RiwayatDiklat $riwayat_diklat)
-    {
-         $riwayat_diklat->delete();
-        
-         return redirect('/riwayat_diklat/'.$id)->with('status', 'Data Berhasil Dihapus');
-    }
+   }
+
+   ## Hapus Data
+   public function delete($id, RiwayatDiklat $riwayat_diklat)
+   {
+        $pathToYourFile = public_path('upload/arsip_diklat/'.$riwayat_diklat->arsip_diklat);
+        if(file_exists($pathToYourFile))
+        {
+            unlink($pathToYourFile);
+        }
+
+        $riwayat_diklat->delete();
+       
+        return redirect('/riwayat_diklat/'.$id)->with('status', 'Data Berhasil Dihapus');
+   }
 }

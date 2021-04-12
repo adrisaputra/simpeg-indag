@@ -44,105 +44,123 @@
 
 					<center><p style="font-size:20px">DATA DIKLAT</p></center>
 
-					<div class="form-group @if ($errors->has('diklat')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Diklat') }} <span class="required">*</span></label>
+					<div class="form-group @if ($errors->has('kelompok_diklat')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('kelompok Diklat') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
-							@if ($errors->has('diklat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('diklat') }}</label>@endif
-							<select class="form-control" name="diklat">
-                                        <option value=""> -Pilih Diklat-</option>
-                                        <option value="Diklat Fungsional" @if($riwayat_diklat->diklat=="Diklat Fungsional") selected @endif> Diklat Fungsional</option>
-                                        <option value="Diklat Struktural" @if($riwayat_diklat->diklat=="Diklat Struktural") selected @endif> Diklat Struktural</option>
-                                        <option value="Diklat Teknis" @if($riwayat_diklat->diklat=="Diklat Teknis") selected @endif> Diklat Teknis</option>
-                                        <option value="Diklat Pradiklat" @if($riwayat_diklat->diklat=="Diklat Pradiklat") selected @endif> Diklat Pradiklat</option>
+							@if ($errors->has('kelompok_diklat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('kelompok_diklat') }}</label>@endif
+							<select class="form-control" name="kelompok_diklat">
+                                        <option value=""> -Pilih kelompok Diklat-</option>
+                                        <option value="kelompok Diklat Fungsional" @if($riwayat_diklat->kelompok_diklat=="kelompok Diklat Fungsional") selected @endif> kelompok Diklat Fungsional</option>
+                                        <option value="kelompok Diklat Struktural" @if($riwayat_diklat->kelompok_diklat=="kelompok Diklat Struktural") selected @endif> kelompok Diklat Struktural</option>
+                                        <option value="kelompok Diklat Teknis" @if($riwayat_diklat->kelompok_diklat=="kelompok Diklat Teknis") selected @endif> kelompok Diklat Teknis</option>
+                                        <option value="kelompok Diklat Prakelompok_diklat" @if($riwayat_diklat->kelompok_diklat=="kelompok Diklat Prakelompok_diklat") selected @endif> kelompok Diklat Prakelompok_diklat</option>
+                                    </select>
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('jenis_diklat')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Jenis Diklat ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-10">
+							@if ($errors->has('jenis_diklat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jenis_diklat') }}</label>@endif
+							<select class="form-control" name="jenis_diklat">
+                                        <option value=""> -Pilih Jenis Diklat -</option>
+                                        <option value="Jenis Diklat  Fungsional" @if($riwayat_diklat->jenis_diklat=="Jenis Diklat  Fungsional") selected @endif> Jenis Diklat  Fungsional</option>
+                                        <option value="Jenis Diklat  Struktural" @if($riwayat_diklat->jenis_diklat=="Jenis Diklat  Struktural") selected @endif> Jenis Diklat  Struktural</option>
+                                        <option value="Jenis Diklat  Teknis" @if($riwayat_diklat->jenis_diklat=="Jenis Diklat  Teknis") selected @endif> Jenis Diklat  Teknis</option>
+                                        <option value="Jenis Diklat  Prajenis_diklat" @if($riwayat_diklat->jenis_diklat=="Jenis Diklat  Prajenis_diklat") selected @endif> Jenis Diklat  Prajenis_diklat</option>
                                     </select>
 						</div>
 					</div>
 					
 					<div class="form-group @if ($errors->has('nama_diklat')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Nama Diklat') }} <span class="required">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Nama Diklat') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('nama_diklat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('nama_diklat') }}</label>@endif
 							<input type="text" class="form-control" placeholder="Nama Diklat" name="nama_diklat" value="{{ $riwayat_diklat->nama_diklat }}" >
 						</div>
 					</div>
 					
-					<div class="form-group @if ($errors->has('tempat')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tempat Diklat') }} <span class="required">*</span></label>
+					<div class="form-group @if ($errors->has('negara')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Negara ') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
-							@if ($errors->has('tempat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tempat') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Tempat Diklat" name="tempat" value="{{ $riwayat_diklat->tempat  }}" >
+							@if ($errors->has('negara'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('negara') }}</label>@endif
+							<select class="form-control" name="negara">
+                                        <option value=""> -Pilih Negara -</option>
+                                        <option value="Negara  Fungsional" @if($riwayat_diklat->negara=="Negara  Fungsional") selected @endif> Negara  Fungsional</option>
+                                        <option value="Negara  Struktural" @if($riwayat_diklat->negara=="Negara  Struktural") selected @endif> Negara  Struktural</option>
+                                   </select>
 						</div>
 					</div>
 					
-					<div class="form-group @if ($errors->has('penyelenggara')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Penyelenggara') }} <span class="required">*</span></label>
-						<div class="col-sm-10">
-							@if ($errors->has('penyelenggara'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('penyelenggara') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Penyelenggara" name="penyelenggara" value="{{ $riwayat_diklat->penyelenggara }}" >
+					<div class="form-group  @if ($errors->has('lokasi') || $errors->has('kota')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Lokasi') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-3" @if($errors->has('lokasi') && $errors->has('kota')) @elseif ($errors->has('kota')) style="padding-top:27px" @endif>
+							@if ($errors->has('lokasi'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('lokasi') }}</label>@endif
+							<select class="form-control" name="lokasi"  @if($riwayat_diklat->lokasi) style="border-color: #d3d7df;" @endif>
+                                        <option value=""> -Pilih Lokasi -</option>
+                                        <option value="Lokasi  Fungsional" @if($riwayat_diklat->lokasi=="Lokasi  Fungsional") selected @endif> Lokasi  Fungsional</option>
+                                        <option value="Lokasi  Struktural" @if($riwayat_diklat->lokasi=="Lokasi  Struktural") selected @endif> Lokasi  Struktural</option>
+                                   </select>
+						</div>
+						<div class="col-sm-3" @if($errors->has('lokasi') && $errors->has('kota')) @elseif ($errors->has('lokasi')) style="padding-top:27px" @endif>
+							@if ($errors->has('kota'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('kota') }}</label>@endif
+							<input type="text" class="form-control" placeholder="Kota" name="kota" value="{{ $riwayat_diklat->kota }}" @if($riwayat_diklat->kota) style="border-color: #d3d7df;" @endif>
 						</div>
 					</div>
 					
-					<div class="form-group @if ($errors->has('no_sertifikat')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('No. Sertifikat') }} <span class="required">*</span></label>
-						<div class="col-sm-10">
-							@if ($errors->has('no_sertifikat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('no_sertifikat') }}</label>@endif
-							<input type="text" class="form-control" placeholder="No. Sertifikat" name="no_sertifikat" value="{{ $riwayat_diklat->no_sertifikat }}" >
-						</div>
-					</div>
-					
-					<div class="form-group @if ($errors->has('tanggal_sertifikat')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tanggal Sertifikat') }} <span class="required">*</span></label>
-						<div class="col-sm-10">
-							@if ($errors->has('tanggal_sertifikat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tanggal_sertifikat') }}</label>@endif
+					<div class="form-group  @if ($errors->has('tmt_mulai') || $errors->has('tmt_selesai')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('TMT') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-3" @if($errors->has('tmt_mulai') && $errors->has('tmt_selesai')) @elseif ($errors->has('tmt_selesai')) style="padding-top:27px" @endif>
+							@if ($errors->has('tmt_mulai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt_mulai') }}</label>@endif
 							<div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+                                    <div class="input-group-addon" @if($riwayat_diklat->tmt_mulai) style="border-color: #d3d7df;" @endif>
+                                        <i class="fa fa-calendar" @if($riwayat_diklat->tmt_mulai) style="color: #555555;" @endif></i>
                                     </div>
-                                        <input type="text" class="form-control datepicker" placeholder="Tanggal Sertifikat" name="tanggal_sertifikat" value="{{ $riwayat_diklat->tanggal_sertifikat }}">
+                                        <input type="text" class="form-control datepicker" placeholder="TMT Mulai" name="tmt_mulai" value="{{ $riwayat_diklat->tmt_mulai }}" @if($riwayat_diklat->tmt_mulai) style="border-color: #d3d7df;" @endif>
                                     </div>
 						</div>
-					</div>
-					
-					<div class="form-group @if ($errors->has('tanggal_mulai')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tanggal Mulai') }}</label>
-						<div class="col-sm-10">
-							@if ($errors->has('tanggal_mulai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tanggal_mulai') }}</label>@endif
+						<div class="col-sm-3" @if($errors->has('tmt_mulai') && $errors->has('tmt_selesai')) @elseif ($errors->has('tmt_mulai')) style="padding-top:27px" @endif>
+							@if ($errors->has('tmt_selesai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt_selesai') }}</label>@endif
 							<div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+                                    <div class="input-group-addon" @if($riwayat_diklat->tmt_selesai) style="border-color: #d3d7df;" @endif>
+                                        <i class="fa fa-calendar" @if($riwayat_diklat->tmt_selesai) style="color: #555555;" @endif></i>
                                     </div>
-                                        <input type="text" class="form-control datepicker" placeholder="Tanggal Mulai" name="tanggal_mulai" value="{{ $riwayat_diklat->tanggal_mulai }}">
-                                    </div>
-						</div>
-					</div>
-					
-					<div class="form-group @if ($errors->has('tanggal_selesai')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tanggal Selesai') }}</label>
-						<div class="col-sm-10">
-							@if ($errors->has('tanggal_selesai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tanggal_selesai') }}</label>@endif
-							<div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                        <input type="text" class="form-control datepicker" placeholder="Tanggal Selesai" name="tanggal_selesai" value="{{ $riwayat_diklat->tanggal_selesai }}">
+                                        <input type="text" class="form-control datepicker" placeholder="TMT Selesai" name="tmt_selesai" value="{{ $riwayat_diklat->tmt_selesai }}" @if($riwayat_diklat->tmt_selesai) style="border-color: #d3d7df;" @endif>
                                     </div>
 						</div>
 					</div>
 					
-					<div class="form-group @if ($errors->has('jam')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Jam') }}</label>
-						<div class="col-sm-10">
+					<div class="form-group  @if ($errors->has('hari') || $errors->has('jam')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Konversi') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-3" @if($errors->has('hari') && $errors->has('jam')) @elseif ($errors->has('jam')) style="padding-top:27px" @endif>
+							@if ($errors->has('hari'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('hari') }}</label>@endif
+							<input type="text" class="form-control" placeholder="Hari" name="hari" value="{{ $riwayat_diklat->hari }}" @if($riwayat_diklat->hari) style="border-color: #d3d7df;" @endif>
+						</div>
+						<div class="col-sm-3" @if($errors->has('hari') && $errors->has('jam')) @elseif ($errors->has('hari')) style="padding-top:27px" @endif>
 							@if ($errors->has('jam'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jam') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Jam" name="jam" value="{{ $riwayat_diklat->jam }}" >
+							<input type="text" class="form-control" placeholder="Jam" name="jam" value="{{ $riwayat_diklat->jam }}" @if($riwayat_diklat->jam) style="border-color: #d3d7df;" @endif>
 						</div>
 					</div>
 					
-					<div class="form-group @if ($errors->has('angkatan')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Angkatan') }}</label>
+					<div class="form-group @if ($errors->has('kualitas')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Kualitas ') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
-							@if ($errors->has('angkatan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('angkatan') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Angkatan" name="angkatan" value="{{ $riwayat_diklat->angkatan }}" >
-
+							@if ($errors->has('kualitas'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('kualitas') }}</label>@endif
+							<select class="form-control" name="kualitas">
+                                        <option value=""> -Pilih Kualitas -</option>
+                                        <option value="Kualitas  Fungsional" @if($riwayat_diklat->kualitas=="Kualitas  Fungsional") selected @endif> Kualitas  Fungsional</option>
+                                        <option value="Kualitas  Struktural" @if($riwayat_diklat->kualitas=="Kualitas  Struktural") selected @endif> Kualitas  Struktural</option>
+                                   </select>
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('arsip_diklat')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Berkas') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-4">
+							@if ($errors->has('arsip_diklat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('arsip_diklat') }}</label>@endif
+							<input type="file" class="form-control" placeholder="Arsip Jabatan" name="arsip_diklat" value="{{ $riwayat_diklat->arsip_diklat }}" >
+							<span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png,pdf)</i></span>
+							
 							<div style="padding-top:10px">
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Simpan</button>
 								<button type="reset" class="btn btn-danger btn-flat btn-sm" title="Reset Data"> Reset</button>
@@ -150,8 +168,14 @@
 							</div>
 
 						</div>
+						
+						<div class="col-sm-2" @if($errors->has('arsip_diklat')) style="padding-top:27px" @else style="padding-top:2px" @endif >
+							@if($riwayat_diklat->arsip_diklat)
+								<a href="{{ asset('upload/arsip_diklat/'.$riwayat_diklat->arsip_diklat) }}" target="_blank" class="btn btn-sm btn-primary" >Lihat File</a>
+							@endif
+						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</form>

@@ -11,17 +11,18 @@ class RiwayatDiklat extends Model
 	protected $table = 'riwayat_diklat_tbl';
 	protected $fillable =[
         'pegawai_id',
+        'kelompok_diklat',
         'jenis_diklat',
-        'diklat',
         'nama_diklat',
-        'tempat',
-        'penyelenggara',
-        'no_sertifikat',
-        'tanggal_sertifikat',
-        'tanggal_mulai',
-        'tanggal_selesai',
+        'negara',
+        'lokasi',
+        'kota',
+        'tmt_mulai',
+        'tmt_selesai',
+        'hari',
         'jam',
-        'angkatan',
+        'kualitas',
+        'arsip_diklat',
         'user_id'
     ];
 

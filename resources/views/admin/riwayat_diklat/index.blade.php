@@ -66,15 +66,27 @@
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px">No</th>
-						<th>Diklat</th>
+						<th>Jenis Diklat</th>
                               <th>Nama Diklat</th>
+                              <th>Tempat Diklat</th>
+                              <th>Tanggal Mulai</th>
+                              <th>Tanggal Selesai</th>
+                              <th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
 					@foreach($riwayat_diklat as $v)
 					<tr>
 						<td>{{ ($riwayat_diklat ->currentpage()-1) * $riwayat_diklat ->perpage() + $loop->index + 1 }}</td>
-						<td>{{ $v->diklat }}</td>
+						<td>{{ $v->jenis_diklat }}</td>
 						<td>{{ $v->nama_diklat }}</td>
+						<td>{{ $v->lokasi }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tmt_mulai)) }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tmt_selesai)) }}</td>
+						<td>
+							@if($v->arsip_diklat)
+								<a href="{{ asset('upload/arsip_diklat/'.$v->arsip_diklat) }}" class="btn btn-sm btn-primary" >Download File</a>
+							@endif
+						</td>
 						<td>
 							<a href="{{ url('/riwayat_diklat/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
 							<a href="{{ url('/riwayat_diklat/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
