@@ -2,11 +2,11 @@
 @section('konten')
 <div class="content-wrapper">
 	<section class="content-header">
-	<h1 class="fontPoppins">{{ __('DATA PENDIDIKAN') }}
+	<h1 class="fontPoppins">{{ __('DATA SEMINAR') }}
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
-		<li><a href="#"> {{ __('DATA PENDIDIKAN') }}</a></li>
+		<li><a href="#"> {{ __('DATA SEMINAR') }}</a></li>
 	</ol>
 	</section>
 	
@@ -34,14 +34,14 @@
 		<div class="box-header with-border">
 			<div class="box-tools pull-left">
 				<div style="padding-top:10px">
-					<a href="{{ url('/riwayat_pendidikan/create/'.$pegawai[0]->id) }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
-					<a href="{{ url('/riwayat_pendidikan/'.$pegawai[0]->id) }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
+					<a href="{{ url('/riwayat_seminar/create/'.$pegawai[0]->id) }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
+					<a href="{{ url('/riwayat_seminar/'.$pegawai[0]->id) }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
 					<a href="{{ url('/pegawai') }}" class="btn btn-danger btn-flat" title="Refresh halaman">Kembali</a>    
 				</div>
 			</div>
 			<div class="box-tools pull-right">
 				<div class="form-inline">
-					<form action="{{ url('/riwayat_pendidikan/search/'.$pegawai[0]->id) }}" method="GET">
+					<form action="{{ url('/riwayat_seminar/search/'.$pegawai[0]->id) }}" method="GET">
 						<div class="input-group margin">
 							<input type="text" class="form-control" name="search" placeholder="Masukkan kata kunci pencarian">
 							<span class="input-group-btn">
@@ -66,31 +66,32 @@
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px">No</th>
-						<th>Pendidikan</th>
-						<th>Nama Sekolah / Institusi</th>
-						<th>Jurusan / Program Studi</th>
-						<th>Tanggal Lulus</th>
+						<th>Nama Seminar</th>
+						<th>Tingkat</th>
+						<th>Tempat</th>
+						<th>Tanggal</th>
+						<th>Peranan</th>
+						<th>Penyelenggara</th>
 						<th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
-					@foreach($riwayat_pendidikan as $v)
+					@foreach($riwayat_seminar as $v)
 					<tr>
-						<td>{{ ($riwayat_pendidikan ->currentpage()-1) * $riwayat_pendidikan ->perpage() + $loop->index + 1 }}</td>
-						<td>{{ $v->tingkat }}</td>
-						<td>{{ $v->lembaga }}</td>
-						<td>{{ $v->jurusan }}</td>
-						<td>{{ date('d-m-Y', strtotime($v->tanggal_kelulusan)) }}</td>
+						<td>{{ ($riwayat_seminar ->currentpage()-1) * $riwayat_seminar ->perpage() + $loop->index + 1 }}</td>
+						<td>{{ $v->nama_seminar }}</td>
+						<td>{{ $v->tingkat_seminar }}</td>
+						<td>{{ $v->peranan }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal)) }}</td>
+						<td>{{ $v->penyelenggara }}</td>
+						<td>{{ $v->tempat }}</td>
 						<td>
-							@if($v->arsip_ijazah)
-								<a href="{{ asset('upload/arsip_ijazah/'.$v->arsip_ijazah) }}" class="btn btn-sm btn-primary" >Download Ijazah</a>
-							@endif
-							@if($v->arsip_transkrip_nilai)
-								<a href="{{ asset('upload/arsip_transkrip_nilai/'.$v->arsip_transkrip_nilai) }}" class="btn btn-sm btn-primary" >Download Transkrip Nilai</a>
+							@if($v->arsip_sertifikat_seminar)
+								<a href="{{ asset('upload/arsip_sertifikat_seminar/'.$v->arsip_sertifikat_seminar) }}" class="btn btn-sm btn-primary" >Download File</a>
 							@endif
 						</td>
 						<td>
-							<a href="{{ url('/riwayat_pendidikan/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
-							<a href="{{ url('/riwayat_pendidikan/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
+							<a href="{{ url('/riwayat_seminar/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
+							<a href="{{ url('/riwayat_seminar/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
 						</td>
 					</tr>
 					@endforeach
@@ -99,7 +100,7 @@
 			</div>
 		<div class="box-footer">
 			<!-- PAGINATION -->
-			<div class="float-right">{{ $riwayat_pendidikan->appends(Request::only('search'))->links() }}</div>
+			<div class="float-right">{{ $riwayat_seminar->appends(Request::only('search'))->links() }}</div>
 		</div>
 	</div>
 	</section>

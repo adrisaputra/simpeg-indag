@@ -13,6 +13,7 @@ use App\Http\Controllers\RiwayatKepangkatanController;
 use App\Http\Controllers\RiwayatLhkpnController;
 use App\Http\Controllers\RiwayatKompetensiController;
 use App\Http\Controllers\RiwayatPendidikanController;
+use App\Http\Controllers\RiwayatSeminarController;
 use App\Http\Controllers\RiwayatDiklatController;
 use App\Http\Controllers\RiwayatPenghargaanController;
 use App\Http\Controllers\RiwayatKursusController;
@@ -139,6 +140,15 @@ Route::post('/riwayat_pendidikan/{id}', [RiwayatPendidikanController::class, 'st
 Route::get('/riwayat_pendidikan/edit/{id}/{riwayat_pendidikan}', [RiwayatPendidikanController::class, 'edit']);
 Route::put('/riwayat_pendidikan/edit/{id}/{riwayat_pendidikan}', [RiwayatPendidikanController::class, 'update']);
 Route::get('/riwayat_pendidikan/hapus/{id}/{riwayat_pendidikan}',[RiwayatPendidikanController::class, 'delete']);
+
+## Riwayat Seminar
+Route::get('/riwayat_seminar/{id}', [RiwayatSeminarController::class, 'index']);
+Route::get('/riwayat_seminar/search/{id}', [RiwayatSeminarController::class, 'search']);
+Route::get('/riwayat_seminar/create/{id}', [RiwayatSeminarController::class, 'create']);
+Route::post('/riwayat_seminar/{id}', [RiwayatSeminarController::class, 'store']);
+Route::get('/riwayat_seminar/edit/{id}/{riwayat_seminar}', [RiwayatSeminarController::class, 'edit']);
+Route::put('/riwayat_seminar/edit/{id}/{riwayat_seminar}', [RiwayatSeminarController::class, 'update']);
+Route::get('/riwayat_seminar/hapus/{id}/{riwayat_seminar}',[RiwayatSeminarController::class, 'delete']);
 
 ## Riwayat Diklat
 Route::get('/riwayat_diklat/{id}', [RiwayatDiklatController::class, 'index']);
