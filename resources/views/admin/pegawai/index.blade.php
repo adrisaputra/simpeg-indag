@@ -103,6 +103,15 @@
 									<li><a href="{{ url('riwayat_pajak/'.$v->id) }}">Laporan Pajak</a></li>
 								</ul>
 							</div><br>
+							<div class="btn-group" style="display: block;padding-bottom:7px">
+								<button type="button" class="btn btn-xs btn-primary btn-block dropdown-toggle" data-toggle="dropdown">Riwayat Keluarga</button>
+								<ul class="dropdown-menu">
+									<li><a href="{{ url('riwayat_ibu/'.$v->id) }}">Ibu</a></li>
+									<li><a href="{{ url('riwayat_ayah/'.$v->id) }}">Ayah</a></li>
+									<li><a href="{{ url('riwayat_pasangan/'.$v->id) }}">Pasangan</a></li>
+									<li><a href="{{ url('riwayat_anak/'.$v->id) }}">Anak</a></li>
+								</ul>
+							</div><br>
 							<a href="{{ url('/pegawai/edit/'.$v->id ) }}" class="btn btn-xs btn-warning btn-block">Edit</a>
 							<a href="{{ url('/pegawai/hapus/'.$v->id ) }}" class="btn btn-xs btn-danger btn-block" onclick="return confirm('Anda Yakin ?');">Hapus</a>
 						</td>
