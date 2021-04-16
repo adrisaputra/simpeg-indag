@@ -70,16 +70,10 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('jenis_kegiatan')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Jenis Kegiatan ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Jenis Kegiatan') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('jenis_kegiatan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jenis_kegiatan') }}</label>@endif
-							<select class="form-control" name="jenis_kegiatan">
-                                        <option value=""> -Pilih Jenis Kegiatan -</option>
-                                        <option value="Jenis Kegiatan  Fungsional" @if($riwayat_karya_ilmiah->jenis_kegiatan=="Jenis Kegiatan  Fungsional") selected @endif> Jenis Kegiatan  Fungsional</option>
-                                        <option value="Jenis Kegiatan  Struktural" @if($riwayat_karya_ilmiah->jenis_kegiatan=="Jenis Kegiatan  Struktural") selected @endif> Jenis Kegiatan  Struktural</option>
-                                        <option value="Jenis Kegiatan  Teknis" @if($riwayat_karya_ilmiah->jenis_kegiatan=="Jenis Kegiatan  Teknis") selected @endif> Jenis Kegiatan  Teknis</option>
-                                        <option value="Jenis Kegiatan  Prajenis_kegiatan" @if($riwayat_karya_ilmiah->jenis_kegiatan=="Jenis Kegiatan  Prajenis_kegiatan") selected @endif> Jenis Kegiatan  Prajenis_kegiatan</option>
-                                    </select>
+							<input type="text" class="form-control" placeholder="Jenis Kegiatan" name="jenis_kegiatan" value="{{ $riwayat_karya_ilmiah->jenis_kegiatan }}" >
 						</div>
 					</div>
 					

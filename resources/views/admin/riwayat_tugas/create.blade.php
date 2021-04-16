@@ -48,10 +48,8 @@
 							@if ($errors->has('keterangan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('keterangan') }}</label>@endif
 							<select class="form-control" name="keterangan">
                                         <option value=""> -Pilih Keterangan-</option>
-                                        <option value="Keterangan Fungsional" @if(old('keterangan')=="Keterangan Fungsional") selected @endif> Keterangan Fungsional</option>
-                                        <option value="Keterangan Struktural" @if(old('keterangan')=="Keterangan Struktural") selected @endif> Keterangan Struktural</option>
-                                        <option value="Keterangan Teknis" @if(old('keterangan')=="Keterangan Teknis") selected @endif> Keterangan Teknis</option>
-                                        <option value="Keterangan Praketerangan" @if(old('keterangan')=="Keterangan Praketerangan") selected @endif> Keterangan Praketerangan</option>
+                                        <option value="Tugas Belajar" @if(old('keterangan')=="Tugas Belajar") selected @endif> Tugas Belajar</option>
+                                        <option value="Izin Belajar" @if(old('keterangan')=="Izin Belajar") selected @endif> Izin Belajar</option>
                                     </select>
 						</div>
 					</div>
@@ -62,59 +60,42 @@
 							@if ($errors->has('tingkat'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tingkat') }}</label>@endif
 							<select class="form-control" name="tingkat">
                                         <option value=""> -Pilih Tingkat -</option>
-                                        <option value="Tingkat  Fungsional" @if(old('tingkat')=="Tingkat  Fungsional") selected @endif> Tingkat  Fungsional</option>
-                                        <option value="Tingkat  Struktural" @if(old('tingkat')=="Tingkat  Struktural") selected @endif> Tingkat  Struktural</option>
-                                        <option value="Tingkat  Teknis" @if(old('tingkat')=="Tingkat  Teknis") selected @endif> Tingkat  Teknis</option>
-                                        <option value="Tingkat  Pratingkat" @if(old('tingkat')=="Tingkat  Pratingkat") selected @endif> Tingkat  Pratingkat</option>
-                                    </select>
+                                        <option value="S1/D4" @if(old('tingkat')=="S1/D4") selected @endif> S1/D4</option>
+                                        <option value="S2" @if(old('tingkat')=="S2") selected @endif> S2</option>
+                                        <option value="S3" @if(old('tingkat')=="S3") selected @endif> S3</option>
+                                   </select>
 						</div>
 					</div>
-					
+							
 					<div class="form-group @if ($errors->has('negara')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Negara ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Negara') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('negara'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('negara') }}</label>@endif
-							<select class="form-control" name="negara">
-                                        <option value=""> -Pilih Negara -</option>
-                                        <option value="Negara  Fungsional" @if(old('negara')=="Negara  Fungsional") selected @endif> Negara  Fungsional</option>
-                                        <option value="Negara  Struktural" @if(old('negara')=="Negara  Struktural") selected @endif> Negara  Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Negara" name="negara" value="{{ old('negara') }}" >
 						</div>
 					</div>
-					
+							
 					<div class="form-group @if ($errors->has('provinsi')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Provinsi ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Provinsi') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('provinsi'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('provinsi') }}</label>@endif
-							<select class="form-control" name="provinsi">
-                                        <option value=""> -Pilih Provinsi -</option>
-                                        <option value="Provinsi  Fungsional" @if(old('provinsi')=="Provinsi  Fungsional") selected @endif> Provinsi  Fungsional</option>
-                                        <option value="Provinsi  Struktural" @if(old('provinsi')=="Provinsi  Struktural") selected @endif> Provinsi  Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Provinsi" name="provinsi" value="{{ old('provinsi') }}" >
 						</div>
 					</div>
-					
+						
 					<div class="form-group @if ($errors->has('fakultas')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Fakultas ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Fakultas') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('fakultas'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('fakultas') }}</label>@endif
-							<select class="form-control" name="fakultas">
-                                        <option value=""> -Pilih Fakultas -</option>
-                                        <option value="Fakultas  Fungsional" @if(old('fakultas')=="Fakultas  Fungsional") selected @endif> Fakultas  Fungsional</option>
-                                        <option value="Fakultas  Struktural" @if(old('fakultas')=="Fakultas  Struktural") selected @endif> Fakultas  Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Fakultas" name="fakultas" value="{{ old('fakultas') }}" >
 						</div>
 					</div>
-					
+							
 					<div class="form-group @if ($errors->has('jurusan')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Jurusan ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Jurusan') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('jurusan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jurusan') }}</label>@endif
-							<select class="form-control" name="jurusan">
-                                        <option value=""> -Pilih Jurusan -</option>
-                                        <option value="Jurusan  Fungsional" @if(old('jurusan')=="Jurusan  Fungsional") selected @endif> Jurusan  Fungsional</option>
-                                        <option value="Jurusan  Struktural" @if(old('jurusan')=="Jurusan  Struktural") selected @endif> Jurusan  Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Jurusan" name="jurusan" value="{{ old('jurusan') }}" >
 						</div>
 					</div>
 					

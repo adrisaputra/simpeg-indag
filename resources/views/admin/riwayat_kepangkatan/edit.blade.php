@@ -50,7 +50,8 @@
 							@if ($errors->has('periode_kp'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('periode_kp') }}</label>@endif
 							<select class="form-control" name="periode_kp">
                                         <option value=""> -Pilih Periode KP-</option>
-                                        <option value="Periode KP II/a" @if($riwayat_kepangkatan->periode_kp=="Periode KP II/a") selected @endif> Periode KP II/a</option>
+                                        <option value="April" @if($riwayat_kepangkatan->periode_kp=="April") selected @endif> April</option>
+                                        <option value="Oktober" @if($riwayat_kepangkatan->periode_kp=="Oktober") selected @endif> Oktober</option>
                                     </select>
 						</div>
 					</div>
@@ -78,14 +79,6 @@
                                         <option value="Golongan IV/c" @if($riwayat_kepangkatan->golongan=="Golongan IV/c") selected @endif> Golongan IV/c</option>
                                         <option value="Golongan IV/d" @if($riwayat_kepangkatan->golongan=="Golongan IV/d") selected @endif> Golongan IV/d</option>
                                         <option value="Golongan IV/e" @if($riwayat_kepangkatan->golongan=="Golongan IV/e") selected @endif> Golongan IV/e</option>
-                                       
-                                    </select>
-						</div>
-						<div class="col-sm-3" @if($errors->has('golongan') && $errors->has('status')) @elseif ($errors->has('golongan')) style="padding-top:27px" @endif>
-							@if ($errors->has('status'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status') }}</label>@endif
-							<select class="form-control" name="status" @if($riwayat_kepangkatan->status) style="border-color: #d3d7df;" @endif>
-                                        <option value=""> -Pilih Status-</option>
-                                        <option value="Status II/a" @if($riwayat_kepangkatan->status=="Status II/a") selected @endif> Status II/a</option>
                                     </select>
 						</div>
 					</div>

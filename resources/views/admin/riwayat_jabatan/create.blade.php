@@ -48,10 +48,7 @@
 							@if ($errors->has('status_mutasi_instansi'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status_mutasi_instansi') }}</label>@endif
 							<select class="form-control" name="status_mutasi_instansi">
                                         <option value=""> -Pilih Status Mutasi Instansi-</option>
-                                        <option value="Struktural" @if(old('status_mutasi_instansi')=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if(old('status_mutasi_instansi')=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if(old('status_mutasi_instansi')=="Fungsional Umum") selected @endif> Fungsional Umum</option>
-                                    </select>
+                                   </select>
 						</div>
 					</div>
 					
@@ -75,9 +72,7 @@
 							<select class="form-control" name="jenjang">
                                         <option value=""> -Pilih Jenjang-</option>
                                         <option value="Struktural" @if(old('jenjang')=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if(old('jenjang')=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if(old('jenjang')=="Fungsional Umum") selected @endif> Fungsional Umum</option>
-                                    </select>
+                                   </select>
 						</div>
 					</div>
 					
@@ -87,10 +82,7 @@
 							@if ($errors->has('status_mutasi_pegawai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status_mutasi_pegawai') }}</label>@endif
 							<select class="form-control" name="status_mutasi_pegawai">
                                         <option value=""> -Pilih Status Mutasi Pegawai-</option>
-                                        <option value="Struktural" @if(old('status_mutasi_pegawai')=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if(old('status_mutasi_pegawai')=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if(old('status_mutasi_pegawai')=="Fungsional Umum") selected @endif> Fungsional Umum</option>
-                                    </select>
+                                   </select>
 						</div>
 					</div>
 					
@@ -118,8 +110,6 @@
 							<select class="form-control" name="status">
                                         <option value=""> -Pilih Status-</option>
                                         <option value="Struktural" @if(old('status')=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if(old('status')=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if(old('status')=="Fungsional Umum") selected @endif> Fungsional Umum</option>
                                     </select>
 						</div>
 					</div>

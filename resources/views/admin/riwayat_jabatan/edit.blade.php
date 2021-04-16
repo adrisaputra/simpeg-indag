@@ -51,9 +51,7 @@
 							<select class="form-control" name="status_mutasi_instansi">
                                         <option value=""> -Pilih Status Mutasi Instansi-</option>
                                         <option value="Struktural" @if($riwayat_jabatan->status_mutasi_instansi=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if($riwayat_jabatan->status_mutasi_instansi=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if($riwayat_jabatan->status_mutasi_instansi=="Fungsional Umum") selected @endif> Fungsional Umum</option>
-                                    </select>
+                                   </select>
 						</div>
 					</div>
 					
@@ -77,9 +75,7 @@
 							<select class="form-control" name="jenjang">
                                         <option value=""> -Pilih Jenjang-</option>
                                         <option value="Struktural" @if($riwayat_jabatan->jenjang=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if($riwayat_jabatan->jenjang=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if($riwayat_jabatan->jenjang=="Fungsional Umum") selected @endif> Fungsional Umum</option>
-                                    </select>
+                                   </select>
 						</div>
 					</div>
 					
@@ -90,9 +86,7 @@
 							<select class="form-control" name="status_mutasi_pegawai">
                                         <option value=""> -Pilih Status Mutasi Pegawai-</option>
                                         <option value="Struktural" @if($riwayat_jabatan->status_mutasi_pegawai=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if($riwayat_jabatan->status_mutasi_pegawai=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if($riwayat_jabatan->status_mutasi_pegawai=="Fungsional Umum") selected @endif> Fungsional Umum</option>
-                                    </select>
+                                   </select>
 						</div>
 					</div>
 					
@@ -120,9 +114,7 @@
 							<select class="form-control" name="status">
                                         <option value=""> -Pilih Status-</option>
                                         <option value="Struktural" @if($riwayat_jabatan->status=="Struktural") selected @endif> Struktural</option>
-                                        <option value="Fungsional Tertentu" @if($riwayat_jabatan->status=="Fungsional Tertentu") selected @endif> Fungsional Tertentu</option>
-                                        <option value="Fungsional Umum" @if($riwayat_jabatan->status=="Fungsional Umum") selected @endif> Fungsional Umum</option>
-                                    </select>
+                                   </select>
 						</div>
 					</div>
 					

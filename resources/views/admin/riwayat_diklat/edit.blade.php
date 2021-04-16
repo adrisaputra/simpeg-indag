@@ -84,26 +84,18 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('negara')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Negara ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Negara') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('negara'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('negara') }}</label>@endif
-							<select class="form-control" name="negara">
-                                        <option value=""> -Pilih Negara -</option>
-                                        <option value="Negara  Fungsional" @if($riwayat_diklat->negara=="Negara  Fungsional") selected @endif> Negara  Fungsional</option>
-                                        <option value="Negara  Struktural" @if($riwayat_diklat->negara=="Negara  Struktural") selected @endif> Negara  Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Negara" name="negara" value="{{ $riwayat_diklat->negara }}" >
 						</div>
 					</div>
-					
+
 					<div class="form-group  @if ($errors->has('lokasi') || $errors->has('kota')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Lokasi') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-3" @if($errors->has('lokasi') && $errors->has('kota')) @elseif ($errors->has('kota')) style="padding-top:27px" @endif>
 							@if ($errors->has('lokasi'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('lokasi') }}</label>@endif
-							<select class="form-control" name="lokasi"  @if($riwayat_diklat->lokasi) style="border-color: #d3d7df;" @endif>
-                                        <option value=""> -Pilih Lokasi -</option>
-                                        <option value="Lokasi  Fungsional" @if($riwayat_diklat->lokasi=="Lokasi  Fungsional") selected @endif> Lokasi  Fungsional</option>
-                                        <option value="Lokasi  Struktural" @if($riwayat_diklat->lokasi=="Lokasi  Struktural") selected @endif> Lokasi  Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Lokasi" name="lokasi" value="{{ $riwayat_diklat->lokasi }}" @if($riwayat_diklat->lokasi) style="border-color: #d3d7df;" @endif>
 						</div>
 						<div class="col-sm-3" @if($errors->has('lokasi') && $errors->has('kota')) @elseif ($errors->has('lokasi')) style="padding-top:27px" @endif>
 							@if ($errors->has('kota'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('kota') }}</label>@endif

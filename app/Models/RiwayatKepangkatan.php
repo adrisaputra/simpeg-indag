@@ -14,7 +14,6 @@ class RiwayatKepangkatan extends Model
         'jenis_golongan',
         'periode_kp',
         'golongan',
-        'status',
         'nama_pangkat',
         'tmt_mulai',
         'tmt_selesai',

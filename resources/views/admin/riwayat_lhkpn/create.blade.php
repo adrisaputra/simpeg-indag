@@ -69,7 +69,8 @@
 							@if ($errors->has('jenis_pelaporan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jenis_pelaporan') }}</label>@endif
 							<select class="form-control" name="jenis_pelaporan">
                                         <option value=""> -Pilih Jenis Pelaporan-</option>
-                                        <option value="Jenis Pelaporan II/a" @if(old('jenis_pelaporan')=="Jenis Pelaporan II/a") selected @endif> Jenis Pelaporan II/a</option>
+                                        <option value="Khusus" @if(old('jenis_pelaporan')=="Khusus") selected @endif> Khusus</option>
+                                        <option value="Periodik" @if(old('jenis_pelaporan')=="Periodik") selected @endif> Periodik</option>
                                     </select>
 						</div>
 					</div>

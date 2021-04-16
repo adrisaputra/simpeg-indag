@@ -66,7 +66,6 @@ class RiwayatKepangkatanController extends Controller
         $this->validate($request, [
             'periode_kp' => 'required',
             'golongan' => 'required',
-            'status' => 'required',
             'tmt_mulai' => 'required',
             'tmt_selesai' => 'required',
             'mk_bulan' => 'required|numeric',
@@ -132,7 +131,6 @@ class RiwayatKepangkatanController extends Controller
             $input['nama_pangkat'] = 'Pembina Utama';
         }   
 
-        $input['status'] = $request->status;
         $input['tmt_mulai'] = $request->tmt_mulai;
         $input['tmt_selesai'] = $request->tmt_selesai;
         $input['mk_tahun'] = $request->mk_tahun;
@@ -168,7 +166,6 @@ class RiwayatKepangkatanController extends Controller
         $this->validate($request, [
             'periode_kp' => 'required',
             'golongan' => 'required',
-            'status' => 'required',
             'tmt_mulai' => 'required',
             'tmt_selesai' => 'required',
             'mk_bulan' => 'required|numeric',
