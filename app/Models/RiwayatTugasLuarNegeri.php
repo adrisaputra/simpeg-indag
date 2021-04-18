@@ -11,11 +11,12 @@ class RiwayatTugasLuarNegeri extends Model
 	protected $table = 'riwayat_tugas_luar_negeri_tbl';
 	protected $fillable =[
         'pegawai_id',
+        'tipe_kunjungan',
         'tujuan',
+        'negara',
         'tanggal_mulai',
         'tanggal_selesai',
-        'no_sk',
-        'tanggal_sk',
+        'asal_dana',
         'pejabat',
         'user_id'
     ];

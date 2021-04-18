@@ -33,7 +33,12 @@ class RiwayatTugasLuarNegeriController extends Controller
         $riwayat_tugas_luar_negeri = $request->get('search');
         $riwayat_tugas_luar_negeri = RiwayatTugasLuarNegeri::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_tugas_luar_negeri) {
-                                $query->where('tujuan', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%');
+                                $query->where('tipe_kunjungan', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%')
+                                ->orWhere('tujuan', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%')
+                                ->orWhere('negara', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%')
+                                ->orWhere('tanggal_mulai', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%')
+                                ->orWhere('tanggal_selesai', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%')
+                                ->orWhere('asal_dana', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
         $pegawai = Pegawai::where('id',$id)->get();
@@ -55,18 +60,21 @@ class RiwayatTugasLuarNegeriController extends Controller
    public function store($id, Request $request)
    {
         $this->validate($request, [
+            'tipe_kunjungan' => 'required',
             'tujuan' => 'required',
+            'negara' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
+            'asal_dana' => 'required'
         ]);
 
         $input['pegawai_id'] = $id;
+        $input['tipe_kunjungan'] = $request->tipe_kunjungan;
         $input['tujuan'] = $request->tujuan;
+        $input['negara'] = $request->negara;
         $input['tanggal_mulai'] = $request->tanggal_mulai;
         $input['tanggal_selesai'] = $request->tanggal_selesai;
-        $input['no_sk'] = $request->no_sk;
-        $input['tanggal_sk'] = $request->tanggal_sk;
-        $input['pejabat'] = $request->pejabat;
+        $input['asal_dana'] = $request->asal_dana;
         $input['user_id'] = Auth::user()->id;
     
         RiwayatTugasLuarNegeri::create($input);
@@ -88,9 +96,12 @@ class RiwayatTugasLuarNegeriController extends Controller
    public function update(Request $request, $id, RiwayatTugasLuarNegeri $riwayat_tugas_luar_negeri)
    {
         $this->validate($request, [
+            'tipe_kunjungan' => 'required',
             'tujuan' => 'required',
+            'negara' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
+            'asal_dana' => 'required'
         ]);
 
         $riwayat_tugas_luar_negeri->fill($request->all()); 

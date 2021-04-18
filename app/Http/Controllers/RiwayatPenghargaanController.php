@@ -36,7 +36,7 @@ class RiwayatPenghargaanController extends Controller
                                 $query->where('nama_penghargaan', 'LIKE', '%'.$riwayat_penghargaan.'%')
                                     ->orWhere('no_sk', 'LIKE', '%'.$riwayat_penghargaan.'%')
                                     ->orWhere('tanggal_sk', 'LIKE', '%'.$riwayat_penghargaan.'%')
-                                    ->orWhere('tahun', 'LIKE', '%'.$riwayat_penghargaan.'%');
+                                    ->orWhere('keterangan', 'LIKE', '%'.$riwayat_penghargaan.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
         $pegawai = Pegawai::where('id',$id)->get();
@@ -59,14 +59,22 @@ class RiwayatPenghargaanController extends Controller
    {
        $this->validate($request, [
            'nama_penghargaan' => 'required',
-           'no_sk' => 'required'
+           'no_sk' => 'required',
+           'tanggal_sk' => 'required',
+           'arsip_penghargaan' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
        ]);
 
        $input['pegawai_id'] = $id;
        $input['nama_penghargaan'] = $request->nama_penghargaan;
        $input['no_sk'] = $request->no_sk;
        $input['tanggal_sk'] = $request->tanggal_sk;
-       $input['tahun'] = $request->tahun;
+       $input['keterangan'] = $request->keterangan;
+       
+		if($request->file('arsip_penghargaan')){
+			$input['arsip_penghargaan'] = time().'.'.$request->arsip_penghargaan->getClientOriginalExtension();
+			$request->arsip_penghargaan->move(public_path('upload/arsip_penghargaan'), $input['arsip_penghargaan']);
+    	}	
+		
        $input['user_id'] = Auth::user()->id;
    
        RiwayatPenghargaan::create($input);
@@ -89,10 +97,27 @@ class RiwayatPenghargaanController extends Controller
    {
         $this->validate($request, [
             'nama_penghargaan' => 'required',
-            'no_sk' => 'required'
+            'no_sk' => 'required',
+            'tanggal_sk' => 'required',
+            'arsip_penghargaan' => 'mimes:jpg,jpeg,png,pdf|max:500'
         ]);
 
-        $riwayat_penghargaan->fill($request->all()); 
+        if($request->file('arsip_penghargaan') && $riwayat_penghargaan->arsip_penghargaan){
+            $pathToYourFile = public_path('upload/arsip_penghargaan/'.$riwayat_penghargaan->arsip_penghargaan);
+            if(file_exists($pathToYourFile))
+            {
+                unlink($pathToYourFile);
+            }
+		}
+
+        $riwayat_penghargaan->fill($request->all());
+       
+        if($request->file('arsip_penghargaan')){
+            $filename = time().'.'.$request->arsip_penghargaan->getClientOriginalExtension();
+            $request->arsip_penghargaan->move(public_path('upload/arsip_penghargaan'), $filename);
+            $riwayat_penghargaan->arsip_penghargaan = $filename;
+		}
+
         $riwayat_penghargaan->user_id = Auth::user()->id;
         $riwayat_penghargaan->save();
     
@@ -102,6 +127,12 @@ class RiwayatPenghargaanController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatPenghargaan $riwayat_penghargaan)
    {
+        $pathToYourFile = public_path('upload/arsip_penghargaan/'.$riwayat_penghargaan->arsip_penghargaan);
+        if(file_exists($pathToYourFile))
+        {
+            unlink($pathToYourFile);
+        }
+
         $riwayat_penghargaan->delete();
        
         return redirect('/riwayat_penghargaan/'.$id)->with('status', 'Data Berhasil Dihapus');

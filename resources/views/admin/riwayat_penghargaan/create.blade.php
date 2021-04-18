@@ -43,15 +43,21 @@
 				<center><p style="font-size:20px">DATA PENGHARGAAN</p></center>
 
 					<div class="form-group @if ($errors->has('nama_penghargaan')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Nama Penghargaan') }} <span class="required">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Nama Penghargaan ') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('nama_penghargaan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('nama_penghargaan') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Nama Penghargaan" name="nama_penghargaan" value="{{ old('nama_penghargaan') }}" >
+							<select class="form-control" name="nama_penghargaan">
+                                        <option value=""> -Pilih Nama Penghargaan -</option>
+                                        <option value="Satyalancana Karya Satya 10 Tahun" @if(old('nama_penghargaan')=="Satyalancana Karya Satya 10 Tahun") selected @endif> Satyalancana Karya Satya 10 Tahun</option>
+                                        <option value="Satyalancana Karya Satya 20 Tahun" @if(old('nama_penghargaan')=="Satyalancana Karya Satya 20 Tahun") selected @endif> Satyalancana Karya Satya 20 Tahun</option>
+                                        <option value="Satyalancana Karya Satya 30 Tahun" @if(old('nama_penghargaan')=="Satyalancana Karya Satya 30 Tahun") selected @endif> Satyalancana Karya Satya 30 Tahun</option>
+                                        <option value="Dan Lain-lain" @if(old('nama_penghargaan')=="Dan Lain-lain") selected @endif> Dan Lain-lain</option>
+                                   </select>
 						</div>
 					</div>
 					
 					<div class="form-group @if ($errors->has('no_sk')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('No. SK') }} <span class="required">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('No. SK') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('no_sk'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('no_sk') }}</label>@endif
 							<input type="text" class="form-control" placeholder="No. SK" name="no_sk" value="{{ old('no_sk') }}" >
@@ -59,7 +65,7 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('tanggal_sk')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tanggal SK') }}</label>
+						<label class="col-sm-2 control-label">{{ __('Tanggal SK') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('tanggal_sk'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tanggal_sk') }}</label>@endif
 							<div class="input-group date">
@@ -71,21 +77,30 @@
 						</div>
 					</div>
 
-					<div class="form-group @if ($errors->has('tahun')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tahun') }}</label>
+					<div class="form-group @if ($errors->has('keterangan')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Keterangan') }}</label>
 						<div class="col-sm-10">
-							@if ($errors->has('tahun'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tahun') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Tahun" name="tahun" value="{{ old('tahun') }}" >
-
+							@if ($errors->has('keterangan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('keterangan') }}</label>@endif
+							<input type="text" class="form-control" placeholder="Keterangan" name="keterangan" value="{{ old('keterangan') }}" >
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('arsip_penghargaan')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Berkas') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-10">
+							@if ($errors->has('arsip_penghargaan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('arsip_penghargaan') }}</label>@endif
+							<input type="file" class="form-control" placeholder="Berkas" name="arsip_penghargaan" value="{{ old('arsip_penghargaan') }}" >
+							<span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png,pdf)</i></span>
+							
 							<div style="padding-top:10px">
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Simpan</button>
 								<button type="reset" class="btn btn-danger btn-flat btn-sm" title="Reset Data"> Reset</button>
-								<a href="{{ url('/riwayat_penghargaan/'.$pegawai[0]->id ) }}" class="btn btn-warning btn-flat btn-sm" title="Kembali">Kembali</a>
+								<a href="{{ url('/riwayat_diklat/'.$pegawai[0]->id ) }}" class="btn btn-warning btn-flat btn-sm" title="Kembali">Kembali</a>
 							</div>
 
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</form>

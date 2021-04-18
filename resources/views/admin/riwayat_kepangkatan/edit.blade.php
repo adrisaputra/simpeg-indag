@@ -89,7 +89,7 @@
 							@if ($errors->has('tmt_mulai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt_mulai') }}</label>@endif
 							<div class="input-group date">
                                     <div class="input-group-addon" @if($riwayat_kepangkatan->tmt_mulai) style="border-color: #d3d7df;" @endif>
-                                        <i class="fa fa-calendar" @if($riwayat_kepangkatan->tmt_mulai) style="border-color: #555555;" @endif></i>
+                                        <i class="fa fa-calendar" @if($riwayat_kepangkatan->tmt_mulai) style="color: #555555;" @endif></i>
                                     </div>
                                         <input type="text" class="form-control datepicker" placeholder="TMT Mulai" name="tmt_mulai" value="{{ $riwayat_kepangkatan->tmt_mulai }}" @if($riwayat_kepangkatan->tmt_mulai) style="border-color: #d3d7df;" @endif>
                                     </div>
@@ -98,7 +98,7 @@
 							@if ($errors->has('tmt_selesai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt_selesai') }}</label>@endif
 							<div class="input-group date">
                                     <div class="input-group-addon" @if($riwayat_kepangkatan->tmt_selesai) style="border-color: #d3d7df;" @endif>
-                                        <i class="fa fa-calendar" @if($riwayat_kepangkatan->tmt_selesai) style="border-color: #555555;" @endif></i>
+                                        <i class="fa fa-calendar" @if($riwayat_kepangkatan->tmt_selesai) style="color: #555555;" @endif></i>
                                     </div>
                                         <input type="text" class="form-control datepicker" placeholder="TMT Selesai" name="tmt_selesai" value="{{ $riwayat_kepangkatan->tmt_selesai }}" @if($riwayat_kepangkatan->tmt_selesai) style="border-color: #d3d7df;" @endif>
                                     </div>
@@ -137,7 +137,6 @@
                                     </div>
 						</div>
 					</div>
-
 
 					<div class="form-group @if ($errors->has('arsip_kepangkatan')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Berkas SK KP') }} <span class="required" style="color: #dd4b39;">*</span></label>

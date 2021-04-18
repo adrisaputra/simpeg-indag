@@ -12,8 +12,11 @@ class RiwayatAnak extends Model
 	protected $fillable =[
         'pegawai_id',
         'nama_anak',
-        'tempat_lahir',
+        'jenis_kelamin',
         'tanggal_lahir',
+        'status',
+        'pendidikan',
+        'akta_kelahiran',
         'user_id'
     ];
 

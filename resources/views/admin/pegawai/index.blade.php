@@ -106,8 +106,7 @@
 							<div class="btn-group" style="display: block;padding-bottom:7px">
 								<button type="button" class="btn btn-xs btn-primary btn-block dropdown-toggle" data-toggle="dropdown">Riwayat Keluarga</button>
 								<ul class="dropdown-menu">
-									<li><a href="{{ url('riwayat_ibu/'.$v->id) }}">Ibu</a></li>
-									<li><a href="{{ url('riwayat_ayah/'.$v->id) }}">Ayah</a></li>
+									<li><a href="{{ url('riwayat_orang_tua/'.$v->id) }}">Orang Tua</a></li>
 									<li><a href="{{ url('riwayat_pasangan/'.$v->id) }}">Pasangan</a></li>
 									<li><a href="{{ url('riwayat_anak/'.$v->id) }}">Anak</a></li>
 								</ul>

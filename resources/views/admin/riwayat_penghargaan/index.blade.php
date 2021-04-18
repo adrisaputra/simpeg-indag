@@ -66,13 +66,23 @@
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px">No</th>
-						<th>Nama Penghargaan</th>
+						<th>Nama Jasa/Penghargaan</th>
+						<th>No. SK</th>
+						<th>Tanggal SK</th>
+						<th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
 					@foreach($riwayat_penghargaan as $v)
 					<tr>
 						<td>{{ ($riwayat_penghargaan ->currentpage()-1) * $riwayat_penghargaan ->perpage() + $loop->index + 1 }}</td>
 						<td>{{ $v->nama_penghargaan }}</td>
+						<td>{{ $v->no_sk }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal_sk)) }}</td>
+						<td>
+							@if($v->arsip_penghargaan)
+								<a href="{{ asset('upload/arsip_penghargaan/'.$v->arsip_penghargaan) }}" class="btn btn-sm btn-primary" >Download File</a>
+							@endif
+						</td>
 						<td>
 							<a href="{{ url('/riwayat_penghargaan/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
 							<a href="{{ url('/riwayat_penghargaan/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>

@@ -67,12 +67,24 @@
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px">No</th>
 						<th>Nama Anak</th>
+						<th>Tanggal Lahir</th>
+						<th>Pendidikan</th>
+						<th>Status</th>
+						<th>Akta Kelahiran</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
 					@foreach($riwayat_anak as $v)
 					<tr>
 						<td>{{ ($riwayat_anak ->currentpage()-1) * $riwayat_anak ->perpage() + $loop->index + 1 }}</td>
 						<td>{{ $v->nama_anak }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal_lahir)) }}</td>
+						<td>{{ $v->pendidikan }}</td>
+						<td>{{ $v->status }}</td>
+						<td>
+							@if($v->akta_kelahiran)
+								<a href="{{ asset('upload/akta_kelahiran/'.$v->akta_kelahiran) }}" class="btn btn-sm btn-primary" >Download File</a>
+							@endif
+						</td>
 						<td>
 							<a href="{{ url('/riwayat_anak/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
 							<a href="{{ url('/riwayat_anak/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>

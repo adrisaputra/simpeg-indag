@@ -48,8 +48,8 @@
 							@if ($errors->has('periode_kp'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('periode_kp') }}</label>@endif
 							<select class="form-control" name="periode_kp">
                                         <option value=""> -Pilih Periode KP-</option>
-                                        <option value="April" @if(old('April')=="April") selected @endif> April</option>
-                                        <option value="Oktober" @if(old('Oktober')=="Oktober") selected @endif> Oktober</option>
+                                        <option value="April" @if(old('periode_kp')=="April") selected @endif> April</option>
+                                        <option value="Oktober" @if(old('periode_kp')=="Oktober") selected @endif> Oktober</option>
                                     </select>
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 							@if ($errors->has('tmt_mulai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt_mulai') }}</label>@endif
 							<div class="input-group date">
                                     <div class="input-group-addon" @if(old('tmt_mulai')) style="border-color: #d3d7df;" @endif>
-                                        <i class="fa fa-calendar" @if(old('tmt_mulai')) style="border-color: #555555;" @endif></i>
+                                        <i class="fa fa-calendar" @if(old('tmt_mulai')) style="color: #555555;" @endif></i>
                                     </div>
                                         <input type="text" class="form-control datepicker" placeholder="TMT Mulai" name="tmt_mulai" value="{{ old('tmt_mulai') }}" @if(old('tmt_mulai')) style="border-color: #d3d7df;" @endif>
                                     </div>
@@ -95,10 +95,10 @@
 						<div class="col-sm-3" @if($errors->has('tmt_mulai') && $errors->has('tmt_selesai')) @elseif ($errors->has('tmt_mulai')) style="padding-top:27px" @endif>
 							@if ($errors->has('tmt_selesai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt_selesai') }}</label>@endif
 							<div class="input-group date">
-                                    <div class="input-group-addon" @if(old('tmt_mulai')) style="border-color: #d3d7df;" @endif>
-                                        <i class="fa fa-calendar" @if(old('tmt_mulai')) style="border-color: #555555;" @endif></i>
+                                    <div class="input-group-addon" @if(old('tmt_selesai')) style="border-color: #d3d7df;" @endif>
+                                        <i class="fa fa-calendar" @if(old('tmt_selesai')) style="color: #555555;" @endif></i>
                                     </div>
-                                        <input type="text" class="form-control datepicker" placeholder="TMT Selesai" name="tmt_selesai" value="{{ old('tmt_selesai') }}" @if(old('tmt_mulai')) style="border-color: #d3d7df;" @endif>
+                                        <input type="text" class="form-control datepicker" placeholder="TMT Selesai" name="tmt_selesai" value="{{ old('tmt_selesai') }}" @if(old('tmt_selesai')) style="border-color: #d3d7df;" @endif>
                                     </div>
 						</div>
 					</div>
@@ -135,7 +135,6 @@
                                     </div>
 						</div>
 					</div>
-
 
 					<div class="form-group @if ($errors->has('arsip_kepangkatan')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Berkas SK KP') }} <span class="required" style="color: #dd4b39;">*</span></label>

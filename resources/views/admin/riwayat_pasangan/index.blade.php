@@ -34,9 +34,7 @@
 		<div class="box-header with-border">
 			<div class="box-tools pull-left">
 				<div style="padding-top:10px">
-					@if(count($riwayat_pasangan)==0)
-						<a href="{{ url('/riwayat_pasangan/create/'.$pegawai[0]->id) }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
-					@endif
+					<a href="{{ url('/riwayat_pasangan/create/'.$pegawai[0]->id) }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
 					<a href="{{ url('/riwayat_pasangan/'.$pegawai[0]->id) }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
 					<a href="{{ url('/pegawai') }}" class="btn btn-danger btn-flat" title="Refresh halaman">Kembali</a>    
 				</div>
@@ -69,12 +67,24 @@
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px">No</th>
 						<th>Nama Suami/Istri</th>
+						<th>Tanggal Lahir</th>
+						<th>Status Nikah</th>
+						<th>Tanggal Status Nikah</th>
+						<th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
 					@foreach($riwayat_pasangan as $v)
 					<tr>
 						<td>{{ ($riwayat_pasangan ->currentpage()-1) * $riwayat_pasangan ->perpage() + $loop->index + 1 }}</td>
 						<td>{{ $v->nama_pasangan }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal_lahir)) }}</td>
+						<td>{{ $v->status }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal_nikah)) }}</td>
+						<td>
+							@if($v->surat_nikah)
+								<a href="{{ asset('upload/surat_nikah/'.$v->surat_nikah) }}" class="btn btn-sm btn-primary" >Download File</a>
+							@endif
+						</td>
 						<td>
 							<a href="{{ url('/riwayat_pasangan/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
 							<a href="{{ url('/riwayat_pasangan/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>

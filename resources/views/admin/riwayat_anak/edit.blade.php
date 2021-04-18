@@ -44,24 +44,30 @@
 
 					<center><p style="font-size:20px">DATA ANAK</p></center>
 
+					
 					<div class="form-group @if ($errors->has('nama_anak')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Nama Anak') }}</label>
+						<label class="col-sm-2 control-label">{{ __('Nama Anak') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('nama_anak'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('nama_anak') }}</label>@endif
 							<input type="text" class="form-control" placeholder="Nama Anak" name="nama_anak" value="{{ $riwayat_anak->nama_anak }}" >
 						</div>
 					</div>
 					
-					<div class="form-group @if ($errors->has('tempat_lahir')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tempat Lahir') }}</label>
+					<div class="form-group @if ($errors->has('jenis_kelamin')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Jenis Kelamin') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
-							@if ($errors->has('tempat_lahir'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tempat_lahir') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Tempat Lahir" name="tempat_lahir" value="{{ $riwayat_anak->tempat_lahir }}" >
+							@if ($errors->has('jenis_kelamin'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jenis_kelamin') }}</label>@endif
+							<select class="form-control select2" name="jenis_kelamin">
+                                        <option value=""> -Pilih Jenis Kelamin-</option>
+                                        <option value="Pria" @if($riwayat_anak->jenis_kelamin=="Pria") selected @endif> Pria</option>
+                                        <option value="Wanita" @if($riwayat_anak->jenis_kelamin=="Wanita") selected @endif> Wanita</option>
+                                       
+                                    </select>
 						</div>
 					</div>
 					
 					<div class="form-group @if ($errors->has('tanggal_lahir')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Tanggal Lahir') }}</label>
+						<label class="col-sm-2 control-label">{{ __('Tanggal Lahir') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('tanggal_lahir'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tanggal_lahir') }}</label>@endif
 							<div class="input-group date">
@@ -70,7 +76,38 @@
                                     </div>
                                         <input type="text" class="form-control datepicker" placeholder="Tanggal Lahir" name="tanggal_lahir" value="{{ $riwayat_anak->tanggal_lahir }}">
                                     </div>
-								
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('status')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Status') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-10">
+							@if ($errors->has('status'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status') }}</label>@endif
+							<select class="form-control select2" name="status">
+                                        <option value=""> -Pilih Status-</option>
+                                        <option value="Kandung" @if($riwayat_anak->status=="Kandung") selected @endif> Kandung</option>
+                                        <option value="Tiri" @if($riwayat_anak->status=="Tiri") selected @endif> Tiri</option>
+                                        <option value="Angkat" @if($riwayat_anak->status=="Angkat") selected @endif> Angkat</option>
+                                       
+                                    </select>
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('pendidikan')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Pendidikan') }}</label>
+						<div class="col-sm-10">
+							@if ($errors->has('pendidikan'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('pendidikan') }}</label>@endif
+							<input type="text" class="form-control" placeholder="Pendidikan" name="pendidikan" value="{{ $riwayat_anak->pendidikan }}" >
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('akta_kelahiran')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Akta Kelahiran') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-4">
+							@if ($errors->has('akta_kelahiran'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('akta_kelahiran') }}</label>@endif
+							<input type="file" class="form-control" placeholder="Arsip Jabatan" name="akta_kelahiran" value="{{ $riwayat_anak->akta_kelahiran }}" >
+							<span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png,pdf)</i></span>
+							
 							<div style="padding-top:10px">
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Simpan</button>
 								<button type="reset" class="btn btn-danger btn-flat btn-sm" title="Reset Data"> Reset</button>
@@ -79,7 +116,13 @@
 
 						</div>
 						
+						<div class="col-sm-2" @if($errors->has('akta_kelahiran')) style="padding-top:27px" @else style="padding-top:2px" @endif >
+							@if($riwayat_anak->akta_kelahiran)
+								<a href="{{ asset('upload/akta_kelahiran/'.$riwayat_anak->akta_kelahiran) }}" target="_blank" class="btn btn-sm btn-primary" >Lihat File</a>
+							@endif
+						</div>
 					</div>
+					
 
 				</div>
 			</div>

@@ -14,7 +14,8 @@ class RiwayatPenghargaan extends Model
         'nama_penghargaan',
         'no_sk',
         'tanggal_sk',
-        'tahun',
+        'keterangan',
+        'arsip_penghargaan',
         'user_id'
     ];
 

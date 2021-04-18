@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\RiwayatAyahController;
+use App\Http\Controllers\RiwayatOrangTuaController;
 use App\Http\Controllers\RiwayatIbuController;
 use App\Http\Controllers\RiwayatPasanganController;
 use App\Http\Controllers\RiwayatAnakController;
@@ -18,8 +18,10 @@ use App\Http\Controllers\RiwayatDiklatController;
 use App\Http\Controllers\RiwayatTugasController;
 use App\Http\Controllers\RiwayatKaryaIlmiahController;
 use App\Http\Controllers\RiwayatPenghargaanController;
+use App\Http\Controllers\RiwayatCutiController;
 use App\Http\Controllers\RiwayatKursusController;
 use App\Http\Controllers\RiwayatHukumanController;
+use App\Http\Controllers\RiwayatGajiController;
 use App\Http\Controllers\RiwayatTugasLuarNegeriController;
 
 /*
@@ -53,23 +55,14 @@ Route::get('/pegawai/edit/{pegawai}', [PegawaiController::class, 'edit']);
 Route::put('/pegawai/edit/{pegawai}', [PegawaiController::class, 'update']);
 Route::get('/pegawai/hapus/{pegawai}',[PegawaiController::class, 'delete']);
 
-## Riwayat Ayah
-Route::get('/riwayat_ayah/{id}', [RiwayatAyahController::class, 'index']);
-Route::get('/riwayat_ayah/search/{id}', [RiwayatAyahController::class, 'search']);
-Route::get('/riwayat_ayah/create/{id}', [RiwayatAyahController::class, 'create']);
-Route::post('/riwayat_ayah/{id}', [RiwayatAyahController::class, 'store']);
-Route::get('/riwayat_ayah/edit/{id}/{riwayat_ayah}', [RiwayatAyahController::class, 'edit']);
-Route::put('/riwayat_ayah/edit/{id}/{riwayat_ayah}', [RiwayatAyahController::class, 'update']);
-Route::get('/riwayat_ayah/hapus/{id}/{riwayat_ayah}',[RiwayatAyahController::class, 'delete']);
-
-## Riwayat Ibu
-Route::get('/riwayat_ibu/{id}', [RiwayatIbuController::class, 'index']);
-Route::get('/riwayat_ibu/search/{id}', [RiwayatIbuController::class, 'search']);
-Route::get('/riwayat_ibu/create/{id}', [RiwayatIbuController::class, 'create']);
-Route::post('/riwayat_ibu/{id}', [RiwayatIbuController::class, 'store']);
-Route::get('/riwayat_ibu/edit/{id}/{riwayat_ibu}', [RiwayatIbuController::class, 'edit']);
-Route::put('/riwayat_ibu/edit/{id}/{riwayat_ibu}', [RiwayatIbuController::class, 'update']);
-Route::get('/riwayat_ibu/hapus/{id}/{riwayat_ibu}',[RiwayatIbuController::class, 'delete']);
+## Riwayat Orang Tua
+Route::get('/riwayat_orang_tua/{id}', [RiwayatOrangTuaController::class, 'index']);
+Route::get('/riwayat_orang_tua/search/{id}', [RiwayatOrangTuaController::class, 'search']);
+Route::get('/riwayat_orang_tua/create/{id}', [RiwayatOrangTuaController::class, 'create']);
+Route::post('/riwayat_orang_tua/{id}', [RiwayatOrangTuaController::class, 'store']);
+Route::get('/riwayat_orang_tua/edit/{id}/{riwayat_orang_tua}', [RiwayatOrangTuaController::class, 'edit']);
+Route::put('/riwayat_orang_tua/edit/{id}/{riwayat_orang_tua}', [RiwayatOrangTuaController::class, 'update']);
+Route::get('/riwayat_orang_tua/hapus/{id}/{riwayat_orang_tua}',[RiwayatOrangTuaController::class, 'delete']);
 
 ## Riwayat Pasangan
 Route::get('/riwayat_pasangan/{id}', [RiwayatPasanganController::class, 'index']);
@@ -188,6 +181,15 @@ Route::get('/riwayat_penghargaan/edit/{id}/{riwayat_penghargaan}', [RiwayatPengh
 Route::put('/riwayat_penghargaan/edit/{id}/{riwayat_penghargaan}', [RiwayatPenghargaanController::class, 'update']);
 Route::get('/riwayat_penghargaan/hapus/{id}/{riwayat_penghargaan}',[RiwayatPenghargaanController::class, 'delete']);
 
+## Riwayat Cuti
+Route::get('/riwayat_cuti/{id}', [RiwayatCutiController::class, 'index']);
+Route::get('/riwayat_cuti/search/{id}', [RiwayatCutiController::class, 'search']);
+Route::get('/riwayat_cuti/create/{id}', [RiwayatCutiController::class, 'create']);
+Route::post('/riwayat_cuti/{id}', [RiwayatCutiController::class, 'store']);
+Route::get('/riwayat_cuti/edit/{id}/{riwayat_cuti}', [RiwayatCutiController::class, 'edit']);
+Route::put('/riwayat_cuti/edit/{id}/{riwayat_cuti}', [RiwayatCutiController::class, 'update']);
+Route::get('/riwayat_cuti/hapus/{id}/{riwayat_cuti}',[RiwayatCutiController::class, 'delete']);
+
 ## Riwayat Kursus
 Route::get('/riwayat_kursus/{id}', [RiwayatKursusController::class, 'index']);
 Route::get('/riwayat_kursus/search/{id}', [RiwayatKursusController::class, 'search']);
@@ -197,7 +199,7 @@ Route::get('/riwayat_kursus/edit/{id}/{riwayat_kursus}', [RiwayatKursusControlle
 Route::put('/riwayat_kursus/edit/{id}/{riwayat_kursus}', [RiwayatKursusController::class, 'update']);
 Route::get('/riwayat_kursus/hapus/{id}/{riwayat_kursus}',[RiwayatKursusController::class, 'delete']);
 
-## Riwayat Kursus
+## Riwayat Hukuman
 Route::get('/riwayat_hukuman/{id}', [RiwayatHukumanController::class, 'index']);
 Route::get('/riwayat_hukuman/search/{id}', [RiwayatHukumanController::class, 'search']);
 Route::get('/riwayat_hukuman/create/{id}', [RiwayatHukumanController::class, 'create']);
@@ -205,6 +207,15 @@ Route::post('/riwayat_hukuman/{id}', [RiwayatHukumanController::class, 'store'])
 Route::get('/riwayat_hukuman/edit/{id}/{riwayat_hukuman}', [RiwayatHukumanController::class, 'edit']);
 Route::put('/riwayat_hukuman/edit/{id}/{riwayat_hukuman}', [RiwayatHukumanController::class, 'update']);
 Route::get('/riwayat_hukuman/hapus/{id}/{riwayat_hukuman}',[RiwayatHukumanController::class, 'delete']);
+
+## Riwayat Gaji
+Route::get('/riwayat_gaji/{id}', [RiwayatGajiController::class, 'index']);
+Route::get('/riwayat_gaji/search/{id}', [RiwayatGajiController::class, 'search']);
+Route::get('/riwayat_gaji/create/{id}', [RiwayatGajiController::class, 'create']);
+Route::post('/riwayat_gaji/{id}', [RiwayatGajiController::class, 'store']);
+Route::get('/riwayat_gaji/edit/{id}/{riwayat_gaji}', [RiwayatGajiController::class, 'edit']);
+Route::put('/riwayat_gaji/edit/{id}/{riwayat_gaji}', [RiwayatGajiController::class, 'update']);
+Route::get('/riwayat_gaji/hapus/{id}/{riwayat_gaji}',[RiwayatGajiController::class, 'delete']);
 
 ## Riwayat Tugas Luar Negeri
 Route::get('/riwayat_tugas_luar_negeri/{id}', [RiwayatTugasLuarNegeriController::class, 'index']);

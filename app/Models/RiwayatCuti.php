@@ -5,21 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RiwayatPasangan extends Model
+class RiwayatCuti extends Model
 {
     // use HasFactory;
-	protected $table = 'riwayat_pasangan_tbl';
+	protected $table = 'riwayat_cuti_tbl';
 	protected $fillable =[
         'pegawai_id',
-        'nama_pasangan',
-        'tanggal_lahir',
-        'status',
-        'tanggal_nikah',
-        'tanggal_cerai',
-        'tanggal_meninggal',
-        'pekerjaan',
-        'surat_nikah',
-        'surat_cerai',
+        'jenis_cuti',
+        'keterangan',
+        'mulai',
+        'selesai',
+        'no_sk',
+        'tanggal_sk',
+        'arsip_cuti',
         'user_id'
     ];
 

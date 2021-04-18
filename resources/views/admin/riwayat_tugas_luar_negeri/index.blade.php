@@ -66,13 +66,21 @@
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px">No</th>
+                              <th>Tipe Kunjungan</th>
                               <th>Tujuan</th>
+                              <th>Mulai</th>
+                              <th>Selesai</th>
+                              <th>Asal Dana</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
 					@foreach($riwayat_tugas_luar_negeri as $v)
 					<tr>
 						<td>{{ ($riwayat_tugas_luar_negeri ->currentpage()-1) * $riwayat_tugas_luar_negeri ->perpage() + $loop->index + 1 }}</td>
+						<td>{{ $v->tipe_kunjungan }}</td>
 						<td>{{ $v->tujuan }}</td>
+						<td>{{ $v->tanggal_mulai }}</td>
+						<td>{{ $v->tanggal_selesai }}</td>
+						<td>{{ $v->asal_dana }}</td>
 						<td>
 							<a href="{{ url('/riwayat_tugas_luar_negeri/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
 							<a href="{{ url('/riwayat_tugas_luar_negeri/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
