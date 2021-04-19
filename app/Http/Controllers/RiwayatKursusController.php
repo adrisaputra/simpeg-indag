@@ -59,24 +59,37 @@ class RiwayatKursusController extends Controller
    public function store($id, Request $request)
    {
         $this->validate($request, [
-            'nama_kursus' => 'required',
-            'tempat' => 'required',
-            'penyelenggara' => 'required',
-            'no_sertifikat' => 'required',
-            'tanggal_sertifikat' => 'required'
+            'lokasi_tes' => 'required',
+            'tanggal_tes' => 'required',
+            'score' => 'required|numeric',
+            'listening' => 'required|numeric',
+            'structure' => 'required|numeric',
+            'reading' => 'required|numeric',
+            'writing' => 'required|numeric',
+            'speaking' => 'required|numeric',
+            'arsip_toefl' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
         ]);
 
        $input['pegawai_id'] = $id;
-       $input['nama_kursus'] = $request->nama_kursus;
-       $input['tempat'] = $request->tempat;
-       $input['penyelenggara'] = $request->penyelenggara;
-       $input['no_sertifikat'] = $request->no_sertifikat;
-       $input['tanggal_sertifikat'] = $request->tanggal_sertifikat;
-       $input['user_id'] = Auth::user()->id;
-   
-       RiwayatKursus::create($input);
+       $input['lokasi_tes'] = $request->lokasi_tes;
+       $input['tanggal_tes'] = $request->tanggal_tes;
+       $input['score'] = $request->score;
+       $input['listening'] = $request->listening;
+       $input['structure'] = $request->structure;
+       $input['reading'] = $request->reading;
+       $input['writing'] = $request->writing;
+       $input['speaking'] = $request->speaking;
+       
+       if($request->file('arsip_toefl')){
+            $input['arsip_toefl'] = time().'.'.$request->arsip_toefl->getClientOriginalExtension();
+            $request->arsip_toefl->move(public_path('upload/arsip_toefl'), $input['arsip_toefl']);
+        }	
+    
+        $input['user_id'] = Auth::user()->id;
+    
+        RiwayatKursus::create($input);
 
-       return redirect('/riwayat_kursus/'.$id)->with('status','Data Tersimpan');
+        return redirect('/riwayat_kursus/'.$id)->with('status','Data Tersimpan');
    }
 
    ## Tampilkan Form Edit
@@ -93,14 +106,33 @@ class RiwayatKursusController extends Controller
    public function update(Request $request, $id, RiwayatKursus $riwayat_kursus)
    {
         $this->validate($request, [
-            'nama_kursus' => 'required',
-            'tempat' => 'required',
-            'penyelenggara' => 'required',
-            'no_sertifikat' => 'required',
-            'tanggal_sertifikat' => 'required'
+            'lokasi_tes' => 'required',
+            'tanggal_tes' => 'required',
+            'score' => 'required|numeric',
+            'listening' => 'required|numeric',
+            'structure' => 'required|numeric',
+            'reading' => 'required|numeric',
+            'writing' => 'required|numeric',
+            'speaking' => 'required|numeric',
+            'arsip_toefl' => 'mimes:jpg,jpeg,png,pdf|max:500'
         ]);
 
-        $riwayat_kursus->fill($request->all()); 
+        if($request->file('arsip_toefl') && $riwayat_kursus->arsip_toefl){
+            $pathToYourFile = public_path('upload/arsip_toefl/'.$riwayat_kursus->arsip_toefl);
+            if(file_exists($pathToYourFile))
+            {
+                unlink($pathToYourFile);
+            }
+        }
+
+        $riwayat_kursus->fill($request->all());
+       
+        if($request->file('arsip_toefl')){
+            $filename = time().'.'.$request->arsip_toefl->getClientOriginalExtension();
+            $request->arsip_toefl->move(public_path('upload/arsip_toefl'), $filename);
+            $riwayat_kursus->arsip_toefl = $filename;
+        }
+        
         $riwayat_kursus->user_id = Auth::user()->id;
         $riwayat_kursus->save();
     
@@ -110,6 +142,11 @@ class RiwayatKursusController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatKursus $riwayat_kursus)
    {
+        $pathToYourFile = public_path('upload/arsip_toefl/'.$riwayat_kursus->arsip_toefl);
+        if(file_exists($pathToYourFile))
+        {
+            unlink($pathToYourFile);
+        }
         $riwayat_kursus->delete();
        
         return redirect('/riwayat_kursus/'.$id)->with('status', 'Data Berhasil Dihapus');

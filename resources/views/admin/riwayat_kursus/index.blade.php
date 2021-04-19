@@ -66,13 +66,33 @@
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px">No</th>
-                              <th>Nama Kursus</th>
+                              <th>Lokasi Tes</th>
+                              <th>Tanggal Tes</th>
+                              <th>Score Toefl</th>
+                              <th>Listening</th>
+                              <th>Structure</th>
+                              <th>Reading</th>
+                              <th>Writing</th>
+                              <th>Speaking</th>
+                              <th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
 					@foreach($riwayat_kursus as $v)
 					<tr>
 						<td>{{ ($riwayat_kursus ->currentpage()-1) * $riwayat_kursus ->perpage() + $loop->index + 1 }}</td>
-						<td>{{ $v->nama_kursus }}</td>
+						<td>{{ $v->lokasi_tes }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal_tes)) }}</td>
+						<td>{{ $v->score }}</td>
+						<td>{{ $v->listening }}</td>
+						<td>{{ $v->structure }}</td>
+						<td>{{ $v->reading }}</td>
+						<td>{{ $v->writing }}</td>
+						<td>{{ $v->speaking }}</td>
+						<td>
+							@if($v->arsip_toefl)
+								<a href="{{ asset('upload/arsip_toefl/'.$v->arsip_toefl) }}" class="btn btn-sm btn-primary" >Download File</a>
+							@endif
+						</td>
 						<td>
 							<a href="{{ url('/riwayat_kursus/edit/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
 							<a href="{{ url('/riwayat_kursus/hapus/'.$pegawai[0]->id.'/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>

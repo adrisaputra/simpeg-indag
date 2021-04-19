@@ -11,11 +11,15 @@ class RiwayatKursus extends Model
 	protected $table = 'riwayat_kursus_tbl';
 	protected $fillable =[
         'pegawai_id',
-        'nama_kursus',
-        'tempat',
-        'penyelenggara',
-        'no_sertifikat',
-        'tanggal_sertifikat',
+        'lokasi_tes',
+        'tanggal_tes',
+        'score',
+        'listening',
+        'structure',
+        'reading',
+        'writing',
+        'speaking',
+        'arsip_toefl',
         'user_id'
     ];
 
