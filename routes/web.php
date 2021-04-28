@@ -23,6 +23,8 @@ use App\Http\Controllers\RiwayatKursusController;
 use App\Http\Controllers\RiwayatHukumanController;
 use App\Http\Controllers\RiwayatGajiController;
 use App\Http\Controllers\RiwayatTugasLuarNegeriController;
+use App\Http\Controllers\RiwayatPajakController;
+use App\Http\Controllers\RekapitulasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,11 @@ Route::get('/buat_storage', function () {
     dd("Storage Berhasil Di Buat");
 });
 
+Route::get('/clear-cache-all', function() {
+    Artisan::call('cache:clear');
+    dd("Cache Clear All");
+});
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -54,6 +61,7 @@ Route::post('/pegawai', [PegawaiController::class, 'store']);
 Route::get('/pegawai/edit/{pegawai}', [PegawaiController::class, 'edit']);
 Route::put('/pegawai/edit/{pegawai}', [PegawaiController::class, 'update']);
 Route::get('/pegawai/hapus/{pegawai}',[PegawaiController::class, 'delete']);
+Route::post('/pegawai/import_excel', [PegawaiController::class, 'import_excel']);
 
 ## Riwayat Orang Tua
 Route::get('/riwayat_orang_tua/{id}', [RiwayatOrangTuaController::class, 'index']);
@@ -225,3 +233,24 @@ Route::post('/riwayat_tugas_luar_negeri/{id}', [RiwayatTugasLuarNegeriController
 Route::get('/riwayat_tugas_luar_negeri/edit/{id}/{riwayat_tugas_luar_negeri}', [RiwayatTugasLuarNegeriController::class, 'edit']);
 Route::put('/riwayat_tugas_luar_negeri/edit/{id}/{riwayat_tugas_luar_negeri}', [RiwayatTugasLuarNegeriController::class, 'update']);
 Route::get('/riwayat_tugas_luar_negeri/hapus/{id}/{riwayat_tugas_luar_negeri}',[RiwayatTugasLuarNegeriController::class, 'delete']);
+
+## Riwayat Pajak
+Route::get('/riwayat_pajak/{id}', [RiwayatPajakController::class, 'index']);
+Route::get('/riwayat_pajak/search/{id}', [RiwayatPajakController::class, 'search']);
+Route::get('/riwayat_pajak/create/{id}', [RiwayatPajakController::class, 'create']);
+Route::post('/riwayat_pajak/{id}', [RiwayatPajakController::class, 'store']);
+Route::get('/riwayat_pajak/edit/{id}/{riwayat_pajak}', [RiwayatPajakController::class, 'edit']);
+Route::put('/riwayat_pajak/edit/{id}/{riwayat_pajak}', [RiwayatPajakController::class, 'update']);
+Route::get('/riwayat_pajak/hapus/{id}/{riwayat_pajak}',[RiwayatPajakController::class, 'delete']);
+
+## Rekapitulasi
+Route::get('/rekapitulasi_jumlah_pegawai', [RekapitulasiController::class, 'rekapitulasi_jumlah_pegawai']);
+Route::get('/rekapitulasi_jumlah_pegawai_bidang', [RekapitulasiController::class, 'rekapitulasi_jumlah_pegawai_bidang']);
+Route::get('/rekapitulasi_esselon', [RekapitulasiController::class, 'rekapitulasi_esselon']);
+Route::get('/rekapitulasi_gender_bidang', [RekapitulasiController::class, 'rekapitulasi_gender_bidang']);
+Route::get('/rekapitulasi_golongan', [RekapitulasiController::class, 'rekapitulasi_golongan']);
+Route::get('/rekapitulasi_asn_aktif', [RekapitulasiController::class, 'rekapitulasi_asn_aktif']);
+Route::get('/rekapitulasi_asn_non_aktif', [RekapitulasiController::class, 'rekapitulasi_asn_non_aktif']);
+Route::get('/rekapitulasi_cuti', [RekapitulasiController::class, 'rekapitulasi_cuti']);
+Route::get('/rekapitulasi_pensiunan', [RekapitulasiController::class, 'rekapitulasi_pensiunan']);
+Route::get('/rekapitulasi_pendidikan', [RekapitulasiController::class, 'rekapitulasi_pendidikan']);

@@ -147,6 +147,13 @@ class RiwayatKepangkatanController extends Controller
        
         RiwayatKepangkatan::create($input);
 
+        $golongan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('jenis_golongan','DESC')->limit(1)->get();
+        $golongan->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->golongan = $golongan[0]->golongan;
+        $pegawai->save();
+        
         return redirect('/riwayat_kepangkatan/'.$id)->with('status','Data Tersimpan');
    }
 
@@ -247,6 +254,13 @@ class RiwayatKepangkatanController extends Controller
         $riwayat_kepangkatan->user_id = Auth::user()->id;
         $riwayat_kepangkatan->save();
        
+        $golongan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('jenis_golongan','DESC')->limit(1)->get();
+        $golongan->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->golongan = $golongan[0]->golongan;
+    	$pegawai->save();
+
         return redirect('/riwayat_kepangkatan/'.$id)->with('status', 'Data Berhasil Diubah');
    }
 
@@ -261,6 +275,18 @@ class RiwayatKepangkatanController extends Controller
 
         $riwayat_kepangkatan->delete();
        
+        $golongan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('jenis_golongan','DESC')->limit(1)->get()->toArray();
+        
+        if($pendidikan){
+            $pegawai = Pegawai::find($id);
+            $pegawai->golongan = $golongan[0]->golongan;
+        } else {
+            $pegawai = Pegawai::find($id);
+            $pegawai->golongan = '';
+        }
+
+        $pegawai->save();
+        
         return redirect('/riwayat_kepangkatan/'.$id)->with('status', 'Data Berhasil Dihapus');
    }
 

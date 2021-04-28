@@ -152,23 +152,24 @@
                         @if(Auth::user()->group==1)
                         <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
                         <li class="{{ (request()->is('profil*')) ? 'active' : '' }}""><a href="{{ url('profil')}}"><i class="fa fa-circle-o"></i> <span>Profil Kantor</span></a></li>
-                        <li class="treeview  {{ (request()->is('pegawai*','kgb*','naik_pangkat*')) ? 'active' : '' }}">
+                        <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*','rekapitulasi_jumlah_pegawai_bidang*','rekapitulasi_esselon*','rekapitulasi_gender_bidang*','rekapitulasi_golongan*',
+                        'rekapitulasi_pendidikan*','rekapitulasi_asn_aktif*','rekapitulasi_asn_non_aktif*','rekapitulasi_cuti*','rekapitulasi_pensiunan*','rekapitulasi_pensiunan*')) ? 'active' : '' }}">
                             <a href="#"> <i class="fa fa-database"></i> <span>Rekapitulasi</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}"><a href="{{ url('pegawai')}}"><i class="fa fa-circle-o"></i> Jumlah Pegawai</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> Esselon</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> Gender</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> Golongan</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> Pangkat</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> ASN Aktif</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> ASN Tidak Aktif</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> Cuti</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> Pensiunan</a></li>
-                                <li class="{{ (request()->is('naik_pangkat*')) ? 'active' : '' }}"><a href="{{ url('naik_pangkat')}}"><i class="fa fa-circle-o"></i> Pendidikan</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai')}}"><i class="fa fa-circle-o"></i> Jumlah Pegawai</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai_bidang')}}"><i class="fa fa-circle-o"></i> Jumlah Pegawai Bidang</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_esselon*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_esselon')}}"><i class="fa fa-circle-o"></i> Esselon</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_gender_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_gender_bidang')}}"><i class="fa fa-circle-o"></i> Gender Per Bidang</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_golongan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_golongan')}}"><i class="fa fa-circle-o"></i> Pangkat/Golongan</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_asn_aktif*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_asn_aktif')}}"><i class="fa fa-circle-o"></i> ASN Aktif</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_asn_non_aktif*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_asn_non_aktif')}}"><i class="fa fa-circle-o"></i> ASN Tidak Aktif</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_cuti*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_cuti')}}"><i class="fa fa-circle-o"></i> Cuti</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_pensiunan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_pensiunan')}}"><i class="fa fa-circle-o"></i> Pensiunan</a></li>
+                                <li class="{{ (request()->is('rekapitulasi_pendidikan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_pendidikan')}}"><i class="fa fa-circle-o"></i> Pendidikan</a></li>
                             </ul>
                         </li>  
                         <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}""><a href="{{ url('pegawai')}}"><i class="fa fa-circle-o"></i> <span>Tayangan Data</span></a></li>
@@ -217,8 +218,6 @@
                         </li>
                         <li class="{{ (request()->is('profil*')) ? 'active' : '' }}""><a href="{{ url('profil')}}"><i class="fa fa-circle-o"></i> <span>Absensi</span></a></li>
                         <li class="header">CORE BASE</li>
-                        <li class="{{ (request()->is('seksi*')) ? 'active' : '' }}""><a href="{{ url('seksi')}}"><i class="fa fa-circle-o"></i> <span>Seksi</span></a></li>
-                        <li class="{{ (request()->is('pengaturan*')) ? 'active' : '' }}""><a href="{{ url('pengaturan')}}"><i class="fa fa-circle-o"></i> <span>Verifikator</span></a></li>
                         <li class="{{ (request()->is('user*')) ? 'active' : '' }}""><a href="{{ url('user')}}"><i class="fa fa-user"></i> <span>User</span></a></li>
                         @endif
 

@@ -7,6 +7,8 @@ use App\Models\Jabatan;   //nama model
 use App\Models\Bidang;   //nama model
 use App\Models\Seksi;   //nama model
 use App\Models\User;   //nama model
+use App\Imports\PegawaiImport;     // Import data Pegawai
+use Maatwebsite\Excel\Facades\Excel; // Excel Library
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //untuk membuat query di controller
@@ -25,7 +27,7 @@ class PegawaiController extends Controller
     ## Tampikan Data
     public function index()
     {
-        $pegawai = Pegawai::orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        $pegawai = Pegawai::where('status_hapus', 0)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
         return view('admin.pegawai.index',compact('pegawai'));
     }
 
@@ -33,7 +35,7 @@ class PegawaiController extends Controller
 	public function search(Request $request)
     {
         $pegawai = $request->get('search');
-        $pegawai = Pegawai::where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        $pegawai = Pegawai::where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
 		return view('admin.pegawai.index',compact('pegawai'));
     }
 	
@@ -418,53 +420,79 @@ class PegawaiController extends Controller
     ## Hapus Data
     public function delete(Pegawai $pegawai)
     {
-        $id = $pegawai->id;
-        if($pegawai->foto_formal){
-            $image_path = public_path().'/storage/upload/foto_formal_pegawai/thumbnail/'.$pegawai->foto_formal;
-            $image_path2 = public_path().'/storage/upload/foto_formal_pegawai/'.$pegawai->foto_formal;
-            unlink($image_path);
-            unlink($image_path2);
-        }
-        if($pegawai->foto_kedinasan){
-            $image_path3 = public_path().'/storage/upload/foto_kedinasan_pegawai/thumbnail/'.$pegawai->foto_kedinasan;
-            $image_path4 = public_path().'/storage/upload/foto_kedinasan_pegawai/'.$pegawai->foto_kedinasan;
-            unlink($image_path3);
-            unlink($image_path4);
-        }
-        if($pegawai->ktp){
-            $image_path5 = public_path().'/storage/upload/ktp/thumbnail/'.$pegawai->ktp;
-            $image_path6 = public_path().'/storage/upload/ktp/'.$pegawai->ktp;
-            unlink($image_path5);
-            unlink($image_path6);
-        }
-        if($pegawai->bpjs){
-            $image_path7 = public_path().'/storage/upload/bpjs/thumbnail/'.$pegawai->bpjs;
-            $image_path8 = public_path().'/storage/upload/bpjs/'.$pegawai->bpjs;
-            unlink($image_path7);
-            unlink($image_path8);
-        }
-        if($pegawai->npwp){
-            $image_path9 = public_path().'/storage/upload/npwp/thumbnail/'.$pegawai->npwp;
-            $image_path10 = public_path().'/storage/upload/npwp/'.$pegawai->npwp;
-            unlink($image_path9);
-            unlink($image_path10);
-        }
-        if($pegawai->karpeg){
-            $image_path11 = public_path().'/storage/upload/karpeg/thumbnail/'.$pegawai->karpeg;
-            $image_path12 = public_path().'/storage/upload/karpeg/'.$pegawai->karpeg;
-            unlink($image_path11);
-            unlink($image_path12);
-        }
-        if($pegawai->karsu){
-            $image_path13 = public_path().'/storage/upload/karsu/thumbnail/'.$pegawai->karsu;
-            $image_path14 = public_path().'/storage/upload/karsu/'.$pegawai->karsu;
-            unlink($image_path13);
-            unlink($image_path14);
-        }
-        $pegawai->delete();
+        // $id = $pegawai->id;
+        // if($pegawai->foto_formal){
+        //     $image_path = public_path().'/storage/upload/foto_formal_pegawai/thumbnail/'.$pegawai->foto_formal;
+        //     $image_path2 = public_path().'/storage/upload/foto_formal_pegawai/'.$pegawai->foto_formal;
+        //     unlink($image_path);
+        //     unlink($image_path2);
+        // }
+        // if($pegawai->foto_kedinasan){
+        //     $image_path3 = public_path().'/storage/upload/foto_kedinasan_pegawai/thumbnail/'.$pegawai->foto_kedinasan;
+        //     $image_path4 = public_path().'/storage/upload/foto_kedinasan_pegawai/'.$pegawai->foto_kedinasan;
+        //     unlink($image_path3);
+        //     unlink($image_path4);
+        // }
+        // if($pegawai->ktp){
+        //     $image_path5 = public_path().'/storage/upload/ktp/thumbnail/'.$pegawai->ktp;
+        //     $image_path6 = public_path().'/storage/upload/ktp/'.$pegawai->ktp;
+        //     unlink($image_path5);
+        //     unlink($image_path6);
+        // }
+        // if($pegawai->bpjs){
+        //     $image_path7 = public_path().'/storage/upload/bpjs/thumbnail/'.$pegawai->bpjs;
+        //     $image_path8 = public_path().'/storage/upload/bpjs/'.$pegawai->bpjs;
+        //     unlink($image_path7);
+        //     unlink($image_path8);
+        // }
+        // if($pegawai->npwp){
+        //     $image_path9 = public_path().'/storage/upload/npwp/thumbnail/'.$pegawai->npwp;
+        //     $image_path10 = public_path().'/storage/upload/npwp/'.$pegawai->npwp;
+        //     unlink($image_path9);
+        //     unlink($image_path10);
+        // }
+        // if($pegawai->karpeg){
+        //     $image_path11 = public_path().'/storage/upload/karpeg/thumbnail/'.$pegawai->karpeg;
+        //     $image_path12 = public_path().'/storage/upload/karpeg/'.$pegawai->karpeg;
+        //     unlink($image_path11);
+        //     unlink($image_path12);
+        // }
+        // if($pegawai->karsu){
+        //     $image_path13 = public_path().'/storage/upload/karsu/thumbnail/'.$pegawai->karsu;
+        //     $image_path14 = public_path().'/storage/upload/karsu/'.$pegawai->karsu;
+        //     unlink($image_path13);
+        //     unlink($image_path14);
+        // }
+        // $pegawai->delete();
         
-        DB::table('users')->where('name', $pegawai->nip)->delete();
+        // DB::table('users')->where('name', $pegawai->nip)->delete();
         
+        $pegawai->status_hapus = 1;
+        $pegawai->user_id = Auth::user()->id;
+    	$pegawai->save();
+
         return redirect('/pegawai')->with('status', 'Data Berhasil Dihapus');
     }
+
+    public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_pegawai',$nama_file);
+ 
+		// import data
+		Excel::import(new PegawaiImport, public_path('/file_pegawai/'.$nama_file));
+ 
+        return redirect('/pegawai')->with('status', 'Data Pegawai Berhasil Diimport');
+	}
 }

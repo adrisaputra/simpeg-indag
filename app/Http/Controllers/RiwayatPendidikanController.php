@@ -120,6 +120,13 @@ class RiwayatPendidikanController extends Controller
        
         RiwayatPendidikan::create($input);
 
+        $pendidikan = RiwayatPendidikan::where('pegawai_id',$id)->orderBy('jenis_pendidikan','DESC')->limit(1)->get();
+        $pendidikan->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->pendidikan = $pendidikan[0]->tingkat;
+        $pegawai->save();
+        
         return redirect('/riwayat_pendidikan/'.$id)->with('status','Data Tersimpan');
    }
 
@@ -204,6 +211,13 @@ class RiwayatPendidikanController extends Controller
         $riwayat_pendidikan->user_id = Auth::user()->id;
         $riwayat_pendidikan->save();
        
+        $pendidikan = RiwayatPendidikan::where('pegawai_id',$id)->orderBy('jenis_pendidikan','DESC')->limit(1)->get();
+        $pendidikan->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->pendidikan = $pendidikan[0]->tingkat;
+    	$pegawai->save();
+
         return redirect('/riwayat_pendidikan/'.$id)->with('status', 'Data Berhasil Diubah');
    }
 
@@ -224,6 +238,18 @@ class RiwayatPendidikanController extends Controller
 
         $riwayat_pendidikan->delete();
        
+        $pendidikan = RiwayatPendidikan::where('pegawai_id',$id)->orderBy('jenis_pendidikan','DESC')->limit(1)->get()->toArray();
+        
+        if($pendidikan){
+            $pegawai = Pegawai::find($id);
+            $pegawai->pendidikan = $pendidikan[0]->tingkat;
+        } else {
+            $pegawai = Pegawai::find($id);
+            $pegawai->pendidikan = '';
+        }
+        
+    	$pegawai->save();
+
         return redirect('/riwayat_pendidikan/'.$id)->with('status', 'Data Berhasil Dihapus');
    }
 }
