@@ -48,15 +48,15 @@ chart.data = [
 	},
 ];
 
-var label = chart.createChild(am4core.Label);
-label.x = am4core.percent(50);
-label.text = "Jumlah ASN";
-label.fontSize = 16;
-label.align = "center";
-label.isMeasured = false;
-label.x = -20;
-label.y = 200;
-label.rotation = -90;
+// var label = chart.createChild(am4core.Label);
+// label.x = am4core.percent(50);
+// label.text = "Jumlah ASN";
+// label.fontSize = 16;
+// label.align = "center";
+// label.isMeasured = false;
+// label.x = -20;
+// label.y = 200;
+// label.rotation = -90;
 
 // Create axes
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -71,6 +71,8 @@ categoryAxis.tooltip.disabled = true;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.renderer.minWidth = 50;
+valueAxis.title.text = "Jumlah ASN";
+valueAxis.title.fontWeight = 400;
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
