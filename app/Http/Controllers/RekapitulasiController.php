@@ -44,7 +44,15 @@ class RekapitulasiController extends Controller
 
     public function rekapitulasi_esselon()
     {
-       
+        $jabatan = Jabatan::get();
+        
+        $i=1;
+        foreach($jabatan as $v){
+            $jumlah_esselon[$i] = Pegawai::where('jabatan_id',$v->id)->whereNotNull('esselon')->where('status_hapus',0)->count();
+            $i++;
+        }
+
+        return view('admin.rekapitulasi.esselon',compact('jabatan','jumlah_esselon'));
     }
 
     public function rekapitulasi_gender_bidang()

@@ -136,14 +136,10 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('kualitas')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Kualitas ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Kualitas') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('kualitas'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('kualitas') }}</label>@endif
-							<select class="form-control" name="kualitas">
-                                        <option value=""> -Pilih Kualitas -</option>
-                                        <option value="Kualitas  Fungsional" @if(old('kualitas')=="Kualitas  Fungsional") selected @endif> Kualitas  Fungsional</option>
-                                        <option value="Kualitas  Struktural" @if(old('kualitas')=="Kualitas  Struktural") selected @endif> Kualitas  Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Kualitas" name="kualitas" value="{{ old('kualitas') }}" >
 						</div>
 					</div>
 					

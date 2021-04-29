@@ -43,12 +43,10 @@
 				<center><p style="font-size:20px">DATA JABATAN</p></center>
 
 					<div class="form-group @if ($errors->has('status_mutasi_instansi')) has-error @endif">
-						<label class="col-sm-3 control-label">{{ __('Status Mutasi Instansi') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-3 control-label">{{ __('Status Mutasi Instansi') }}</label>
 						<div class="col-sm-9">
 							@if ($errors->has('status_mutasi_instansi'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status_mutasi_instansi') }}</label>@endif
-							<select class="form-control" name="status_mutasi_instansi">
-                                        <option value=""> -Pilih Status Mutasi Instansi-</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Status Mutasi Instansi" name="status_mutasi_instansi" value="{{ old('status_mutasi_instansi') }}" >
 						</div>
 					</div>
 					
@@ -64,25 +62,20 @@
                                     </select>
 						</div>
 					</div>
-					
+
 					<div class="form-group @if ($errors->has('jenjang')) has-error @endif">
-						<label class="col-sm-3 control-label">{{ __('Jenjang') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-3 control-label">{{ __('Jenjang') }}</label>
 						<div class="col-sm-9">
 							@if ($errors->has('jenjang'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jenjang') }}</label>@endif
-							<select class="form-control" name="jenjang">
-                                        <option value=""> -Pilih Jenjang-</option>
-                                        <option value="Struktural" @if(old('jenjang')=="Struktural") selected @endif> Struktural</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Jenjang" name="jenjang" value="{{ old('jenjang') }}" >
 						</div>
 					</div>
-					
+
 					<div class="form-group @if ($errors->has('status_mutasi_pegawai')) has-error @endif">
-						<label class="col-sm-3 control-label">{{ __('Status Mutasi Pegawai') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-3 control-label">{{ __('Status Mutasi Pegawai') }}</label>
 						<div class="col-sm-9">
 							@if ($errors->has('status_mutasi_pegawai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status_mutasi_pegawai') }}</label>@endif
-							<select class="form-control" name="status_mutasi_pegawai">
-                                        <option value=""> -Pilih Status Mutasi Pegawai-</option>
-                                   </select>
+							<input type="text" class="form-control" placeholder="Status Mutasi Pegawai" name="status_mutasi_pegawai" value="{{ old('status_mutasi_pegawai') }}" >
 						</div>
 					</div>
 					
@@ -104,13 +97,10 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('status')) has-error @endif">
-						<label class="col-sm-3 control-label">{{ __('Status') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-3 control-label">{{ __('Status') }}</label>
 						<div class="col-sm-9">
 							@if ($errors->has('status'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status') }}</label>@endif
-							<select class="form-control" name="status">
-                                        <option value=""> -Pilih Status-</option>
-                                        <option value="Struktural" @if(old('status')=="Struktural") selected @endif> Struktural</option>
-                                    </select>
+							<input type="text" class="form-control" placeholder="Status" name="status" value="{{ old('status') }}" >
 						</div>
 					</div>
 					

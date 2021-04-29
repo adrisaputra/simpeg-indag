@@ -4,10 +4,9 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 90%;
+  width: 60%;
   height: 500px;
 }
-
 
 </style>
 
@@ -30,48 +29,15 @@ am4core.addLicense("ch-custom-attribution");
 // Create chart instance
 var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-// Add data
-chart.data = [ {
-  "country": "SD",
-  "visits": {{ $pendidikan1 }}
-}, {
-  "country": "SLTP",
-  "visits": {{ $pendidikan2 }}
-}, {
-  "country": "SLTP Kejuruan",
-  "visits": {{ $pendidikan3 }}
-}, {
-  "country": "SLTA",
-  "visits": {{ $pendidikan4 }}
-}, {
-  "country": "SLTA Kejuruan",
-  "visits": {{ $pendidikan5 }}
-}, {
-  "country": "SLTA Keguruan",
-  "visits": {{ $pendidikan6 }}
-}, {
-  "country": "Diploma I",
-  "visits": {{ $pendidikan7 }}
-}, {
-  "country": "Diploma II",
-  "visits": {{ $pendidikan8 }}
-}, {
-  "country": "Diploma III / Sarjana Muda",
-  "visits": {{ $pendidikan9 }}
-}, {
-  "country": "Diploma IV",
-  "visits": {{ $pendidikan10 }}
-}, {
-  "country": "S1 / Sarjana",
-  "visits": {{ $pendidikan11 }}
-}, {
-  "country": "S2",
-  "visits": {{ $pendidikan12 }}
-}, {
-  "country": "S3 / Doktor",
-  "visits": {{ $pendidikan13 }}
-}
-];
+// var label = chart.createChild(am4core.Label);
+// label.x = am4core.percent(50);
+// label.text = "Jumlah ASN";
+// label.fontSize = 16;
+// label.align = "center";
+// label.isMeasured = false;
+// label.x = -20;
+// label.y = 200;
+// label.rotation = -90;
 
 // Create axes
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -85,7 +51,7 @@ categoryAxis.tooltip.disabled = true;
 
 var label = categoryAxis.renderer.labels.template;
 label.wrap = true;
-label.maxWidth = 100;
+label.maxWidth = 110;
 // categoryAxis.renderer.minHeight = 110;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -131,16 +97,16 @@ chart.cursor = new am4charts.XYCursor();
 
 <div class="content-wrapper">
 	<section class="content-header">
-	<h1 class="fontPoppins">{{ __('JUMLAH PEGAWAI BERDASARKAN PENDIDIKAN') }}
+	<h1 class="fontPoppins">{{ __('JUMLAH PEGAWAI PER BIDANG') }}
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
-		<li><a href="#"> {{ __('JUMLAH PEGAWAI BERDASARKAN PENDIDIKAN') }}</a></li>
+		<li><a href="#"> {{ __('JUMLAH PEGAWAI PER BIDANG') }}</a></li>
 	</ol>
 	</section>
 	
 	<section class="content">
-	<div class="box">   
+	<div class="box"><br>   
 	<center><div id="chartdiv"></div></center>
 			<div class="table-responsive box-body">
 
@@ -154,64 +120,22 @@ chart.cursor = new am4charts.XYCursor();
 
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
-						<th><center>Pendidikan</th>
-						<th><center>Jumlah ASN</th>
+						<th style="width: 60px"><center>No</th>
+						<th><center>Jabatan</th>
+						<th><center>Jumlah Esselon</th>
 					</tr>
+					@php $i=0; @endphp
+					@foreach($jabatan as $v)
+					@php $i = $i +  $jumlah_esselon[$loop->index + 1]; @endphp
 					<tr>
-						<th>SD</th>
-						<td><center>{{ $pendidikan1 }}</td>
+						<td>{{ $loop->index + 1 }}</td>
+						<td>{{ $v->nama_jabatan }}</td>
+						<td><center>{{ $jumlah_esselon[$loop->index + 1] }}</center></td>
 					</tr>
-					<tr>
-						<th>SLTP</th>
-						<td><center>{{ $pendidikan2 }}</td>
-					</tr>
-					<tr>
-						<th>SLTP Kejuruan</th>
-						<td><center>{{ $pendidikan3 }}</td>
-					</tr>
-					<tr>
-						<th>SLTA</th>
-						<td><center>{{ $pendidikan4 }}</td>
-					</tr>
-					<tr>
-						<th>SLTA Kejuruan</th>
-						<td><center>{{ $pendidikan5 }}</td>
-					</tr>
-					<tr>
-						<th>SLTA Keguruan</th>
-						<td><center>{{ $pendidikan6 }}</td>
-					</tr>
-					<tr>
-						<th>Diploma I</th>
-						<td><center>{{ $pendidikan7 }}</td>
-					</tr>
-					<tr>
-						<th>Diploma II</th>
-						<td><center>{{ $pendidikan8 }}</td>
-					</tr>
-					<tr>
-						<th>Diploma III / Sarjana Muda</th>
-						<td><center>{{ $pendidikan9 }}</td>
-					</tr>
-					<tr>
-						<th>Diploma IV</th>
-						<td><center>{{ $pendidikan10 }}</td>
-					</tr>
-					<tr>
-						<th>S1 / Sarjana</th>
-						<td><center>{{ $pendidikan11 }}</td>
-					</tr>
-					<tr>
-						<th>S2</th>
-						<td><center>{{ $pendidikan12 }}</td>
-					</tr>
-					<tr>
-						<th>S3 / Doktor</th>
-						<td><center>{{ $pendidikan13 }}</td>
-					</tr>
+					@endforeach
 					<tr style="background-color: #00bcd4;color:white">
-						<th>Jumlah</th>
-						<td><center>{{ $jumlah }}</td>
+						<th colspan=2>Total Pegawai</th>
+						<td><center>{{ $i }}</center></td>
 					</tr>
 				</table>
 

@@ -73,7 +73,7 @@ var series = chart.series.push(new am4charts.ColumnSeries());
 series.sequencedInterpolation = true;
 series.dataFields.valueY = "visits";
 series.dataFields.categoryX = "country";
-series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+series.tooltipText = "[bold]{valueY}[/] Orang";
 series.columns.template.strokeWidth = 0;
 
 series.tooltip.pointerOrientation = "vertical";

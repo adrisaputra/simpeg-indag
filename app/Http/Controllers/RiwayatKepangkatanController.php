@@ -277,7 +277,7 @@ class RiwayatKepangkatanController extends Controller
        
         $golongan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('jenis_golongan','DESC')->limit(1)->get()->toArray();
         
-        if($pendidikan){
+        if($golongan){
             $pegawai = Pegawai::find($id);
             $pegawai->golongan = $golongan[0]->golongan;
         } else {

@@ -59,29 +59,33 @@ class RiwayatJabatanController extends Controller
    public function store($id, Request $request)
    {
         $this->validate($request, [
-            'status_mutasi_instansi' => 'required',
             'tipe_jabatan' => 'required',
-            'jenjang' => 'required',
-            'status_mutasi_pegawai' => 'required',
             'jabatan' => 'required',
-            'status' => 'required',
             'tmt_mulai' => 'required',
             'tmt_selesai' => 'required',
             'no_sk' => 'required',
             'tanggal_sk' => 'required',
-            'tunjangan' => 'required',
             'esselon' => 'required',
             'arsip_jabatan' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
         ]);
 
         $input['pegawai_id'] = $id;
-        // if($request->jabatan=="Struktural"){
-        //    $input['jenis_jabatan'] = 1;
-        // } else if($request->jabatan=="Fungsional Tertentu"){
-        //    $input['jenis_jabatan'] = 2;
-        // } else if($request->jabatan=="Fungsional Umum"){
-        //    $input['jenis_jabatan'] = 3;
-        // }   
+
+        if($request->esselon=="I b"){
+            $input['jenis_jabatan'] = 7;
+        } else if($request->esselon=="II a"){
+            $input['jenis_jabatan'] = 6;
+        } else if($request->esselon=="II b"){
+            $input['jenis_jabatan'] = 5;
+        }  else if($request->esselon=="III a"){
+            $input['jenis_jabatan'] = 4;
+        }  else if($request->esselon=="III b"){
+            $input['jenis_jabatan'] = 3;
+        }  else if($request->esselon=="IV a"){
+            $input['jenis_jabatan'] = 2;
+        }   else if($request->esselon=="IV b"){
+            $input['jenis_jabatan'] = 1;
+        }   
 
         $input['status_mutasi_instansi'] = $request->status_mutasi_instansi;
         $input['tipe_jabatan'] = $request->tipe_jabatan;
@@ -107,6 +111,13 @@ class RiwayatJabatanController extends Controller
        
         RiwayatJabatan::create($input);
 
+        $jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('jenis_jabatan','DESC')->limit(1)->get();
+        $jabatan->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->esselon = $jabatan[0]->esselon;
+        $pegawai->save();
+        
         return redirect('/riwayat_jabatan/'.$id)->with('status','Data Tersimpan');
    }
 
@@ -124,17 +135,12 @@ class RiwayatJabatanController extends Controller
    public function update(Request $request, $id, RiwayatJabatan $riwayat_jabatan)
    {
         $this->validate($request, [
-            'status_mutasi_instansi' => 'required',
             'tipe_jabatan' => 'required',
-            'jenjang' => 'required',
-            'status_mutasi_pegawai' => 'required',
             'jabatan' => 'required',
-            'status' => 'required',
             'tmt_mulai' => 'required',
             'tmt_selesai' => 'required',
             'no_sk' => 'required',
             'tanggal_sk' => 'required',
-            'tunjangan' => 'required',
             'esselon' => 'required',
             'arsip_jabatan' => 'mimes:jpg,jpeg,png,pdf|max:500'
         ]);
@@ -148,7 +154,23 @@ class RiwayatJabatanController extends Controller
 		}
 
         $riwayat_jabatan->fill($request->all());
-       
+              
+        if($request->esselon=="I b"){
+            $riwayat_jabatan->jenis_jabatan = 7;
+        } else if($request->esselon=="II a"){
+            $riwayat_jabatan->jenis_jabatan = 6;
+        } else if($request->esselon=="II b"){
+            $riwayat_jabatan->jenis_jabatan = 5;
+        }  else if($request->esselon=="III a"){
+            $riwayat_jabatan->jenis_jabatan = 4;
+        }  else if($request->esselon=="III b"){
+            $riwayat_jabatan->jenis_jabatan = 3;
+        }  else if($request->esselon=="IV a"){
+            $riwayat_jabatan->jenis_jabatan = 2;
+        }   else if($request->esselon=="IV b"){
+            $riwayat_jabatan->jenis_jabatan = 1;
+        }   
+ 
 		if($request->file('arsip_jabatan')){
             $filename = time().'.'.$request->arsip_jabatan->getClientOriginalExtension();
             $request->arsip_jabatan->move(public_path('upload/arsip_jabatan'), $filename);
@@ -158,6 +180,13 @@ class RiwayatJabatanController extends Controller
         $riwayat_jabatan->user_id = Auth::user()->id;
         $riwayat_jabatan->save();
        
+        $jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('jenis_jabatan','DESC')->limit(1)->get();
+        $jabatan->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->esselon = $jabatan[0]->esselon;
+        $pegawai->save();
+        
         return redirect('/riwayat_jabatan/'.$id)->with('status', 'Data Berhasil Diubah');
    }
 
@@ -172,6 +201,19 @@ class RiwayatJabatanController extends Controller
 
         $riwayat_jabatan->delete();
        
+        $jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('jenis_jabatan','DESC')->limit(1)->get()->toArray();
+        $jabatan->toArray();
+        
+        if($jabatan){
+            $pegawai = Pegawai::find($id);
+            $pegawai->esselon = $jabatan[0]->esselon;
+        } else {
+            $pegawai = Pegawai::find($id);
+            $pegawai->golongan = '';
+        }
+
+        $pegawai->save();
+        
         return redirect('/riwayat_jabatan/'.$id)->with('status', 'Data Berhasil Dihapus');
    }
 }

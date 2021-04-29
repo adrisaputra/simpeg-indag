@@ -11,6 +11,7 @@ class RiwayatJabatan extends Model
 	protected $table = 'riwayat_jabatan_tbl';
 	protected $fillable =[
         'pegawai_id',
+        'jenis_jabatan',
         'status_mutasi_instansi',
         'tipe_jabatan',
         'jenjang',

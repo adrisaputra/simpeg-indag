@@ -2,11 +2,11 @@
 @section('konten')
 <div class="content-wrapper">
 	<section class="content-header">
-	<h1 class="fontPoppins">{{ __('DATA KEPANGKATAN') }}
+	<h1 class="fontPoppins">{{ __('DATA GAJI') }}
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
-		<li><a href="#"> {{ __('DATA KEPANGKATAN') }}</a></li>
+		<li><a href="#"> {{ __('DATA GAJI') }}</a></li>
 	</ol>
 	</section>
 	
