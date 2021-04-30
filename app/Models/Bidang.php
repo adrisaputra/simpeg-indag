@@ -20,4 +20,9 @@ class Bidang extends Model
         return $this->hasOne('App\Models\Pegawai');
     }
     
+    public function relasibidang()
+    {
+        return $this->hasOne('App\Models\RelasiBidang');
+    }
+    
 }
