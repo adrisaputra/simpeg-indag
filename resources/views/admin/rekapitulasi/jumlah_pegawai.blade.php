@@ -4,7 +4,7 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 30%;
+  width: 60%;
   height: 350px;
 }
 
@@ -32,11 +32,11 @@ var chart = am4core.create("chartdiv", am4charts.XYChart);
 
 // Add data
 chart.data = [ {
-  "country": "ASN Pria",
+  "country": "Pria",
   "visits": {{ $pria }},
   "color": am4core.color("#dd4b39")
 }, {
-  "country": "ASN Wanita",
+  "country": "Wanita",
   "visits": {{ $wanita }},
   "color": am4core.color("#00a65a"),
 }
@@ -44,7 +44,7 @@ chart.data = [ {
 
 // var label = chart.createChild(am4core.Label);
 // label.x = am4core.percent(50);
-// label.text = "Jumlah ASN";
+// label.text = "Jumlah Pegawai";
 // label.fontSize = 16;
 // label.align = "center";
 // label.isMeasured = false;
@@ -65,7 +65,7 @@ categoryAxis.tooltip.disabled = true;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.renderer.minWidth = 50;
-valueAxis.title.text = "Jumlah ASN";
+valueAxis.title.text = "Jumlah Pegawai";
 valueAxis.title.fontWeight = 400;
 
 // Create series
@@ -116,22 +116,17 @@ chart.cursor = new am4charts.XYCursor();
 	</section>
 	
 	<section class="content">
-	<div class="box">   
-	<center><div id="chartdiv"></div></center>
-			<div class="table-responsive box-body">
-
-				@if ($message = Session::get('status'))
-					<div class="alert alert-info alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<h4><i class="icon fa fa-check"></i>Berhasil !</h4>
-						{{ $message }}
-					</div>
-				@endif
-
+	<div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tabel Jumlah Pegawai</h3>
+            </div>
+            <div class="table-responsive box-body">
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
-						<th><center>ASN</th>
-						<th><center>Jumlah ASN</th>
+						<th><center>Pegawai</th>
+						<th><center>Jumlah Pegawai</th>
 					</tr>
 					<tr>
 						<th>Pria</th>
@@ -146,12 +141,20 @@ chart.cursor = new am4charts.XYCursor();
 						<td><center>{{ $jumlah_pegawai }}</td>
 					</tr>
 				</table>
-
 			</div>
-		<div class="box-footer">
-			<!-- PAGINATION -->
-		</div>
-	</div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Jumlah Pegawai</h3>
+            </div>
+            <center><div id="chartdiv"></div></center>
+          </div>
+        </div>
+
+      </div>
 	</section>
 </div>
 @endsection
