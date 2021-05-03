@@ -62,8 +62,8 @@ class PegawaiController extends Controller
             'alamat' => 'required',
             'agama' => 'required',
             'jabatan_id' => 'required',
-            'bidang_id' => 'required_if:jabatan_id,3|required_if:jabatan_id,5|required_if:jabatan_id,7',
-            'seksi_id' => 'required_if:jabatan_id,4|required_if:jabatan_id,7',
+            'bidang_id' => 'required',
+            'seksi_id' => 'required_if:jabatan_id,4|required_if:jabatan_id,5|required_if:jabatan_id,7',
             'status' => 'required',
 			'foto_formal' => 'mimes:jpg,jpeg,png|max:500',
 			'foto_kedinasan' => 'mimes:jpg,jpeg,png|max:500',
@@ -234,8 +234,8 @@ class PegawaiController extends Controller
             'alamat' => 'required',
             'agama' => 'required',
             'jabatan_id' => 'required',
-            'bidang_id' => 'required_if:jabatan_id,3|required_if:jabatan_id,5|required_if:jabatan_id,7',
-            'seksi_id' => 'required_if:jabatan_id,4|required_if:jabatan_id,7',
+            'bidang_id' => 'required',
+            'seksi_id' => 'required_if:jabatan_id,4|required_if:jabatan_id,5|required_if:jabatan_id,7',
             'status' => 'required',
 			'foto_formal' => 'mimes:jpg,jpeg,png|max:500',
 			'foto_kedinasan' => 'mimes:jpg,jpeg,png|max:500',
@@ -398,18 +398,11 @@ class PegawaiController extends Controller
             $pegawai->karsu = $filename;
         }
         
-        if($request->jabatan_id==1 || $request->jabatan_id==2 || $request->jabatan_id==6){
-            $pegawai->bidang_id = 0;
-            $pegawai->seksi_id = 0;
-        } else if($request->jabatan_id==3 || $request->jabatan_id==5){
-            $pegawai->bidang_id = $request->bidang_id;
-            $pegawai->seksi_id = 0;
-        } else if($request->jabatan_id==4){
-            $pegawai->bidang_id = 0;
-            $pegawai->seksi_id = $request->seksi_id;
-        } else if($request->jabatan_id==7){
+        if($request->jabatan_id==4 || $request->jabatan_id==5 || $request->jabatan_id==7){
             $pegawai->bidang_id = $request->bidang_id;
             $pegawai->seksi_id = $request->seksi_id;
+        } else {
+            $pegawai->seksi_id = 0;
         }
 		$pegawai->user_id = Auth::user()->id;
     	$pegawai->save();

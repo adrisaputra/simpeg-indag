@@ -212,7 +212,23 @@
 						<label class="col-sm-2 control-label">{{ __('Jabatan') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('jabatan_id'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jabatan_id') }}</label>@endif
-							<select class="form-control" name="jabatan_id" id="jabatan_id" onChange="tampil_bidang()">
+							<select class="form-control" name="jabatan_id" id="jabatan_id" onChange="tampil_bidang();if (this.selectedIndex=='1'){ 
+ 												document.getElementById('seksi').style.display = 'none'; 
+ 											} else if (this.selectedIndex=='2'){
+ 												document.getElementById('seksi').style.display = 'none';
+ 											} else if (this.selectedIndex=='3'){
+ 												document.getElementById('seksi').style.display = 'none';
+ 											} else if (this.selectedIndex=='4'){
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} else if (this.selectedIndex=='5'){
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} else if (this.selectedIndex=='6'){
+ 												document.getElementById('seksi').style.display = 'none';
+ 											} else if (this.selectedIndex=='7'){
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} else {
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} ;"">
                                         <option value=""> -PILIH JABATAN-</option>
                                         @foreach($jabatan as $v)
 									<option value="{{ $v->id }}" @if(old('jabatan_id')==$v->id) selected @endif>{{ $v->nama_jabatan}}</option>
@@ -225,32 +241,64 @@
 						<label class="col-sm-2 control-label">{{ __('Bidang') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('bidang_id'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('bidang_id') }}</label>@endif
-							<select class="form-control" name="bidang_id" id="jumlah_stok">
-                                        <option value=""> -PILIH BIDANG-</option>
-                                    </select>
+							
+							@if(old('bidang_id'))
+								@php 
+								
+								$bidangs = DB::table('relasi_bidang_tbl')
+										->leftJoin('bidang_tbl', 'relasi_bidang_tbl.bidang_id', '=', 'bidang_tbl.id')
+										->where('relasi_bidang_tbl.jabatan_id', old('jabatan_id'))->get();
+								@endphp
+
+								<select class="form-control" name="bidang_id" id="bidang_id" onChange="tampil_seksi()">
+                                        	<option value=""> -PILIH BIDANG-</option>
+									@foreach($bidangs as $v)
+										echo "<option value="{{ $v->id }}"  @if(old('bidang_id')==$v->id) selected @endif>{{ $v->nama_bidang }}</option>";
+									@endforeach
+                                    	</select>
+							@else
+								<select class="form-control" name="bidang_id" id="bidang_id" onChange="tampil_seksi()">
+                                        	<option value=""> -PILIH BIDANG-</option>
+                                    	</select>
+							@endif
 						</div>
 					</div>
-					
+
 					@if(old('jabatan_id')==4
+                                        || old('jabatan_id')==5
                                         || old('jabatan_id')==7)
                               <span id='seksi' style='display:inline;'>
                          @else
                               <span id='seksi' style='display:none;'>
                          @endif
 					<div class="form-group @if ($errors->has('seksi_id')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Seksi/Bagian') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Seksi') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('seksi_id'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('seksi_id') }}</label>@endif
-							<select class="form-control" name="seksi_id">
-                                        <option value=""> -Pilih Seksi/Bagian-</option>
-                                        @foreach($seksi as $v)
-								<option value="{{ $v->id }}" @if(old('seksi_id')==$v->id) selected @endif>{{ $v->nama_seksi}}</option>
-								@endforeach
-                                    </select>
+							
+							@if(old('bidang_id'))
+								@php 
+								
+								$seksi = DB::table('bidang_tbl')
+										->leftJoin('seksi_tbl', 'bidang_tbl.id', '=', 'seksi_tbl.bidang_id')
+										->where('bidang_tbl.id', old('bidang_id'))->get();
+								@endphp
+
+								<select class="form-control" name="seksi_id" id="seksi_id">
+                                        	<option value=""> -PILIH SEKSI-</option>
+									@foreach($seksi as $v)
+										echo "<option value="{{ $v->id }}"  @if(old('seksi_id')==$v->id) selected @endif>{{ $v->nama_seksi }}</option>";
+									@endforeach
+                                    	</select>
+							@else
+								<select class="form-control" name="seksi_id" id="seksi_id">
+									<option value=""> -PILIH SEKSI-</option>
+								</select>
+							@endif
 						</div>
 					</div>
 					</span>
-					
+
 					<div class="form-group @if ($errors->has('status')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Status Kepegawaian') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
@@ -285,7 +333,19 @@ function tampil_bidang()
 	$.ajax({
 		url:""+url+"/"+jabatan_id+"",
 		success: function(response){
-			$("#jumlah_stok").html(response);
+			$("#bidang_id").html(response);
+		}
+	});
+	return false;
+}
+function tampil_seksi()
+{
+	bidang_id = document.getElementById("bidang_id").value;
+	url = "{{ url('/seksi/nama_seksi') }}"
+	$.ajax({
+		url:""+url+"/"+bidang_id+"",
+		success: function(response){
+			$("#seksi_id").html(response);
 		}
 	});
 	return false;

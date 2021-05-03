@@ -12,11 +12,11 @@ class BidangController extends Controller
     {
         $bidang = RelasiBidang::
                   where('jabatan_id',$jabatan_id)
-                  ->orderBy('id','DESC')->get();
+                  ->orderBy('bidang_id','ASC')->get();
 
         echo "<option value=''> -PILIH BIDANG-</option>";
-        foreach($bidang as $v ){
-            echo "<option value='".$v->id."'>".$v->bidang->nama_bidang."</option>";
+        foreach($bidang as $v){
+            echo "<option value='".$v->bidang->id."' >".$v->bidang->nama_bidang."</option>";
         }
     }
 }

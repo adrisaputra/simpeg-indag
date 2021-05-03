@@ -238,7 +238,8 @@ class RiwayatPendidikanController extends Controller
 
         $riwayat_pendidikan->delete();
        
-        $pendidikan = RiwayatPendidikan::where('pegawai_id',$id)->orderBy('jenis_pendidikan','DESC')->limit(1)->get()->toArray();
+        $pendidikan = RiwayatPendidikan::where('pegawai_id',$id)->orderBy('jenis_pendidikan','DESC')->limit(1)->get();
+        $pendidikan->toArray();
         
         if($pendidikan){
             $pegawai = Pegawai::find($id);

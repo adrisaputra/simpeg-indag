@@ -201,7 +201,7 @@ class RiwayatJabatanController extends Controller
 
         $riwayat_jabatan->delete();
        
-        $jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('jenis_jabatan','DESC')->limit(1)->get()->toArray();
+        $jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('jenis_jabatan','DESC')->limit(1)->get();
         $jabatan->toArray();
         
         if($jabatan){

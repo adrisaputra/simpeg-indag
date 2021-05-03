@@ -241,81 +241,94 @@
 					<hr style="border-top: 1px solid #eee;">
 
 					<center><p style="font-size:20px">DATA KEPEGAWAIAN</p></center>
-
+					
 					<div class="form-group @if ($errors->has('jabatan_id')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Jabatan') }}</label>
+						<label class="col-sm-2 control-label">{{ __('Jabatan') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('jabatan_id'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('jabatan_id') }}</label>@endif
-							<select class="form-control" name="jabatan_id" onchange=" if (this.selectedIndex=='1'){ 
-												document.getElementById('bidang').style.display = 'none'; 
-												document.getElementById('seksi').style.display = 'none'; 
-											} else if (this.selectedIndex=='2'){
-												document.getElementById('bidang').style.display = 'none'; 
-												document.getElementById('seksi').style.display = 'none';
-											} else if (this.selectedIndex=='3'){
-												document.getElementById('bidang').style.display = 'inline'; 
-												document.getElementById('seksi').style.display = 'none';
-											} else if (this.selectedIndex=='4'){
-												document.getElementById('bidang').style.display = 'none'; 
-												document.getElementById('seksi').style.display = 'inline';
-											} else if (this.selectedIndex=='5'){
-												document.getElementById('bidang').style.display = 'inline'; 
-												document.getElementById('seksi').style.display = 'none';
-											} else if (this.selectedIndex=='6'){
-												document.getElementById('bidang').style.display = 'none'; 
-												document.getElementById('seksi').style.display = 'none';
-											} else if (this.selectedIndex=='7'){
-												document.getElementById('bidang').style.display = 'inline'; 
-												document.getElementById('seksi').style.display = 'inline';
-											} else {
-												document.getElementById('bagian').style.display = 'none'; 
-												document.getElementById('seksi').style.display = 'none';
-											} ;">
-								<option value=""> -Pilih Jabatan-</option>
-								@foreach($jabatan as $v)
-								<option value="{{ $v->id }}" @if($pegawai->jabatan_id==$v->id) selected @endif>{{ $v->nama_jabatan}}</option>
+							<select class="form-control" name="jabatan_id" id="jabatan_id" onChange="tampil_bidang();if (this.selectedIndex=='1'){ 
+ 												document.getElementById('seksi').style.display = 'none'; 
+ 											} else if (this.selectedIndex=='2'){
+ 												document.getElementById('seksi').style.display = 'none';
+ 											} else if (this.selectedIndex=='3'){
+ 												document.getElementById('seksi').style.display = 'none';
+ 											} else if (this.selectedIndex=='4'){
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} else if (this.selectedIndex=='5'){
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} else if (this.selectedIndex=='6'){
+ 												document.getElementById('seksi').style.display = 'none';
+ 											} else if (this.selectedIndex=='7'){
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} else {
+ 												document.getElementById('seksi').style.display = 'inline';
+ 											} ;"">
+                                        <option value=""> -PILIH JABATAN-</option>
+                                        @foreach($jabatan as $v)
+									<option value="{{ $v->id }}" @if($pegawai->jabatan_id==$v->id) selected @endif>{{ $v->nama_jabatan}}</option>
 								@endforeach
-							</select>
+                                    </select>
 						</div>
 					</div>
 
-					@if($pegawai->jabatan_id==3 
-								|| $pegawai->jabatan_id==5
-								|| $pegawai->jabatan_id==7)
-						<span id='bidang' style='display:inline;'>
-					@else
-						<span id='bidang' style='display:none;'>
-					@endif
 					<div class="form-group @if ($errors->has('bidang_id')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Bidang') }}</label>
+						<label class="col-sm-2 control-label">{{ __('Bidang') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('bidang_id'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('bidang_id') }}</label>@endif
-							<select class="form-control" name="bidang_id">
-								<option value=""> -Pilih Bidang-</option>
-								@foreach($bidang as $v)
-								<option value="{{ $v->id }}" @if($pegawai->bidang_id==$v->id) selected @endif>{{ $v->nama_bidang}}</option>
-								@endforeach
-							</select>
+							
+							@if($pegawai->bidang_id)
+								@php 
+								
+								$bidangs = DB::table('relasi_bidang_tbl')
+										->leftJoin('bidang_tbl', 'relasi_bidang_tbl.bidang_id', '=', 'bidang_tbl.id')
+										->where('relasi_bidang_tbl.jabatan_id', $pegawai->jabatan_id)->get();
+								@endphp
+
+								<select class="form-control" name="bidang_id" id="bidang_id" onChange="tampil_seksi()">
+                                        	<option value=""> -PILIH BIDANG-</option>
+									@foreach($bidangs as $v)
+										echo "<option value="{{ $v->id }}"  @if($pegawai->bidang_id==$v->id) selected @endif>{{ $v->nama_bidang }}</option>";
+									@endforeach
+                                    	</select>
+							@else
+								<select class="form-control" name="bidang_id" id="bidang_id" onChange="tampil_seksi()">
+                                        	<option value=""> -PILIH BIDANG-</option>
+                                    	</select>
+							@endif
 						</div>
 					</div>
-					</span>
 
 					@if($pegawai->jabatan_id==4
-								|| $pegawai->jabatan_id==7)
-						<span id='seksi' style='display:inline;'>
-					@else
-						<span id='seksi' style='display:none;'>
-					@endif
+                                        || $pegawai->jabatan_id==5
+                                        || $pegawai->jabatan_id==7)
+                              <span id='seksi' style='display:inline;'>
+                         @else
+                              <span id='seksi' style='display:none;'>
+                         @endif
 					<div class="form-group @if ($errors->has('seksi_id')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Seksi/Bagian') }}</label>
+						<label class="col-sm-2 control-label">{{ __('Seksi') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('seksi_id'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('seksi_id') }}</label>@endif
-							<select class="form-control" name="seksi_id">
-								<option value=""> -Pilih Seksi/Bagian-</option>
-								@foreach($seksi as $v)
-								<option value="{{ $v->id }}" @if($pegawai->seksi_id==$v->id) selected @endif>{{ $v->nama_seksi}}</option>
-								@endforeach
-							</select>
+							
+							@if($pegawai->bidang_id)
+								@php 
+								
+								$seksi = DB::table('bidang_tbl')
+										->leftJoin('seksi_tbl', 'bidang_tbl.id', '=', 'seksi_tbl.bidang_id')
+										->where('bidang_tbl.id', $pegawai->bidang_id)->get();
+								@endphp
+
+								<select class="form-control" name="seksi_id" id="seksi_id">
+                                        	<option value=""> -PILIH SEKSI-</option>
+									@foreach($seksi as $v)
+										echo "<option value="{{ $v->id }}"  @if($pegawai->seksi_id==$v->id) selected @endif>{{ $v->nama_seksi }}</option>";
+									@endforeach
+                                    	</select>
+							@else
+								<select class="form-control" name="seksi_id" id="seksi_id">
+									<option value=""> -PILIH SEKSI-</option>
+								</select>
+							@endif
 						</div>
 					</div>
 					</span>
@@ -346,4 +359,30 @@
 	</section>
 </div>
 
+<script>
+function tampil_bidang()
+{
+	jabatan_id = document.getElementById("jabatan_id").value;
+	url = "{{ url('/bidang/nama_bidang') }}"
+	$.ajax({
+		url:""+url+"/"+jabatan_id+"",
+		success: function(response){
+			$("#bidang_id").html(response);
+		}
+	});
+	return false;
+}
+function tampil_seksi()
+{
+	bidang_id = document.getElementById("bidang_id").value;
+	url = "{{ url('/seksi/nama_seksi') }}"
+	$.ajax({
+		url:""+url+"/"+bidang_id+"",
+		success: function(response){
+			$("#seksi_id").html(response);
+		}
+	});
+	return false;
+}
+</script>
 @endsection

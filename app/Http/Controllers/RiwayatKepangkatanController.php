@@ -275,7 +275,8 @@ class RiwayatKepangkatanController extends Controller
 
         $riwayat_kepangkatan->delete();
        
-        $golongan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('jenis_golongan','DESC')->limit(1)->get()->toArray();
+        $golongan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('jenis_golongan','DESC')->limit(1)->get();
+        $golongan->toArray();
         
         if($golongan){
             $pegawai = Pegawai::find($id);

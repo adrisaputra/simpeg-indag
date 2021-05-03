@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\BidangController;
+use App\Http\Controllers\SeksiController;
 use App\Http\Controllers\RiwayatOrangTuaController;
 use App\Http\Controllers\RiwayatIbuController;
 use App\Http\Controllers\RiwayatPasanganController;
@@ -66,6 +67,7 @@ Route::post('/pegawai/import_excel', [PegawaiController::class, 'import_excel'])
 
 ## 
 Route::get('/bidang/nama_bidang/{jabatan_id}', [BidangController::class, 'nama_bidang']);
+Route::get('/seksi/nama_seksi/{bidang_id}', [SeksiController::class, 'nama_seksi']);
 
 ## Riwayat Orang Tua
 Route::get('/riwayat_orang_tua/{id}', [RiwayatOrangTuaController::class, 'index']);
