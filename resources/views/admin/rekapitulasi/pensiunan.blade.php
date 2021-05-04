@@ -4,7 +4,7 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 30%;
+  width: 60%;
   height: 350px;
 }
 
@@ -105,19 +105,14 @@ chart.cursor = new am4charts.XYCursor();
 	</section>
 	
 	<section class="content">
-	<div class="box">   
-	<center><div id="chartdiv"></div></center>
-			<div class="table-responsive box-body">
-
-				@if ($message = Session::get('status'))
-					<div class="alert alert-info alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<h4><i class="icon fa fa-check"></i>Berhasil !</h4>
-						{{ $message }}
-					</div>
-				@endif
-
-				<table class="table table-bordered">
+	<div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tabel Jumlah Pensiunan</h3>
+            </div>
+            <div class="table-responsive box-body">
+		  		<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th><center>ASN</th>
 						<th><center>Jumlah ASN</th>
@@ -135,12 +130,21 @@ chart.cursor = new am4charts.XYCursor();
 						<td><center>{{ $pria + $wanita }}</td>
 					</tr>
 				</table>
-
 			</div>
-		<div class="box-footer">
-			<!-- PAGINATION -->
-		</div>
-	</div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Jumlah Pensiunan</h3>
+            </div>
+            <center><div id="chartdiv"></div></center>
+          </div>
+        </div>
+
+      </div>
 	</section>
+	
 </div>
 @endsection

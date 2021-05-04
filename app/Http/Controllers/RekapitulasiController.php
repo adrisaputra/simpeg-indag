@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RiwayatKepangkatan;   //nama model
 use App\Models\RiwayatCuti;   //nama model
 use App\Models\Jabatan;   //nama model
+use App\Models\Bidang;   //nama model
 use App\Models\Pegawai;   //nama model
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -31,93 +32,93 @@ class RekapitulasiController extends Controller
     
     public function rekapitulasi_jumlah_pegawai_bidang()
     {
-        $jabatan = Jabatan::get();
+        $bidang = Bidang::get();
         
         $i=1;
-        foreach($jabatan as $v){
-            $jumlah_pegawai_bidang[$i] = Pegawai::where('jabatan_id',$v->id)->where('status_hapus',0)->count();
+        foreach($bidang as $v){
+            $jumlah_pegawai_bidang[$i] = Pegawai::where('bidang_id',$v->id)->where('status_hapus',0)->count();
             $i++;
         }
 
-        return view('admin.rekapitulasi.jumlah_pegawai_bidang',compact('jabatan','jumlah_pegawai_bidang'));
+        return view('admin.rekapitulasi.jumlah_pegawai_bidang',compact('bidang','jumlah_pegawai_bidang'));
     }
 
     public function rekapitulasi_esselon()
     {
-        $jabatan = Jabatan::get();
+        $bidang = Bidang::get();
         
         $i=1;
-        foreach($jabatan as $v){
-            $jumlah_esselon[$i] = Pegawai::where('jabatan_id',$v->id)->whereNotNull('esselon')->where('status_hapus',0)->count();
+        foreach($bidang as $v){
+            $jumlah_esselon[$i] = Pegawai::where('bidang_id',$v->id)->whereNotNull('esselon')->where('status_hapus',0)->count();
             $i++;
         }
 
-        return view('admin.rekapitulasi.esselon',compact('jabatan','jumlah_esselon'));
+        return view('admin.rekapitulasi.esselon',compact('bidang','jumlah_esselon'));
     }
 
     public function rekapitulasi_gender_bidang()
     {
-        $jabatan = Jabatan::get();
+        $bidang = Bidang::get();
         
         $i=1;
-        foreach($jabatan as $v){
-            $pria[$i] = Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('status_hapus',0)->count();
-            $wanita[$i] = Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('status_hapus',0)->count();
+        foreach($bidang as $v){
+            $pria[$i] = Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('status_hapus',0)->count();
+            $wanita[$i] = Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('status_hapus',0)->count();
             $jumlah[$i] = $pria[$i]+$wanita[$i];
             $i++;
         }
         
-        return view('admin.rekapitulasi.jumlah_pegawai_gender_bidang',compact('jabatan','pria','wanita','jumlah'));
+        return view('admin.rekapitulasi.jumlah_pegawai_gender_bidang',compact('bidang','pria','wanita','jumlah'));
     }
 
     # Golongan
     public function rekapitulasi_golongan()
     {
-        $jabatan = Jabatan::get();
+        $bidang = Bidang::get();
 
         $i=1;
-        foreach($jabatan as $v){
-            $jumlah_pegawai_bidang[$i] = Pegawai::where('jabatan_id',$v->id)->where('status_hapus',0)->count();
-            $pria[$i] = Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('status_hapus',0)->count();
-            $wanita[$i] = Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('status_hapus',0)->count();
+        foreach($bidang as $v){
+            $jumlah_pegawai_bidang[$i] = Pegawai::where('bidang_id',$v->id)->where('status_hapus',0)->count();
+            $pria[$i] = Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('status_hapus',0)->count();
+            $wanita[$i] = Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('status_hapus',0)->count();
 
             $id = $v->id;
 
-            $pria17[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/e')->where('status_hapus',0)->count();
-            $pria16[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/d')->where('status_hapus',0)->count();
-            $pria15[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/c')->where('status_hapus',0)->count();
-            $pria14[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/b')->where('status_hapus',0)->count();
-            $pria13[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/a')->where('status_hapus',0)->count();
-            $pria12[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/d')->where('status_hapus',0)->count();
-            $pria11[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/c')->where('status_hapus',0)->count();
-            $pria10[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/b')->where('status_hapus',0)->count();
-            $pria9[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/a')->where('status_hapus',0)->count();
-            $pria8[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/d')->where('status_hapus',0)->count();
-            $pria7[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/c')->where('status_hapus',0)->count();
-            $pria6[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/b')->where('status_hapus',0)->count();
-            $pria5[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/a')->where('status_hapus',0)->count();
-            $pria4[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/d')->where('status_hapus',0)->count();
-            $pria3[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/c')->where('status_hapus',0)->count();
-            $pria2[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/b')->where('status_hapus',0)->count();
-            $pria1[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/a')->where('status_hapus',0)->count();
+            $pria17[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/e')->where('status_hapus',0)->count();
+            $pria16[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/d')->where('status_hapus',0)->count();
+            $pria15[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/c')->where('status_hapus',0)->count();
+            $pria14[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/b')->where('status_hapus',0)->count();
+            $pria13[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan IV/a')->where('status_hapus',0)->count();
+            $pria12[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/d')->where('status_hapus',0)->count();
+            $pria11[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/c')->where('status_hapus',0)->count();
+            $pria10[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/b')->where('status_hapus',0)->count();
+            $pria9[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan III/a')->where('status_hapus',0)->count();
+            $pria8[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/d')->where('status_hapus',0)->count();
+            $pria7[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/c')->where('status_hapus',0)->count();
+            $pria6[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/b')->where('status_hapus',0)->count();
+            $pria5[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan II/a')->where('status_hapus',0)->count();
+            $pria4[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/d')->where('status_hapus',0)->count();
+            $pria3[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/c')->where('status_hapus',0)->count();
+            $pria2[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/b')->where('status_hapus',0)->count();
+            $pria1[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Pria')->where('golongan','Golongan I/a')->where('status_hapus',0)->count();
 
-            $wanita17[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/e')->where('status_hapus',0)->count();
-            $wanita16[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/d')->where('status_hapus',0)->count();
-            $wanita15[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/c')->where('status_hapus',0)->count();
-            $wanita14[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/b')->where('status_hapus',0)->count();
-            $wanita13[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/a')->where('status_hapus',0)->count();
-            $wanita12[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/d')->where('status_hapus',0)->count();
-            $wanita11[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/c')->where('status_hapus',0)->count();
-            $wanita10[$i] =   Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/b')->where('status_hapus',0)->count();
-            $wanita9[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/a')->where('status_hapus',0)->count();
-            $wanita8[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/d')->where('status_hapus',0)->count();
-            $wanita7[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/c')->where('status_hapus',0)->count();
-            $wanita6[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/b')->where('status_hapus',0)->count();
-            $wanita5[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/a')->where('status_hapus',0)->count();
-            $wanita4[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/d')->where('status_hapus',0)->count();
-            $wanita3[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/c')->where('status_hapus',0)->count();
-            $wanita2[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/b')->where('status_hapus',0)->count();
-            $wanita1[$i] =    Pegawai::where('jabatan_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/a')->where('status_hapus',0)->count();
+            $wanita17[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/e')->where('status_hapus',0)->count();
+            $wanita16[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/d')->where('status_hapus',0)->count();
+            $wanita15[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/c')->where('status_hapus',0)->count();
+            $wanita14[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/b')->where('status_hapus',0)->count();
+            $wanita13[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan IV/a')->where('status_hapus',0)->count();
+            $wanita12[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/d')->where('status_hapus',0)->count();
+            $wanita11[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/c')->where('status_hapus',0)->count();
+            $wanita10[$i] =   Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/b')->where('status_hapus',0)->count();
+            $wanita9[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan III/a')->where('status_hapus',0)->count();
+            $wanita8[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/d')->where('status_hapus',0)->count();
+            $wanita7[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/c')->where('status_hapus',0)->count();
+            $wanita6[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/b')->where('status_hapus',0)->count();
+            $wanita5[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan II/a')->where('status_hapus',0)->count();
+            $wanita4[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/d')->where('status_hapus',0)->count();
+            $wanita3[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/c')->where('status_hapus',0)->count();
+            $wanita2[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/b')->where('status_hapus',0)->count();
+            $wanita1[$i] =    Pegawai::where('bidang_id',$v->id)->where('jenis_kelamin','Wanita')->where('golongan','Golongan I/a')->where('status_hapus',0)->count();
 
             $total17[$i] = $pria17[$i] + $wanita17[$i];
             $total16[$i] = $pria16[$i] + $wanita16[$i];
@@ -198,7 +199,7 @@ class RekapitulasiController extends Controller
                         ->count();
 
         return view('admin.rekapitulasi.golongan',compact(
-            'jabatan',
+            'bidang',
             'jumlah_pegawai_bidang',
             'pria',
             'wanita',

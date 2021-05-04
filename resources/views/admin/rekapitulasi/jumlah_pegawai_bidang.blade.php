@@ -4,7 +4,7 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 60%;
+  width: 100%;
   height: 500px;
 }
 
@@ -31,9 +31,9 @@ var chart = am4core.create("chartdiv", am4charts.XYChart);
 
 // Add data
 chart.data = [ 
-@foreach($jabatan as $v)
+@foreach($bidang as $v)
 	{
-	"country": "{{ $v->nama_jabatan }}",
+	"country": "{{ $v->nama_bidang }}",
 	"visits": {{ $jumlah_pegawai_bidang[$loop->index + 1] }}
 	},
 @endforeach
@@ -61,7 +61,8 @@ categoryAxis.tooltip.disabled = true;
 
 var label = categoryAxis.renderer.labels.template;
 label.wrap = true;
-label.maxWidth = 110;
+label.maxWidth = 100;
+label.fontSize = 10;
 // categoryAxis.renderer.minHeight = 110;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -85,7 +86,7 @@ series.columns.template.column.fillOpacity = 0.8;
 
 var labelBullet = series.bullets.push(new am4charts.LabelBullet());
 labelBullet.label.verticalCenter = "bottom";
-labelBullet.label.dy = -10;
+labelBullet.label.dy =0;
 labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
 
 
@@ -114,19 +115,14 @@ chart.cursor = new am4charts.XYCursor();
 		<li><a href="#"> {{ __('JUMLAH PEGAWAI PER BIDANG') }}</a></li>
 	</ol>
 	</section>
-	
 	<section class="content">
-	<div class="box"><br>   
-	<center><div id="chartdiv"></div></center>
-			<div class="table-responsive box-body">
-
-				@if ($message = Session::get('status'))
-					<div class="alert alert-info alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<h4><i class="icon fa fa-check"></i>Berhasil !</h4>
-						{{ $message }}
-					</div>
-				@endif
+	<div class="row">
+        <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tabel Jumlah Pegawai Per Bidang</h3>
+            </div>
+            	<div class="table-responsive box-body">
 
 				<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
@@ -135,11 +131,11 @@ chart.cursor = new am4charts.XYCursor();
 						<th><center>Jumlah</th>
 					</tr>
 					@php $i=0; @endphp
-					@foreach($jabatan as $v)
+					@foreach($bidang as $v)
 					@php $i = $i +  $jumlah_pegawai_bidang[$loop->index + 1]; @endphp
 					<tr>
 						<td>{{ $loop->index + 1 }}</td>
-						<td>{{ $v->nama_jabatan }}</td>
+						<td>{{ $v->nama_bidang }}</td>
 						<td><center>{{ $jumlah_pegawai_bidang[$loop->index + 1] }}</center></td>
 					</tr>
 					@endforeach
@@ -150,10 +146,20 @@ chart.cursor = new am4charts.XYCursor();
 				</table>
 
 			</div>
-		<div class="box-footer">
-			<!-- PAGINATION -->
-		</div>
-	</div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Jumlah Pegawai Per Bidang</h3>
+            </div>
+            <center><div id="chartdiv"></div></center>
+          </div>
+        </div>
+
+      </div>
 	</section>
+	
 </div>
 @endsection

@@ -4,7 +4,7 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 90%;
+  width: 100%;
   height: 500px;
 }
 
@@ -85,7 +85,8 @@ categoryAxis.tooltip.disabled = true;
 
 var label = categoryAxis.renderer.labels.template;
 label.wrap = true;
-label.maxWidth = 100;
+label.maxWidth = 70;
+label.fontSize = 10;
 // categoryAxis.renderer.minHeight = 110;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -139,20 +140,16 @@ chart.cursor = new am4charts.XYCursor();
 	</ol>
 	</section>
 	
+	
 	<section class="content">
-	<div class="box">   
-	<center><div id="chartdiv"></div></center>
-			<div class="table-responsive box-body">
-
-				@if ($message = Session::get('status'))
-					<div class="alert alert-info alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<h4><i class="icon fa fa-check"></i>Berhasil !</h4>
-						{{ $message }}
-					</div>
-				@endif
-
-				<table class="table table-bordered">
+	<div class="row">
+        <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tabel Jumlah Pegawai Berdasarkan Pendidikan</h3>
+            </div>
+            	<div class="table-responsive box-body">
+		  		<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th><center>Pendidikan</th>
 						<th><center>Jumlah ASN</th>
@@ -214,12 +211,21 @@ chart.cursor = new am4charts.XYCursor();
 						<td><center>{{ $jumlah }}</td>
 					</tr>
 				</table>
-
 			</div>
-		<div class="box-footer">
-			<!-- PAGINATION -->
-		</div>
-	</div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Jumlah Pegawai Berdasarkan Pendidikan</h3>
+            </div>
+            <center><div id="chartdiv"></div></center>
+          </div>
+        </div>
+
+      </div>
 	</section>
+	
 </div>
 @endsection

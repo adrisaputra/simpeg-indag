@@ -23,142 +23,68 @@ am4core.useTheme(am4themes_animated);
 
 
 
-var chart = am4core.create('chartdiv', am4charts.XYChart)
-chart.colors.step = 2;
-
-chart.legend = new am4charts.Legend()
-chart.legend.position = 'top'
-chart.legend.paddingBottom = 20
-chart.legend.labels.template.maxWidth = 95
-
-var xAxis = chart.xAxes.push(new am4charts.CategoryAxis())
-xAxis.dataFields.category = 'category'
-xAxis.renderer.cellStartLocation = 0.1
-xAxis.renderer.cellEndLocation = 0.9
-xAxis.renderer.grid.template.location = 0;
-
-var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
-yAxis.min = 0;
-
-function createSeries(value, name) {
-    var series = chart.series.push(new am4charts.ColumnSeries())
-    series.dataFields.valueY = value
-    series.dataFields.categoryX = 'category'
-    series.name = name
-
-    series.events.on("hidden", arrangeColumns);
-    series.events.on("shown", arrangeColumns);
-
-
-    series.columns.template.column.cornerRadiusTopLeft = 10;
-	series.columns.template.column.cornerRadiusTopRight = 10;
-	series.columns.template.column.fillOpacity = 0.8;
-	// series.columns.template.width = am4core.percent(50);
-
-	var labelBullet = series.bullets.push(new am4charts.LabelBullet());
-	labelBullet.label.verticalCenter = "bottom";
-	labelBullet.label.dy = -10;
-	labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
-
-	// on hover, make corner radiuses bigger
-	var hoverState = series.columns.template.column.states.create("hover");
-	hoverState.properties.cornerRadiusTopLeft = 0;
-	hoverState.properties.cornerRadiusTopRight = 0;
-	hoverState.properties.fillOpacity = 1;
-
-    return series;
-}
-
-// chart.data = [
-//     {
-//         category: 'Place #1',
-//         first: 40,
-//         second: 55,
-//     },
-//     {
-//         category: 'Place #2',
-//         first: 30,
-//         second: 78,
-//         third: 69
-//     },
-//     {
-//         category: 'Place #3',
-//         first: 27,
-//         second: 40,
-//     },
-//     {
-//         category: 'Place #4',
-//         first: 50,
-//         second: 33,
-//     }
-// ]
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+// chart.numberFormatter.numberFormat = "#.0";
 
 // Add data
 chart.data = [ 
-@foreach($jabatan as $v)
+@foreach($bidang as $v)
 	{
-        category: '{{ $v->nama_jabatan }}',
-        Pria: {{ $pria[$loop->index + 1] }},
-        Wanita: {{ $wanita[$loop->index + 1] }},
-    },
+	   "year": '{{ $v->nama_bidang }}',
+        "pria": {{ $pria[$loop->index + 1] }},
+        "wanita": {{ $wanita[$loop->index + 1] }},
+    	},
 @endforeach
 ];
 
+// Create axes
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "year";
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.minGridDistance = 20;
+categoryAxis.renderer.inside = true;
+categoryAxis.renderer.labels.template.valign = "top";
+categoryAxis.renderer.labels.template.fontSize = 20;
+categoryAxis.renderer.cellStartLocation = 0.1;
+categoryAxis.renderer.cellEndLocation = 0.9;
 
-createSeries('Pria', 'Pria');
-createSeries('Wanita', 'Wanita');
+var label = categoryAxis.renderer.labels.template;
+label.wrap = true;
+label.maxWidth = 100;
+label.fontSize = 10;
 
-function arrangeColumns() {
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.min = 0;
+valueAxis.title.text = "Jumlah ASN";
 
-    var series = chart.series.getIndex(0);
-
-    var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
-    if (series.dataItems.length > 1) {
-        var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
-        var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
-        var delta = ((x1 - x0) / chart.series.length) * w;
-        if (am4core.isNumber(delta)) {
-            var middle = chart.series.length / 2;
-
-            var newIndex = 0;
-            chart.series.each(function(series) {
-                if (!series.isHidden && !series.isHiding) {
-                    series.dummyData = newIndex;
-                    newIndex++;
-                }
-                else {
-                    series.dummyData = chart.series.indexOf(series);
-                }
-            })
-            var visibleCount = newIndex;
-            var newMiddle = visibleCount / 2;
-
-            chart.series.each(function(series) {
-                var trueIndex = chart.series.indexOf(series);
-                var newIndex = series.dummyData;
-
-                var dx = (newIndex - trueIndex + middle - newMiddle) * delta
-
-                series.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
-                series.bulletsContainer.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
-            })
-        }
-    }
-}
-
-
-series.tooltip.pointerOrientation = "vertical";
-
-series.columns.template.column.cornerRadiusTopLeft = 10;
-series.columns.template.column.cornerRadiusTopRight = 10;
+// Create series
+function createSeries(field, name) {
+  var series = chart.series.push(new am4charts.ColumnSeries());
+  series.sequencedInterpolation = true;
+  series.dataFields.valueY = field;
+  series.dataFields.categoryX = "year";
+  series.name = name;
+  series.columns.template.tooltipText = "{name}: [bold]{valueY}[/] Orang";
+//   series.columns.template.width = am4core.percent(70);
+  
+  var bullet = series.bullets.push(new am4charts.LabelBullet);
+  bullet.label.text = "{name}";
+  bullet.label.truncate = false;
+  bullet.label.hideOversized = false;
+  bullet.label.horizontalCenter = "left";
+  bullet.locationY = 1;
+  bullet.dy = 10;
+  
+series.columns.template.column.cornerRadiusTopLeft = 7;
+series.columns.template.column.cornerRadiusTopRight = 7;
 series.columns.template.column.fillOpacity = 0.8;
 // series.columns.template.width = am4core.percent(50);
 
 var labelBullet = series.bullets.push(new am4charts.LabelBullet());
 labelBullet.label.verticalCenter = "bottom";
-labelBullet.label.dy = -10;
+labelBullet.label.dy =0;
 labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
-
 
 // on hover, make corner radiuses bigger
 var hoverState = series.columns.template.column.states.create("hover");
@@ -166,12 +92,20 @@ hoverState.properties.cornerRadiusTopLeft = 0;
 hoverState.properties.cornerRadiusTopRight = 0;
 hoverState.properties.fillOpacity = 1;
 
-series.columns.template.adapter.add("fill", function(fill, target) {
-  return chart.colors.getIndex(target.dataItem.index);
-});
+// series.columns.template.adapter.add("fill", function(fill, target) {
+//   return chart.colors.getIndex(target.dataItem.index);
+// });
 
-// Cursor
-chart.cursor = new am4charts.XYCursor();
+// // Cursor
+// chart.cursor = new am4charts.XYCursor();
+
+}
+
+chart.paddingBottom = 150;
+chart.maskBullets = false;
+
+createSeries("pria", "L", false);
+createSeries("wanita", "P", true);
 
 }); // end am4core.ready()
 </script>
@@ -185,21 +119,16 @@ chart.cursor = new am4charts.XYCursor();
 		<li><a href="#"> {{ __('GENDER PER BIDANG') }}</a></li>
 	</ol>
 	</section>
-	
 	<section class="content">
-	<div class="box">   
-	<div id="chartdiv"></div>
-			<div class="table-responsive box-body">
+	<div class="row">
+        <div class="col-md-4">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tabel Jumlah Pegawai Berdasarkan Gender</h3>
+            </div>
+            	<div class="table-responsive box-body">
 
-				@if ($message = Session::get('status'))
-					<div class="alert alert-info alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<h4><i class="icon fa fa-check"></i>Berhasil !</h4>
-						{{ $message }}
-					</div>
-				@endif
-
-				<table class="table table-bordered">
+			  <table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th style="width: 60px"><center>No</th>
 						<th><center>Jabatan</th>
@@ -212,7 +141,7 @@ chart.cursor = new am4charts.XYCursor();
 						$j=0; 
 						$k=0; 
 					@endphp
-					@foreach($jabatan as $v)
+					@foreach($bidang as $v)
 					@php
 						$i = $i +  $pria[$loop->index + 1];
 						$j = $j +  $wanita[$loop->index + 1];
@@ -220,7 +149,7 @@ chart.cursor = new am4charts.XYCursor();
 					@endphp
 					<tr>
 						<td>{{ $loop->index + 1 }}</td>
-						<td>{{ $v->nama_jabatan }}</td>
+						<td>{{ $v->nama_bidang }}</td>
 						<td><center>{{ $pria[$loop->index + 1] }}</center></td>
 						<td><center>{{ $wanita[$loop->index + 1] }}</center></td>
 						<td><center>{{ $jumlah[$loop->index + 1] }}</center></td>
@@ -235,10 +164,20 @@ chart.cursor = new am4charts.XYCursor();
 				</table>
 
 			</div>
-		<div class="box-footer">
-			<!-- PAGINATION -->
-		</div>
-	</div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Jumlah Pegawai Berdasarkan Gender</h3>
+            </div>
+            <center><div id="chartdiv"></div></center>
+          </div>
+        </div>
+
+      </div>
 	</section>
+
 </div>
 @endsection

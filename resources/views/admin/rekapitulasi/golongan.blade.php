@@ -90,7 +90,7 @@ series.columns.template.column.fillOpacity = 0.8;
 
 var labelBullet = series.bullets.push(new am4charts.LabelBullet());
 labelBullet.label.verticalCenter = "bottom";
-labelBullet.label.dy = -10;
+labelBullet.label.dy = 0;
 labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
 
 
@@ -134,7 +134,7 @@ chart.cursor = new am4charts.XYCursor();
 				@endif
 
 				<table class="table table-bordered">
-				<tr style="background-color: gray;color:white">
+					<tr style="background-color: gray;color:white">
 						<th style="width: 10px" rowspan=3>No</th>
 						<th style="width: 40px" rowspan=3>Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 						<th style="width: 10px" rowspan=3>Jumlah ASN</th>
@@ -218,15 +218,13 @@ chart.cursor = new am4charts.XYCursor();
 						<th style="text-align: center;">P</th>
 					</tr>
 					</center>
-					@foreach($jabatan as $v)
+					@foreach($bidang as $v)
 					<tr>
-						<td rowspan=3>{{ $loop->index + 1 }}</td>
-						<td rowspan=3>{{ $v->nama_jabatan }}</td>
-						<td rowspan=3><center>{{ $jumlah_pegawai_bidang[$loop->index + 1] }}</center></td>
-						<td rowspan=3><center>{{ $pria[$loop->index + 1] }}</center></td>
-						<td rowspan=3><center>{{ $wanita[$loop->index + 1] }}</center></td>
-					</tr>
-					<tr>
+						<td rowspan=2>{{ $loop->index + 1 }}</td>
+						<td rowspan=2>{{ $v->nama_bidang }}</td>
+						<td rowspan=2><center>{{ $jumlah_pegawai_bidang[$loop->index + 1] }}</center></td>
+						<td rowspan=2><center>{{ $pria[$loop->index + 1] }}</center></td>
+						<td rowspan=2><center>{{ $wanita[$loop->index + 1] }}</center></td>
 						<td colspan=2><center><b>{{ $total17[$loop->index + 1] }}</td>
 						<td colspan=2><center><b>{{ $total16[$loop->index + 1] }}</td>
 						<td colspan=2><center><b>{{ $total15[$loop->index + 1] }}</td>
@@ -249,6 +247,7 @@ chart.cursor = new am4charts.XYCursor();
 						<td colspan=2><center><b>{{ $total1[$loop->index + 1] }}</td>
 						<td colspan=2 style="background-color: #4caf50;color:white"><center><b>{{ $total_semua_gol_1[$loop->index + 1] }}</td>
 					</tr>
+					
 					<tr>
 						<td>{{ $pria17[$loop->index + 1] }}</td>
 						<td>{{ $wanita17[$loop->index + 1] }}</td>

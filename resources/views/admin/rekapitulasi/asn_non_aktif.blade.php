@@ -4,7 +4,7 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 30%;
+  width: 60%;
   height: 350px;
 }
 
@@ -32,11 +32,11 @@ var chart = am4core.create("chartdiv", am4charts.XYChart);
 
 // Add data
 chart.data = [ {
-  "country": "ASN Pria",
+  "country": "Pria",
   "visits": {{ $pria }},
   "color": am4core.color("#dd4b39")
 }, {
-  "country": "ASN Wanita",
+  "country": "Wanita",
   "visits": {{ $wanita }},
   "color": am4core.color("#00a65a"),
 }
@@ -44,7 +44,7 @@ chart.data = [ {
 
 // var label = chart.createChild(am4core.Label);
 // label.x = am4core.percent(50);
-// label.text = "Jumlah ASN";
+// label.text = "Jumlah Pegawai";
 // label.fontSize = 16;
 // label.align = "center";
 // label.isMeasured = false;
@@ -65,8 +65,7 @@ categoryAxis.tooltip.disabled = true;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.renderer.minWidth = 50;
-valueAxis.renderer.minWidth = 50;
-valueAxis.title.text = "Jumlah ASN";
+valueAxis.title.text = "Jumlah Pegawai";
 valueAxis.title.fontWeight = 400;
 
 // Create series
@@ -76,6 +75,7 @@ series.dataFields.valueY = "visits";
 series.dataFields.categoryX = "country";
 series.tooltipText = "[bold]{valueY}[/] Orang";
 series.columns.template.strokeWidth = 0;
+
 series.tooltip.pointerOrientation = "vertical";
 
 series.columns.template.column.cornerRadiusTopLeft = 10;
@@ -114,21 +114,16 @@ chart.cursor = new am4charts.XYCursor();
 		<li><a href="#"> {{ __('ASN NON AKTIF') }}</a></li>
 	</ol>
 	</section>
-	
+
 	<section class="content">
-	<div class="box">   
-	<center><div id="chartdiv"></div></center>
-			<div class="table-responsive box-body">
-
-				@if ($message = Session::get('status'))
-					<div class="alert alert-info alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<h4><i class="icon fa fa-check"></i>Berhasil !</h4>
-						{{ $message }}
-					</div>
-				@endif
-
-				<table class="table table-bordered">
+	<div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tabel Jumlah ASN Non Aktif</h3>
+            </div>
+            <div class="table-responsive box-body">
+		  		<table class="table table-bordered">
 					<tr style="background-color: gray;color:white">
 						<th><center>ASN</th>
 						<th><center>Jumlah ASN</th>
@@ -146,12 +141,21 @@ chart.cursor = new am4charts.XYCursor();
 						<td><center>{{ $pria + $wanita }}</td>
 					</tr>
 				</table>
-
 			</div>
-		<div class="box-footer">
-			<!-- PAGINATION -->
-		</div>
-	</div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Jumlah ASN Non Aktif</h3>
+            </div>
+            <center><div id="chartdiv"></div></center>
+          </div>
+        </div>
+
+      </div>
 	</section>
+
 </div>
 @endsection
