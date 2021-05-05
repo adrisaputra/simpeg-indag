@@ -300,7 +300,8 @@
 
 					@if($pegawai->jabatan_id==4
                                         || $pegawai->jabatan_id==5
-                                        || $pegawai->jabatan_id==7)
+                                        || $pegawai->jabatan_id==7
+								|| ($pegawai->jabatan_id==8 && $pegawai->seksi_id!=""))
                               <span id='seksi' style='display:inline;'>
                          @else
                               <span id='seksi' style='display:none;'>

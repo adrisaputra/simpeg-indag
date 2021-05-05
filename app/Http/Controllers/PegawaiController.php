@@ -398,9 +398,13 @@ class PegawaiController extends Controller
             $pegawai->karsu = $filename;
         }
         
-        if($request->jabatan_id==4 || $request->jabatan_id==5 || $request->jabatan_id==7){
+        if($request->jabatan_id==4 || $request->jabatan_id==5 || $request->jabatan_id==7 || $request->jabatan_id==8){
             $pegawai->bidang_id = $request->bidang_id;
-            $pegawai->seksi_id = $request->seksi_id;
+            if(!$request->seksi_id){
+                $pegawai->seksi_id = 0;
+            } else {
+                $pegawai->seksi_id = $request->seksi_id;
+            }
         } else {
             $pegawai->seksi_id = 0;
         }
