@@ -23,6 +23,7 @@ am4core.ready(function() {
 // Themes begin
 am4core.useTheme(am4themes_material);
 am4core.useTheme(am4themes_animated);
+am4core.addLicense("ch-custom-attribution");
 // Themes end
 
 // Create chart instance

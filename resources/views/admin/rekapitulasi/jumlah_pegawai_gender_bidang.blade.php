@@ -4,7 +4,7 @@
 <style>
 #chartdiv {
   width: 100%;
-  height: 500px;
+  height: 700px;
 }
 </style>
 
@@ -19,6 +19,7 @@ am4core.ready(function() {
 
 // Themes begin
 am4core.useTheme(am4themes_animated);
+am4core.addLicense("ch-custom-attribution");
 // Themes end
 
 
@@ -77,8 +78,8 @@ function createSeries(field, name) {
   bullet.locationY = 1;
   bullet.dy = 10;
   
-series.columns.template.column.cornerRadiusTopLeft = 7;
-series.columns.template.column.cornerRadiusTopRight = 7;
+series.columns.template.column.cornerRadiusTopLeft = 4;
+series.columns.template.column.cornerRadiusTopRight = 4;
 series.columns.template.column.fillOpacity = 0.8;
 // series.columns.template.width = am4core.percent(50);
 
