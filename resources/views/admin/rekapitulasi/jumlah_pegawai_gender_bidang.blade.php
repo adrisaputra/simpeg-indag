@@ -56,6 +56,7 @@ label.fontSize = 10;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
+valueAxis.max = 30;
 valueAxis.title.text = "Jumlah ASN";
 
 // Create series
@@ -101,12 +102,19 @@ hoverState.properties.fillOpacity = 1;
 
 }
 
+chart.colors.list = [
+  am4core.color("#3c8dbc"),
+  am4core.color("#fe4383")
+];
+
 chart.paddingBottom = 150;
 chart.maskBullets = false;
 
 createSeries("pria", "L", false);
 createSeries("wanita", "P", true);
 
+chart.legend = new am4charts.Legend();
+chart.legend.marginTop = 20;
 }); // end am4core.ready()
 </script>
 

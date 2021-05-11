@@ -31,19 +31,19 @@ var chart = am4core.create("chartdiv", am4charts.XYChart);
 // Add data
 chart.data = [ 
 	{
-	"country": "Golongan IV",
+	"country": "Gol. IV",
 	"visits": {{ $jumlah_gol_4 }}
 	},
 	{
-	"country": "Golongan III",
+	"country": "Gol. III",
 	"visits": {{ $jumlah_gol_3 }}
 	},
 	{
-	"country": "Golongan II",
+	"country": "Gol. II",
 	"visits": {{ $jumlah_gol_2 }}
 	},
 	{
-	"country": "Golongan I",
+	"country": "Gol. I",
 	"visits": {{ $jumlah_gol_1 }}
 	},
 ];
@@ -73,6 +73,8 @@ var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.renderer.minWidth = 50;
 valueAxis.title.text = "Jumlah ASN";
 valueAxis.title.fontWeight = 400;
+valueAxis.min = 0;
+valueAxis.max = 100;
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
@@ -104,8 +106,54 @@ series.columns.template.adapter.add("fill", function(fill, target) {
   return chart.colors.getIndex(target.dataItem.index);
 });
 
+chart.colors.list = [
+  am4core.color("#3c8dbc"),
+  am4core.color("#00a65a"),
+  am4core.color("#dd4b39"),
+  am4core.color("#f39c12")
+];
 // Cursor
 chart.cursor = new am4charts.XYCursor();
+
+
+var legend = new am4charts.Legend();
+legend.parent = chart.chartContainer;
+//legend.itemContainers.template.togglable = false;
+legend.marginTop = 10;
+legend.maxWidth = 10;
+
+series.events.on("ready", function(ev) {
+  var legenddata = [];
+  series.columns.each(function(column) {
+    legenddata.push({
+      name: column.dataItem.categoryX,
+      fill: column.fill,
+      columnDataItem: column.dataItem
+    });
+  });
+  legend.data = legenddata;
+});
+
+legend.itemContainers.template.events.on("hit", function(ev) {
+  //console.log("Clicked on ", ev.target.dataItem.className);
+  if (!ev.target.isActive) {
+    ev.target.dataItem.dataContext.columnDataItem.hide();
+  }
+  else {
+    ev.target.dataItem.dataContext.columnDataItem.show();
+  }
+});
+
+legend.itemContainers.template.events.on("over", function(ev) {
+  ev.target.dataItem.dataContext.columnDataItem.column.isHover = true;
+  ev.target.dataItem.dataContext.columnDataItem.column.showTooltip();
+});
+
+legend.itemContainers.template.events.on("out", function(ev) {
+  ev.target.dataItem.dataContext.columnDataItem.column.isHover = false;
+  ev.target.dataItem.dataContext.columnDataItem.column.hideTooltip();
+});
+
 
 }); // end am4core.ready()
 </script>

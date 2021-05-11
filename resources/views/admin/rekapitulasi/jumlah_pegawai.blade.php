@@ -42,16 +42,6 @@ chart.data = [ {
 }
 ];
 
-// var label = chart.createChild(am4core.Label);
-// label.x = am4core.percent(50);
-// label.text = "Jumlah Pegawai";
-// label.fontSize = 16;
-// label.align = "center";
-// label.isMeasured = false;
-// label.x = -20;
-// label.y = 180;
-// label.rotation = -90;
-
 // Create axes
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 categoryAxis.dataFields.category = "country";
@@ -67,6 +57,8 @@ var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.renderer.minWidth = 50;
 valueAxis.title.text = "Jumlah Pegawai";
 valueAxis.title.fontWeight = 400;
+valueAxis.min = 0;
+valueAxis.max = 100;
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
@@ -101,6 +93,48 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 
 // Cursor
 chart.cursor = new am4charts.XYCursor();
+
+chart.colors.list = [
+  am4core.color("#3c8dbc"),
+  am4core.color("#fe4383")
+];
+
+var legend = new am4charts.Legend();
+legend.parent = chart.chartContainer;
+//legend.itemContainers.template.togglable = false;
+legend.marginTop = 20;
+
+series.events.on("ready", function(ev) {
+  var legenddata = [];
+  series.columns.each(function(column) {
+    legenddata.push({
+      name: column.dataItem.categoryX,
+      fill: column.fill,
+      columnDataItem: column.dataItem
+    });
+  });
+  legend.data = legenddata;
+});
+
+legend.itemContainers.template.events.on("hit", function(ev) {
+  //console.log("Clicked on ", ev.target.dataItem.className);
+  if (!ev.target.isActive) {
+    ev.target.dataItem.dataContext.columnDataItem.hide();
+  }
+  else {
+    ev.target.dataItem.dataContext.columnDataItem.show();
+  }
+});
+
+legend.itemContainers.template.events.on("over", function(ev) {
+  ev.target.dataItem.dataContext.columnDataItem.column.isHover = true;
+  ev.target.dataItem.dataContext.columnDataItem.column.showTooltip();
+});
+
+legend.itemContainers.template.events.on("out", function(ev) {
+  ev.target.dataItem.dataContext.columnDataItem.column.isHover = false;
+  ev.target.dataItem.dataContext.columnDataItem.column.hideTooltip();
+});
 
 }); // end am4core.ready()
 </script>
