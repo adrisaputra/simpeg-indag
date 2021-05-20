@@ -134,6 +134,7 @@ class EventController extends Controller
 
         return redirect('/agenda')->with('status', 'Data Berhasil Dihapus');
     }
+    
     /**
      * Write code on Method
      *

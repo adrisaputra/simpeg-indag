@@ -64,7 +64,7 @@
 							<select class="form-control select2" multiple="multiple" data-placeholder="Pelaksana" style="width: 100%;" name="pegawai_id[]">
 								@php $n=0; @endphp
 								@foreach($pegawai as $v)	
-									<!-- <option value="{{ $v->id }}" @if($v->id==$hasil[$loop->index]) selected @endif>{{ $v->nama_pegawai }}</option> -->
+									<option value="{{ $v->id }}" @if($v->id==$hasil[$loop->index]) selected @endif>{{ $v->nama_pegawai }}</option>
 								@endforeach
 							</select>
 							
