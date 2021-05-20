@@ -27,6 +27,7 @@ use App\Http\Controllers\RiwayatGajiController;
 use App\Http\Controllers\RiwayatTugasLuarNegeriController;
 use App\Http\Controllers\RiwayatPajakController;
 use App\Http\Controllers\RekapitulasiController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -260,3 +261,11 @@ Route::get('/rekapitulasi_asn_non_aktif', [RekapitulasiController::class, 'rekap
 Route::get('/rekapitulasi_cuti', [RekapitulasiController::class, 'rekapitulasi_cuti']);
 Route::get('/rekapitulasi_pensiunan', [RekapitulasiController::class, 'rekapitulasi_pensiunan']);
 Route::get('/rekapitulasi_pendidikan', [RekapitulasiController::class, 'rekapitulasi_pendidikan']);
+
+Route::get('agenda', [EventController::class, 'index']);
+Route::get('/agenda/create', [EventController::class, 'create']);
+Route::post('/agenda', [EventController::class, 'store']);
+Route::get('/agenda/edit/{agenda}', [EventController::class, 'edit']);
+Route::put('/agenda/edit/{agenda}', [EventController::class, 'update']);
+Route::get('/agenda/hapus/{agenda}',[EventController::class, 'delete']);
+Route::post('agendaAjax', [EventController::class, 'ajax']);

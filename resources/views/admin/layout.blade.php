@@ -5,6 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <title>SIMPEG INDAG</title>
+        
+    <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('/upload/logo/logo.png') }}" rel="icon">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap/dist/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/font-awesome/css/font-awesome.min.css') }}">
@@ -15,11 +17,19 @@
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/select2/dist/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-plugin/iCheck/all.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-plugin/timepicker/bootstrap-timepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/fullcalendar/dist/fullcalendar.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/fullcalendar/dist/fullcalendar.print.css') }}" media="print">
+        
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-dist/css/AdminLTE.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-dist/css/skins/_all-skins.min.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <link href="https://fonts.googleapis.com/css?family=Anton|Permanent+Marker|Quicksand" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap" rel="stylesheet"> 
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
         <style type="text/css">
             .fontQuicksand{
                 font-family: 'Quicksand', sans-serif;
@@ -174,7 +184,7 @@
                         </li>  
                         <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}""><a href="{{ url('pegawai')}}"><i class="fa fa-circle-o"></i> <span>Tayangan Data</span></a></li>
                         <li class="{{ (request()->is('profil*')) ? 'active' : '' }}""><a href="{{ url('profil')}}"><i class="fa fa-circle-o"></i> <span>Informasi Kantor</span></a></li>
-                        <li class="{{ (request()->is('profil*')) ? 'active' : '' }}""><a href="{{ url('profil')}}"><i class="fa fa-circle-o"></i> <span>Agenda Kerja</span></a></li>
+                        <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-o"></i> <span>Agenda Kerja</span></a></li>
                         <li class="treeview">
                         <a href="#">
                             <i class="fa fa-share"></i> <span>Informasi</span>
@@ -238,7 +248,7 @@
             
         </div>
        
-        <script src="{{ asset('/assets/core-admin/core-component/jquery/dist/jquery.min.js') }}"></script>
+        <!-- <script src="{{ asset('/assets/core-admin/core-component/jquery/dist/jquery.min.js') }}"></script> -->
         <script src="{{ asset('/assets/core-admin/core-component/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('/assets/core-admin/core-component/select2/dist/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('/assets/core-admin/core-component/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
@@ -250,6 +260,11 @@
         <script src="{{ asset('/assets/core-admin/core-component/fastclick/lib/fastclick.js') }}"></script>
         <script src="{{ asset('/assets/core-admin/core-dist/js/adminlte.min.js') }}"></script>
         <script src="{{ asset('/assets/core-admin/core-dist/js/demo.js') }}"></script>
+        <!-- fullCalendar -->
+        <!-- jQuery UI 1.11.4 -->
+        <!-- <script src="{{ asset('assets/core-admin/core-component/jquery-ui/jquery-ui.min.js') }}"></script> -->
+         <script src="{{ asset('assets/core-admin/core-component/moment/moment.js') }}"></script>
+        <script src="{{ asset('assets/core-admin/core-component/fullcalendar/dist/fullcalendar.js') }}"></script>
         
         <script>
             $(document).ready(function () {
@@ -297,5 +312,6 @@
 
             })
         </script>
+
     </body>
 </html>

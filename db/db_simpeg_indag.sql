@@ -1,0 +1,1045 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versi server:                 10.4.19-MariaDB - mariadb.org binary distribution
+-- OS Server:                    Win64
+-- HeidiSQL Versi:               10.3.0.5771
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- membuang struktur untuk table db_simpeg_indag.bidang_tbl
+CREATE TABLE IF NOT EXISTS `bidang_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jabatan_id` int(11) DEFAULT NULL,
+  `nama_bidang` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.bidang_tbl: ~9 rows (lebih kurang)
+/*!40000 ALTER TABLE `bidang_tbl` DISABLE KEYS */;
+INSERT INTO `bidang_tbl` (`id`, `jabatan_id`, `nama_bidang`, `user_id`, `created_at`, `updated_at`) VALUES
+	(1, NULL, 'SEKRETARIAT', NULL, NULL, NULL),
+	(2, 3, 'BIDANG INDUSTRI KECIL, MENENGAH DAN PERWILAYAHAN', NULL, '2021-03-12 18:59:26', NULL),
+	(3, 3, 'BIDANG INDUSTRI AGRO, LOGAM, MESIN, KIMIA DAN ANEKA', NULL, '2021-03-12 18:59:27', NULL),
+	(4, 3, 'BIDANG PERDAGANGAN DALAM NEGERI', NULL, '2021-03-12 18:59:27', NULL),
+	(5, 3, 'BIDANG PERDAGANGAN LUAR NEGERI', NULL, '2021-03-12 18:59:28', NULL),
+	(6, 3, 'BIDANG PERLINDUNGAN KONSUMEN DAN TERTIB NIAGA', NULL, '2021-03-12 18:59:28', NULL),
+	(7, NULL, 'UPTD BALAI PENGUJIAN DAN SERTIFIKASI MUTU BARANG', NULL, '2021-03-12 18:59:29', NULL),
+	(8, NULL, 'UPTD INDUSTRI PANGAN OLAHAN DAN KEMASAN', NULL, '2021-03-12 18:59:30', NULL),
+	(9, NULL, 'FUNGSIONAL', NULL, NULL, NULL);
+/*!40000 ALTER TABLE `bidang_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.events
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL,
+  `end2` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Membuang data untuk tabel db_simpeg_indag.events: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `events` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.failed_jobs
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Membuang data untuk tabel db_simpeg_indag.failed_jobs: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.jabatan_tbl
+CREATE TABLE IF NOT EXISTS `jabatan_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_jabatan` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.jabatan_tbl: ~8 rows (lebih kurang)
+/*!40000 ALTER TABLE `jabatan_tbl` DISABLE KEYS */;
+INSERT INTO `jabatan_tbl` (`id`, `nama_jabatan`, `user_id`, `created_at`, `updated_at`) VALUES
+	(1, 'KEPALA DINAS', NULL, NULL, NULL),
+	(2, 'SEKRETARIS', NULL, NULL, NULL),
+	(3, 'KEPALA BIDANG', NULL, NULL, NULL),
+	(4, 'KEPALA SEKSI', NULL, NULL, NULL),
+	(5, 'KEPALA SUB BAGIAN', NULL, NULL, NULL),
+	(6, 'KEPALA UPTD', NULL, NULL, NULL),
+	(7, 'KEPALA FUNGSIONAL', NULL, NULL, NULL),
+	(8, 'STAF', NULL, NULL, NULL);
+/*!40000 ALTER TABLE `jabatan_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.migrations
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Membuang data untuk tabel db_simpeg_indag.migrations: ~7 rows (lebih kurang)
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+	(1, '2014_10_12_000000_create_users_table', 1),
+	(2, '2014_10_12_100000_create_password_resets_table', 1),
+	(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+	(4, '2014_10_12_200000_add_two_factor_columns_to_users_table', 2),
+	(5, '2019_12_14_000001_create_personal_access_tokens_table', 2),
+	(6, '2021_04_05_060844_create_sessions_table', 2),
+	(7, '2021_05_11_132318_create_events_table', 3);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.password_resets
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Membuang data untuk tabel db_simpeg_indag.password_resets: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.pegawai_tbl
+CREATE TABLE IF NOT EXISTS `pegawai_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nip` varchar(18) DEFAULT NULL,
+  `nama_pegawai` varchar(100) DEFAULT NULL,
+  `tempat_lahir` varchar(50) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `jenis_kelamin` varchar(50) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `agama` varchar(300) DEFAULT NULL,
+  `gol_darah` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `no_ktp` varchar(50) DEFAULT NULL,
+  `ktp` varchar(50) DEFAULT NULL,
+  `no_bpjs` varchar(50) DEFAULT NULL,
+  `bpjs` varchar(50) DEFAULT NULL,
+  `no_npwp` varchar(50) DEFAULT NULL,
+  `npwp` varchar(50) DEFAULT NULL,
+  `no_karpeg` varchar(50) DEFAULT NULL,
+  `karpeg` varchar(50) DEFAULT NULL,
+  `no_karsu` varchar(50) DEFAULT NULL,
+  `karsu` varchar(50) DEFAULT NULL,
+  `foto_formal` varchar(50) DEFAULT NULL,
+  `foto_kedinasan` varchar(50) DEFAULT NULL,
+  `golongan` varchar(50) DEFAULT NULL,
+  `pendidikan` varchar(50) DEFAULT NULL,
+  `esselon` varchar(50) DEFAULT NULL,
+  `jabatan_id` int(11) DEFAULT NULL,
+  `bidang_id` int(11) DEFAULT NULL,
+  `seksi_id` int(11) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `status_hapus` int(11) DEFAULT 0,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.pegawai_tbl: ~93 rows (lebih kurang)
+/*!40000 ALTER TABLE `pegawai_tbl` DISABLE KEYS */;
+INSERT INTO `pegawai_tbl` (`id`, `nip`, `nama_pegawai`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat`, `agama`, `gol_darah`, `email`, `no_ktp`, `ktp`, `no_bpjs`, `bpjs`, `no_npwp`, `npwp`, `no_karpeg`, `karpeg`, `no_karsu`, `karsu`, `foto_formal`, `foto_kedinasan`, `golongan`, `pendidikan`, `esselon`, `jabatan_id`, `bidang_id`, `seksi_id`, `status`, `status_hapus`, `user_id`, `created_at`, `updated_at`) VALUES
+	(1, '196406211985032000', 'Hj. Sitti Saleha, SE, M.Si', NULL, '1964-06-21', 'Wanita', NULL, 'Islam', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/d', NULL, NULL, 1, 1, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(2, '196412311998011000', 'Ir. Laode Hamalin, M.Si', NULL, '1970-01-01', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/c', NULL, NULL, 3, 6, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(3, '196312301986072000', 'Wa Ode Nuryani, SE', NULL, '1963-12-30', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 3, 3, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(4, '196602011984111000', 'Sutomo, SP, M. Si', NULL, '1966-02-01', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 6, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(5, '196302081993031000', 'Ir. Irmanuddin', NULL, '1963-02-08', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 8, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(6, '196412301994031000', 'Ir. Sapoan, M.Si', NULL, '1970-01-01', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 2, 1, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(7, '196207171983022000', 'Rukmini, SE', NULL, '1962-07-17', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 8, 9, 23, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(8, '196504101985031000', 'Najamuddin Pidani,S.Sos', NULL, '1965-04-10', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 8, 6, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(9, '198005222006041000', 'La Ode. Muh. Rusdin Jaya, S.IP, M.Si', NULL, '1980-05-22', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 3, 2, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(10, '196608121994041000', 'Drs. Muslimin', NULL, '1966-08-12', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 3, 5, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(11, '196605291995031000', 'Sulkifli Saleh,ST.M.Si', NULL, '1966-05-29', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/a', NULL, NULL, 4, 6, 17, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(12, '196603071994032000', 'Hasnawati, SE', NULL, '1966-03-07', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 5, 15, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(13, '196605101995032000', 'Andi Indriani P.U, SH', NULL, '1966-11-10', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 2, 5, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(14, '197102211991032000', 'Darmawati Gamma, SH', NULL, '1971-02-21', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 7, 21, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(15, '196303021985032000', 'Nursan, S.Sos', NULL, '1963-02-03', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 8, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(16, '196412311985031000', 'Kasman,S.Pd', NULL, '1964-12-12', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 6, 16, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(17, '196712311993111000', 'Abdul Latif, S.Sos', NULL, '1967-12-12', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 2, 5, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(18, '197312262001121000', 'Monasman, ST', NULL, '1973-12-26', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 5, 1, 1, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(19, '197605252001122000', 'Nahrida, ST', NULL, '1976-05-25', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 4, 12, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(20, '196508081994032000', 'Tina Sidupa, S.E', NULL, '1965-08-08', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 7, 20, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(21, '196705271994031000', 'La Ode Amirul Mukminin, A.Md', NULL, '1967-05-27', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 9, 23, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(22, '196602182007012000', 'Sachiko Isamu, SE', NULL, '1966-02-18', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 9, 23, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(23, '197301012006041000', 'Akra Sipa,ST', NULL, '1973-01-01', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 2, 5, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(24, '198011212005022000', 'Veradela Nandha Tiara, ST', NULL, '1980-11-21', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 2, 4, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(25, '197006062005022000', 'Halimah Saleh Putri,SH', NULL, '1970-06-03', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 4, 10, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(26, '197809272002121000', 'Adyanto Halyawan, S.E', NULL, '1978-09-27', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 1, 1, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(27, '197709102006042000', 'Wahyuni, S.Si', NULL, '1977-09-10', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 9, 26, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(28, '198305062011011000', 'Muh. Yasser Tuwu, SE., M.Sc', NULL, '1983-05-06', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 5, 14, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(29, '198404062011011000', 'La Ode Muh. Fitrah Arsyad, SE. M. Si', NULL, '1984-04-06', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 3, 4, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(30, '196410101988011000', 'Haryanto', NULL, '1964-10-10', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 7, 9, 24, 'PNS', 0, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(31, '197009181996031000', 'Moh. Iskandar Azis, A.Md', NULL, '1970-09-18', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 3, 8, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(32, '198205212006041000', 'Kemal Jusra, S.Si, M.Si', NULL, '1982-05-21', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 6, 18, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(33, '196812311994031000', 'Khaidir, S.Si', NULL, '1968-12-31', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 2, 6, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(34, '198011112010012000', 'Rosmaidar HS S.Sos', NULL, '1980-11-14', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 6, 17, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(35, '197809212010011000', 'Oon Sulfikar,SH.MM', NULL, '1978-09-21', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 4, 2, 6, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(36, '197810052008012000', 'Siti Nurhanti, S.Pi', NULL, '1978-10-05', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 2, 6, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(37, '198408112010012000', 'Andi Zakiah Wahidah, ST. M.Si', NULL, '1984-08-11', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 1, 1, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(38, '198411072008032000', 'Anisyah Ringgasa, S.Si', NULL, '1984-11-07', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 1, 1, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(39, '197803162008011000', 'Hasmindar, S.P', NULL, '1978-03-16', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 3, 8, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(40, '198106202010011000', 'Andi Puhu, S.Pd', NULL, '1981-06-20', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/d', NULL, NULL, 8, 2, 5, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(41, '19857142006021000', 'La Ode Muh. Qamal Jogugu S, STP, ME', NULL, '1985-07-14', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 5, 1, 2, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(42, '197312152009011000', 'Bachar, ST', NULL, '1973-12-15', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 4, 2, 4, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(43, '197902222009012000', 'Ariskha Sazriany HS, ST', NULL, '1979-02-22', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 5, 14, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(44, '198111022009012000', 'Indri, S. Pi', NULL, '1981-11-02', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 6, 16, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(45, '197905022009042000', 'Wa Ode Hardiana, SE', NULL, '1979-05-02', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 2, 5, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(46, '198304182009042000', 'Wa Ode Hasniati, S. Si', NULL, '1983-04-18', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 3, 9, 'PNS', 0, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(47, '198510222010012000', 'Henny Savitri Oktaviana, S. Si, M.Si', NULL, '1985-10-22', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 5, 1, 3, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(48, '197805152010011000', 'Mardan, SE', NULL, '1978-05-15', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 1, 3, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(49, '198301122011011000', 'Ikbal Hidayat, S.T', NULL, '1983-01-12', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 5, 13, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(50, '198203102010012000', 'Jumarlian Santi Rafiun,SP', NULL, '1982-03-10', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 4, 5, 13, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(51, '198402152011012000', 'Febriani Arumi, ST', NULL, '1984-02-15', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 1, 1, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(52, '198209222011012000', 'Sitti Aisyah, SE', NULL, '1982-09-22', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 2, 4, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(53, '196411021986032000', 'Suryamin', NULL, '1964-11-02', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 1, 2, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(54, '196310111985031000', 'Hamzah', NULL, '1963-10-11', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 7, 21, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(55, '197212122007012000', 'Indriyani Sudibyo,S.Sos', NULL, '1972-12-12', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 6, 8, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(56, '198103172010012000', 'Windi Dianovita, ST', NULL, '1981-03-17', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 4, 4, 11, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(57, '198304192010012000', 'Sulistiany Tamrin, ST', NULL, '1983-04-19', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 8, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(58, '198705132011012000', 'Dian Sulistyowati,S.Kom,M.E', NULL, '1987-05-13', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 1, 2, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(59, '198503262011012000', 'Imayanti Suhardin, SE', NULL, '1985-03-26', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 5, 15, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(60, '198010132009011000', 'Dian Hidayah S,Sos', NULL, '1980-10-13', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 3, 8, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(61, '197911112009011000', 'La Ode Muhammad Ihsan Abdi, SP', NULL, '1979-11-11', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 1, 1, 'PNS', 0, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(62, '196608192006042000', 'Sitti Salma, ST, M.Si', NULL, '1966-08-19', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 6, 8, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(63, '196306101994031000', 'Asrul Suaeb', NULL, '1963-06-10', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 3, 7, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(64, '198509252009012000', 'Sitti Wahyuni, S.TP', NULL, '1985-09-24', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/c', NULL, NULL, 8, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(65, '197806032005021000', 'Mauliddun, SH', NULL, '1978-06-03', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 6, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(66, '197512082007012000', 'Jusanti, S.Sos', NULL, '1975-12-08', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 5, 13, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(67, '198412062014032000', 'Wa Ode Kasmila, S. Si, M.Si', NULL, '1984-12-06', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 7, 21, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(68, '198702202010012000', 'Sufiati, A. Md,SE', NULL, '1987-02-20', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 3, 7, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(69, '197710262007122000', 'Reniati, S. Sos', NULL, '1977-10-26', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 1, 3, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(70, '196707072014082000', 'Sitti Asniah, SE', NULL, '1967-07-07', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 6, 16, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(71, '197912212014082000', 'Mulyani Abuhari, SE', NULL, '1979-12-21', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 1, 2, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(72, '198510032010011000', 'Amir Pae, A.Md,SE', NULL, '1985-10-03', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 6, 17, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(73, '197906112007011000', 'E m i, S.Si', NULL, '1979-06-11', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 1, 2, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(74, '196904012008011000', 'Basri, SH', NULL, '1969-04-01', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 4, 10, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(75, '198003112009011000', 'Agus, S.Si', NULL, '1980-03-11', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 2, 5, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(76, '196708261989032000', 'Nurlina Malik', NULL, '1967-12-12', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 2, 4, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(77, '196601101991031000', 'Sapiuddin', NULL, '1966-01-10', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/b', NULL, NULL, 8, 6, 18, 'PNS', 0, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(78, '197503072008012000', 'Bahrain, SE', NULL, '1975-03-07', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 1, 3, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(79, '198504262008011000', 'La Ode Muh. Ikbal Beau,S.Sos', NULL, '1985-04-06', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 5, 13, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(80, '197909172009011000', 'Muhammad Zailani Sanusi, S.E', NULL, '1979-09-17', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 8, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(81, '198407022014081000', 'Samsuddin,SH', NULL, '1984-07-02', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 5, 14, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(82, '198910182015022000', 'Erika Ayu Christanti, A.Md', NULL, '1989-10-18', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 2, 4, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(83, '197809022014071000', 'Asjan Husain,ST', NULL, '1978-09-02', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 3, 7, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(84, '198301052009012000', 'Hamira, A. Md. Kom', NULL, '1983-01-05', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 1, 3, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(85, '197409042014062000', 'Riny astuti, S. Sos', NULL, '1974-09-04', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan III/a', NULL, NULL, 8, 1, 3, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(86, '198912272015021000', 'Mardiono, A.Md', NULL, '1989-12-27', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/d', NULL, NULL, 8, 2, 6, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(87, '196412312006041000', 'Asikin Jamal', NULL, '1964-12-12', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 9, 23, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(88, '196312312007011000', 'La Ode Hafilu', NULL, '1963-12-12', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/d', NULL, NULL, 8, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(89, '198302142008011000', 'Wahyuddin Amir Manab', NULL, '1983-02-14', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 1, 3, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(90, '198201102009012000', 'Misna Haseng', NULL, '1982-01-10', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 3, 8, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(91, '197908272011011000', 'Agus Herdianto, A.Md', NULL, '1979-08-27', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(92, '198306192010011000', 'Munandar ', NULL, '1983-06-19', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 4, 11, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(93, '197412022014081000', 'Faisal', NULL, '1974-12-02', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/b', NULL, NULL, 8, 4, 12, 'PNS', 0, NULL, '2021-05-03 06:20:24', '2021-05-03 06:20:24');
+/*!40000 ALTER TABLE `pegawai_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.personal_access_tokens
+CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) unsigned NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Membuang data untuk tabel db_simpeg_indag.personal_access_tokens: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.relasi_bidang_tbl
+CREATE TABLE IF NOT EXISTS `relasi_bidang_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jabatan_id` int(11) DEFAULT NULL,
+  `bidang_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.relasi_bidang_tbl: ~28 rows (lebih kurang)
+/*!40000 ALTER TABLE `relasi_bidang_tbl` DISABLE KEYS */;
+INSERT INTO `relasi_bidang_tbl` (`id`, `jabatan_id`, `bidang_id`, `user_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, NULL, NULL, NULL),
+	(2, 2, 1, NULL, '2021-03-12 18:59:26', NULL),
+	(3, 3, 2, NULL, '2021-03-12 18:59:27', NULL),
+	(4, 3, 3, NULL, '2021-03-12 18:59:27', NULL),
+	(5, 3, 4, NULL, '2021-03-12 18:59:28', NULL),
+	(6, 3, 5, NULL, '2021-03-12 18:59:28', NULL),
+	(7, 3, 6, NULL, '2021-03-12 18:59:29', NULL),
+	(8, 4, 2, NULL, '2021-03-12 18:59:30', NULL),
+	(9, 4, 3, NULL, NULL, NULL),
+	(10, 4, 4, NULL, NULL, NULL),
+	(11, 4, 5, NULL, NULL, NULL),
+	(12, 4, 6, NULL, NULL, NULL),
+	(13, 5, 1, NULL, NULL, NULL),
+	(14, 5, 7, NULL, NULL, NULL),
+	(15, 5, 8, NULL, NULL, NULL),
+	(16, 6, 7, NULL, NULL, NULL),
+	(17, 6, 8, NULL, NULL, NULL),
+	(18, 7, 9, NULL, NULL, NULL),
+	(24, 8, 1, NULL, NULL, NULL),
+	(25, 8, 2, NULL, NULL, NULL),
+	(26, 8, 3, NULL, NULL, NULL),
+	(27, 8, 4, NULL, NULL, NULL),
+	(28, 8, 5, NULL, NULL, NULL),
+	(29, 8, 6, NULL, NULL, NULL),
+	(30, 8, 7, NULL, NULL, NULL),
+	(31, 8, 8, NULL, NULL, NULL),
+	(32, 8, 9, NULL, NULL, NULL),
+	(33, 4, 7, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `relasi_bidang_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_anak_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_anak_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `nama_anak` varchar(100) DEFAULT NULL,
+  `jenis_kelamin` varchar(100) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `pendidikan` varchar(100) DEFAULT NULL,
+  `akta_kelahiran` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_anak_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_anak_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_anak_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_angka_kredit_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_angka_kredit_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `jabatan` varchar(100) DEFAULT NULL,
+  `no_pak` varchar(100) DEFAULT NULL,
+  `tanggal_pak` date DEFAULT NULL,
+  `pendidikan` varchar(100) DEFAULT NULL,
+  `pelaksanaan_tupok` varchar(100) DEFAULT NULL,
+  `pengembangan_profesi` varchar(100) DEFAULT NULL,
+  `unsur_penunjang` varchar(100) DEFAULT NULL,
+  `jumlah` varchar(100) DEFAULT NULL,
+  `tmt_angka_kredit` date DEFAULT NULL,
+  `sk` varchar(50) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_angka_kredit_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_angka_kredit_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_angka_kredit_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_cuti_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_cuti_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `jenis_cuti` varchar(100) DEFAULT NULL,
+  `keterangan` varchar(500) DEFAULT NULL,
+  `mulai` date DEFAULT NULL,
+  `selesai` date DEFAULT NULL,
+  `no_sk` varchar(100) DEFAULT NULL,
+  `tanggal_sk` varchar(100) DEFAULT NULL,
+  `arsip_cuti` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_cuti_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_cuti_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_cuti_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_diklat_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_diklat_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `kelompok_diklat` varchar(100) DEFAULT NULL,
+  `jenis_diklat` varchar(100) DEFAULT NULL,
+  `nama_diklat` varchar(100) DEFAULT NULL,
+  `negara` varchar(200) DEFAULT NULL,
+  `lokasi` varchar(100) DEFAULT NULL,
+  `kota` varchar(100) DEFAULT NULL,
+  `tmt_mulai` date DEFAULT NULL,
+  `tmt_selesai` date DEFAULT NULL,
+  `hari` int(11) DEFAULT NULL,
+  `jam` int(11) DEFAULT NULL,
+  `kualitas` varchar(100) DEFAULT NULL,
+  `arsip_diklat` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_diklat_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_diklat_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_diklat_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_gaji_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_gaji_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `jenis_golongan` varchar(100) DEFAULT NULL,
+  `golongan` varchar(100) DEFAULT NULL,
+  `nama_pangkat` varchar(100) DEFAULT NULL,
+  `masa_kerja` varchar(100) DEFAULT NULL,
+  `tmt` date DEFAULT NULL,
+  `gaji` double DEFAULT NULL,
+  `sk_pejabat` varchar(100) DEFAULT NULL,
+  `arsip_gaji` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_gaji_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_gaji_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_gaji_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_hukuman_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_hukuman_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `jenis_hukuman` varchar(100) DEFAULT NULL,
+  `mulai` date DEFAULT NULL,
+  `selesai` date DEFAULT NULL,
+  `no_sk` varchar(100) DEFAULT NULL,
+  `tanggal_sk` varchar(100) DEFAULT NULL,
+  `pejabat` varchar(100) DEFAULT NULL,
+  `keterangan` varchar(500) DEFAULT NULL,
+  `arsip_hukuman` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_hukuman_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_hukuman_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_hukuman_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_jabatan_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_jabatan_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `jenis_jabatan` int(11) DEFAULT NULL,
+  `status_mutasi_instansi` varchar(100) DEFAULT NULL,
+  `tipe_jabatan` varchar(100) DEFAULT NULL,
+  `jenjang` varchar(100) DEFAULT NULL,
+  `status_mutasi_pegawai` varchar(100) DEFAULT NULL,
+  `jabatan` varchar(100) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `instansi_asal` varchar(100) DEFAULT NULL,
+  `tmt_mulai` date DEFAULT NULL,
+  `tmt_selesai` date DEFAULT NULL,
+  `no_sk` varchar(100) DEFAULT NULL,
+  `tanggal_sk` date DEFAULT NULL,
+  `tunjangan` double DEFAULT NULL,
+  `esselon` varchar(100) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `arsip_jabatan` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_jabatan_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_jabatan_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_jabatan_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_karya_ilmiah_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_karya_ilmiah_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `jenis_buku` varchar(100) DEFAULT NULL,
+  `judul_buku` varchar(100) DEFAULT NULL,
+  `jenis_kegiatan` varchar(200) DEFAULT NULL,
+  `peranan` varchar(100) DEFAULT NULL,
+  `tahun` varchar(100) DEFAULT NULL,
+  `arsip_karya_ilmiah` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_karya_ilmiah_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_karya_ilmiah_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_karya_ilmiah_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_kepangkatan_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_kepangkatan_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `jenis_golongan` int(11) DEFAULT NULL,
+  `periode_kp` varchar(100) DEFAULT NULL,
+  `golongan` varchar(100) DEFAULT NULL,
+  `nama_pangkat` varchar(100) DEFAULT NULL,
+  `tmt_mulai` varchar(100) DEFAULT NULL,
+  `tmt_selesai` varchar(100) DEFAULT NULL,
+  `mk_tahun` int(11) DEFAULT NULL,
+  `mk_bulan` int(11) DEFAULT NULL,
+  `no_sk` varchar(100) DEFAULT NULL,
+  `tanggal_sk` varchar(100) DEFAULT NULL,
+  `arsip_kepangkatan` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_kepangkatan_tbl: ~93 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_kepangkatan_tbl` DISABLE KEYS */;
+INSERT INTO `riwayat_kepangkatan_tbl` (`id`, `pegawai_id`, `jenis_golongan`, `periode_kp`, `golongan`, `nama_pangkat`, `tmt_mulai`, `tmt_selesai`, `mk_tahun`, `mk_bulan`, `no_sk`, `tanggal_sk`, `arsip_kepangkatan`, `user_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, 16, NULL, 'Golongan IV/d', 'Pembina Utama Madya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(2, 2, 15, NULL, 'Golongan IV/c', 'Pembina Utama Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(3, 3, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(4, 4, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(5, 5, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(6, 6, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(7, 7, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(8, 8, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(9, 9, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(10, 10, 14, NULL, 'Golongan IV/b', 'Pembina Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(11, 11, 13, NULL, 'Golongan IV/a', 'Pembina', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(12, 12, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(13, 13, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(14, 14, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(15, 15, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(16, 16, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(17, 17, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(18, 18, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(19, 19, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(20, 20, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(21, 21, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(22, 22, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(23, 23, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(24, 24, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(25, 25, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(26, 26, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(27, 27, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(28, 28, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(29, 29, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(30, 30, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(31, 31, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(32, 32, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(33, 33, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(34, 34, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(35, 35, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(36, 36, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(37, 37, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(38, 38, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(39, 39, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(40, 40, 12, NULL, 'Golongan III/d', 'Penata Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(41, 41, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(42, 42, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(43, 43, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(44, 44, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(45, 45, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(46, 46, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(47, 47, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(48, 48, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(49, 49, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(50, 50, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(51, 51, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(52, 52, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(53, 53, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(54, 54, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(55, 55, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(56, 56, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(57, 57, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(58, 58, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(59, 59, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(60, 60, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(61, 61, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(62, 62, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(63, 63, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(64, 64, 11, NULL, 'Golongan III/c', 'Penata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(65, 65, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(66, 66, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(67, 67, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(68, 68, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(69, 69, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(70, 70, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(71, 71, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(72, 72, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(73, 73, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(74, 74, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(75, 75, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(76, 76, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(77, 77, 10, NULL, 'Golongan III/b', 'Penata Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(78, 78, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(79, 79, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(80, 80, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(81, 81, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(82, 82, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(83, 83, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(84, 84, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(85, 85, 9, NULL, 'Golongan III/a', 'Penata Muda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(86, 86, 8, NULL, 'Golongan II/d', 'Pengatur Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(87, 87, 7, NULL, 'Golongan II/c', 'Pengatur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(88, 88, 8, NULL, 'Golongan II/d', 'Pengatur Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(89, 89, 7, NULL, 'Golongan II/c', 'Pengatur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(90, 90, 7, NULL, 'Golongan II/c', 'Pengatur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(91, 91, 7, NULL, 'Golongan II/c', 'Pengatur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(92, 92, 7, NULL, 'Golongan II/c', 'Pengatur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(93, 93, 6, NULL, 'Golongan II/b', 'Pengatur Muda Tingkat 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 06:20:24', '2021-05-03 06:20:24');
+/*!40000 ALTER TABLE `riwayat_kepangkatan_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_kompetensi_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_kompetensi_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `nama_kegiatan` varchar(300) DEFAULT NULL,
+  `tanggal` varchar(100) DEFAULT NULL,
+  `tempat` varchar(100) DEFAULT NULL,
+  `angkatan` varchar(100) DEFAULT NULL,
+  `arsip_kompetensi` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_kompetensi_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_kompetensi_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_kompetensi_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_kursus_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_kursus_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `lokasi_tes` varchar(100) DEFAULT NULL,
+  `tanggal_tes` date DEFAULT NULL,
+  `score` double DEFAULT NULL,
+  `listening` double DEFAULT NULL,
+  `structure` double DEFAULT NULL,
+  `reading` double DEFAULT NULL,
+  `writing` double DEFAULT NULL,
+  `speaking` double DEFAULT NULL,
+  `arsip_toefl` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_kursus_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_kursus_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_kursus_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_lhkpn_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_lhkpn_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `nama_lhkpn` varchar(100) DEFAULT NULL,
+  `tanggal_lapor` varchar(100) DEFAULT NULL,
+  `jenis_pelaporan` varchar(100) DEFAULT NULL,
+  `jabatan` varchar(100) DEFAULT NULL,
+  `status_laporan` varchar(100) DEFAULT NULL,
+  `arsip_lhkpn` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_lhkpn_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_lhkpn_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_lhkpn_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_orang_tua_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_orang_tua_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `orang_tua` varchar(100) DEFAULT NULL,
+  `nama_orang_tua` varchar(200) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `pekerjaan` varchar(100) DEFAULT NULL,
+  `kartu_keluarga` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_orang_tua_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_orang_tua_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_orang_tua_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_pajak_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_pajak_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `no_npwp` varchar(100) DEFAULT NULL,
+  `jenis_spt` varchar(500) DEFAULT NULL,
+  `tahun` int(11) NOT NULL,
+  `pembetulan` varchar(500) DEFAULT NULL,
+  `status` varchar(500) DEFAULT NULL,
+  `jumlah` varchar(500) DEFAULT NULL,
+  `arsip_spt` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_pajak_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_pajak_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_pajak_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_pasangan_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_pasangan_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `nama_pasangan` varchar(100) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `tanggal_nikah` date DEFAULT NULL,
+  `tanggal_cerai` date DEFAULT NULL,
+  `tanggal_meninggal` date DEFAULT NULL,
+  `pekerjaan` varchar(100) DEFAULT NULL,
+  `surat_nikah` varchar(100) DEFAULT NULL,
+  `surat_cerai` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_pasangan_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_pasangan_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_pasangan_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_pendidikan_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_pendidikan_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `jenis_pendidikan` int(11) DEFAULT NULL,
+  `tingkat` varchar(100) DEFAULT NULL,
+  `lembaga` varchar(100) DEFAULT NULL,
+  `fakultas` varchar(100) DEFAULT NULL,
+  `jurusan` varchar(100) DEFAULT NULL,
+  `no_sttb` varchar(100) DEFAULT NULL,
+  `tanggal_sttb` date DEFAULT NULL,
+  `tanggal_kelulusan` date DEFAULT NULL,
+  `ipk` double DEFAULT NULL,
+  `arsip_ijazah` varchar(100) DEFAULT NULL,
+  `arsip_transkrip_nilai` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_pendidikan_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_pendidikan_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_pendidikan_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_penghargaan_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_penghargaan_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `nama_penghargaan` varchar(100) DEFAULT NULL,
+  `no_sk` varchar(100) DEFAULT NULL,
+  `tanggal_sk` varchar(100) DEFAULT NULL,
+  `keterangan` varchar(500) DEFAULT NULL,
+  `arsip_penghargaan` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_penghargaan_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_penghargaan_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_penghargaan_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_seminar_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_seminar_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `nama_seminar` varchar(300) DEFAULT NULL,
+  `tingkat_seminar` varchar(100) DEFAULT NULL,
+  `peranan` varchar(100) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `penyelenggara` varchar(100) DEFAULT NULL,
+  `tempat` varchar(100) DEFAULT NULL,
+  `arsip_sertifikat_seminar` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_seminar_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_seminar_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_seminar_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_tugas_luar_negeri_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_tugas_luar_negeri_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `tipe_kunjungan` varchar(100) NOT NULL,
+  `tujuan` varchar(100) DEFAULT NULL,
+  `negara` varchar(100) DEFAULT NULL,
+  `tanggal_mulai` date DEFAULT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
+  `asal_dana` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_tugas_luar_negeri_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_tugas_luar_negeri_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_tugas_luar_negeri_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.riwayat_tugas_tbl
+CREATE TABLE IF NOT EXISTS `riwayat_tugas_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `keterangan` varchar(100) DEFAULT NULL,
+  `tingkat` varchar(100) DEFAULT NULL,
+  `negara` varchar(200) DEFAULT NULL,
+  `provinsi` varchar(100) DEFAULT NULL,
+  `fakultas` varchar(100) DEFAULT NULL,
+  `jurusan` varchar(100) DEFAULT NULL,
+  `tmt_mulai` date DEFAULT NULL,
+  `tmt_selesai` date DEFAULT NULL,
+  `no_surat` varchar(100) DEFAULT NULL,
+  `tanggal_izin` date NOT NULL,
+  `arsip_tugas` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.riwayat_tugas_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `riwayat_tugas_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `riwayat_tugas_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.seksi_tbl
+CREATE TABLE IF NOT EXISTS `seksi_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bidang_id` int(11) DEFAULT NULL,
+  `nama_seksi` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.seksi_tbl: ~26 rows (lebih kurang)
+/*!40000 ALTER TABLE `seksi_tbl` DISABLE KEYS */;
+INSERT INTO `seksi_tbl` (`id`, `bidang_id`, `nama_seksi`, `user_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, 'SUB BAGIAN PROGRAM', NULL, '2021-03-12 19:04:47', NULL),
+	(2, 1, 'SUB BAGIAN KEUANGAN DAN PERLENGKAPAN', NULL, '2021-03-12 19:04:48', NULL),
+	(3, 1, 'SUB BAGIAN UMUM DAN KEPEGAWAIAN', NULL, '2021-03-12 19:04:48', NULL),
+	(4, 2, 'SEKSI INDUSTRI PANGAN, SANDANG, BARANG DARI KAYU FURNITUR ', NULL, '2021-03-12 19:04:49', NULL),
+	(5, 2, 'SEKSI INDUSTRI, LOGAM, MESIN, ELEKTRONIKA, ALAT ANGKUT DAN KERAJINAN', NULL, '2021-03-12 19:06:10', NULL),
+	(6, 2, 'SEKSI PERWILAYAHAN INDUSTRI', NULL, '2021-03-12 19:06:10', NULL),
+	(7, 3, 'SEKSI INDUSTRI AGRO', NULL, NULL, NULL),
+	(8, 3, 'SEKSI INDUSTRI LOGAM DAN MESIN', NULL, NULL, NULL),
+	(9, 3, 'SEKSI KIMIA DAN ANEKA', NULL, NULL, NULL),
+	(10, 4, 'SEKSI SARANA DAN PELAKU DISTRIBUSI', NULL, NULL, NULL),
+	(11, 4, 'SEKSI STABILISASI BARANG POKOK DAN PENTING', NULL, NULL, NULL),
+	(12, 4, 'SEKSI BINA USAHA DAN INFORMASI PERDAGANGAN', NULL, NULL, NULL),
+	(13, 5, 'SEKSI PENGEMBANGAN EKSPOR', NULL, NULL, NULL),
+	(14, 5, 'SEKSI FASILITASI PERDAGANGAN LUAR NEGERI', NULL, NULL, NULL),
+	(15, 5, 'SEKSI PEMBINAAN PELAKU USAHA PERDAGANGAN LUAR NEGERI', NULL, NULL, NULL),
+	(16, 6, 'SEKSI PEMBERDAYAAN KONSUMEN', NULL, NULL, NULL),
+	(17, 6, 'SEKSI PENGAWASAN BARANG BEREDAR DAN JASA', NULL, NULL, NULL),
+	(18, 6, 'SEKSI TERTIB NIAGA', NULL, NULL, NULL),
+	(19, 7, 'SUB BAGIAN TATA USAHA', NULL, NULL, NULL),
+	(20, 7, 'SEKSI JAMINAN MUTU DAN PENGUJIAN', NULL, NULL, NULL),
+	(21, 7, 'SEKSI SERTIFIKASI DAN STANDARISASI', NULL, NULL, NULL),
+	(23, 9, 'PENYULUH PERINDAG', NULL, NULL, NULL),
+	(24, 9, 'STATISTIK', NULL, NULL, NULL),
+	(25, 9, 'PENERA', NULL, NULL, NULL),
+	(26, 9, 'PENGUJI MUTU BARANG', NULL, NULL, NULL),
+	(27, 8, 'SUB BAGIAN TATA USAHA', NULL, NULL, NULL);
+/*!40000 ALTER TABLE `seksi_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.sessions
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Membuang data untuk tabel db_simpeg_indag.sessions: ~1 rows (lebih kurang)
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+	('UbCfj07fBiVsL8fpryMwOHbpNcqS7bTYa4D2d467', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRVdISkMxU2JCRDZVQjdBR2MyWloxVHN5VVU2SWxuclFBVlpYRE9BRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Qvc2ltcGVnLWluZGFnL2FnZW5kYSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRxWkV4R3Z2TGl0V3ZWZEFYcHZmTW8ucjUvUTZUcXZkSFFRd3FZUFR1ZUVWNWNubHU2VWVsNiI7fQ==', 1621473305);
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=480 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Membuang data untuk tabel db_simpeg_indag.users: ~94 rows (lebih kurang)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `group`, `created_at`, `updated_at`) VALUES
+	(1, 'administrator', 'administrator@gmail.com', NULL, '$2y$10$qZExGvvLitWvVdAXpvfMo.r5/Q6TqvdHQQwqYPTueEV5cnlu6Uel6', NULL, NULL, NULL, 1, '2021-04-05 06:20:00', '2021-04-05 06:20:00'),
+	(387, '196406211985032000', '196406211985032000@gmail.com', NULL, '$2y$10$cenXUUUU6Y5XZno3.TktA.fzil7Ze5UkVsmmnX3GEFbBGVeHyhbWi', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(388, '196412311998011000', '196412311998011000@gmail.com', NULL, '$2y$10$d5N/1rdATNoipCvYBAEbYO/dkHPNGcrT2fftg6TSFmlQyx63r/4bS', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(389, '196312301986072000', '196312301986072000@gmail.com', NULL, '$2y$10$1hMj7LWsqZA88CxUO7h7GecnGTzcpnJpH2/Hk993wv3prtp3hjZcC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(390, '196602011984111000', '196602011984111000@gmail.com', NULL, '$2y$10$3sa0DmKCjGG7dGVlHeBOxedm9eTbm1YQdJfY1jPVgV6jw83VIbO5C', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(391, '196302081993031000', '196302081993031000@gmail.com', NULL, '$2y$10$6fggCoerECKoSJmBWdd.Qe7K3323GblzbUuRkHpR405jpPVJCpefO', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(392, '196412301994031000', '196412301994031000@gmail.com', NULL, '$2y$10$YemJplQTDK6TpX63Xjf18.BhuIYVzG6NLsv.jUE9KL06BdwF10ApC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(393, '196207171983022000', '196207171983022000@gmail.com', NULL, '$2y$10$opgQy6lk2.Mx9cLnQ3bp5ehb7Ln9KCZOEC0zfkOCGMiwdkjqae26m', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(394, '196504101985031000', '196504101985031000@gmail.com', NULL, '$2y$10$BHc9Ce99Haqzzvcv/Seac.edh6sv82s8rHJz4NQSlJKpdvaWxdTya', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(395, '198005222006041000', '198005222006041000@gmail.com', NULL, '$2y$10$vU1zMll1awh0MhvEWdMVh.ubtf6sRJzRV63GvKfT7cAERLGEEHJeC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(396, '196608121994041000', '196608121994041000@gmail.com', NULL, '$2y$10$QkfzC8d6LCT60P8CHRWneunT47gprj5zccdA33JMjHkamxkTN6oHu', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(397, '196605291995031000', '196605291995031000@gmail.com', NULL, '$2y$10$8yAiC6kcxE8pIanL/4.j/eCZuxhrCYIc4wBeZoQgDPq9yiWLrykhq', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(398, '196603071994032000', '196603071994032000@gmail.com', NULL, '$2y$10$aG4Omosv20swysaPpdZs5eF5geUOGssMnHs7TJbujlsEN8M98cs5u', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(399, '196605101995032000', '196605101995032000@gmail.com', NULL, '$2y$10$nfBpb4titvE5Tj4Pa2PgfeB8Gh/YpWhkhqOn//U28Oz7jknZmsdvi', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(400, '197102211991032000', '197102211991032000@gmail.com', NULL, '$2y$10$dvo/0GsbT4RTnxUpAObW.ekHJBkDjDF.VMO0PJkXyWgVhsM8CXhPC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(401, '196303021985032000', '196303021985032000@gmail.com', NULL, '$2y$10$0knDXpbjN619KKjZG364XOxHi/il3GJXSRXzfYw0T.NFy6brOhi4K', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(402, '196412311985031000', '196412311985031000@gmail.com', NULL, '$2y$10$YuMLj0TqDcG3D22fBDnD6OYQb5vxJuf4q3AGnyzhZSjTOgFyupNa2', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(403, '196712311993111000', '196712311993111000@gmail.com', NULL, '$2y$10$JRRR9cimXSaHa.zBxS6SM.yFH2CVsRKqbFxQaqxNYPN/pijGQBPEy', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(404, '197312262001121000', '197312262001121000@gmail.com', NULL, '$2y$10$j0eSADjCC6G6P49xTJhAyukIIRByE/0ObhzTfkekfzO2lLQ7SbgoK', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(405, '197605252001122000', '197605252001122000@gmail.com', NULL, '$2y$10$O4G4nz1q.LVFyGpQ8pkVFuJPmyB0V1AnLSWjZFPO4hKnqGdeZ3GKq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(406, '196508081994032000', '196508081994032000@gmail.com', NULL, '$2y$10$ZZUA4b/qMQhzTol/n978PeA.5NAQlRDOyP6RznidjfYjcfA/NY7DO', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(407, '196705271994031000', '196705271994031000@gmail.com', NULL, '$2y$10$r1QgnStdLwkKMUUjpITwveKjUs3U05YEiJiiMiaJUANQYXrCw8Ezq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(408, '196602182007012000', '196602182007012000@gmail.com', NULL, '$2y$10$9k8abgA6AAAZ/XPErbKGx.8r/QjF5/86YgMgLTKSHI8MfsM5D0iEa', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(409, '197301012006041000', '197301012006041000@gmail.com', NULL, '$2y$10$ZAjXrQVibw0am0ce94.CmuxR9ol98qReNTAJgpgmRBMU8sMvaNPFe', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(410, '198011212005022000', '198011212005022000@gmail.com', NULL, '$2y$10$6dyvOdMk/ly/L2frZqqrJO8Mhhith1.OMYwPp9.wGvbH3aVGWqsOq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(411, '197006062005022000', '197006062005022000@gmail.com', NULL, '$2y$10$BaCqvOQWrSBrqJvTBb/oBOcJKAF51wXwc2Ccu2H1j/L8izN0EPnAe', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(412, '197809272002121000', '197809272002121000@gmail.com', NULL, '$2y$10$0Q4A3NdvW1XEETAcqp88Ueq75PgSWH.JnXCO79hE.mbd4H7XVZJe6', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(413, '197709102006042000', '197709102006042000@gmail.com', NULL, '$2y$10$MGj22fN3zfMyK2S7Opp7ge7j2ZwSBKh6hr4vbI/C6sHaGGPmmwWqi', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(414, '198305062011011000', '198305062011011000@gmail.com', NULL, '$2y$10$5g/kuPvmI53Z4pXTZ17i.egZ0YlO3Jb4yPe4O74DsfdmQX2mseSMq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(415, '198404062011011000', '198404062011011000@gmail.com', NULL, '$2y$10$6l2NusoXP4U6JBN5P7vGb./VVEeTfQjfkCLel0P1cqXSDfQVW/bHa', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(416, '196410101988011000', '196410101988011000@gmail.com', NULL, '$2y$10$3O7DiE5y7qaDx4lBNa9uYedKpPj1uOGCzj6fJ7a9rbL826iPPrm56', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(417, '197009181996031000', '197009181996031000@gmail.com', NULL, '$2y$10$tUOhq2fP2TakTZQqT/O1uu90r2LW2o.bX67Z8zdt9tVMnnh4bni/O', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(418, '198205212006041000', '198205212006041000@gmail.com', NULL, '$2y$10$eaV0fRJX1FI8UB85oj6Lku6j2YgDCwMk8Xs8iU73x6sajwuMLx41y', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(419, '196812311994031000', '196812311994031000@gmail.com', NULL, '$2y$10$pZ1Ws66vkJpmGVCX5k3zV.RQ5WJfONEnpEORYOE4ddlbJY4GXMw.q', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(420, '198011112010012000', '198011112010012000@gmail.com', NULL, '$2y$10$sf7m0VOebetgAAQFY89h9ujhm6cGb8U4Kn2sxWsMPyK2brQG/3Aqq', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(421, '197809212010011000', '197809212010011000@gmail.com', NULL, '$2y$10$nyZQIi29ABunNnmaI6kj4O3qUHmGV.mNpX/S6J7INKB1.98r34n.a', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(422, '197810052008012000', '197810052008012000@gmail.com', NULL, '$2y$10$kjDpLak94kNrQZD66IjZjuw29e17d0vt7eT2DGafUOqoP3e5riici', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(423, '198408112010012000', '198408112010012000@gmail.com', NULL, '$2y$10$gIxZqR5Y3qeCoYkX5JX.aeDyERYbqOplRgEZw22IXnnHydlY8DEgq', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(424, '198411072008032000', '198411072008032000@gmail.com', NULL, '$2y$10$NNrsbZXDhpRUBAzMEekjOeNsfnvBjhBsY.JzqCWn0bXpIwdmVxpoe', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(425, '197803162008011000', '197803162008011000@gmail.com', NULL, '$2y$10$GSPfXZ.10MVMj5sduCA2BuypjU/ZpwrMtuoaQWwfXaGTty/51S0Xu', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(426, '198106202010011000', '198106202010011000@gmail.com', NULL, '$2y$10$QcMiYFgPfmnziyeLBf/bA.GAr0SiKSHKMp4CO81l1ZLhTBx.ATeXq', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(427, '19857142006021000', '19857142006021000@gmail.com', NULL, '$2y$10$WNoznze5SgpyadWmzN4BoeV9dy9U2jG7mE8IUKBgSmOBOyViUvVeC', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(428, '197312152009011000', '197312152009011000@gmail.com', NULL, '$2y$10$/5vpojTXJ1eya3smz/bbdu6qjBuOT6DSNIXl145xt8Bzuy6rOzpAi', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(429, '197902222009012000', '197902222009012000@gmail.com', NULL, '$2y$10$csWR54TcTbJz3Mr2BZeGIeVR.B0YORheWHSZcVtsMyUlVRdm6qQKO', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(430, '198111022009012000', '198111022009012000@gmail.com', NULL, '$2y$10$EeB.HzP4WYFPac4MWTR.1eyljl/0.k72drg6GHVHAOxQPncjXsO1i', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(431, '197905022009042000', '197905022009042000@gmail.com', NULL, '$2y$10$1BtdBGiUTC0zMjrF22ynV.mzlMljInCFqRvFATe4h3GkcxhlQZAJm', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(432, '198304182009042000', '198304182009042000@gmail.com', NULL, '$2y$10$VsejKVO/elgZct0WqlUWau6eGyLTW1JZYCsfIq2pN62MK4bF6OZYy', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(433, '198510222010012000', '198510222010012000@gmail.com', NULL, '$2y$10$gF4hgniNXfzui8s2QEspnO.FxVQTU32l0elqwd51.mbQ64ax7W/Em', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(434, '197805152010011000', '197805152010011000@gmail.com', NULL, '$2y$10$o4k3tcurLAHHwtWlpLGYk.dB0AoCRy./bLUSphHRfbpXLNnkgn2nG', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(435, '198301122011011000', '198301122011011000@gmail.com', NULL, '$2y$10$e9kjFOeaDhKhY8Xze05lkO29RPk7Vqo7dBTbUjf2z0JFS.5LEtRHG', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(436, '198203102010012000', '198203102010012000@gmail.com', NULL, '$2y$10$yYOmrKPU0DtKJrlLQzVDV.5FZO6Edv2Loxz37XSiTGg.XAE6PDr9e', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(437, '198402152011012000', '198402152011012000@gmail.com', NULL, '$2y$10$EI9f3MRdIRSag5oI1ZJ/metvZNy.cvajcrpfNnGObIiyjxU9M6Wgy', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(438, '198209222011012000', '198209222011012000@gmail.com', NULL, '$2y$10$pQcr3wTDWz83rAo8Qc1Vx.LTt3cILEkENbsKUmC0PaYgI9WcJY5lm', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(439, '196411021986032000', '196411021986032000@gmail.com', NULL, '$2y$10$X0M2j5iXRNQE.S3J4ptX3.z8yfcxHSfPd8GU2sPqHuFGgMLnBy/UG', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(440, '196310111985031000', '196310111985031000@gmail.com', NULL, '$2y$10$witty5okGDY9MMHH/fK0HeEcW4e74jKMngiAedzCNB92u7Reiy7gC', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(441, '197212122007012000', '197212122007012000@gmail.com', NULL, '$2y$10$Ya59gsCobfd6YRJszK04HOBXdgYZTqzAA.h9pia2XCW8KsfJgSpFq', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(442, '198103172010012000', '198103172010012000@gmail.com', NULL, '$2y$10$lC.ugJwXi5PWkMpQL0jREuylZv.5FJs4cs3At5cURFcMdTJIVTGhS', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(443, '198304192010012000', '198304192010012000@gmail.com', NULL, '$2y$10$/WRzJDiCkYuPYhZlGu0tTO1jpRR3h2gwciI9tThdiiAk6H.h7czDW', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(444, '198705132011012000', '198705132011012000@gmail.com', NULL, '$2y$10$FrU6bFOnTEuhTWTTAjg2Ye4a45c0gcLrvm8jYW0KeXxNMWHN.xW2C', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(445, '198503262011012000', '198503262011012000@gmail.com', NULL, '$2y$10$d/shzwL/8trev5d1d8mV0O6mXBLFVNBF2vIyS3HWSFxG/l2U/TaDq', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(446, '198010132009011000', '198010132009011000@gmail.com', NULL, '$2y$10$lOzyNZJAZKjd.QVOTAZCheMcwgLjSoBVtRxFcRpCq9EH/DcxyrYza', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(447, '197911112009011000', '197911112009011000@gmail.com', NULL, '$2y$10$CEeht3pAvBi1juRKHxmyxu3WRSQ28RHkAe4V3O7Z5duFy5kiJzFOO', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(448, '196608192006042000', '196608192006042000@gmail.com', NULL, '$2y$10$vl8YDOJudCzQW2.5z9Sup.TW0uVq7pIVwA44fkBn7ZSZr1mUmOwAa', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(449, '196306101994031000', '196306101994031000@gmail.com', NULL, '$2y$10$82ATY4clUZ252jI4VuaF9eCPhqui/n3VH3S5tMqMyZ9SsBqqS31lS', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(450, '198509252009012000', '198509252009012000@gmail.com', NULL, '$2y$10$dYeuSia6hfwGgg4STZTnruYPPdSwxpasHhOQm9I76EIhMkeujUe4i', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(451, '197806032005021000', '197806032005021000@gmail.com', NULL, '$2y$10$v2LHBj7Yq1aT1pXM3k6cvupCJJfKkj/8j43EdZQWthwU43PA03q06', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(452, '197512082007012000', '197512082007012000@gmail.com', NULL, '$2y$10$iI5W1fjQXSXg8ieLVnpifOyjKw46.MC2/mPAb8A/U7FztYyZO/yZy', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(453, '198412062014032000', '198412062014032000@gmail.com', NULL, '$2y$10$L8k/0MxbUIbFcA17EccecOKXXi4W/UjhWUenbzYNrJW7NfWSQoaH6', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(454, '198702202010012000', '198702202010012000@gmail.com', NULL, '$2y$10$nXQ36eqS2DNFJTxOan9eH.nP6PGJ1wdjyDlg12mzknvDs8ALE.7JK', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(455, '197710262007122000', '197710262007122000@gmail.com', NULL, '$2y$10$TM4Bz72yn1GJY97rGRc.MuGwjbSmsmkLiPavYMteKkNrn/mAIObR.', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(456, '196707072014082000', '196707072014082000@gmail.com', NULL, '$2y$10$yjxxys3KjuAXq1mPlDqy/OygatLN4JCEBDYONACnABvzQGLWSikKO', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(457, '197912212014082000', '197912212014082000@gmail.com', NULL, '$2y$10$hxVrOYsM0HtnM/QAG0ofAORMhYmswNWHpxDrj93f3GWM0l3F0LCmG', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(458, '198510032010011000', '198510032010011000@gmail.com', NULL, '$2y$10$mKDVz8sSol0jPxmX9ycN/u1Svqpdo/iHSLQD0dTE73uNlUEVmR5AS', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(459, '197906112007011000', '197906112007011000@gmail.com', NULL, '$2y$10$jh1RhNxyBejoOyzHBOMile8idnr/wdKJ2YWZk/Nn0.b6kAl.zYkqu', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(460, '196904012008011000', '196904012008011000@gmail.com', NULL, '$2y$10$SwnIT7RVbkHcA9jOoJ1RIuZdlKP6lUgCoFWPUcAgcFyUjmCEEBFqK', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(461, '198003112009011000', '198003112009011000@gmail.com', NULL, '$2y$10$wBtwjD2gWW3gRpcbAs6AcOWZNSCi3iW99WkQZ62hKEjgqlWU76Mwa', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(462, '196708261989032000', '196708261989032000@gmail.com', NULL, '$2y$10$d/UdYWRY/.yTkuWmsBDZsuyqGki8n6agXWV/nLWAqkrtw17.Z9rOC', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(463, '196601101991031000', '196601101991031000@gmail.com', NULL, '$2y$10$PSHfp2pB1lC4lSGroJnF2OyDFPmN3TntvSd8NgBJW6Dt2kTQarkVa', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(464, '197503072008012000', '197503072008012000@gmail.com', NULL, '$2y$10$5YfC0NdeohGePkhMom5nyet/AF72c7NHVflVa9B0G2NGWbOo8EeFq', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(465, '198504262008011000', '198504262008011000@gmail.com', NULL, '$2y$10$l9Le8hps2v.hodaKv5NHLur55Wo1lzz.HqxwuKPBs9jT8Rr7e8Hxq', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(466, '197909172009011000', '197909172009011000@gmail.com', NULL, '$2y$10$Sf3wMzj6t5XGKMFUAUdUIOMmChf30umGV4JYV1oYL3/QwdcgfeiFm', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(467, '198407022014081000', '198407022014081000@gmail.com', NULL, '$2y$10$DqB.x5Ky7rgu7XkYrfLUAO2I9WUfGI5Q5RbL9eBFTPcXfjDmRJlpi', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(468, '198910182015022000', '198910182015022000@gmail.com', NULL, '$2y$10$ZSLGaMudp8xTFHhbX6eAN.O13M5g1wEXAj.z1.Cc1JMJo.tb2cVwW', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(469, '197809022014071000', '197809022014071000@gmail.com', NULL, '$2y$10$cmYcZRfuwUOvVTO0A6RddeaQ68Y.qUYFpvk7iGzU79id9RakEVcou', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(470, '198301052009012000', '198301052009012000@gmail.com', NULL, '$2y$10$hG4JfjWnDJFDRLUyPnAeHe2BI0hVTOvWEcRu0GOqM1GVNDPNPCg1C', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(471, '197409042014062000', '197409042014062000@gmail.com', NULL, '$2y$10$yjj/KyKbisFGwsjTkvCxXePAaEGXCnLwm48a84V1iufIDZyHFY6ji', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(472, '198912272015021000', '198912272015021000@gmail.com', NULL, '$2y$10$t4O.l4Lc5aPPFNbhl7NcQeCkJpitUd7KRFBZR0mYJe22m/xSFPZua', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(473, '196412312006041000', '196412312006041000@gmail.com', NULL, '$2y$10$ukTNJOFzU/WcxA39XaHLe.JoP6rqkdU0KBw7p9E3MoT2tHvp0S0Ai', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(474, '196312312007011000', '196312312007011000@gmail.com', NULL, '$2y$10$r50QXZbPFm2sDcp4/HTtTuLun4nvlUdYh/1pCfn.MeLovRAVMYdFG', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(475, '198302142008011000', '198302142008011000@gmail.com', NULL, '$2y$10$tRHOPp9Wi1FYA6SpCkApJe/RYU8Hv5PfTpbUGziYgCFg2q.dy9igq', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(476, '198201102009012000', '198201102009012000@gmail.com', NULL, '$2y$10$N2YCRZOZWghxw8Ig8CLz1Oet4q/6rxjiBod2JQvBMV0IJMfFwH.9i', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(477, '197908272011011000', '197908272011011000@gmail.com', NULL, '$2y$10$Ive5.DltQD6dyeTJm/Oiu.eX98hk6.I66QDWyD4il793eK3RUfxpW', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(478, '198306192010011000', '198306192010011000@gmail.com', NULL, '$2y$10$7tsMXps1IukrNjrYUbAEhe1/feIMw5tozNRnG9FjoRyVJE.xeHwsm', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(479, '197412022014081000', '197412022014081000@gmail.com', NULL, '$2y$10$lTATFDzLjpcG0e.aOmtbh.rUAr.F71hqvj48ElXnAxYmzDXvzDLza', NULL, NULL, NULL, 3, '2021-05-03 06:20:24', '2021-05-03 06:20:24');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
