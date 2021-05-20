@@ -138,11 +138,11 @@ legend.itemContainers.template.events.on("out", function(ev) {
 
 <div class="content-wrapper">
 	<section class="content-header">
-	<h1 class="fontPoppins">{{ __('JUMLAH PEGAWAI PER BIDANG') }}
+	<h1 class="fontPoppins">{{ __('JUMLAH ESSELON PER BIDANG') }}
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
-		<li><a href="#"> {{ __('JUMLAH PEGAWAI PER BIDANG') }}</a></li>
+		<li><a href="#"> {{ __('JUMLAH ESSELON PER BIDANG') }}</a></li>
 	</ol>
 	</section>
 	
@@ -151,7 +151,7 @@ legend.itemContainers.template.events.on("out", function(ev) {
         <div class="col-md-4">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tabel Jumlah Pegawai</h3>
+              <h3 class="box-title">Tabel Jumlah Esselon</h3>
             </div>
             	<div class="table-responsive box-body">
 
@@ -183,7 +183,7 @@ legend.itemContainers.template.events.on("out", function(ev) {
         <div class="col-md-8">
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Grafik Jumlah Pegawai</h3>
+              <h3 class="box-title">Grafik Jumlah Esselon</h3>
             </div>
             <center><div id="chartdiv"></div></center>
           </div>

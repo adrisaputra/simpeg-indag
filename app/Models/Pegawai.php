@@ -76,4 +76,9 @@ class Pegawai extends Model
         return $this->hasOne('App\Models\RiwayatAnak');
     }
     
+    public function pelaksanaevent()
+    {
+        return $this->hasOne('App\Models\PelaksanaEvent');
+    }
+    
 }

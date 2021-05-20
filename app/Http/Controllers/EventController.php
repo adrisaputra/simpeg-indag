@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;   //nama model
+use App\Models\Pegawai;   //nama model
+use App\Models\PelaksanaEvent;   //nama model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -31,7 +34,8 @@ class EventController extends Controller
     public function create()
     {
         $title = 'Tambah Agenda';
-		$view=view('admin.event.create', compact('title'));
+        $pegawai = Pegawai::get();
+		$view=view('admin.event.create', compact('title','pegawai'));
         $view=$view->render();
         return $view;
     }
@@ -45,12 +49,21 @@ class EventController extends Controller
 			'end2' => 'required'
         ]);
 
-		$input['title'] = $request->title;
-		$input['start'] = $request->start;
-		$input['end'] = date('Y-m-d', strtotime( $request->end2 . " +1 days"));
-		$input['end2'] = $request->end2;
+        $event = new Event();
+		$event->title = $request->title;
+		$event->start = $request->start;
+		$event->end = date('Y-m-d', strtotime( $request->end2 . " +1 days"));
+		$event->end2 = $request->end2;
+        $event->save();
 
-        Event::create($input);
+        $jumlah_pegawai = count($request->pegawai_id);
+        
+        for($i=0;$i<$jumlah_pegawai;$i++){
+            $pelaksana_event = new PelaksanaEvent();          
+            $pelaksana_event->events_id = $event->id;
+            $pelaksana_event->pegawai_id = $request->pegawai_id[$i];
+            $pelaksana_event->save();
+        }
 		
 		return redirect('/agenda')->with('status','Data Tersimpan');
     }
@@ -59,7 +72,20 @@ class EventController extends Controller
     public function edit(Event $agenda)
     {
         $title = 'Ubah Agenda';
-        $view=view('admin.event.edit', compact('title','agenda'));
+        $pegawai = Pegawai::get();
+
+        $i=0;
+        foreach($pegawai as $v){ 
+            $pelaksana = DB::table('pelaksana_event_tbl')->where('events_id',$agenda->id)->where('pegawai_id',$v->id)->get()->toArray();
+            if(count($pelaksana)>0){
+                $hasil[$i] = $pelaksana[0]->pegawai_id;
+            } else {
+                $hasil[$i] = 0;       
+            } 
+            $i++;
+        }	
+
+        $view=view('admin.event.edit', compact('title','agenda','pegawai','hasil'));
         $view=$view->render();
         return $view;
     }
@@ -74,11 +100,26 @@ class EventController extends Controller
         ]);
 
 		$agenda->fill($request->all());
-
 		$agenda->end = date('Y-m-d', strtotime( $request->end2 . " +1 days"));
 		$agenda->end2 = $request->end2;
-
     	$agenda->save();
+		
+        DB::table('pelaksana_event_tbl')->where('events_id', $agenda->id)->delete();
+		
+        if($request->pegawai_id){
+            $jumlah_pegawai = count($request->pegawai_id);
+        } else {
+            $jumlah_pegawai = 0;
+        }
+        
+        if($jumlah_pegawai>0){
+            for($i=0;$i<$jumlah_pegawai;$i++){
+                $pelaksana_event = new PelaksanaEvent();          
+                $pelaksana_event->events_id = $agenda->id;
+                $pelaksana_event->pegawai_id = $request->pegawai_id[$i];
+                $pelaksana_event->save();
+            }
+        }
 		
 		return redirect('/agenda')->with('status', 'Data Berhasil Diubah');
     }
@@ -88,7 +129,9 @@ class EventController extends Controller
     {
         $id = $agenda->id;
 		$agenda->delete();
-		
+
+		DB::table('pelaksana_event_tbl')->where('events_id', $id)->delete();
+
         return redirect('/agenda')->with('status', 'Data Berhasil Dihapus');
     }
     /**

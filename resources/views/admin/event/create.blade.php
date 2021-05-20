@@ -53,7 +53,18 @@
                                         <input type="text" class="form-control datepicker" placeholder="Tanggal Selesai" name="end2" value="{{ old('end2') }}">
                                     </div>
 
-							 	 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label">{{ __('Pelaksana') }}</label>
+						<div class="col-sm-10">
+							<select class="form-control select2" multiple="multiple" data-placeholder="Pelaksana" style="width: 100%;" name="pegawai_id[]">
+								@foreach($pegawai as $v)	
+									<option value="{{ $v->id }}">{{ $v->nama_pegawai }}</option>
+								@endforeach
+							</select>
+							
 							<div style="padding-top:10px">
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Simpan</button>
 								<button type="reset" class="btn btn-danger btn-flat btn-sm" title="Reset Data"> Reset</button>

@@ -161,11 +161,11 @@ legend.itemContainers.template.events.on("out", function(ev) {
 
 <div class="content-wrapper">
 	<section class="content-header">
-	<h1 class="fontPoppins">{{ __('GENDER PANGKAT/GOLONGAN') }}
+	<h1 class="fontPoppins">{{ __('PANGKAT/GOLONGAN') }}
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="#"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
-		<li><a href="#"> {{ __('GENDER PANGKAT/GOLONGAN') }}</a></li>
+		<li><a href="#"> {{ __('PANGKAT/GOLONGAN') }}</a></li>
 	</ol>
 	</section>
 	

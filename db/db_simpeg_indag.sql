@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Membuang data untuk tabel db_simpeg_indag.events: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel db_simpeg_indag.migrations: ~7 rows (lebih kurang)
+-- Membuang data untuk tabel db_simpeg_indag.migrations: ~6 rows (lebih kurang)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
@@ -259,6 +259,20 @@ INSERT INTO `pegawai_tbl` (`id`, `nip`, `nama_pegawai`, `tempat_lahir`, `tanggal
 	(92, '198306192010011000', 'Munandar ', NULL, '1983-06-19', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 4, 11, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
 	(93, '197412022014081000', 'Faisal', NULL, '1974-12-02', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/b', NULL, NULL, 8, 4, 12, 'PNS', 0, NULL, '2021-05-03 06:20:24', '2021-05-03 06:20:24');
 /*!40000 ALTER TABLE `pegawai_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.pelaksana_event_tbl
+CREATE TABLE IF NOT EXISTS `pelaksana_event_tbl` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `events_id` int(11) NOT NULL DEFAULT 0,
+  `pegawai_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.pelaksana_event_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `pelaksana_event_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pelaksana_event_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
@@ -921,7 +935,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 -- Membuang data untuk tabel db_simpeg_indag.sessions: ~1 rows (lebih kurang)
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('UbCfj07fBiVsL8fpryMwOHbpNcqS7bTYa4D2d467', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRVdISkMxU2JCRDZVQjdBR2MyWloxVHN5VVU2SWxuclFBVlpYRE9BRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Qvc2ltcGVnLWluZGFnL2FnZW5kYSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRxWkV4R3Z2TGl0V3ZWZEFYcHZmTW8ucjUvUTZUcXZkSFFRd3FZUFR1ZUVWNWNubHU2VWVsNiI7fQ==', 1621473305);
+	('UbCfj07fBiVsL8fpryMwOHbpNcqS7bTYa4D2d467', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRVdISkMxU2JCRDZVQjdBR2MyWloxVHN5VVU2SWxuclFBVlpYRE9BRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Qvc2ltcGVnLWluZGFnL2FnZW5kYSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRxWkV4R3Z2TGl0V3ZWZEFYcHZmTW8ucjUvUTZUcXZkSFFRd3FZUFR1ZUVWNWNubHU2VWVsNiI7fQ==', 1621487577);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.users
