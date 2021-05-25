@@ -15,9 +15,17 @@ class HomeController extends Controller
 	
     public function index()
     {
-        $pegawai = Pegawai::where('status_hapus', 0)->count();
-        $pns = Pegawai::where('status', 'PNS')->where('status_hapus', 0)->count();
-        $cpns = Pegawai::where('status', 'CPNS')->where('status_hapus', 0)->count();
-        return view('admin.beranda', compact('pegawai','pns','cpns'));
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('status_hapus', 0)->count();
+            $pns = Pegawai::where('status', 'PNS')->where('status_hapus', 0)->count();
+            $cpns = Pegawai::where('status', 'CPNS')->where('status_hapus', 0)->count();
+            return view('admin.beranda', compact('pegawai','pns','cpns'));
+        } else if(Auth::user()->group==2){
+            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->count();
+            $pns = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status', 'PNS')->where('status_hapus', 0)->count();
+            $cpns = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status', 'CPNS')->where('status_hapus', 0)->count();
+            return view('admin.beranda', compact('pegawai','pns','cpns'));
+        }
+        
     }
 }

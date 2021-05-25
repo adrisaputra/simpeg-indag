@@ -59,18 +59,10 @@
 						<td>
 							@if ($v->group==1)
 								<span class="label label-danger">Administrator</span>
-							@elseif  ($v->group==5)
-								<span class="label label-info">Admin Kepegawaian</span>
-							@elseif  ($v->group==6)
-								<span class="label label-info">Admin Umum</span>
-							@elseif  ($v->group==7)
-								<span class="label label-info">Admin Keuangan</span>
 							@elseif  ($v->group==2)
-								<span class="label label-success">Verifikator</span>
+								<span class="label label-success">Operator Bidang</span>
 							@elseif  ($v->group==3)
 								<span class="label label-warning">Pegawai</span>
-							@elseif  ($v->group==4)
-								<span class="label label-primary">Seksi</span>
 							@endif
 						</td>
 						<td>

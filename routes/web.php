@@ -28,6 +28,8 @@ use App\Http\Controllers\RiwayatTugasLuarNegeriController;
 use App\Http\Controllers\RiwayatPajakController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -269,3 +271,22 @@ Route::get('/agenda/edit/{agenda}', [EventController::class, 'edit']);
 Route::put('/agenda/edit/{agenda}', [EventController::class, 'update']);
 Route::get('/agenda/hapus/{agenda}',[EventController::class, 'delete']);
 Route::post('agendaAjax', [EventController::class, 'ajax']);
+
+## Absen
+Route::get('/absen', [AbsenController::class, 'index']);
+Route::get('/absen/search', [AbsenController::class, 'search']);
+Route::get('/absen/create', [AbsenController::class, 'create']);
+Route::post('/absen', [AbsenController::class, 'store']);
+Route::get('/buat_absen', [AbsenController::class, 'buat_absen']);
+Route::get('/absen/edit/{tanggal}', [AbsenController::class, 'edit']);
+Route::put('/absen/edit', [AbsenController::class, 'update']);
+Route::get('/absen/hapus/{absen}',[AbsenController::class, 'delete']);
+
+## User
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/search', [UserController::class, 'search']);
+Route::get('/user/create', [UserController::class, 'create']);
+Route::post('/user', [UserController::class, 'store']);
+Route::get('/user/edit/{user}', [UserController::class, 'edit']);
+Route::put('/user/edit/{user}', [UserController::class, 'update']);
+Route::get('/user/hapus/{user}',[UserController::class, 'delete']);

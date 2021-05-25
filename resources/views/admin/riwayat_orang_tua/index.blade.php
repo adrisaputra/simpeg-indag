@@ -80,7 +80,7 @@
 						<td>{{ ($riwayat_orang_tua ->currentpage()-1) * $riwayat_orang_tua ->perpage() + $loop->index + 1 }}</td>
 						<td>{{ $v->orang_tua }}</td>
 						<td>{{ $v->nama_orang_tua }}</td>
-						<td>{{ $v->tanggal_lahir }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal_lahir)) }}</td>
 						<td>{{ $v->pekerjaan }}</td>
 						<td>
 							@if($v->kartu_keluarga)

@@ -15,11 +15,15 @@
 		<div class="box-header with-border">
 			<div class="box-tools pull-left">
 				<div style="padding-top:10px">
-					<a href="{{ url('/pegawai/create') }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
-					<a href="{{ url('/pegawai') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
-					<button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#importExcel">
-						Import Data Pegawai
-					</button>
+					@if(Auth::user()->group==1)
+						<a href="{{ url('/pegawai/create') }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
+						<a href="{{ url('/pegawai') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
+						<button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#importExcel">
+							Import Data Pegawai
+						</button>
+					@else
+						<a href="{{ url('/pegawai') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
+					@endif
 			
 					<!-- Import Excel -->
 					<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -79,8 +83,11 @@
 						<th>NIP</th>
 						<th>Nama Pegawai</th>
 						<th>Golongan</th>
+						<th>Status</th>
 						<th>Foto</th>
-						<th style="width: 20%">#aksi</th>
+						@if(Auth::user()->group==1)
+							<th style="width: 20%">#aksi</th>
+						@endif
 					</tr>
 					@foreach($pegawai as $v)
 					<tr>
@@ -88,6 +95,20 @@
 						<td data-toggle="modal" data-target="#modalDetail{{$v->id}}">{{ $v->nip }}</td>
 						<td data-toggle="modal" data-target="#modalDetail{{$v->id}}">{{ $v->nama_pegawai }}</td>
 						<td data-toggle="modal" data-target="#modalDetail{{$v->id}}">{{ $v->golongan }}</td>
+						<td data-toggle="modal" data-target="#modalDetail{{$v->id}}">
+							@if ($status_kehadiran[$loop->index]=='H')
+								<span class="label label-success">Hadir</span>
+							@elseif  ($status_kehadiran[$loop->index]=='S')
+								<span class="label label-warning">Sakit</span>
+							@elseif  ($status_kehadiran[$loop->index]=='I')
+								<span class="label label-info">Izin</span>
+							@elseif  ($status_kehadiran[$loop->index]=='A')
+								<span class="label label-danger">Tanpa Keterangan</span>
+							@else
+								<span class="label label-primary">Belum Absen</span>
+							@endif
+						</td>
+						
 						<td data-toggle="modal" data-target="#modalDetail{{$v->id}}"><center>
 						@if($v->foto_formal)
 									<img src="{{ asset('storage/upload/foto_formal_pegawai/thumbnail/'.$v->foto_formal) }}" class="img-circle" alt="User Image"  width="150px" height="150px">
@@ -95,6 +116,7 @@
 									<img src="{{ asset('upload/user/15.jpg') }}" class="img-circle" alt="User Image" width="150px" height="150px">
 								@endif
 						</td>
+						@if(Auth::user()->group==1)
 						<td>
 							<div class="btn-group" style="display: block;padding-bottom:7px">
 								<button type="button" class="btn btn-xs btn-primary btn-block dropdown-toggle" data-toggle="dropdown">Riwayat 1</button>
@@ -144,6 +166,7 @@
 							<a href="{{ url('/pegawai/edit/'.$v->id ) }}" class="btn btn-xs btn-warning btn-block">Edit</a>
 							<a href="{{ url('/pegawai/hapus/'.$v->id ) }}" class="btn btn-xs btn-danger btn-block" onclick="return confirm('Anda Yakin ?');">Hapus</a>
 						</td>
+						@endif
 					</tr>
 
 					<!-- Modal Update-->

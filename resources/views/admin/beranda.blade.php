@@ -17,7 +17,7 @@
 	<div class="box-body">
 			<!-- Small boxes (Stat box) -->
 			<div class="row">
-			@if(Auth::user()->group==1)
+			@if(Auth::user()->group==1 || Auth::user()->group==2)
 				<div class="col-lg-4 col-xs-6">
 				<!-- small box -->
 					<div class="small-box bg-aqua">
@@ -76,36 +76,6 @@
 						<i class="fa fa-users"></i>
 						</div>
 						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-			@elseif(Auth::user()->group==2 || Auth::user()->group==4 || Auth::user()->group==6)
-				<div class="col-lg-6 col-xs-6">
-				<!-- small box -->
-					<div class="small-box bg-red">
-						<div class="inner">
-						<h3>{{ $pengambilan_belum_di_proses }}</h3>
-
-						<p>Pengambilan Belum Di Proses</p>
-						</div>
-						<div class="icon">
-						<i class="fa"></i>
-						</div>
-						<a href="{{ url('pengambilan') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-6 col-xs-6">
-					<!-- small box -->
-					<div class="small-box bg-green">
-						<div class="inner">
-						<h3>{{ $pengambilan_di_proses }}</h3>
-
-						<p>Pengambilan Di Proses</p>
-						</div>
-						<div class="icon">
-						<i class="fa fa-box"></i>
-						</div>
-						<a href="{{ url('pengambilan') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 			@endif

@@ -27,16 +27,36 @@ class PegawaiController extends Controller
     ## Tampikan Data
     public function index()
     {
-        $pegawai = Pegawai::where('status_hapus', 0)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        return view('admin.pegawai.index',compact('pegawai'));
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('status_hapus', 0)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        } else if(Auth::user()->group==2){
+            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        }
+        
+        $i=0;
+        foreach($pegawai as $v){ 
+            $absen = DB::table('absen_tbl')->where('pegawai_id',$v->id)->where('tanggal',date('Y-m-d'))->get()->toArray();
+            if(count($absen)>0){
+                $status_kehadiran[$i] = $absen[0]->kehadiran;
+            } else {
+                $status_kehadiran[$i] = "Belum Absen";       
+            } 
+            $i++;
+        }	
+
+        return view('admin.pegawai.index',compact('pegawai','status_kehadiran'));
     }
 
 	## Tampilkan Data Search
 	public function search(Request $request)
     {
         $pegawai = $request->get('search');
-        $pegawai = Pegawai::where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-		return view('admin.pegawai.index',compact('pegawai'));
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        } else if(Auth::user()->group==2){
+            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        }
+        return view('admin.pegawai.index',compact('pegawai'));
     }
 	
     ## Tampilkan Form Create
