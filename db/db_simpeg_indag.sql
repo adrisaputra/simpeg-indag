@@ -11,6 +11,237 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- membuang struktur untuk table db_simpeg_indag.absen_tbl
+CREATE TABLE IF NOT EXISTS `absen_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `nip` varchar(300) DEFAULT NULL,
+  `nama_pegawai` varchar(300) DEFAULT NULL,
+  `bidang_id` int(11) DEFAULT NULL,
+  `jabatan_id` int(11) DEFAULT NULL,
+  `kehadiran` enum('H','S','I','A') DEFAULT NULL,
+  `keterangan` varchar(300) DEFAULT NULL,
+  `jam_datang` varchar(50) DEFAULT NULL,
+  `jam_pulang` varchar(50) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=965 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.absen_tbl: ~185 rows (lebih kurang)
+/*!40000 ALTER TABLE `absen_tbl` DISABLE KEYS */;
+INSERT INTO `absen_tbl` (`id`, `pegawai_id`, `nip`, `nama_pegawai`, `bidang_id`, `jabatan_id`, `kehadiran`, `keterangan`, `jam_datang`, `jam_pulang`, `tanggal`, `user_id`, `created_at`, `updated_at`) VALUES
+	(698, 1, '196406211985032000', 'Hj. Sitti Saleha, SE, M.Si', 1, 1, 'H', NULL, '7:45 AM', '4:00 PM', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(699, 6, '196412301994031000', 'Ir. Sapoan, M.Si', 1, 2, 'H', NULL, '8:15 AM', '4:15 PM', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(700, 29, '198404062011011000', 'La Ode Muh. Fitrah Arsyad, SE. M. Si', 4, 3, 'I', 'oo', '', '', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(701, 10, '196608121994041000', 'Drs. Muslimin', 5, 3, 'I', 'xx', '', '', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(702, 9, '198005222006041000', 'La Ode. Muh. Rusdin Jaya, S.IP, M.Si', 2, 3, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(703, 3, '196312301986072000', 'Wa Ode Nuryani, SE', 3, 3, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(704, 2, '196412311998011000', 'Ir. Laode Hamalin, M.Si', 6, 3, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(705, 56, '198103172010012000', 'Windi Dianovita, ST', 4, 4, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(706, 50, '198203102010012000', 'Jumarlian Santi Rafiun,SP', 5, 4, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(707, 42, '197312152009011000', 'Bachar, ST', 2, 4, 'H', NULL, '10:30 AM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(708, 35, '197809212010011000', 'Oon Sulfikar,SH.MM', 2, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(709, 32, '198205212006041000', 'Kemal Jusra, S.Si, M.Si', 6, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(710, 31, '197009181996031000', 'Moh. Iskandar Azis, A.Md', 3, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(711, 28, '198305062011011000', 'Muh. Yasser Tuwu, SE., M.Sc', 5, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(712, 20, '196508081994032000', 'Tina Sidupa, S.E', 7, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(713, 19, '197605252001122000', 'Nahrida, ST', 4, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(714, 17, '196712311993111000', 'Abdul Latif, S.Sos', 2, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(715, 16, '196412311985031000', 'Kasman,S.Pd', 6, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(716, 14, '197102211991032000', 'Darmawati Gamma, SH', 7, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(717, 12, '196603071994032000', 'Hasnawati, SE', 5, 4, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(718, 25, '197006062005022000', 'Halimah Saleh Putri,SH', 4, 4, 'H', NULL, '10:00 AM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(719, 11, '196605291995031000', 'Sulkifli Saleh,ST.M.Si', 6, 4, 'H', NULL, '10:00 AM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(720, 47, '198510222010012000', 'Henny Savitri Oktaviana, S. Si, M.Si', 1, 5, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(721, 41, '19857142006021000', 'La Ode Muh. Qamal Jogugu S, STP, ME', 1, 5, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(722, 18, '197312262001121000', 'Monasman, ST', 1, 5, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:22:37', '2021-06-01 22:22:37'),
+	(773, 65, '197806032005021000', 'Mauliddun, SH', 7, 6, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(774, 62, '196608192006042000', 'Sitti Salma, ST, M.Si', 8, 6, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(775, 55, '197212122007012000', 'Indriyani Sudibyo,S.Sos', 8, 6, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(776, 4, '196602011984111000', 'Sutomo, SP, M. Si', 7, 6, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(777, 30, '196410101988011000', 'Haryanto', 9, 7, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(778, 59, '198503262011012000', 'Imayanti Suhardin, SE', 5, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(779, 58, '198705132011012000', 'Dian Sulistyowati,S.Kom,M.E', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(780, 57, '198304192010012000', 'Sulistiany Tamrin, ST', 8, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(781, 54, '196310111985031000', 'Hamzah', 7, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(782, 53, '196411021986032000', 'Suryamin', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(783, 52, '198209222011012000', 'Sitti Aisyah, SE', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(784, 51, '198402152011012000', 'Febriani Arumi, ST', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(785, 49, '198301122011011000', 'Ikbal Hidayat, S.T', 5, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(786, 48, '197805152010011000', 'Mardan, SE', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(787, 46, '198304182009042000', 'Wa Ode Hasniati, S. Si', 3, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(788, 45, '197905022009042000', 'Wa Ode Hardiana, SE', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(789, 44, '198111022009012000', 'Indri, S. Pi', 6, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(790, 43, '197902222009012000', 'Ariskha Sazriany HS, ST', 5, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(791, 40, '198106202010011000', 'Andi Puhu, S.Pd', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(792, 39, '197803162008011000', 'Hasmindar, S.P', 3, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(793, 38, '198411072008032000', 'Anisyah Ringgasa, S.Si', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(794, 37, '198408112010012000', 'Andi Zakiah Wahidah, ST. M.Si', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(795, 36, '197810052008012000', 'Siti Nurhanti, S.Pi', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(796, 34, '198011112010012000', 'Rosmaidar HS S.Sos', 6, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(797, 33, '196812311994031000', 'Khaidir, S.Si', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:12', '2021-06-01 22:24:12'),
+	(798, 27, '197709102006042000', 'Wahyuni, S.Si', 9, 8, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(799, 26, '197809272002121000', 'Adyanto Halyawan, S.E', 1, 8, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(800, 24, '198011212005022000', 'Veradela Nandha Tiara, ST', 2, 8, 'A', NULL, '', '', '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(801, 23, '197301012006041000', 'Akra Sipa,ST', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(802, 22, '196602182007012000', 'Sachiko Isamu, SE', 9, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(803, 21, '196705271994031000', 'La Ode Amirul Mukminin, A.Md', 9, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(804, 15, '196303021985032000', 'Nursan, S.Sos', 8, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(805, 13, '196605101995032000', 'Andi Indriani P.U, SH', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(806, 8, '196504101985031000', 'Najamuddin Pidani,S.Sos', 6, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(807, 7, '196207171983022000', 'Rukmini, SE', 9, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(808, 5, '196302081993031000', 'Ir. Irmanuddin', 7, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(809, 93, '197412022014081000', 'Faisal', 4, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(810, 92, '198306192010011000', 'Munandar', 4, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(811, 91, '197908272011011000', 'Agus Herdianto, A.Md', 7, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(812, 90, '198201102009012000', 'Misna Haseng', 3, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(813, 89, '198302142008011000', 'Wahyuddin Amir Manab', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(814, 88, '196312312007011000', 'La Ode Hafilu', 7, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(815, 87, '196412312006041000', 'Asikin Jamal', 9, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(816, 86, '198912272015021000', 'Mardiono, A.Md', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(817, 85, '197409042014062000', 'Riny astuti, S. Sos', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(818, 84, '198301052009012000', 'Hamira, A. Md. Kom', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(819, 83, '197809022014071000', 'Asjan Husain,ST', 3, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(820, 82, '198910182015022000', 'Erika Ayu Christanti, A.Md', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(821, 81, '198407022014081000', 'Samsuddin,SH', 5, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(822, 80, '197909172009011000', 'Muhammad Zailani Sanusi, S.E', 8, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:29', '2021-06-01 22:24:29'),
+	(823, 79, '198504262008011000', 'La Ode Muh. Ikbal Beau,S.Sos', 5, 8, 'I', 'dd', '', '', '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(824, 78, '197503072008012000', 'Bahrain, SE', 1, 8, 'I', 'dsds', '', '', '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(825, 77, '196601101991031000', 'Sapiuddin', 6, 8, 'I', 'dsds', '', '', '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(826, 76, '196708261989032000', 'Nurlina Malik', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(827, 75, '198003112009011000', 'Agus, S.Si', 2, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(828, 74, '196904012008011000', 'Basri, SH', 4, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(829, 73, '197906112007011000', 'E m i, S.Si', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(830, 72, '198510032010011000', 'Amir Pae, A.Md,SE', 6, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(831, 71, '197912212014082000', 'Mulyani Abuhari, SE', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(832, 70, '196707072014082000', 'Sitti Asniah, SE', 6, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(833, 69, '197710262007122000', 'Reniati, S. Sos', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(834, 68, '198702202010012000', 'Sufiati, A. Md,SE', 3, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(835, 67, '198412062014032000', 'Wa Ode Kasmila, S. Si, M.Si', 7, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(836, 66, '197512082007012000', 'Jusanti, S.Sos', 5, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(837, 64, '198509252009012000', 'Sitti Wahyuni, S.TP', 7, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(838, 63, '196306101994031000', 'Asrul Suaeb', 3, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(839, 61, '197911112009011000', 'La Ode Muhammad Ihsan Abdi, SP', 1, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(840, 60, '198010132009011000', 'Dian Hidayah S,Sos', 3, 8, 'H', NULL, '10:30 PM', NULL, '2021-06-01', 1, '2021-06-01 22:24:50', '2021-06-01 22:24:50'),
+	(841, 93, '197412022014081000', 'Faisal', 4, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(843, 91, '197908272011011000', 'Agus Herdianto, A.Md', 7, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(844, 90, '198201102009012000', 'Misna Haseng', 3, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(845, 89, '198302142008011000', 'Wahyuddin Amir Manab', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(846, 88, '196312312007011000', 'La Ode Hafilu', 7, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(847, 87, '196412312006041000', 'Asikin Jamal', 9, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(848, 86, '198912272015021000', 'Mardiono, A.Md', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(849, 85, '197409042014062000', 'Riny astuti, S. Sos', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(850, 84, '198301052009012000', 'Hamira, A. Md. Kom', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(851, 83, '197809022014071000', 'Asjan Husain,ST', 3, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(852, 82, '198910182015022000', 'Erika Ayu Christanti, A.Md', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(853, 81, '198407022014081000', 'Samsuddin,SH', 5, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(854, 80, '197909172009011000', 'Muhammad Zailani Sanusi, S.E', 8, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(855, 79, '198504262008011000', 'La Ode Muh. Ikbal Beau,S.Sos', 5, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(856, 78, '197503072008012000', 'Bahrain, SE', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(857, 77, '196601101991031000', 'Sapiuddin', 6, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(858, 76, '196708261989032000', 'Nurlina Malik', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(859, 75, '198003112009011000', 'Agus, S.Si', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(860, 74, '196904012008011000', 'Basri, SH', 4, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(861, 73, '197906112007011000', 'E m i, S.Si', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(862, 72, '198510032010011000', 'Amir Pae, A.Md,SE', 6, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(863, 71, '197912212014082000', 'Mulyani Abuhari, SE', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(864, 70, '196707072014082000', 'Sitti Asniah, SE', 6, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(865, 69, '197710262007122000', 'Reniati, S. Sos', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(866, 68, '198702202010012000', 'Sufiati, A. Md,SE', 3, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(867, 67, '198412062014032000', 'Wa Ode Kasmila, S. Si, M.Si', 7, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(868, 66, '197512082007012000', 'Jusanti, S.Sos', 5, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(870, 64, '198509252009012000', 'Sitti Wahyuni, S.TP', 7, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(871, 63, '196306101994031000', 'Asrul Suaeb', 3, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(872, 62, '196608192006042000', 'Sitti Salma, ST, M.Si', 8, 6, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(873, 61, '197911112009011000', 'La Ode Muhammad Ihsan Abdi, SP', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(874, 60, '198010132009011000', 'Dian Hidayah S,Sos', 3, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(875, 59, '198503262011012000', 'Imayanti Suhardin, SE', 5, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(876, 58, '198705132011012000', 'Dian Sulistyowati,S.Kom,M.E', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(877, 57, '198304192010012000', 'Sulistiany Tamrin, ST', 8, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(879, 55, '197212122007012000', 'Indriyani Sudibyo,S.Sos', 8, 6, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(880, 54, '196310111985031000', 'Hamzah', 7, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(881, 53, '196411021986032000', 'Suryamin', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(882, 52, '198209222011012000', 'Sitti Aisyah, SE', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(883, 51, '198402152011012000', 'Febriani Arumi, ST', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(885, 49, '198301122011011000', 'Ikbal Hidayat, S.T', 5, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(886, 48, '197805152010011000', 'Mardan, SE', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(888, 46, '198304182009042000', 'Wa Ode Hasniati, S. Si', 3, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(889, 45, '197905022009042000', 'Wa Ode Hardiana, SE', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(890, 44, '198111022009012000', 'Indri, S. Pi', 6, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(891, 43, '197902222009012000', 'Ariskha Sazriany HS, ST', 5, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(895, 39, '197803162008011000', 'Hasmindar, S.P', 3, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(896, 38, '198411072008032000', 'Anisyah Ringgasa, S.Si', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(898, 36, '197810052008012000', 'Siti Nurhanti, S.Pi', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(900, 34, '198011112010012000', 'Rosmaidar HS S.Sos', 6, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(901, 33, '196812311994031000', 'Khaidir, S.Si', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(904, 30, '196410101988011000', 'Haryanto', 9, 7, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(907, 27, '197709102006042000', 'Wahyuni, S.Si', 9, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(908, 26, '197809272002121000', 'Adyanto Halyawan, S.E', 1, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(910, 24, '198011212005022000', 'Veradela Nandha Tiara, ST', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(911, 23, '197301012006041000', 'Akra Sipa,ST', 2, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(912, 22, '196602182007012000', 'Sachiko Isamu, SE', 9, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(913, 21, '196705271994031000', 'La Ode Amirul Mukminin, A.Md', 9, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(919, 15, '196303021985032000', 'Nursan, S.Sos', 8, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(926, 8, '196504101985031000', 'Najamuddin Pidani,S.Sos', 6, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(927, 7, '196207171983022000', 'Rukmini, SE', 9, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(929, 5, '196302081993031000', 'Ir. Irmanuddin', 7, 8, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(930, 4, '196602011984111000', 'Sutomo, SP, M. Si', 7, 6, NULL, NULL, NULL, NULL, '2021-06-02', 1, '2021-06-02 14:47:27', '2021-06-02 14:47:27'),
+	(933, 40, '198106202010011000', 'Andi Puhu, S.Pd', 2, 8, 'H', NULL, '3:00 PM', NULL, '2021-06-02', 1, '2021-06-02 14:47:41', '2021-06-02 14:47:41'),
+	(934, 37, '198408112010012000', 'Andi Zakiah Wahidah, ST. M.Si', 1, 8, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:47:41', '2021-06-02 14:47:41'),
+	(935, 13, '196605101995032000', 'Andi Indriani P.U, SH', 2, 8, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:47:41', '2021-06-02 14:47:41'),
+	(936, 6, '196412301994031000', 'Ir. Sapoan, M.Si', 1, 2, 'H', NULL, NULL, '3:00 PM', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(937, 29, '198404062011011000', 'La Ode Muh. Fitrah Arsyad, SE. M. Si', 4, 3, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(938, 10, '196608121994041000', 'Drs. Muslimin', 5, 3, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(939, 9, '198005222006041000', 'La Ode. Muh. Rusdin Jaya, S.IP, M.Si', 2, 3, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(940, 3, '196312301986072000', 'Wa Ode Nuryani, SE', 3, 3, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(941, 2, '196412311998011000', 'Ir. Laode Hamalin, M.Si', 6, 3, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(942, 56, '198103172010012000', 'Windi Dianovita, ST', 4, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(943, 50, '198203102010012000', 'Jumarlian Santi Rafiun,SP', 5, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(944, 42, '197312152009011000', 'Bachar, ST', 2, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(945, 35, '197809212010011000', 'Oon Sulfikar,SH.MM', 2, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(946, 32, '198205212006041000', 'Kemal Jusra, S.Si, M.Si', 6, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(947, 31, '197009181996031000', 'Moh. Iskandar Azis, A.Md', 3, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(948, 28, '198305062011011000', 'Muh. Yasser Tuwu, SE., M.Sc', 5, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(949, 25, '197006062005022000', 'Halimah Saleh Putri,SH', 4, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(950, 20, '196508081994032000', 'Tina Sidupa, S.E', 7, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(951, 19, '197605252001122000', 'Nahrida, ST', 4, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(952, 17, '196712311993111000', 'Abdul Latif, S.Sos', 2, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(953, 16, '196412311985031000', 'Kasman,S.Pd', 6, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(954, 14, '197102211991032000', 'Darmawati Gamma, SH', 7, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(955, 12, '196603071994032000', 'Hasnawati, SE', 5, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(956, 11, '196605291995031000', 'Sulkifli Saleh,ST.M.Si', 6, 4, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(957, 47, '198510222010012000', 'Henny Savitri Oktaviana, S. Si, M.Si', 1, 5, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(958, 41, '19857142006021000', 'La Ode Muh. Qamal Jogugu S, STP, ME', 1, 5, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(959, 18, '197312262001121000', 'Monasman, ST', 1, 5, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(960, 65, '197806032005021000', 'Mauliddun, SH', 7, 6, NULL, NULL, '', '', '2021-06-02', 1, '2021-06-02 14:52:21', '2021-06-02 14:52:21'),
+	(964, 92, '198306192010011000', 'Munandar', 4, 8, 'H', 'xxx', '9:15 AM', NULL, '2021-06-02', 1, '2021-06-02 21:08:47', '2021-06-02 21:08:47');
+/*!40000 ALTER TABLE `absen_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.arsip_tbl
+CREATE TABLE IF NOT EXISTS `arsip_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jenis` int(11) NOT NULL,
+  `no_surat` varchar(100) DEFAULT NULL,
+  `perihal` varchar(100) DEFAULT NULL,
+  `tanggal` varchar(100) DEFAULT NULL,
+  `file_arsip` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.arsip_tbl: ~1 rows (lebih kurang)
+/*!40000 ALTER TABLE `arsip_tbl` DISABLE KEYS */;
+INSERT INTO `arsip_tbl` (`id`, `jenis`, `no_surat`, `perihal`, `tanggal`, `file_arsip`, `user_id`, `created_at`, `updated_at`) VALUES
+	(4, 1, 'sasa', '455555555', '2021-06-02', '1622650393.pdf', 1, '2021-06-03 00:13:13', '2021-06-03 00:13:46'),
+	(6, 2, '45tr4545', 'sasa', '2021-06-18', '1622650443.pdf', 1, '2021-06-03 00:14:03', '2021-06-03 00:14:03'),
+	(7, 2, 'sa', 'ytyytyt', '2021-06-09', '1622650465.pdf', 1, '2021-06-03 00:14:25', '2021-06-03 00:14:25');
+/*!40000 ALTER TABLE `arsip_tbl` ENABLE KEYS */;
+
 -- membuang struktur untuk table db_simpeg_indag.bidang_tbl
 CREATE TABLE IF NOT EXISTS `bidang_tbl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -43,13 +274,16 @@ CREATE TABLE IF NOT EXISTS `events` (
   `start` date NOT NULL,
   `end` date NOT NULL,
   `end2` date NOT NULL,
+  `uraian` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Membuang data untuk tabel db_simpeg_indag.events: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
+INSERT INTO `events` (`id`, `title`, `start`, `end`, `end2`, `uraian`, `created_at`, `updated_at`) VALUES
+	(2, 'xxx', '2021-05-01', '2021-05-06', '2021-05-05', '3wewew hhh', '2021-05-31 15:25:35', '2021-05-31 15:36:19');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.failed_jobs
@@ -68,6 +302,27 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 -- Membuang data untuk tabel db_simpeg_indag.failed_jobs: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.informasi_kantor_tbl
+CREATE TABLE IF NOT EXISTS `informasi_kantor_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(50) DEFAULT NULL,
+  `isi` text DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.informasi_kantor_tbl: ~4 rows (lebih kurang)
+/*!40000 ALTER TABLE `informasi_kantor_tbl` DISABLE KEYS */;
+INSERT INTO `informasi_kantor_tbl` (`id`, `judul`, `isi`, `user_id`, `created_at`, `updated_at`) VALUES
+	(1, 'Sejarah', '<p>xssasa&nbsp; sasasa</p>', NULL, '2021-05-25 14:36:11', '2021-05-25 15:21:09'),
+	(2, 'Alamat', NULL, NULL, '2021-05-25 14:36:48', '2021-05-25 14:36:53'),
+	(3, 'Website', NULL, NULL, '2021-05-25 14:36:49', '2021-05-25 14:36:52'),
+	(4, 'Struktur Organisasi', NULL, NULL, '2021-05-25 14:36:50', '2021-05-25 14:36:51'),
+	(5, 'Tupoksi', NULL, NULL, '2021-05-25 14:36:50', '2021-05-25 14:36:51');
+/*!40000 ALTER TABLE `informasi_kantor_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.jabatan_tbl
 CREATE TABLE IF NOT EXISTS `jabatan_tbl` (
@@ -111,6 +366,24 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(6, '2021_04_05_060844_create_sessions_table', 2),
 	(7, '2021_05_11_132318_create_events_table', 3);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_simpeg_indag.notulen_tbl
+CREATE TABLE IF NOT EXISTS `notulen_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `agenda` varchar(100) DEFAULT NULL,
+  `pimpinan` varchar(100) DEFAULT NULL,
+  `anggota` varchar(100) DEFAULT NULL,
+  `tanggal` varchar(100) DEFAULT NULL,
+  `file_notulen` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_simpeg_indag.notulen_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `notulen_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notulen_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
@@ -165,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `pegawai_tbl` (
 -- Membuang data untuk tabel db_simpeg_indag.pegawai_tbl: ~93 rows (lebih kurang)
 /*!40000 ALTER TABLE `pegawai_tbl` DISABLE KEYS */;
 INSERT INTO `pegawai_tbl` (`id`, `nip`, `nama_pegawai`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat`, `agama`, `gol_darah`, `email`, `no_ktp`, `ktp`, `no_bpjs`, `bpjs`, `no_npwp`, `npwp`, `no_karpeg`, `karpeg`, `no_karsu`, `karsu`, `foto_formal`, `foto_kedinasan`, `golongan`, `pendidikan`, `esselon`, `jabatan_id`, `bidang_id`, `seksi_id`, `status`, `status_hapus`, `user_id`, `created_at`, `updated_at`) VALUES
-	(1, '196406211985032000', 'Hj. Sitti Saleha, SE, M.Si', NULL, '1964-06-21', 'Wanita', NULL, 'Islam', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/d', NULL, NULL, 1, 1, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(1, '196406211985032000', 'Hj. Sitti Saleha, SE, M.Si', NULL, '1964-06-21', 'Wanita', NULL, 'Islam', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/d', NULL, NULL, 1, 1, NULL, 'PNS', 1, 1, '2021-05-03 06:20:18', '2021-06-02 09:35:49'),
 	(2, '196412311998011000', 'Ir. Laode Hamalin, M.Si', NULL, '1970-01-01', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/c', NULL, NULL, 3, 6, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
 	(3, '196312301986072000', 'Wa Ode Nuryani, SE', NULL, '1963-12-30', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 3, 3, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
 	(4, '196602011984111000', 'Sutomo, SP, M. Si', NULL, '1966-02-01', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan IV/b', NULL, NULL, 6, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
@@ -257,7 +530,7 @@ INSERT INTO `pegawai_tbl` (`id`, `nip`, `nama_pegawai`, `tempat_lahir`, `tanggal
 	(90, '198201102009012000', 'Misna Haseng', NULL, '1982-01-10', 'Wanita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 3, 8, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
 	(91, '197908272011011000', 'Agus Herdianto, A.Md', NULL, '1979-08-27', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 7, NULL, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
 	(92, '198306192010011000', 'Munandar ', NULL, '1983-06-19', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/c', NULL, NULL, 8, 4, 11, 'PNS', 0, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(93, '197412022014081000', 'Faisal', NULL, '1974-12-02', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/b', NULL, NULL, 8, 4, 12, 'PNS', 0, NULL, '2021-05-03 06:20:24', '2021-05-03 06:20:24');
+	(93, '197412022014081000', 'Faisal', NULL, '1974-12-02', 'Pria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golongan II/b', NULL, NULL, 8, 4, 12, 'PNS', 0, 1, '2021-05-03 06:20:24', '2021-06-02 09:33:39');
 /*!40000 ALTER TABLE `pegawai_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.pelaksana_event_tbl
@@ -268,10 +541,13 @@ CREATE TABLE IF NOT EXISTS `pelaksana_event_tbl` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
--- Membuang data untuk tabel db_simpeg_indag.pelaksana_event_tbl: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel db_simpeg_indag.pelaksana_event_tbl: ~2 rows (lebih kurang)
 /*!40000 ALTER TABLE `pelaksana_event_tbl` DISABLE KEYS */;
+INSERT INTO `pelaksana_event_tbl` (`id`, `events_id`, `pegawai_id`, `created_at`, `updated_at`) VALUES
+	(25, 2, 2, '2021-05-31 15:36:19', '2021-05-31 15:36:19'),
+	(26, 2, 3, '2021-05-31 15:36:19', '2021-05-31 15:36:19');
 /*!40000 ALTER TABLE `pelaksana_event_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.personal_access_tokens
@@ -932,10 +1208,12 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel db_simpeg_indag.sessions: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel db_simpeg_indag.sessions: ~2 rows (lebih kurang)
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('UbCfj07fBiVsL8fpryMwOHbpNcqS7bTYa4D2d467', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRVdISkMxU2JCRDZVQjdBR2MyWloxVHN5VVU2SWxuclFBVlpYRE9BRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Qvc2ltcGVnLWluZGFnL2FnZW5kYSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRxWkV4R3Z2TGl0V3ZWZEFYcHZmTW8ucjUvUTZUcXZkSFFRd3FZUFR1ZUVWNWNubHU2VWVsNiI7fQ==', 1621487577);
+	('AYXoMilDW9G7W0zBMKGFetychNsJDpMuLDYowBsc', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiWVROQUNQd2NBVmFqVEpob1VZdURqY09wdHFiWTVjZ1hXeGlBdGRDNyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTY6Imh0dHA6Ly9sb2NhbGhvc3Qvc2ltcGVnLWluZGFnL3Jla2FwaXR1bGFzaV9hc25fbm9uX2FrdGlmIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJHFaRXhHdnZMaXRXdlZkQVhwdmZNby5yNS9RNlRxdmRIUVF3cVlQVHVlRVY1Y25sdTZVZWw2Ijt9', 1622651255),
+	('d2WcG3JWiJKpLGK1f8k6w340YvtUIKxMS7d0IzS3', 477, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiek5BdTZ1ZkQ2c1ZzV0RFblMwV0pnRW5wRVZ0VEsweG5ONzZiNTFJZyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDg6Imh0dHA6Ly9sb2NhbGhvc3Qvc2ltcGVnLWluZGFnL2Fyc2lwX3N1cmF0X2tlbHVhciI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ3NztzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJEl2ZTUuRGx0UUQ2ZHllVEptL09pdS5lWDk4aGs2Lkk2NlFEV3lENGlsNzkzZUszUlVmeHBXIjt9', 1622651807),
+	('SO3X1SLusfW8kjTkCFn307cKA5oeThmujLUzBaRg', 478, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiYTBwTnFYSmxOTFNzZlJHYzlIcHRLM1FpU2RKc21yeVZxV3FBZndzbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTU6Imh0dHA6Ly9sb2NhbGhvc3Qvc2ltcGVnLWluZGFnL2luZm9ybWFzaV9rYW50b3IvZGV0YWlsLzEiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0Nzg7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCQ3dHNNWHBzMUl1a3JOanJZVWJBRWhlMS9mZUlNdzV0b3pOUm5HOUZqb1J5VkpFLnhlSHdzbSI7fQ==', 1622643115);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_simpeg_indag.users
@@ -949,109 +1227,112 @@ CREATE TABLE IF NOT EXISTS `users` (
   `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `group` int(11) DEFAULT NULL,
+  `bidang_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=480 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=482 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Membuang data untuk tabel db_simpeg_indag.users: ~94 rows (lebih kurang)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `group`, `created_at`, `updated_at`) VALUES
-	(1, 'administrator', 'administrator@gmail.com', NULL, '$2y$10$qZExGvvLitWvVdAXpvfMo.r5/Q6TqvdHQQwqYPTueEV5cnlu6Uel6', NULL, NULL, NULL, 1, '2021-04-05 06:20:00', '2021-04-05 06:20:00'),
-	(387, '196406211985032000', '196406211985032000@gmail.com', NULL, '$2y$10$cenXUUUU6Y5XZno3.TktA.fzil7Ze5UkVsmmnX3GEFbBGVeHyhbWi', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(388, '196412311998011000', '196412311998011000@gmail.com', NULL, '$2y$10$d5N/1rdATNoipCvYBAEbYO/dkHPNGcrT2fftg6TSFmlQyx63r/4bS', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(389, '196312301986072000', '196312301986072000@gmail.com', NULL, '$2y$10$1hMj7LWsqZA88CxUO7h7GecnGTzcpnJpH2/Hk993wv3prtp3hjZcC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(390, '196602011984111000', '196602011984111000@gmail.com', NULL, '$2y$10$3sa0DmKCjGG7dGVlHeBOxedm9eTbm1YQdJfY1jPVgV6jw83VIbO5C', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(391, '196302081993031000', '196302081993031000@gmail.com', NULL, '$2y$10$6fggCoerECKoSJmBWdd.Qe7K3323GblzbUuRkHpR405jpPVJCpefO', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(392, '196412301994031000', '196412301994031000@gmail.com', NULL, '$2y$10$YemJplQTDK6TpX63Xjf18.BhuIYVzG6NLsv.jUE9KL06BdwF10ApC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(393, '196207171983022000', '196207171983022000@gmail.com', NULL, '$2y$10$opgQy6lk2.Mx9cLnQ3bp5ehb7Ln9KCZOEC0zfkOCGMiwdkjqae26m', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(394, '196504101985031000', '196504101985031000@gmail.com', NULL, '$2y$10$BHc9Ce99Haqzzvcv/Seac.edh6sv82s8rHJz4NQSlJKpdvaWxdTya', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(395, '198005222006041000', '198005222006041000@gmail.com', NULL, '$2y$10$vU1zMll1awh0MhvEWdMVh.ubtf6sRJzRV63GvKfT7cAERLGEEHJeC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(396, '196608121994041000', '196608121994041000@gmail.com', NULL, '$2y$10$QkfzC8d6LCT60P8CHRWneunT47gprj5zccdA33JMjHkamxkTN6oHu', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(397, '196605291995031000', '196605291995031000@gmail.com', NULL, '$2y$10$8yAiC6kcxE8pIanL/4.j/eCZuxhrCYIc4wBeZoQgDPq9yiWLrykhq', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(398, '196603071994032000', '196603071994032000@gmail.com', NULL, '$2y$10$aG4Omosv20swysaPpdZs5eF5geUOGssMnHs7TJbujlsEN8M98cs5u', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(399, '196605101995032000', '196605101995032000@gmail.com', NULL, '$2y$10$nfBpb4titvE5Tj4Pa2PgfeB8Gh/YpWhkhqOn//U28Oz7jknZmsdvi', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(400, '197102211991032000', '197102211991032000@gmail.com', NULL, '$2y$10$dvo/0GsbT4RTnxUpAObW.ekHJBkDjDF.VMO0PJkXyWgVhsM8CXhPC', NULL, NULL, NULL, 3, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
-	(401, '196303021985032000', '196303021985032000@gmail.com', NULL, '$2y$10$0knDXpbjN619KKjZG364XOxHi/il3GJXSRXzfYw0T.NFy6brOhi4K', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(402, '196412311985031000', '196412311985031000@gmail.com', NULL, '$2y$10$YuMLj0TqDcG3D22fBDnD6OYQb5vxJuf4q3AGnyzhZSjTOgFyupNa2', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(403, '196712311993111000', '196712311993111000@gmail.com', NULL, '$2y$10$JRRR9cimXSaHa.zBxS6SM.yFH2CVsRKqbFxQaqxNYPN/pijGQBPEy', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(404, '197312262001121000', '197312262001121000@gmail.com', NULL, '$2y$10$j0eSADjCC6G6P49xTJhAyukIIRByE/0ObhzTfkekfzO2lLQ7SbgoK', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(405, '197605252001122000', '197605252001122000@gmail.com', NULL, '$2y$10$O4G4nz1q.LVFyGpQ8pkVFuJPmyB0V1AnLSWjZFPO4hKnqGdeZ3GKq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(406, '196508081994032000', '196508081994032000@gmail.com', NULL, '$2y$10$ZZUA4b/qMQhzTol/n978PeA.5NAQlRDOyP6RznidjfYjcfA/NY7DO', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(407, '196705271994031000', '196705271994031000@gmail.com', NULL, '$2y$10$r1QgnStdLwkKMUUjpITwveKjUs3U05YEiJiiMiaJUANQYXrCw8Ezq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(408, '196602182007012000', '196602182007012000@gmail.com', NULL, '$2y$10$9k8abgA6AAAZ/XPErbKGx.8r/QjF5/86YgMgLTKSHI8MfsM5D0iEa', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(409, '197301012006041000', '197301012006041000@gmail.com', NULL, '$2y$10$ZAjXrQVibw0am0ce94.CmuxR9ol98qReNTAJgpgmRBMU8sMvaNPFe', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(410, '198011212005022000', '198011212005022000@gmail.com', NULL, '$2y$10$6dyvOdMk/ly/L2frZqqrJO8Mhhith1.OMYwPp9.wGvbH3aVGWqsOq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(411, '197006062005022000', '197006062005022000@gmail.com', NULL, '$2y$10$BaCqvOQWrSBrqJvTBb/oBOcJKAF51wXwc2Ccu2H1j/L8izN0EPnAe', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(412, '197809272002121000', '197809272002121000@gmail.com', NULL, '$2y$10$0Q4A3NdvW1XEETAcqp88Ueq75PgSWH.JnXCO79hE.mbd4H7XVZJe6', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(413, '197709102006042000', '197709102006042000@gmail.com', NULL, '$2y$10$MGj22fN3zfMyK2S7Opp7ge7j2ZwSBKh6hr4vbI/C6sHaGGPmmwWqi', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(414, '198305062011011000', '198305062011011000@gmail.com', NULL, '$2y$10$5g/kuPvmI53Z4pXTZ17i.egZ0YlO3Jb4yPe4O74DsfdmQX2mseSMq', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(415, '198404062011011000', '198404062011011000@gmail.com', NULL, '$2y$10$6l2NusoXP4U6JBN5P7vGb./VVEeTfQjfkCLel0P1cqXSDfQVW/bHa', NULL, NULL, NULL, 3, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
-	(416, '196410101988011000', '196410101988011000@gmail.com', NULL, '$2y$10$3O7DiE5y7qaDx4lBNa9uYedKpPj1uOGCzj6fJ7a9rbL826iPPrm56', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(417, '197009181996031000', '197009181996031000@gmail.com', NULL, '$2y$10$tUOhq2fP2TakTZQqT/O1uu90r2LW2o.bX67Z8zdt9tVMnnh4bni/O', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(418, '198205212006041000', '198205212006041000@gmail.com', NULL, '$2y$10$eaV0fRJX1FI8UB85oj6Lku6j2YgDCwMk8Xs8iU73x6sajwuMLx41y', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(419, '196812311994031000', '196812311994031000@gmail.com', NULL, '$2y$10$pZ1Ws66vkJpmGVCX5k3zV.RQ5WJfONEnpEORYOE4ddlbJY4GXMw.q', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(420, '198011112010012000', '198011112010012000@gmail.com', NULL, '$2y$10$sf7m0VOebetgAAQFY89h9ujhm6cGb8U4Kn2sxWsMPyK2brQG/3Aqq', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(421, '197809212010011000', '197809212010011000@gmail.com', NULL, '$2y$10$nyZQIi29ABunNnmaI6kj4O3qUHmGV.mNpX/S6J7INKB1.98r34n.a', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(422, '197810052008012000', '197810052008012000@gmail.com', NULL, '$2y$10$kjDpLak94kNrQZD66IjZjuw29e17d0vt7eT2DGafUOqoP3e5riici', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(423, '198408112010012000', '198408112010012000@gmail.com', NULL, '$2y$10$gIxZqR5Y3qeCoYkX5JX.aeDyERYbqOplRgEZw22IXnnHydlY8DEgq', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(424, '198411072008032000', '198411072008032000@gmail.com', NULL, '$2y$10$NNrsbZXDhpRUBAzMEekjOeNsfnvBjhBsY.JzqCWn0bXpIwdmVxpoe', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(425, '197803162008011000', '197803162008011000@gmail.com', NULL, '$2y$10$GSPfXZ.10MVMj5sduCA2BuypjU/ZpwrMtuoaQWwfXaGTty/51S0Xu', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(426, '198106202010011000', '198106202010011000@gmail.com', NULL, '$2y$10$QcMiYFgPfmnziyeLBf/bA.GAr0SiKSHKMp4CO81l1ZLhTBx.ATeXq', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(427, '19857142006021000', '19857142006021000@gmail.com', NULL, '$2y$10$WNoznze5SgpyadWmzN4BoeV9dy9U2jG7mE8IUKBgSmOBOyViUvVeC', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(428, '197312152009011000', '197312152009011000@gmail.com', NULL, '$2y$10$/5vpojTXJ1eya3smz/bbdu6qjBuOT6DSNIXl145xt8Bzuy6rOzpAi', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(429, '197902222009012000', '197902222009012000@gmail.com', NULL, '$2y$10$csWR54TcTbJz3Mr2BZeGIeVR.B0YORheWHSZcVtsMyUlVRdm6qQKO', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(430, '198111022009012000', '198111022009012000@gmail.com', NULL, '$2y$10$EeB.HzP4WYFPac4MWTR.1eyljl/0.k72drg6GHVHAOxQPncjXsO1i', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(431, '197905022009042000', '197905022009042000@gmail.com', NULL, '$2y$10$1BtdBGiUTC0zMjrF22ynV.mzlMljInCFqRvFATe4h3GkcxhlQZAJm', NULL, NULL, NULL, 3, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
-	(432, '198304182009042000', '198304182009042000@gmail.com', NULL, '$2y$10$VsejKVO/elgZct0WqlUWau6eGyLTW1JZYCsfIq2pN62MK4bF6OZYy', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(433, '198510222010012000', '198510222010012000@gmail.com', NULL, '$2y$10$gF4hgniNXfzui8s2QEspnO.FxVQTU32l0elqwd51.mbQ64ax7W/Em', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(434, '197805152010011000', '197805152010011000@gmail.com', NULL, '$2y$10$o4k3tcurLAHHwtWlpLGYk.dB0AoCRy./bLUSphHRfbpXLNnkgn2nG', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(435, '198301122011011000', '198301122011011000@gmail.com', NULL, '$2y$10$e9kjFOeaDhKhY8Xze05lkO29RPk7Vqo7dBTbUjf2z0JFS.5LEtRHG', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(436, '198203102010012000', '198203102010012000@gmail.com', NULL, '$2y$10$yYOmrKPU0DtKJrlLQzVDV.5FZO6Edv2Loxz37XSiTGg.XAE6PDr9e', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(437, '198402152011012000', '198402152011012000@gmail.com', NULL, '$2y$10$EI9f3MRdIRSag5oI1ZJ/metvZNy.cvajcrpfNnGObIiyjxU9M6Wgy', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(438, '198209222011012000', '198209222011012000@gmail.com', NULL, '$2y$10$pQcr3wTDWz83rAo8Qc1Vx.LTt3cILEkENbsKUmC0PaYgI9WcJY5lm', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(439, '196411021986032000', '196411021986032000@gmail.com', NULL, '$2y$10$X0M2j5iXRNQE.S3J4ptX3.z8yfcxHSfPd8GU2sPqHuFGgMLnBy/UG', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(440, '196310111985031000', '196310111985031000@gmail.com', NULL, '$2y$10$witty5okGDY9MMHH/fK0HeEcW4e74jKMngiAedzCNB92u7Reiy7gC', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(441, '197212122007012000', '197212122007012000@gmail.com', NULL, '$2y$10$Ya59gsCobfd6YRJszK04HOBXdgYZTqzAA.h9pia2XCW8KsfJgSpFq', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(442, '198103172010012000', '198103172010012000@gmail.com', NULL, '$2y$10$lC.ugJwXi5PWkMpQL0jREuylZv.5FJs4cs3At5cURFcMdTJIVTGhS', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(443, '198304192010012000', '198304192010012000@gmail.com', NULL, '$2y$10$/WRzJDiCkYuPYhZlGu0tTO1jpRR3h2gwciI9tThdiiAk6H.h7czDW', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(444, '198705132011012000', '198705132011012000@gmail.com', NULL, '$2y$10$FrU6bFOnTEuhTWTTAjg2Ye4a45c0gcLrvm8jYW0KeXxNMWHN.xW2C', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(445, '198503262011012000', '198503262011012000@gmail.com', NULL, '$2y$10$d/shzwL/8trev5d1d8mV0O6mXBLFVNBF2vIyS3HWSFxG/l2U/TaDq', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(446, '198010132009011000', '198010132009011000@gmail.com', NULL, '$2y$10$lOzyNZJAZKjd.QVOTAZCheMcwgLjSoBVtRxFcRpCq9EH/DcxyrYza', NULL, NULL, NULL, 3, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
-	(447, '197911112009011000', '197911112009011000@gmail.com', NULL, '$2y$10$CEeht3pAvBi1juRKHxmyxu3WRSQ28RHkAe4V3O7Z5duFy5kiJzFOO', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(448, '196608192006042000', '196608192006042000@gmail.com', NULL, '$2y$10$vl8YDOJudCzQW2.5z9Sup.TW0uVq7pIVwA44fkBn7ZSZr1mUmOwAa', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(449, '196306101994031000', '196306101994031000@gmail.com', NULL, '$2y$10$82ATY4clUZ252jI4VuaF9eCPhqui/n3VH3S5tMqMyZ9SsBqqS31lS', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(450, '198509252009012000', '198509252009012000@gmail.com', NULL, '$2y$10$dYeuSia6hfwGgg4STZTnruYPPdSwxpasHhOQm9I76EIhMkeujUe4i', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(451, '197806032005021000', '197806032005021000@gmail.com', NULL, '$2y$10$v2LHBj7Yq1aT1pXM3k6cvupCJJfKkj/8j43EdZQWthwU43PA03q06', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(452, '197512082007012000', '197512082007012000@gmail.com', NULL, '$2y$10$iI5W1fjQXSXg8ieLVnpifOyjKw46.MC2/mPAb8A/U7FztYyZO/yZy', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(453, '198412062014032000', '198412062014032000@gmail.com', NULL, '$2y$10$L8k/0MxbUIbFcA17EccecOKXXi4W/UjhWUenbzYNrJW7NfWSQoaH6', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(454, '198702202010012000', '198702202010012000@gmail.com', NULL, '$2y$10$nXQ36eqS2DNFJTxOan9eH.nP6PGJ1wdjyDlg12mzknvDs8ALE.7JK', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(455, '197710262007122000', '197710262007122000@gmail.com', NULL, '$2y$10$TM4Bz72yn1GJY97rGRc.MuGwjbSmsmkLiPavYMteKkNrn/mAIObR.', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(456, '196707072014082000', '196707072014082000@gmail.com', NULL, '$2y$10$yjxxys3KjuAXq1mPlDqy/OygatLN4JCEBDYONACnABvzQGLWSikKO', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(457, '197912212014082000', '197912212014082000@gmail.com', NULL, '$2y$10$hxVrOYsM0HtnM/QAG0ofAORMhYmswNWHpxDrj93f3GWM0l3F0LCmG', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(458, '198510032010011000', '198510032010011000@gmail.com', NULL, '$2y$10$mKDVz8sSol0jPxmX9ycN/u1Svqpdo/iHSLQD0dTE73uNlUEVmR5AS', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(459, '197906112007011000', '197906112007011000@gmail.com', NULL, '$2y$10$jh1RhNxyBejoOyzHBOMile8idnr/wdKJ2YWZk/Nn0.b6kAl.zYkqu', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(460, '196904012008011000', '196904012008011000@gmail.com', NULL, '$2y$10$SwnIT7RVbkHcA9jOoJ1RIuZdlKP6lUgCoFWPUcAgcFyUjmCEEBFqK', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(461, '198003112009011000', '198003112009011000@gmail.com', NULL, '$2y$10$wBtwjD2gWW3gRpcbAs6AcOWZNSCi3iW99WkQZ62hKEjgqlWU76Mwa', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(462, '196708261989032000', '196708261989032000@gmail.com', NULL, '$2y$10$d/UdYWRY/.yTkuWmsBDZsuyqGki8n6agXWV/nLWAqkrtw17.Z9rOC', NULL, NULL, NULL, 3, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
-	(463, '196601101991031000', '196601101991031000@gmail.com', NULL, '$2y$10$PSHfp2pB1lC4lSGroJnF2OyDFPmN3TntvSd8NgBJW6Dt2kTQarkVa', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(464, '197503072008012000', '197503072008012000@gmail.com', NULL, '$2y$10$5YfC0NdeohGePkhMom5nyet/AF72c7NHVflVa9B0G2NGWbOo8EeFq', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(465, '198504262008011000', '198504262008011000@gmail.com', NULL, '$2y$10$l9Le8hps2v.hodaKv5NHLur55Wo1lzz.HqxwuKPBs9jT8Rr7e8Hxq', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(466, '197909172009011000', '197909172009011000@gmail.com', NULL, '$2y$10$Sf3wMzj6t5XGKMFUAUdUIOMmChf30umGV4JYV1oYL3/QwdcgfeiFm', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(467, '198407022014081000', '198407022014081000@gmail.com', NULL, '$2y$10$DqB.x5Ky7rgu7XkYrfLUAO2I9WUfGI5Q5RbL9eBFTPcXfjDmRJlpi', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(468, '198910182015022000', '198910182015022000@gmail.com', NULL, '$2y$10$ZSLGaMudp8xTFHhbX6eAN.O13M5g1wEXAj.z1.Cc1JMJo.tb2cVwW', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(469, '197809022014071000', '197809022014071000@gmail.com', NULL, '$2y$10$cmYcZRfuwUOvVTO0A6RddeaQ68Y.qUYFpvk7iGzU79id9RakEVcou', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(470, '198301052009012000', '198301052009012000@gmail.com', NULL, '$2y$10$hG4JfjWnDJFDRLUyPnAeHe2BI0hVTOvWEcRu0GOqM1GVNDPNPCg1C', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(471, '197409042014062000', '197409042014062000@gmail.com', NULL, '$2y$10$yjj/KyKbisFGwsjTkvCxXePAaEGXCnLwm48a84V1iufIDZyHFY6ji', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(472, '198912272015021000', '198912272015021000@gmail.com', NULL, '$2y$10$t4O.l4Lc5aPPFNbhl7NcQeCkJpitUd7KRFBZR0mYJe22m/xSFPZua', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(473, '196412312006041000', '196412312006041000@gmail.com', NULL, '$2y$10$ukTNJOFzU/WcxA39XaHLe.JoP6rqkdU0KBw7p9E3MoT2tHvp0S0Ai', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(474, '196312312007011000', '196312312007011000@gmail.com', NULL, '$2y$10$r50QXZbPFm2sDcp4/HTtTuLun4nvlUdYh/1pCfn.MeLovRAVMYdFG', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(475, '198302142008011000', '198302142008011000@gmail.com', NULL, '$2y$10$tRHOPp9Wi1FYA6SpCkApJe/RYU8Hv5PfTpbUGziYgCFg2q.dy9igq', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(476, '198201102009012000', '198201102009012000@gmail.com', NULL, '$2y$10$N2YCRZOZWghxw8Ig8CLz1Oet4q/6rxjiBod2JQvBMV0IJMfFwH.9i', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(477, '197908272011011000', '197908272011011000@gmail.com', NULL, '$2y$10$Ive5.DltQD6dyeTJm/Oiu.eX98hk6.I66QDWyD4il793eK3RUfxpW', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(478, '198306192010011000', '198306192010011000@gmail.com', NULL, '$2y$10$7tsMXps1IukrNjrYUbAEhe1/feIMw5tozNRnG9FjoRyVJE.xeHwsm', NULL, NULL, NULL, 3, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
-	(479, '197412022014081000', '197412022014081000@gmail.com', NULL, '$2y$10$lTATFDzLjpcG0e.aOmtbh.rUAr.F71hqvj48ElXnAxYmzDXvzDLza', NULL, NULL, NULL, 3, '2021-05-03 06:20:24', '2021-05-03 06:20:24');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `group`, `bidang_id`, `created_at`, `updated_at`) VALUES
+	(1, 'administrator', 'administrator@gmail.com', NULL, '$2y$10$qZExGvvLitWvVdAXpvfMo.r5/Q6TqvdHQQwqYPTueEV5cnlu6Uel6', NULL, NULL, NULL, 1, NULL, '2021-04-05 06:20:00', '2021-04-05 06:20:00'),
+	(387, '196406211985032000', '196406211985032000@gmail.com', NULL, '$2y$10$cenXUUUU6Y5XZno3.TktA.fzil7Ze5UkVsmmnX3GEFbBGVeHyhbWi', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(388, '196412311998011000', '196412311998011000@gmail.com', NULL, '$2y$10$d5N/1rdATNoipCvYBAEbYO/dkHPNGcrT2fftg6TSFmlQyx63r/4bS', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(389, '196312301986072000', '196312301986072000@gmail.com', NULL, '$2y$10$1hMj7LWsqZA88CxUO7h7GecnGTzcpnJpH2/Hk993wv3prtp3hjZcC', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(390, '196602011984111000', '196602011984111000@gmail.com', NULL, '$2y$10$3sa0DmKCjGG7dGVlHeBOxedm9eTbm1YQdJfY1jPVgV6jw83VIbO5C', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(391, '196302081993031000', '196302081993031000@gmail.com', NULL, '$2y$10$6fggCoerECKoSJmBWdd.Qe7K3323GblzbUuRkHpR405jpPVJCpefO', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(392, '196412301994031000', '196412301994031000@gmail.com', NULL, '$2y$10$YemJplQTDK6TpX63Xjf18.BhuIYVzG6NLsv.jUE9KL06BdwF10ApC', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(393, '196207171983022000', '196207171983022000@gmail.com', NULL, '$2y$10$opgQy6lk2.Mx9cLnQ3bp5ehb7Ln9KCZOEC0zfkOCGMiwdkjqae26m', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(394, '196504101985031000', '196504101985031000@gmail.com', NULL, '$2y$10$BHc9Ce99Haqzzvcv/Seac.edh6sv82s8rHJz4NQSlJKpdvaWxdTya', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(395, '198005222006041000', '198005222006041000@gmail.com', NULL, '$2y$10$vU1zMll1awh0MhvEWdMVh.ubtf6sRJzRV63GvKfT7cAERLGEEHJeC', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(396, '196608121994041000', '196608121994041000@gmail.com', NULL, '$2y$10$QkfzC8d6LCT60P8CHRWneunT47gprj5zccdA33JMjHkamxkTN6oHu', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(397, '196605291995031000', '196605291995031000@gmail.com', NULL, '$2y$10$8yAiC6kcxE8pIanL/4.j/eCZuxhrCYIc4wBeZoQgDPq9yiWLrykhq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(398, '196603071994032000', '196603071994032000@gmail.com', NULL, '$2y$10$aG4Omosv20swysaPpdZs5eF5geUOGssMnHs7TJbujlsEN8M98cs5u', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(399, '196605101995032000', '196605101995032000@gmail.com', NULL, '$2y$10$nfBpb4titvE5Tj4Pa2PgfeB8Gh/YpWhkhqOn//U28Oz7jknZmsdvi', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(400, '197102211991032000', '197102211991032000@gmail.com', NULL, '$2y$10$dvo/0GsbT4RTnxUpAObW.ekHJBkDjDF.VMO0PJkXyWgVhsM8CXhPC', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:18', '2021-05-03 06:20:18'),
+	(401, '196303021985032000', '196303021985032000@gmail.com', NULL, '$2y$10$0knDXpbjN619KKjZG364XOxHi/il3GJXSRXzfYw0T.NFy6brOhi4K', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(402, '196412311985031000', '196412311985031000@gmail.com', NULL, '$2y$10$YuMLj0TqDcG3D22fBDnD6OYQb5vxJuf4q3AGnyzhZSjTOgFyupNa2', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(403, '196712311993111000', '196712311993111000@gmail.com', NULL, '$2y$10$JRRR9cimXSaHa.zBxS6SM.yFH2CVsRKqbFxQaqxNYPN/pijGQBPEy', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(404, '197312262001121000', '197312262001121000@gmail.com', NULL, '$2y$10$j0eSADjCC6G6P49xTJhAyukIIRByE/0ObhzTfkekfzO2lLQ7SbgoK', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(405, '197605252001122000', '197605252001122000@gmail.com', NULL, '$2y$10$O4G4nz1q.LVFyGpQ8pkVFuJPmyB0V1AnLSWjZFPO4hKnqGdeZ3GKq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(406, '196508081994032000', '196508081994032000@gmail.com', NULL, '$2y$10$ZZUA4b/qMQhzTol/n978PeA.5NAQlRDOyP6RznidjfYjcfA/NY7DO', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(407, '196705271994031000', '196705271994031000@gmail.com', NULL, '$2y$10$r1QgnStdLwkKMUUjpITwveKjUs3U05YEiJiiMiaJUANQYXrCw8Ezq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(408, '196602182007012000', '196602182007012000@gmail.com', NULL, '$2y$10$9k8abgA6AAAZ/XPErbKGx.8r/QjF5/86YgMgLTKSHI8MfsM5D0iEa', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(409, '197301012006041000', '197301012006041000@gmail.com', NULL, '$2y$10$ZAjXrQVibw0am0ce94.CmuxR9ol98qReNTAJgpgmRBMU8sMvaNPFe', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(410, '198011212005022000', '198011212005022000@gmail.com', NULL, '$2y$10$6dyvOdMk/ly/L2frZqqrJO8Mhhith1.OMYwPp9.wGvbH3aVGWqsOq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(411, '197006062005022000', '197006062005022000@gmail.com', NULL, '$2y$10$BaCqvOQWrSBrqJvTBb/oBOcJKAF51wXwc2Ccu2H1j/L8izN0EPnAe', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(412, '197809272002121000', '197809272002121000@gmail.com', NULL, '$2y$10$0Q4A3NdvW1XEETAcqp88Ueq75PgSWH.JnXCO79hE.mbd4H7XVZJe6', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(413, '197709102006042000', '197709102006042000@gmail.com', NULL, '$2y$10$MGj22fN3zfMyK2S7Opp7ge7j2ZwSBKh6hr4vbI/C6sHaGGPmmwWqi', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(414, '198305062011011000', '198305062011011000@gmail.com', NULL, '$2y$10$5g/kuPvmI53Z4pXTZ17i.egZ0YlO3Jb4yPe4O74DsfdmQX2mseSMq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(415, '198404062011011000', '198404062011011000@gmail.com', NULL, '$2y$10$6l2NusoXP4U6JBN5P7vGb./VVEeTfQjfkCLel0P1cqXSDfQVW/bHa', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:19', '2021-05-03 06:20:19'),
+	(416, '196410101988011000', '196410101988011000@gmail.com', NULL, '$2y$10$3O7DiE5y7qaDx4lBNa9uYedKpPj1uOGCzj6fJ7a9rbL826iPPrm56', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(417, '197009181996031000', '197009181996031000@gmail.com', NULL, '$2y$10$tUOhq2fP2TakTZQqT/O1uu90r2LW2o.bX67Z8zdt9tVMnnh4bni/O', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(418, '198205212006041000', '198205212006041000@gmail.com', NULL, '$2y$10$eaV0fRJX1FI8UB85oj6Lku6j2YgDCwMk8Xs8iU73x6sajwuMLx41y', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(419, '196812311994031000', '196812311994031000@gmail.com', NULL, '$2y$10$pZ1Ws66vkJpmGVCX5k3zV.RQ5WJfONEnpEORYOE4ddlbJY4GXMw.q', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(420, '198011112010012000', '198011112010012000@gmail.com', NULL, '$2y$10$sf7m0VOebetgAAQFY89h9ujhm6cGb8U4Kn2sxWsMPyK2brQG/3Aqq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(421, '197809212010011000', '197809212010011000@gmail.com', NULL, '$2y$10$nyZQIi29ABunNnmaI6kj4O3qUHmGV.mNpX/S6J7INKB1.98r34n.a', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(422, '197810052008012000', '197810052008012000@gmail.com', NULL, '$2y$10$kjDpLak94kNrQZD66IjZjuw29e17d0vt7eT2DGafUOqoP3e5riici', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(423, '198408112010012000', '198408112010012000@gmail.com', NULL, '$2y$10$gIxZqR5Y3qeCoYkX5JX.aeDyERYbqOplRgEZw22IXnnHydlY8DEgq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(424, '198411072008032000', '198411072008032000@gmail.com', NULL, '$2y$10$NNrsbZXDhpRUBAzMEekjOeNsfnvBjhBsY.JzqCWn0bXpIwdmVxpoe', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(425, '197803162008011000', '197803162008011000@gmail.com', NULL, '$2y$10$GSPfXZ.10MVMj5sduCA2BuypjU/ZpwrMtuoaQWwfXaGTty/51S0Xu', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(426, '198106202010011000', '198106202010011000@gmail.com', NULL, '$2y$10$QcMiYFgPfmnziyeLBf/bA.GAr0SiKSHKMp4CO81l1ZLhTBx.ATeXq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(427, '19857142006021000', '19857142006021000@gmail.com', NULL, '$2y$10$WNoznze5SgpyadWmzN4BoeV9dy9U2jG7mE8IUKBgSmOBOyViUvVeC', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(428, '197312152009011000', '197312152009011000@gmail.com', NULL, '$2y$10$/5vpojTXJ1eya3smz/bbdu6qjBuOT6DSNIXl145xt8Bzuy6rOzpAi', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(429, '197902222009012000', '197902222009012000@gmail.com', NULL, '$2y$10$csWR54TcTbJz3Mr2BZeGIeVR.B0YORheWHSZcVtsMyUlVRdm6qQKO', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(430, '198111022009012000', '198111022009012000@gmail.com', NULL, '$2y$10$EeB.HzP4WYFPac4MWTR.1eyljl/0.k72drg6GHVHAOxQPncjXsO1i', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(431, '197905022009042000', '197905022009042000@gmail.com', NULL, '$2y$10$1BtdBGiUTC0zMjrF22ynV.mzlMljInCFqRvFATe4h3GkcxhlQZAJm', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:20', '2021-05-03 06:20:20'),
+	(432, '198304182009042000', '198304182009042000@gmail.com', NULL, '$2y$10$VsejKVO/elgZct0WqlUWau6eGyLTW1JZYCsfIq2pN62MK4bF6OZYy', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(433, '198510222010012000', '198510222010012000@gmail.com', NULL, '$2y$10$gF4hgniNXfzui8s2QEspnO.FxVQTU32l0elqwd51.mbQ64ax7W/Em', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(434, '197805152010011000', '197805152010011000@gmail.com', NULL, '$2y$10$o4k3tcurLAHHwtWlpLGYk.dB0AoCRy./bLUSphHRfbpXLNnkgn2nG', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(435, '198301122011011000', '198301122011011000@gmail.com', NULL, '$2y$10$e9kjFOeaDhKhY8Xze05lkO29RPk7Vqo7dBTbUjf2z0JFS.5LEtRHG', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(436, '198203102010012000', '198203102010012000@gmail.com', NULL, '$2y$10$yYOmrKPU0DtKJrlLQzVDV.5FZO6Edv2Loxz37XSiTGg.XAE6PDr9e', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(437, '198402152011012000', '198402152011012000@gmail.com', NULL, '$2y$10$EI9f3MRdIRSag5oI1ZJ/metvZNy.cvajcrpfNnGObIiyjxU9M6Wgy', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(438, '198209222011012000', '198209222011012000@gmail.com', NULL, '$2y$10$pQcr3wTDWz83rAo8Qc1Vx.LTt3cILEkENbsKUmC0PaYgI9WcJY5lm', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(439, '196411021986032000', '196411021986032000@gmail.com', NULL, '$2y$10$X0M2j5iXRNQE.S3J4ptX3.z8yfcxHSfPd8GU2sPqHuFGgMLnBy/UG', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(440, '196310111985031000', '196310111985031000@gmail.com', NULL, '$2y$10$witty5okGDY9MMHH/fK0HeEcW4e74jKMngiAedzCNB92u7Reiy7gC', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(441, '197212122007012000', '197212122007012000@gmail.com', NULL, '$2y$10$Ya59gsCobfd6YRJszK04HOBXdgYZTqzAA.h9pia2XCW8KsfJgSpFq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(442, '198103172010012000', '198103172010012000@gmail.com', NULL, '$2y$10$lC.ugJwXi5PWkMpQL0jREuylZv.5FJs4cs3At5cURFcMdTJIVTGhS', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(443, '198304192010012000', '198304192010012000@gmail.com', NULL, '$2y$10$/WRzJDiCkYuPYhZlGu0tTO1jpRR3h2gwciI9tThdiiAk6H.h7czDW', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(444, '198705132011012000', '198705132011012000@gmail.com', NULL, '$2y$10$FrU6bFOnTEuhTWTTAjg2Ye4a45c0gcLrvm8jYW0KeXxNMWHN.xW2C', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(445, '198503262011012000', '198503262011012000@gmail.com', NULL, '$2y$10$d/shzwL/8trev5d1d8mV0O6mXBLFVNBF2vIyS3HWSFxG/l2U/TaDq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(446, '198010132009011000', '198010132009011000@gmail.com', NULL, '$2y$10$lOzyNZJAZKjd.QVOTAZCheMcwgLjSoBVtRxFcRpCq9EH/DcxyrYza', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:21', '2021-05-03 06:20:21'),
+	(447, '197911112009011000', '197911112009011000@gmail.com', NULL, '$2y$10$CEeht3pAvBi1juRKHxmyxu3WRSQ28RHkAe4V3O7Z5duFy5kiJzFOO', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(448, '196608192006042000', '196608192006042000@gmail.com', NULL, '$2y$10$vl8YDOJudCzQW2.5z9Sup.TW0uVq7pIVwA44fkBn7ZSZr1mUmOwAa', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(449, '196306101994031000', '196306101994031000@gmail.com', NULL, '$2y$10$82ATY4clUZ252jI4VuaF9eCPhqui/n3VH3S5tMqMyZ9SsBqqS31lS', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(450, '198509252009012000', '198509252009012000@gmail.com', NULL, '$2y$10$dYeuSia6hfwGgg4STZTnruYPPdSwxpasHhOQm9I76EIhMkeujUe4i', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(451, '197806032005021000', '197806032005021000@gmail.com', NULL, '$2y$10$v2LHBj7Yq1aT1pXM3k6cvupCJJfKkj/8j43EdZQWthwU43PA03q06', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(452, '197512082007012000', '197512082007012000@gmail.com', NULL, '$2y$10$iI5W1fjQXSXg8ieLVnpifOyjKw46.MC2/mPAb8A/U7FztYyZO/yZy', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(453, '198412062014032000', '198412062014032000@gmail.com', NULL, '$2y$10$L8k/0MxbUIbFcA17EccecOKXXi4W/UjhWUenbzYNrJW7NfWSQoaH6', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(454, '198702202010012000', '198702202010012000@gmail.com', NULL, '$2y$10$nXQ36eqS2DNFJTxOan9eH.nP6PGJ1wdjyDlg12mzknvDs8ALE.7JK', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(455, '197710262007122000', '197710262007122000@gmail.com', NULL, '$2y$10$TM4Bz72yn1GJY97rGRc.MuGwjbSmsmkLiPavYMteKkNrn/mAIObR.', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(456, '196707072014082000', '196707072014082000@gmail.com', NULL, '$2y$10$yjxxys3KjuAXq1mPlDqy/OygatLN4JCEBDYONACnABvzQGLWSikKO', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(457, '197912212014082000', '197912212014082000@gmail.com', NULL, '$2y$10$hxVrOYsM0HtnM/QAG0ofAORMhYmswNWHpxDrj93f3GWM0l3F0LCmG', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(458, '198510032010011000', '198510032010011000@gmail.com', NULL, '$2y$10$mKDVz8sSol0jPxmX9ycN/u1Svqpdo/iHSLQD0dTE73uNlUEVmR5AS', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(459, '197906112007011000', '197906112007011000@gmail.com', NULL, '$2y$10$jh1RhNxyBejoOyzHBOMile8idnr/wdKJ2YWZk/Nn0.b6kAl.zYkqu', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(460, '196904012008011000', '196904012008011000@gmail.com', NULL, '$2y$10$SwnIT7RVbkHcA9jOoJ1RIuZdlKP6lUgCoFWPUcAgcFyUjmCEEBFqK', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(461, '198003112009011000', '198003112009011000@gmail.com', NULL, '$2y$10$wBtwjD2gWW3gRpcbAs6AcOWZNSCi3iW99WkQZ62hKEjgqlWU76Mwa', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(462, '196708261989032000', '196708261989032000@gmail.com', NULL, '$2y$10$d/UdYWRY/.yTkuWmsBDZsuyqGki8n6agXWV/nLWAqkrtw17.Z9rOC', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:22', '2021-05-03 06:20:22'),
+	(463, '196601101991031000', '196601101991031000@gmail.com', NULL, '$2y$10$PSHfp2pB1lC4lSGroJnF2OyDFPmN3TntvSd8NgBJW6Dt2kTQarkVa', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(464, '197503072008012000', '197503072008012000@gmail.com', NULL, '$2y$10$5YfC0NdeohGePkhMom5nyet/AF72c7NHVflVa9B0G2NGWbOo8EeFq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(465, '198504262008011000', '198504262008011000@gmail.com', NULL, '$2y$10$l9Le8hps2v.hodaKv5NHLur55Wo1lzz.HqxwuKPBs9jT8Rr7e8Hxq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(466, '197909172009011000', '197909172009011000@gmail.com', NULL, '$2y$10$Sf3wMzj6t5XGKMFUAUdUIOMmChf30umGV4JYV1oYL3/QwdcgfeiFm', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(467, '198407022014081000', '198407022014081000@gmail.com', NULL, '$2y$10$DqB.x5Ky7rgu7XkYrfLUAO2I9WUfGI5Q5RbL9eBFTPcXfjDmRJlpi', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(468, '198910182015022000', '198910182015022000@gmail.com', NULL, '$2y$10$ZSLGaMudp8xTFHhbX6eAN.O13M5g1wEXAj.z1.Cc1JMJo.tb2cVwW', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(469, '197809022014071000', '197809022014071000@gmail.com', NULL, '$2y$10$cmYcZRfuwUOvVTO0A6RddeaQ68Y.qUYFpvk7iGzU79id9RakEVcou', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(470, '198301052009012000', '198301052009012000@gmail.com', NULL, '$2y$10$hG4JfjWnDJFDRLUyPnAeHe2BI0hVTOvWEcRu0GOqM1GVNDPNPCg1C', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(471, '197409042014062000', '197409042014062000@gmail.com', NULL, '$2y$10$yjj/KyKbisFGwsjTkvCxXePAaEGXCnLwm48a84V1iufIDZyHFY6ji', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(472, '198912272015021000', '198912272015021000@gmail.com', NULL, '$2y$10$t4O.l4Lc5aPPFNbhl7NcQeCkJpitUd7KRFBZR0mYJe22m/xSFPZua', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(473, '196412312006041000', '196412312006041000@gmail.com', NULL, '$2y$10$ukTNJOFzU/WcxA39XaHLe.JoP6rqkdU0KBw7p9E3MoT2tHvp0S0Ai', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(474, '196312312007011000', '196312312007011000@gmail.com', NULL, '$2y$10$r50QXZbPFm2sDcp4/HTtTuLun4nvlUdYh/1pCfn.MeLovRAVMYdFG', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(475, '198302142008011000', '198302142008011000@gmail.com', NULL, '$2y$10$tRHOPp9Wi1FYA6SpCkApJe/RYU8Hv5PfTpbUGziYgCFg2q.dy9igq', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(476, '198201102009012000', '198201102009012000@gmail.com', NULL, '$2y$10$N2YCRZOZWghxw8Ig8CLz1Oet4q/6rxjiBod2JQvBMV0IJMfFwH.9i', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(477, '197908272011011000', '197908272011011000@gmail.com', NULL, '$2y$10$Ive5.DltQD6dyeTJm/Oiu.eX98hk6.I66QDWyD4il793eK3RUfxpW', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(478, '198306192010011000', '198306192010011000@gmail.com', NULL, '$2y$10$7tsMXps1IukrNjrYUbAEhe1/feIMw5tozNRnG9FjoRyVJE.xeHwsm', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:23', '2021-05-03 06:20:23'),
+	(479, '197412022014081000', '197412022014081000@gmail.com', NULL, '$2y$10$lTATFDzLjpcG0e.aOmtbh.rUAr.F71hqvj48ElXnAxYmzDXvzDLza', NULL, NULL, NULL, 3, NULL, '2021-05-03 06:20:24', '2021-05-03 06:20:24'),
+	(480, 'sekretariat', 'sekretariat@gmail.com', NULL, '$2y$10$.n0LAK3XUbQwbfXTiC9W9.oRChgjSsqe7ZBoEOJk/xvW9537pCReu', NULL, NULL, NULL, 2, 1, '2021-05-20 13:31:30', '2021-05-20 13:31:30'),
+	(481, 'industri_kecil2222', 'industri_kecil@gmail.com', NULL, '$2y$10$2nSvv4jMA/QZDFwsnKY.ge3EacPX/Mq0qvAoK5TZr08P.MEFkZRdy', NULL, NULL, NULL, 2, 2, '2021-05-25 10:09:35', '2021-05-25 14:45:40');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
