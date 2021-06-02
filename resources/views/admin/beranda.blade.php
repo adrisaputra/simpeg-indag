@@ -66,6 +66,7 @@
 			@elseif(Auth::user()->group==3)
 				<div class="col-lg-12 col-xs-12">
 				<!-- small box -->
+				@if($count)
 					@if($status_kehadiran[0]->kehadiran=='H')
 						<div class="small-box bg-green">
 							<div class="inner">
@@ -116,6 +117,16 @@
 							</div>
 						</div>
 					@endif
+				@else
+					<div class="small-box bg-blue">
+						<div class="inner">
+						<h3>Belum Absen</h3><br><br>
+						</div>
+						<div class="icon">
+						<i class="fa fa-user-clock"></i>
+						</div>
+					</div>
+				@endif
 				</div>
 			@endif
 			</div>

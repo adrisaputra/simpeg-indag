@@ -16,14 +16,14 @@
 			<div class="box-tools pull-left">
 				<div style="padding-top:10px">
 					@if(Auth::user()->group==1)
-						<a href="{{ url('/arsip/create') }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
+						<a href="{{ url('/'.Request::segment(1).'/create') }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
 					@endif
-					<a href="{{ url('/arsip') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
+					<a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
 				</div>
 			</div>
 			<div class="box-tools pull-right">
 				<div class="form-inline">
-					<form action="{{ url('/arsip/search') }}" method="GET">
+					<form action="{{ url('/'.Request::segment(1).'/search') }}" method="GET">
 						<div class="input-group margin">
 							<input type="text" class="form-control" name="search" placeholder="Masukkan kata kunci pencarian">
 							<span class="input-group-btn">
@@ -69,8 +69,8 @@
 						</td>
 						@if(Auth::user()->group==1)
 							<td>
-								<a href="{{ url('/arsip/edit/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
-								<a href="{{ url('/arsip/hapus/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
+								<a href="{{ url('/'.Request::segment(1).'/edit/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
+								<a href="{{ url('/'.Request::segment(1).'/hapus/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
 							</td>
 						@endif
 					</tr>

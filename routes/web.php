@@ -294,13 +294,20 @@ Route::put('/informasi_kantor/edit/{informasi_kantor}', [InformasiKantorControll
 Route::get('/informasi_kantor/detail/{informasi_kantor}', [InformasiKantorController::class, 'detail']);
 
 ## Arsip
-Route::get('/arsip', [ArsipController::class, 'index']);
-Route::get('/arsip/search', [ArsipController::class, 'search']);
-Route::get('/arsip/create', [ArsipController::class, 'create']);
-Route::post('/arsip', [ArsipController::class, 'store']);
-Route::get('/arsip/edit/{arsip}', [ArsipController::class, 'edit']);
-Route::put('/arsip/edit/{arsip}', [ArsipController::class, 'update']);
-Route::get('/arsip/hapus/{arsip}',[ArsipController::class, 'delete']);
+Route::get('/arsip_surat_masuk', [ArsipController::class, 'index']);
+Route::get('/arsip_surat_keluar', [ArsipController::class, 'index']);
+Route::get('/arsip_surat_masuk/search', [ArsipController::class, 'search']);
+Route::get('/arsip_surat_keluar/search', [ArsipController::class, 'search']);
+Route::get('/arsip_surat_masuk/create', [ArsipController::class, 'create']);
+Route::get('/arsip_surat_keluar/create', [ArsipController::class, 'create']);
+Route::post('/arsip_surat_masuk', [ArsipController::class, 'store']);
+Route::post('/arsip_surat_keluar', [ArsipController::class, 'store']);
+Route::get('/arsip_surat_masuk/edit/{arsip}', [ArsipController::class, 'edit']);
+Route::get('/arsip_surat_keluar/edit/{arsip}', [ArsipController::class, 'edit']);
+Route::put('/arsip_surat_masuk/edit/{arsip}', [ArsipController::class, 'update']);
+Route::put('/arsip_surat_keluar/edit/{arsip}', [ArsipController::class, 'update']);
+Route::get('/arsip_surat_masuk/hapus/{arsip}',[ArsipController::class, 'delete']);
+Route::get('/arsip_surat_keluar/hapus/{arsip}',[ArsipController::class, 'delete']);
 
 ## Notulen Rapat
 Route::get('/notulen', [NotulenController::class, 'index']);

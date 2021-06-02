@@ -22,9 +22,9 @@ class HomeController extends Controller
             $cpns = Pegawai::where('status', 'CPNS')->where('status_hapus', 0)->count();
             return view('admin.beranda', compact('pegawai','pns','cpns'));
         } else if(Auth::user()->group==3){
+            $count = Absen::where('nip', Auth::user()->name)->where('tanggal', date('Y-m-d'))->count();
             $status_kehadiran = Absen::where('nip', Auth::user()->name)->where('tanggal', date('Y-m-d'))->get();
-            $status_kehadiran->toArray();
-            return view('admin.beranda', compact('status_kehadiran'));
+            return view('admin.beranda', compact('count','status_kehadiran'));
         }
         
     }

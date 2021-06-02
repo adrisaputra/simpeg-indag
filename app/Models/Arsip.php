@@ -10,6 +10,7 @@ class Arsip extends Model
      // use HasFactory;
 	protected $table = 'arsip_tbl';
 	protected $fillable =[
+        'jenis',
         'no_surat',
         'perihal',
         'tanggal',

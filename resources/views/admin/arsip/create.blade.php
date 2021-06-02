@@ -16,7 +16,7 @@
 			<h3 class="box-title">Tambah {{ __($title) }}</h3>
 		</div>
 		
-		<form action="{{ url('/arsip') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+		<form action="{{ url('/'.Request::segment(1)) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
 		{{ csrf_field() }}
 			<div class="box-body">
 				<div class="col-lg-12">
@@ -65,7 +65,7 @@
 							<div>
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Simpan</button>
 								<button type="reset" class="btn btn-danger btn-flat btn-sm" title="Reset Data"> Reset</button>
-								<a href="{{ url('/arsip') }}" class="btn btn-warning btn-flat btn-sm" title="Kembali">Kembali</a>
+								<a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning btn-flat btn-sm" title="Kembali">Kembali</a>
 							</div>
 						</div>
 					</div>
