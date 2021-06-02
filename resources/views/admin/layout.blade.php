@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('/upload/logo/logo.png') }}" rel="icon">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap/dist/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/font-awesome/css/all.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/Ionicons/css/ionicons.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap-daterangepicker/daterangepicker.css') }}">
@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/fullcalendar/dist/fullcalendar.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/fullcalendar/dist/fullcalendar.print.css') }}" media="print">
         
-        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-dist/css/AdminLTE.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-dist/css/AdminLTE.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-dist/css/skins/_all-skins.min.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <link href="https://fonts.googleapis.com/css?family=Anton|Permanent+Marker|Quicksand" rel="stylesheet">
@@ -102,7 +102,7 @@
                 </a>
                 
                 <nav class="navbar navbar-static-top">
-                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <a href="#" class="sidebar-toggle fa fa-bars" data-toggle="push-menu" role="button" style=" float: left;background-color: transparent;background-image: none;padding: 15px 15px;">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -160,7 +160,7 @@
                         <li class="header">MAIN NAVIGATION</li>
 
                         @if(Auth::user()->group==1)
-                            <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                            <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
                             <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*','rekapitulasi_jumlah_pegawai_bidang*','rekapitulasi_esselon*','rekapitulasi_gender_bidang*','rekapitulasi_golongan*',
                             'rekapitulasi_pendidikan*','rekapitulasi_asn_aktif*','rekapitulasi_asn_non_aktif*','rekapitulasi_cuti*','rekapitulasi_pensiunan*','rekapitulasi_pensiunan*')) ? 'active' : '' }}">
                                 <a href="#"> <i class="fa fa-database"></i> <span>Rekapitulasi</span>
@@ -169,73 +169,73 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai')}}"><i class="fa fa-circle-o"></i> Jumlah Pegawai</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai_bidang')}}"><i class="fa fa-circle-o"></i> Jumlah Pegawai Bidang</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_esselon*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_esselon')}}"><i class="fa fa-circle-o"></i> Esselon</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_gender_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_gender_bidang')}}"><i class="fa fa-circle-o"></i> Gender Per Bidang</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_golongan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_golongan')}}"><i class="fa fa-circle-o"></i> Pangkat/Golongan</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_asn_aktif*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_asn_aktif')}}"><i class="fa fa-circle-o"></i> ASN Aktif</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_asn_non_aktif*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_asn_non_aktif')}}"><i class="fa fa-circle-o"></i> ASN Tidak Aktif</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_cuti*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_cuti')}}"><i class="fa fa-circle-o"></i> Cuti</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_pensiunan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_pensiunan')}}"><i class="fa fa-circle-o"></i> Pensiunan</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_pendidikan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_pendidikan')}}"><i class="fa fa-circle-o"></i> Pendidikan</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai')}}"><i class="fa fa-circle-notch"></i> Jumlah Pegawai</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai_bidang')}}"><i class="fa fa-circle-notch"></i> Jumlah Pegawai Bidang</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_esselon*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_esselon')}}"><i class="fa fa-circle-notch"></i> Esselon</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_gender_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_gender_bidang')}}"><i class="fa fa-circle-notch"></i> Gender Per Bidang</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_golongan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_golongan')}}"><i class="fa fa-circle-notch"></i> Pangkat/Golongan</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_asn_aktif*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_asn_aktif')}}"><i class="fa fa-circle-notch"></i> ASN Aktif</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_asn_non_aktif*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_asn_non_aktif')}}"><i class="fa fa-circle-notch"></i> ASN Tidak Aktif</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_cuti*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_cuti')}}"><i class="fa fa-circle-notch"></i> Cuti</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_pensiunan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_pensiunan')}}"><i class="fa fa-circle-notch"></i> Pensiunan</a></li>
+                                    <li class="{{ (request()->is('rekapitulasi_pendidikan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_pendidikan')}}"><i class="fa fa-circle-notch"></i> Pendidikan</a></li>
                                 </ul>
                             </li>  
-                            <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}"><a href="{{ url('pegawai')}}"><i class="fa fa-circle-o"></i> <span>Tayangan Data</span></a></li>
-                            <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}"><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-o"></i> <span>Informasi Kantor</span></a></li>
-                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}"><a href="{{ url('agenda')}}"><i class="fa fa-circle-o"></i> <span>Agenda Kerja</span></a></li>
-                            <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-share"></i> <span>Informasi</span>
-                                <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li class="treeview">
-                                <a href="#"><i class="fa fa-circle-o"></i> Pengumuman
+                            <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}"><a href="{{ url('pegawai')}}"><i class="fa fa-circle-notch"></i> <span>Tayangan Data</span></a></li>
+                            <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}"><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-notch"></i> <span>Informasi Kantor</span></a></li>
+                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}"><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Agenda Kerja</span></a></li>
+                            <li class="treeview {{ (request()->is('notulen*','arsip*')) ? 'active' : '' }}">
+                                <a href="#">
+                                    <i class="fa fa-share"></i> <span>Informasi</span>
                                     <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Diklat</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Peraturan Kepegawaian</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Ujian Dinas</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Ujian Kenaikan Pangkat</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penyesuaian Ijazah</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Diklat PIM IV, III, II</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Kenaikan Gaji Berkala</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Pensiun</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Jadwal Diklat</a></li>
+                                    <li class="treeview">
+                                    <a href="#"><i class="fa fa-circle-notch"></i> Pengumuman
+                                        <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Penyesuaian Ijazah</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Jadwal Diklat</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-notch"></i> Notulensi Rapat</a></li>
+                                    <li class="{{ (request()->is('arsip*')) ? 'active' : '' }}"><a href="{{ url('arsip') }}"><i class="fa fa-circle-notch"></i> Arsip</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Tutorial Aplikasi</a></li>
+                                    <li class="treeview">
+                                    <a href="#"><i class="fa fa-circle-notch"></i> Pengusulan lainnya
+                                        <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
+                                    </ul>
+                                    </li>
                                 </ul>
-                                </li>
-                                <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-o"></i> Notulensi Rapat</a></li>
-                                <li class="{{ (request()->is('arsip*')) ? 'active' : '' }}"><a href="{{ url('arsip') }}"><i class="fa fa-circle-o"></i> Arsip</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Tutorial Aplikasi</a></li>
-                                <li class="treeview">
-                                <a href="#"><i class="fa fa-circle-o"></i> Pengusulan lainnya
-                                    <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penghargaan</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penjatuhan Hukuman</a></li>
-                                </ul>
-                                </li>
-                            </ul>
                             </li>
-                            <li class="{{ (request()->is('absen*')) ? 'active' : '' }}""><a href="{{ url('absen')}}"><i class="fa fa-circle-o"></i> <span>Absensi</span></a></li>
+                            <li class="{{ (request()->is('absen*')) ? 'active' : '' }}""><a href="{{ url('absen')}}"><i class="fa fa-circle-notch"></i> <span>Absensi</span></a></li>
                             
                             <li class="header">CORE BASE</li>
                             <li class="{{ (request()->is('user*')) ? 'active' : '' }}""><a href="{{ url('user')}}"><i class="fa fa-user"></i> <span>User</span></a></li>
                             
                         @elseif(Auth::user()->group==3)
                             
-                            <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                            <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}""><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-o"></i> <span>Informasi Kantor</span></a></li>
-                            <li class="treeview">
+                            <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                            <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}""><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-notch"></i> <span>Informasi Kantor</span></a></li>
+                            <li class="treeview {{ (request()->is('notulen*','arsip*')) ? 'active' : '' }}">
                             <a href="#">
                                 <i class="fa fa-share"></i> <span>Informasi</span>
                                 <span class="pull-right-container">
@@ -244,40 +244,40 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li class="treeview">
-                                <a href="#"><i class="fa fa-circle-o"></i> Pengumuman
+                                <a href="#"><i class="fa fa-circle-notch"></i> Pengumuman
                                     <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Diklat</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Peraturan Kepegawaian</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Ujian Dinas</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Ujian Kenaikan Pangkat</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penyesuaian Ijazah</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Diklat PIM IV, III, II</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Kenaikan Gaji Berkala</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Pensiun</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Jadwal Diklat</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Penyesuaian Ijazah</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Jadwal Diklat</a></li>
                                 </ul>
                                 </li>
-                                <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-o"></i> Notulensi Rapat</a></li>
-                                <li class="{{ (request()->is('arsip*')) ? 'active' : '' }}"><a href="{{ url('arsip') }}"><i class="fa fa-circle-o"></i> Arsip</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Tutorial Aplikasi</a></li>
+                                <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-notch"></i> Notulensi Rapat</a></li>
+                                <li class="{{ (request()->is('arsip*')) ? 'active' : '' }}"><a href="{{ url('arsip') }}"><i class="fa fa-circle-notch"></i> Arsip</a></li>
+                                <li><a href="#"><i class="fa fa-circle-notch"></i> Tutorial Aplikasi</a></li>
                                 <li class="treeview">
-                                <a href="#"><i class="fa fa-circle-o"></i> Pengusulan lainnya
+                                <a href="#"><i class="fa fa-circle-notch"></i> Pengusulan lainnya
                                     <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penghargaan</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penjatuhan Hukuman</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
                                 </ul>
                                 </li>
                             </ul>
                             </li>
-                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-o"></i> <span>Agenda Kerja</span></a></li>
+                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Agenda Kerja</span></a></li>
                             
                         @endif
 
