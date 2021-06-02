@@ -164,7 +164,14 @@
 								</ul>
 							</div><br>
 							<a href="{{ url('/pegawai/edit/'.$v->id ) }}" class="btn btn-xs btn-warning btn-block">Edit</a>
-							<a href="{{ url('/pegawai/hapus/'.$v->id ) }}" class="btn btn-xs btn-danger btn-block" onclick="return confirm('Anda Yakin ?');">Hapus</a>
+							<div class="btn-group" style="display: block;padding-top:5px">
+								<button type="button" class="btn btn-xs btn-danger btn-block dropdown-toggle" data-toggle="dropdown">Hapus</button>
+								<ul class="dropdown-menu">
+									<li><a href="{{ url('pegawai/pensiun/'.$v->id) }}" onclick="return confirm('Anda Yakin ?');">Pensiun</a></li>
+									<li><a href="{{ url('pegawai/meninggal/'.$v->id) }}" onclick="return confirm('Anda Yakin ?');">Meninggal</a></li>
+									<li><a href="{{ url('pegawai/pindah_tugas/'.$v->id) }}" onclick="return confirm('Anda Yakin ?');">Pindah Tugas (Luar)</a></li>
+								</ul>
+							</div><br>
 						</td>
 						@endif
 					</tr>

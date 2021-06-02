@@ -26,7 +26,7 @@ class RekapitulasiController extends Controller
     {
         $pria = Pegawai::where('jenis_kelamin','Pria')->where('status_hapus',0)->count();
         $wanita = Pegawai::where('jenis_kelamin','Wanita')->where('status_hapus',0)->count();
-        $jumlah_pegawai = Pegawai::count();
+        $jumlah_pegawai = Pegawai::where('status_hapus',0)->count();
         return view('admin.rekapitulasi.jumlah_pegawai',compact('pria','wanita','jumlah_pegawai'));
     }
     
@@ -281,7 +281,8 @@ class RekapitulasiController extends Controller
     {
         $pria = Pegawai::where('jenis_kelamin','Pria')->where('status_hapus','>',0)->count();
         $wanita = Pegawai::where('jenis_kelamin','Wanita')->where('status_hapus','>',0)->count();
-        return view('admin.rekapitulasi.asn_non_aktif',compact('pria','wanita'));
+        $asn_non_aktif = Pegawai::where('status_hapus',">",0)->get();
+        return view('admin.rekapitulasi.asn_non_aktif',compact('pria','wanita','asn_non_aktif'));
     }
     
     public function rekapitulasi_cuti()

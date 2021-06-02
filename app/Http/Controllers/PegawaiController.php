@@ -28,9 +28,9 @@ class PegawaiController extends Controller
     public function index()
     {
         if(Auth::user()->group==1){
-            $pegawai = Pegawai::where('status_hapus', 0)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+            $pegawai = Pegawai::where('status_hapus', 0)->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
         } else if(Auth::user()->group==2){
-            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
         }
         
         $i=0;
@@ -52,11 +52,23 @@ class PegawaiController extends Controller
     {
         $pegawai = $request->get('search');
         if(Auth::user()->group==1){
-            $pegawai = Pegawai::where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+            $pegawai = Pegawai::where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
         } else if(Auth::user()->group==2){
-            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
         }
-        return view('admin.pegawai.index',compact('pegawai'));
+        
+        $i=0;
+        foreach($pegawai as $v){ 
+            $absen = DB::table('absen_tbl')->where('pegawai_id',$v->id)->where('tanggal',date('Y-m-d'))->get()->toArray();
+            if(count($absen)>0){
+                $status_kehadiran[$i] = $absen[0]->kehadiran;
+            } else {
+                $status_kehadiran[$i] = "Belum Absen";       
+            } 
+            $i++;
+        }	
+
+        return view('admin.pegawai.index',compact('pegawai','status_kehadiran'));
     }
 	
     ## Tampilkan Form Create
@@ -437,54 +449,13 @@ class PegawaiController extends Controller
     ## Hapus Data
     public function delete(Pegawai $pegawai)
     {
-        // $id = $pegawai->id;
-        // if($pegawai->foto_formal){
-        //     $image_path = public_path().'/storage/upload/foto_formal_pegawai/thumbnail/'.$pegawai->foto_formal;
-        //     $image_path2 = public_path().'/storage/upload/foto_formal_pegawai/'.$pegawai->foto_formal;
-        //     unlink($image_path);
-        //     unlink($image_path2);
-        // }
-        // if($pegawai->foto_kedinasan){
-        //     $image_path3 = public_path().'/storage/upload/foto_kedinasan_pegawai/thumbnail/'.$pegawai->foto_kedinasan;
-        //     $image_path4 = public_path().'/storage/upload/foto_kedinasan_pegawai/'.$pegawai->foto_kedinasan;
-        //     unlink($image_path3);
-        //     unlink($image_path4);
-        // }
-        // if($pegawai->ktp){
-        //     $image_path5 = public_path().'/storage/upload/ktp/thumbnail/'.$pegawai->ktp;
-        //     $image_path6 = public_path().'/storage/upload/ktp/'.$pegawai->ktp;
-        //     unlink($image_path5);
-        //     unlink($image_path6);
-        // }
-        // if($pegawai->bpjs){
-        //     $image_path7 = public_path().'/storage/upload/bpjs/thumbnail/'.$pegawai->bpjs;
-        //     $image_path8 = public_path().'/storage/upload/bpjs/'.$pegawai->bpjs;
-        //     unlink($image_path7);
-        //     unlink($image_path8);
-        // }
-        // if($pegawai->npwp){
-        //     $image_path9 = public_path().'/storage/upload/npwp/thumbnail/'.$pegawai->npwp;
-        //     $image_path10 = public_path().'/storage/upload/npwp/'.$pegawai->npwp;
-        //     unlink($image_path9);
-        //     unlink($image_path10);
-        // }
-        // if($pegawai->karpeg){
-        //     $image_path11 = public_path().'/storage/upload/karpeg/thumbnail/'.$pegawai->karpeg;
-        //     $image_path12 = public_path().'/storage/upload/karpeg/'.$pegawai->karpeg;
-        //     unlink($image_path11);
-        //     unlink($image_path12);
-        // }
-        // if($pegawai->karsu){
-        //     $image_path13 = public_path().'/storage/upload/karsu/thumbnail/'.$pegawai->karsu;
-        //     $image_path14 = public_path().'/storage/upload/karsu/'.$pegawai->karsu;
-        //     unlink($image_path13);
-        //     unlink($image_path14);
-        // }
-        // $pegawai->delete();
-        
-        // DB::table('users')->where('name', $pegawai->nip)->delete();
-        
-        $pegawai->status_hapus = 1;
+        if(Request()->segment(2)=='pensiun'){
+            $pegawai->status_hapus = 1;
+        } else if(Request()->segment(1)=='meninggal'){
+            $pegawai->status_hapus = 2;
+        } else if(Request()->segment(2)=='pindah_tugas'){
+            $pegawai->status_hapus = 3;
+        } 
         $pegawai->user_id = Auth::user()->id;
     	$pegawai->save();
 

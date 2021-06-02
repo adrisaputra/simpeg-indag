@@ -64,6 +64,14 @@
 									<option value="{{ $v->id }}">{{ $v->nama_pegawai }}</option>
 								@endforeach
 							</select>
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('uraian')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Uraian Kegiatan') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-10">
+							@if ($errors->has('uraian'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('uraian') }}</label>@endif
+							<textarea class="form-control" name="uraian">{{ old('uraian') }}</textarea>
 							
 							<div style="padding-top:10px">
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Simpan</button>

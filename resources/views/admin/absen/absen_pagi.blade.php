@@ -12,10 +12,28 @@
 
 	<section class="content">
 	<div class="box">
-		<div class="box-header with-border">
-			<h3 class="box-title">Edit Absensi</h3>
-		</div>
 		
+		<div class="box-header with-border">
+			<div class="box-tools pull-left">
+				<div style="padding-top:10px"> 
+					<a href="{{ url('/absen/absen_pagi/'.Request::segment(3)) }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>   
+				</div>
+			</div>
+			<div class="box-tools pull-right">
+				<div class="form-inline">
+					<form action="{{ url('/absen/absen_pagi_search/'.Request::segment(3)) }}" method="GET">
+						<div class="input-group margin">
+							<input type="hidden" class="form-control" name="tanggal" value="{{ Request::segment(3) }} ">
+							<input type="text" class="form-control" name="search" placeholder="Masukkan kata kunci pencarian">
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-danger btn-flat">cari</button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
 		<form action="{{ url('/absen/edit') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
 		{{ csrf_field() }}
 		<input type="hidden" name="_method" value="PUT">
@@ -33,13 +51,15 @@
 						</tr>
 						@foreach($absen as $v)
 						<tr>
-							<td>{{ $loop->index + 1 }}</td>
+							<td>{{ ($absen ->currentpage()-1) * $absen ->perpage() + $loop->index + 1 }}</td>
 							<td>{{ $v->nip }}</td>
 							<td>{{ $v->nama_pegawai }}</td>
 							<td>
 								<input type="hidden" class="form-control" name="pegawai_id[]" value="{{ $v->pegawai_id }}">
 								<input type="hidden" class="form-control" name="nip[]" value="{{ $v->nip }}">
 								<input type="hidden" class="form-control" name="nama_pegawai[]" value="{{ $v->nama_pegawai }}">
+								<input type="hidden" class="form-control" name="bidang_id[]" value="{{ $v->bidang_id }}">
+								<input type="hidden" class="form-control" name="jabatan_id[]" value="{{ $v->jabatan_id }}">
 								<input type="hidden" class="form-control" name="tanggal[]" value="{{ $v->tanggal }}">
 								
 								@php
@@ -84,6 +104,8 @@
 							</td>
 							
 							<td>
+							
+								<input type="hidden" class="form-control" name="jam_pulang[]" value="{{ $hadir[0]->jam_pulang }}">
 								@if($hadir[0]->kehadiran=="S")
 									<span id='a{{ $loop->index+1 }}' style='display:display;'>
 								@elseif($hadir[0]->kehadiran=="I")
@@ -100,12 +122,10 @@
 								@else
 									<span id='b{{ $loop->index+1 }}' style='display:none;'>
 								@endif
-									Jam Datang: <br>
+									Absen Pagi: <br>
 									<input type="text" class="form-control timepicker" name="jam_datang[]" value="{{ $hadir[0]->jam_datang }}">
-									@if(date('H:i:s')>="16:00:00" && date('H:i:s')<="17:00:00")
-									    <br>Jam Pulang: <br>
-									    <input type="text" class="form-control timepicker" name="jam_pulang[]" value="{{ $hadir[0]->jam_pulang }}">
-									@endif
+									<!-- @if(date('H:i:s')>="16:00:00" && date('H:i:s')<="17:00:00") -->
+									<!-- @endif -->
 								</span>
 								
 							</td>
@@ -137,6 +157,10 @@
 						</tr>
 					</table>
 
+				</div>
+				<div class="box-footer">
+					<!-- PAGINATION -->
+					<div class="float-right">{{ $absen->appends(Request::only('search'))->links() }}</div>
 				</div>
 			</div>
 		</form>

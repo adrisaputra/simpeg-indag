@@ -29,6 +29,9 @@ use App\Http\Controllers\RiwayatPajakController;
 use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\InformasiKantorController;
+use App\Http\Controllers\ArsipController;
+use App\Http\Controllers\NotulenController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -65,7 +68,7 @@ Route::get('/pegawai/create', [PegawaiController::class, 'create']);
 Route::post('/pegawai', [PegawaiController::class, 'store']);
 Route::get('/pegawai/edit/{pegawai}', [PegawaiController::class, 'edit']);
 Route::put('/pegawai/edit/{pegawai}', [PegawaiController::class, 'update']);
-Route::get('/pegawai/hapus/{pegawai}',[PegawaiController::class, 'delete']);
+Route::get('/pegawai/pensiun/{pegawai}',[PegawaiController::class, 'delete']);
 Route::post('/pegawai/import_excel', [PegawaiController::class, 'import_excel']);
 
 ## 
@@ -278,9 +281,35 @@ Route::get('/absen/search', [AbsenController::class, 'search']);
 Route::get('/absen/create', [AbsenController::class, 'create']);
 Route::post('/absen', [AbsenController::class, 'store']);
 Route::get('/buat_absen', [AbsenController::class, 'buat_absen']);
-Route::get('/absen/edit/{tanggal}', [AbsenController::class, 'edit']);
+Route::get('/absen/absen_pagi/{tanggal}', [AbsenController::class, 'absen_pagi']);
+Route::get('/absen/absen_pagi_search/{tanggal}', [AbsenController::class, 'absen_pagi_search']);
+Route::get('/absen/absen_sore/{tanggal}', [AbsenController::class, 'absen_sore']);
 Route::put('/absen/edit', [AbsenController::class, 'update']);
 Route::get('/absen/hapus/{absen}',[AbsenController::class, 'delete']);
+
+## Informasi Kantor
+Route::get('/informasi_kantor', [InformasiKantorController::class, 'index']);
+Route::get('/informasi_kantor/edit/{informasi_kantor}', [InformasiKantorController::class, 'edit']);
+Route::put('/informasi_kantor/edit/{informasi_kantor}', [InformasiKantorController::class, 'update']);
+Route::get('/informasi_kantor/detail/{informasi_kantor}', [InformasiKantorController::class, 'detail']);
+
+## Arsip
+Route::get('/arsip', [ArsipController::class, 'index']);
+Route::get('/arsip/search', [ArsipController::class, 'search']);
+Route::get('/arsip/create', [ArsipController::class, 'create']);
+Route::post('/arsip', [ArsipController::class, 'store']);
+Route::get('/arsip/edit/{arsip}', [ArsipController::class, 'edit']);
+Route::put('/arsip/edit/{arsip}', [ArsipController::class, 'update']);
+Route::get('/arsip/hapus/{arsip}',[ArsipController::class, 'delete']);
+
+## Notulen Rapat
+Route::get('/notulen', [NotulenController::class, 'index']);
+Route::get('/notulen/search', [NotulenController::class, 'search']);
+Route::get('/notulen/create', [NotulenController::class, 'create']);
+Route::post('/notulen', [NotulenController::class, 'store']);
+Route::get('/notulen/edit/{notulen}', [NotulenController::class, 'edit']);
+Route::put('/notulen/edit/{notulen}', [NotulenController::class, 'update']);
+Route::get('/notulen/hapus/{notulen}',[NotulenController::class, 'delete']);
 
 ## User
 Route::get('/user', [UserController::class, 'index']);

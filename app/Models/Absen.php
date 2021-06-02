@@ -14,6 +14,7 @@ class Absen extends Model
         'nip',
         'nama_pegawai',
         'bidang_id',
+        'jabatan_id',
         'kehadiran',
         'keterangan',
         'jam_datang',

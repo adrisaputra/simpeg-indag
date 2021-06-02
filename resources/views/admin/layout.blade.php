@@ -181,9 +181,9 @@
                                     <li class="{{ (request()->is('rekapitulasi_pendidikan*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_pendidikan')}}"><i class="fa fa-circle-o"></i> Pendidikan</a></li>
                                 </ul>
                             </li>  
-                            <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}""><a href="{{ url('pegawai')}}"><i class="fa fa-circle-o"></i> <span>Tayangan Data</span></a></li>
-                            <li class="{{ (request()->is('informasi*')) ? 'active' : '' }}""><a href="{{ url('informasi')}}"><i class="fa fa-circle-o"></i> <span>Informasi Kantor</span></a></li>
-                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-o"></i> <span>Agenda Kerja</span></a></li>
+                            <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}"><a href="{{ url('pegawai')}}"><i class="fa fa-circle-o"></i> <span>Tayangan Data</span></a></li>
+                            <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}"><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-o"></i> <span>Informasi Kantor</span></a></li>
+                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}"><a href="{{ url('agenda')}}"><i class="fa fa-circle-o"></i> <span>Agenda Kerja</span></a></li>
                             <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-share"></i> <span>Informasi</span>
@@ -205,12 +205,13 @@
                                     <li><a href="#"><i class="fa fa-circle-o"></i> Ujian Kenaikan Pangkat</a></li>
                                     <li><a href="#"><i class="fa fa-circle-o"></i> Penyesuaian Ijazah</a></li>
                                     <li><a href="#"><i class="fa fa-circle-o"></i> Diklat PIM IV, III, II</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Kenaikan Gaji Berkala</a></li>
                                     <li><a href="#"><i class="fa fa-circle-o"></i> Pensiun</a></li>
                                     <li><a href="#"><i class="fa fa-circle-o"></i> Jadwal Diklat</a></li>
                                 </ul>
                                 </li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Notulensi Rapat</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Arsip</a></li>
+                                <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-o"></i> Notulensi Rapat</a></li>
+                                <li class="{{ (request()->is('arsip*')) ? 'active' : '' }}"><a href="{{ url('arsip') }}"><i class="fa fa-circle-o"></i> Arsip</a></li>
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Tutorial Aplikasi</a></li>
                                 <li class="treeview">
                                 <a href="#"><i class="fa fa-circle-o"></i> Pengusulan lainnya
@@ -225,15 +226,59 @@
                                 </li>
                             </ul>
                             </li>
+                            <li class="{{ (request()->is('absen*')) ? 'active' : '' }}""><a href="{{ url('absen')}}"><i class="fa fa-circle-o"></i> <span>Absensi</span></a></li>
+                            
                             <li class="header">CORE BASE</li>
                             <li class="{{ (request()->is('user*')) ? 'active' : '' }}""><a href="{{ url('user')}}"><i class="fa fa-user"></i> <span>User</span></a></li>
                             
-                        @elseif(Auth::user()->group==2)
+                        @elseif(Auth::user()->group==3)
                             
                             <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                            <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}""><a href="{{ url('pegawai')}}"><i class="fa fa-circle-o"></i> <span>Tayangan Data</span></a></li>
-                            <li class="{{ (request()->is('absen*')) ? 'active' : '' }}""><a href="{{ url('absen')}}"><i class="fa fa-circle-o"></i> <span>Absensi</span></a></li>
-                        
+                            <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}""><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-o"></i> <span>Informasi Kantor</span></a></li>
+                            <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-share"></i> <span>Informasi</span>
+                                <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="treeview">
+                                <a href="#"><i class="fa fa-circle-o"></i> Pengumuman
+                                    <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Diklat</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Peraturan Kepegawaian</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Ujian Dinas</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Ujian Kenaikan Pangkat</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penyesuaian Ijazah</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Diklat PIM IV, III, II</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Kenaikan Gaji Berkala</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Pensiun</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Jadwal Diklat</a></li>
+                                </ul>
+                                </li>
+                                <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-o"></i> Notulensi Rapat</a></li>
+                                <li class="{{ (request()->is('arsip*')) ? 'active' : '' }}"><a href="{{ url('arsip') }}"><i class="fa fa-circle-o"></i> Arsip</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Tutorial Aplikasi</a></li>
+                                <li class="treeview">
+                                <a href="#"><i class="fa fa-circle-o"></i> Pengusulan lainnya
+                                    <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penghargaan</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Penjatuhan Hukuman</a></li>
+                                </ul>
+                                </li>
+                            </ul>
+                            </li>
+                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-o"></i> <span>Agenda Kerja</span></a></li>
+                            
                         @endif
 
                         

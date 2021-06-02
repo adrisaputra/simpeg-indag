@@ -7,6 +7,7 @@ use App\Models\Pegawai;   //nama model
 use App\Models\PelaksanaEvent;   //nama model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -46,7 +47,8 @@ class EventController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'start' => 'required',
-			'end2' => 'required'
+			'end2' => 'required',
+			'uraian' => 'required',
         ]);
 
         $event = new Event();
@@ -54,6 +56,7 @@ class EventController extends Controller
 		$event->start = $request->start;
 		$event->end = date('Y-m-d', strtotime( $request->end2 . " +1 days"));
 		$event->end2 = $request->end2;
+		$event->uraian = $request->uraian;
         $event->save();
 
         $jumlah_pegawai = count($request->pegawai_id);
@@ -71,21 +74,30 @@ class EventController extends Controller
     ## Tampilkan Form Edit
     public function edit(Event $agenda)
     {
-        $title = 'Ubah Agenda';
-        $pegawai = Pegawai::get();
+        
+        if(Auth::user()->group==1){
+            $title = 'Ubah Agenda';
+        
+            $pegawai = Pegawai::get();
 
-        $i=0;
-        foreach($pegawai as $v){ 
-            $pelaksana = DB::table('pelaksana_event_tbl')->where('events_id',$agenda->id)->where('pegawai_id',$v->id)->get()->toArray();
-            if(count($pelaksana)>0){
-                $hasil[$i] = $pelaksana[0]->pegawai_id;
-            } else {
-                $hasil[$i] = 0;       
-            } 
-            $i++;
-        }	
+            $i=0;
+            foreach($pegawai as $v){ 
+                $pelaksana = DB::table('pelaksana_event_tbl')->where('events_id',$agenda->id)->where('pegawai_id',$v->id)->get()->toArray();
+                if(count($pelaksana)>0){
+                    $hasil[$i] = $pelaksana[0]->pegawai_id;
+                } else {
+                    $hasil[$i] = 0;       
+                } 
+                $i++;
+            }	
+            $view=view('admin.event.edit', compact('title','agenda','pegawai','hasil'));
+        } else {
+            $title = 'Detail Agenda';
+        
+            $pelaksana = PelaksanaEvent::where('events_id',$agenda->id)->get();
+            $view=view('admin.event.detail', compact('title','agenda','pelaksana'));
+        }
 
-        $view=view('admin.event.edit', compact('title','agenda','pegawai','hasil'));
         $view=$view->render();
         return $view;
     }

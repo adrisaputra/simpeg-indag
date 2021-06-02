@@ -25,7 +25,9 @@
           <div class="box box-primary">
             <div class="box-body">
               <!-- THE CALENDAR -->
-              <a href="{{ url('/agenda/create') }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah Agenda Kerja</a>
+              @if(Auth::user()->group==1)
+                <a href="{{ url('/agenda/create') }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah Agenda Kerja</a>
+              @endif
               <div id="calendar"></div>
             </div>
             <!-- /.box-body -->

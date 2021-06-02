@@ -22,7 +22,7 @@
 					@else
 						<a href="{{ url('/buat_absen') }}" class="btn btn-success btn-flat" title="Tambah Data" onclick="return confirm('Anda Yakin ?');">Buat Absen</a>
 					@endif
-					<a href="{{ url('/absen') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
+					<a href="{{ url('/absen') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>
 				</div>
 			</div>
 			<div class="box-tools pull-right">
@@ -44,16 +44,17 @@
 				@if($cek_absen)
 					@if($cek_absen[0]->tanggal != date('Y-m-d'))
 						<div class="alert alert-danger">
-								<h4 style="margin-top: 10px;"><i class="icon fa fa-close"></i>Belum Absen Hari ini !</h4>
+							<h4 style="margin-top: 10px;"><i class="icon fa fa-close"></i>Belum Buat Absen Hari ini !</h4>
 						</div>
 					@else
 						<div class="alert alert-success">
-								<h4 style="margin-top: 10px;"><i class="icon fa fa-check"></i>Sudah Absen Hari ini !</h4>
+							<h4 style="margin-top: 10px;"><i class="icon fa fa-check"></i>{{ $jumlah_pegawai_absen_pagi }} Pegawai Sudah Absen Pagi !</h4>
+							<h4 style="margin-top: 10px;"><i class="icon fa fa-check"></i>{{ $jumlah_pegawai_absen_sore }} Pegawai Sudah Absen Sore !</h4>
 						</div>
 					@endif
 				@else
 					<div class="alert alert-danger">
-								<h4 style="margin-top: 10px;"><i class="icon fa fa-close"></i>Belum Absen Hari ini !</h4>
+								<h4 style="margin-top: 10px;"><i class="icon fa fa-close"></i>Belum Buat Absen Hari ini !</h4>
 					</div>
 				@endif
 
@@ -62,7 +63,7 @@
 						<th style="width: 1px" rowspan=2>No</th>
 						<th style="width: 60%" rowspan=2>Tanggal</th>
 						<th colspan=4><center>Kehadiran</center></th>
-						<th style="width: 5%" rowspan=2>#aksi</th>
+						<th style="width: 15%" rowspan=2>#aksi</th>
 					</tr>
 					<tr style="background-color: gray;color:white">
 						<th><center>Hadir</th>
@@ -74,28 +75,25 @@
 					<tr>
 						<td>{{ ($absen ->currentpage()-1) * $absen ->perpage() + $loop->index + 1 }}</td>
 						<td>
-						@if($v->tanggal == date('Y-m-d'))
-							<span class="label label-success">Hari Ini</span>
-						@else
-							{{ date('d-m-Y', strtotime($v->tanggal)) }}
-						@endif
+							@if($v->tanggal == date('Y-m-d'))
+								<span class="label label-success">Hari Ini</span>
+							@else
+								{{ date('d-m-Y', strtotime($v->tanggal)) }}
+							@endif
 						</td>
 						@php
-							$hadir = DB::table('absen_tbl')->where('bidang_id', Auth::user()->bidang_id)
-									->where('tanggal',$v->tanggal)->where('kehadiran','H')->count();
-							$izin = DB::table('absen_tbl')->where('bidang_id', Auth::user()->bidang_id)
-									->where('tanggal',$v->tanggal)->where('kehadiran','I')->count();
-							$sakit = DB::table('absen_tbl')->where('bidang_id', Auth::user()->bidang_id)
-									->where('tanggal',$v->tanggal)->where('kehadiran','S')->count();
-							$alpa = DB::table('absen_tbl')->where('bidang_id', Auth::user()->bidang_id)
-									->where('tanggal',$v->tanggal)->where('kehadiran','A')->count();
+							$hadir = DB::table('absen_tbl')->where('tanggal',$v->tanggal)->where('kehadiran','H')->count();
+							$izin = DB::table('absen_tbl')->where('tanggal',$v->tanggal)->where('kehadiran','I')->count();
+							$sakit = DB::table('absen_tbl')->where('tanggal',$v->tanggal)->where('kehadiran','S')->count();
+							$alpa = DB::table('absen_tbl')->where('tanggal',$v->tanggal)->where('kehadiran','A')->count();
 						@endphp
 						<td><center>{{ $hadir }}</td>
 						<td><center>{{ $izin }}</td>
 						<td><center>{{ $sakit }}</td>
 						<td><center>{{ $alpa }}</td>
 						<td>
-							<a href="{{ url('/absen/edit/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-info">Absen</a>
+							<a href="{{ url('/absen/absen_pagi/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-success">Absen Pagi</a>
+							<a href="{{ url('/absen/absen_sore/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-danger">Absen Sore</a>
 						</td>
 					</tr>
 					@endforeach

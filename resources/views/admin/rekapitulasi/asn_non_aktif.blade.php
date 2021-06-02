@@ -164,29 +164,58 @@ legend.itemContainers.template.events.on("out", function(ev) {
 	<div class="row">
         <div class="col-md-6">
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Tabel Jumlah ASN Non Aktif</h3>
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Tabel Jumlah ASN Non Aktif</h3>
+                  </div>
+                  <div class="table-responsive box-body">
+                <table class="table table-bordered">
+                <tr style="background-color: gray;color:white">
+                  <th><center>ASN</th>
+                  <th><center>Jumlah ASN</th>
+                </tr>
+                <tr>
+                  <th>Pria</th>
+                  <td><center>{{ $pria }}</td>
+                </tr>
+                <tr>
+                  <th>Wanita</th>
+                  <td><center>{{ $wanita }}</td>
+                </tr>
+                <tr style="background-color: #00bcd4;color:white">
+                  <th>Jumlah</th>
+                  <td><center>{{ $pria + $wanita }}</td>
+                </tr>
+              </table>
             </div>
-            <div class="table-responsive box-body">
-		  		<table class="table table-bordered">
-					<tr style="background-color: gray;color:white">
-						<th><center>ASN</th>
-						<th><center>Jumlah ASN</th>
-					</tr>
-					<tr>
-						<th>Pria</th>
-						<td><center>{{ $pria }}</td>
-					</tr>
-					<tr>
-						<th>Wanita</th>
-						<td><center>{{ $wanita }}</td>
-					</tr>
-					<tr style="background-color: #00bcd4;color:white">
-						<th>Jumlah</th>
-						<td><center>{{ $pria + $wanita }}</td>
-					</tr>
-				</table>
-			</div>
+          </div>
+          <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Data ASN Non Aktif</h3>
+                  </div>
+                  <div class="table-responsive box-body">
+                <table class="table table-bordered">
+                <tr style="background-color: gray;color:white">
+                  <th><center>NIP</th>
+                  <th><center>Nama ASN</th>
+                  <th><center>Keterangan</th>
+                </tr>
+                @foreach($asn_non_aktif as $v)
+                <tr>
+                  <td>{{ $v->nip }}</td>
+                  <td>{{ $v->nama_pegawai }}</td>
+                  <td>
+                    @if($v->status_hapus==1)
+                      Pensiun
+                    @elseif($v->status_hapus==2)
+                      Meninggal
+                    @elseif($v->status_hapus==3)
+                      Pindah Tugas (Luar)
+                    @endif
+                  </td>
+                </tr>
+                @endforeach
+              </table>
+            </div>
           </div>
         </div>
 
