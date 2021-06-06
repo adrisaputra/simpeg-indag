@@ -13,6 +13,7 @@ class Arsip extends Model
         'jenis',
         'no_surat',
         'perihal',
+        'disposisi',
         'tanggal',
         'file_arsip',
         'user_id'

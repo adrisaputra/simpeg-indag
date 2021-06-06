@@ -75,15 +75,26 @@ class ArsipController extends Controller
 	## Simpan Data
 	public function store(Request $request)
     {
-		$this->validate($request, [
-            'no_surat' => 'required',
-            'tanggal' => 'required',
-            'perihal' => 'required',
-            'file_arsip' => 'required|mimes:pdf|max:500'
-		]);
+        if(request()->segment(1)=='arsip_surat_masuk'){
+            $this->validate($request, [
+                'no_surat' => 'required',
+                'tanggal' => 'required',
+                'perihal' => 'required',
+                'disposisi' => 'required',
+                'file_arsip' => 'required|mimes:pdf|max:500'
+            ]);
+        } else {
+            $this->validate($request, [
+                'no_surat' => 'required',
+                'tanggal' => 'required',
+                'perihal' => 'required',
+                'file_arsip' => 'required|mimes:pdf|max:500'
+            ]);
+        }
 		
         if(request()->segment(1)=='arsip_surat_masuk'){
             $input['jenis'] = 1;      
+            $input['disposisi'] = $request->disposisi;   
         } else {
             $input['jenis'] = 2;      
         }
@@ -120,12 +131,22 @@ class ArsipController extends Controller
 	## Edit Data
     public function update(Request $request, Arsip $arsip)
     {
-		$this->validate($request, [
-            'no_surat' => 'required',
-            'tanggal' => 'required',
-            'perihal' => 'required',
-            'file_arsip' => 'mimes:pdf|max:500'
-		]);
+		if(request()->segment(1)=='arsip_surat_masuk'){
+            $this->validate($request, [
+                'no_surat' => 'required',
+                'tanggal' => 'required',
+                'perihal' => 'required',
+                'disposisi' => 'required',
+                'file_arsip' => 'mimes:pdf|max:500'
+            ]);
+        } else {
+            $this->validate($request, [
+                'no_surat' => 'required',
+                'tanggal' => 'required',
+                'perihal' => 'required',
+                'file_arsip' => 'mimes:pdf|max:500'
+            ]);
+        }
 		
         if($request->file('file_arsip') && $arsip->file_arsip){
             $pathToYourFile = public_path('upload/file_arsip/'.$arsip->file_arsip);

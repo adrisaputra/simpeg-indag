@@ -53,10 +53,15 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('anggota')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Anggota Rapat') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Peserta Rapat') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
 							@if ($errors->has('anggota'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('anggota') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Anggota Rapat" name="anggota" value="{{ $notulen->anggota }}" >
+							<select class="form-control" name="anggota">
+                                        <option value=""> -Pilih Peserta Rapat-</option>
+                                        <option value="Pejabat" @if($notulen->anggota=="Pejabat") selected @endif> Pejabat</option>
+                                        <option value="Kepala Bidang" @if($notulen->anggota=="Bidang") selected @endif> Kepala Bidang</option>
+                                        <option value="Seluruh Pegawai" @if($notulen->anggota=="Seluruh Pegawai") selected @endif> Seluruh Pegawai</option>
+                                   </select>
 						</div>
 					</div>
 					

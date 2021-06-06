@@ -51,6 +51,9 @@
 						<th>No. Surat</th>
 						<th>Tanggal</th>
 						<th>Perihal</th>
+						@if(Request::segment(1)=='arsip_surat_masuk')
+							<th>Tujuan Disposisi</th>
+						@endif
 						<th>File</th>
 						@if(Auth::user()->group==1)
 							<th style="width: 20%">#aksi</th>
@@ -62,6 +65,9 @@
 						<td>{{ $v->no_surat }}</td>
 						<td>{{ date('d-m-Y', strtotime($v->tanggal)) }}</td>
 						<td>{{ $v->perihal }}</td>
+						@if(Request::segment(1)=='arsip_surat_masuk')
+							<td>{{ $v->disposisi }}</td>
+						@endif
 						<td>
 							@if($v->file_arsip)
 								<a href="{{ asset('upload/file_arsip/'.$v->file_arsip) }}" class="btn btn-sm btn-primary" target="blank">Download File</a>

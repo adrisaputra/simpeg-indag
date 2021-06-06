@@ -44,6 +44,16 @@
 						</div>
 					</div>
 					
+					@if(Request::segment(1)=='arsip_surat_masuk')
+					<div class="form-group @if ($errors->has('disposisi')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Tujuan Disposisi') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-10">
+							@if ($errors->has('disposisi'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('disposisi') }}</label>@endif
+							<input type="text" class="form-control" placeholder="Tujuan Disposisi" name="disposisi" value="{{ $arsip->disposisi }}" >
+						</div>
+					</div>
+					@endif
+
 					<div class="form-group @if ($errors->has('perihal')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Perihal') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-10">
