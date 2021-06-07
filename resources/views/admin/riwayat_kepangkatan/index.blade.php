@@ -68,8 +68,7 @@
 						<th style="width: 60px">No</th>
 						<th>Golongan</th>
 						<th>Pangkat</th>
-						<th>Mulai</th>
-						<th>Akhir</th>
+						<th>TMT</th>
 						<th>No. SK</th>
 						<th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
@@ -79,8 +78,7 @@
 						<td>{{ ($riwayat_kepangkatan ->currentpage()-1) * $riwayat_kepangkatan ->perpage() + $loop->index + 1 }}</td>
 						<td>{{ $v->golongan }}</td>
 						<td>{{ $v->nama_pangkat }}</td>
-						<td>{{ date('d-m-Y', strtotime($v->tmt_mulai)) }}</td>
-						<td>{{ date('d-m-Y', strtotime($v->tmt_selesai)) }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tmt)) }}</td>
 						<td>{{ $v->no_sk }}</td>
 						<td>
 							@if($v->arsip_kepangkatan)

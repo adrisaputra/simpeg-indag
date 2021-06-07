@@ -80,8 +80,21 @@
                                     </select>
 						</div>
 					</div>
+
+					<div class="form-group @if ($errors->has('tmt')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('TMT') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-10">
+							@if ($errors->has('tmt'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt') }}</label>@endif
+							<div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                        <input type="text" class="form-control datepicker" placeholder="TMT" name="tmt" value="{{ old('tmt') }}">
+                                    </div>
+						</div>
+					</div>
 					
-					<div class="form-group  @if ($errors->has('tmt_mulai') || $errors->has('tmt_selesai')) has-error @endif">
+					<!-- <div class="form-group  @if ($errors->has('tmt_mulai') || $errors->has('tmt_selesai')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('TMT Golongan') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-3" @if($errors->has('tmt_mulai') && $errors->has('tmt_selesai')) @elseif ($errors->has('tmt_selesai')) style="padding-top:27px" @endif>
 							@if ($errors->has('tmt_mulai'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('tmt_mulai') }}</label>@endif
@@ -101,7 +114,7 @@
                                         <input type="text" class="form-control datepicker" placeholder="TMT Selesai" name="tmt_selesai" value="{{ old('tmt_selesai') }}" @if(old('tmt_selesai')) style="border-color: #d3d7df;" @endif>
                                     </div>
 						</div>
-					</div>
+					</div> -->
 					
 					<div class="form-group  @if ($errors->has('mk_tahun') || $errors->has('mk_bulan')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Masa Kerja Golongan') }} <span class="required" style="color: #dd4b39;">*</span></label>

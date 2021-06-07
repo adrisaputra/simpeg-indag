@@ -184,7 +184,7 @@
                             <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}"><a href="{{ url('pegawai')}}"><i class="fa fa-circle-notch"></i> <span>Tayangan Data</span></a></li>
                             <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}"><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-notch"></i> <span>Informasi Kantor</span></a></li>
                             <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}"><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Agenda Kerja</span></a></li>
-                            <li class="treeview {{ (request()->is('notulen*','arsip*')) ? 'active' : '' }}">
+                            <li class="treeview {{ (request()->is('notulen*','arsip*','pengumuman_diklat*','pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
                                 <a href="#">
                                     <i class="fa fa-share"></i> <span>Informasi</span>
                                     <span class="pull-right-container">
@@ -192,15 +192,15 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="treeview">
+                                    <li class="treeview {{ (request()->is('pengumuman_diklat*')) ? 'active' : '' }}">
                                         <a href="#"><i class="fa fa-circle-notch"></i> Pengumuman
                                             <span class="pull-right-container">
                                             <i class="fa fa-angle-left pull-right"></i>
                                             </span>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
+                                            <li class="{{ (request()->is('pengumuman_diklat*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat')}}"><i class="fa fa-circle-notch"></i> Diklat Teknis</a></li>
+                                            <li><a href=""><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Penyesuaian Ijazah</a></li>
@@ -223,15 +223,15 @@
                                         </ul>
                                     </li>
                                     <li><a href="#"><i class="fa fa-circle-notch"></i> Tutorial Aplikasi</a></li>
-                                    <li class="treeview">
+                                    <li class="treeview {{ (request()->is('pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
                                     <a href="#"><i class="fa fa-circle-notch"></i> Pengusulan lainnya
                                         <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                         </span>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
-                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
+                                        <li class="{{ (request()->is('pengusulan_penghargaan*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_penghargaan')}}"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
+                                        <li class="{{ (request()->is('pengusulan_hukuman*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_hukuman')}}"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
                                     </ul>
                                     </li>
                                 </ul>
@@ -260,7 +260,7 @@
                             <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Data Pribadi</span></a></li>
                             <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}""><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-notch"></i> <span>Informasi Kantor</span></a></li>
                             <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Agenda Kerja</span></a></li>
-                            <li class="treeview {{ (request()->is('notulen*','arsip*')) ? 'active' : '' }}">
+                            <li class="treeview {{ (request()->is('notulen*','arsip*','pengumuman_diklat*','pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
                                 <a href="#">
                                     <i class="fa fa-share"></i> <span>Informasi</span>
                                     <span class="pull-right-container">
@@ -268,15 +268,15 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="treeview">
+                                    <li class="treeview {{ (request()->is('pengumuman_diklat*')) ? 'active' : '' }}">
                                         <a href="#"><i class="fa fa-circle-notch"></i> Pengumuman
                                             <span class="pull-right-container">
                                             <i class="fa fa-angle-left pull-right"></i>
                                             </span>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
+                                            <li class="{{ (request()->is('pengumuman_diklat*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat')}}"><i class="fa fa-circle-notch"></i> Diklat Teknis</a></li>
+                                            <li><a href=""><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Penyesuaian Ijazah</a></li>
@@ -299,15 +299,15 @@
                                         </ul>
                                     </li>
                                     <li><a href="#"><i class="fa fa-circle-notch"></i> Tutorial Aplikasi</a></li>
-                                    <li class="treeview">
+                                    <li class="treeview {{ (request()->is('pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
                                     <a href="#"><i class="fa fa-circle-notch"></i> Pengusulan lainnya
                                         <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                         </span>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
-                                        <li><a href="#"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
+                                        <li class="{{ (request()->is('pengusulan_penghargaan*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_penghargaan')}}"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
+                                        <li class="{{ (request()->is('pengusulan_hukuman*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_hukuman')}}"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
                                     </ul>
                                     </li>
                                 </ul>

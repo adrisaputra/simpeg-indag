@@ -37,8 +37,7 @@ class RiwayatKepangkatanController extends Controller
                                     ->orWhere('golongan', 'LIKE', '%'.$riwayat_kepangkatan.'%')
                                     ->orWhere('status', 'LIKE', '%'.$riwayat_kepangkatan.'%')
                                     ->orWhere('nama_pangkat', 'LIKE', '%'.$riwayat_kepangkatan.'%')
-                                    ->orWhere('tmt_mulai', 'LIKE', '%'.$riwayat_kepangkatan.'%')
-                                    ->orWhere('tmt_selesai', 'LIKE', '%'.$riwayat_kepangkatan.'%')
+                                    ->orWhere('tmt', 'LIKE', '%'.$riwayat_kepangkatan.'%')
                                     ->orWhere('mk_tahun', 'LIKE', '%'.$riwayat_kepangkatan.'%')
                                     ->orWhere('mk_bulan', 'LIKE', '%'.$riwayat_kepangkatan.'%')
                                     ->orWhere('no_sk', 'LIKE', '%'.$riwayat_kepangkatan.'%')
@@ -66,8 +65,7 @@ class RiwayatKepangkatanController extends Controller
         $this->validate($request, [
             'periode_kp' => 'required',
             'golongan' => 'required',
-            'tmt_mulai' => 'required',
-            'tmt_selesai' => 'required',
+            'tmt' => 'required',
             'mk_bulan' => 'required|numeric',
             'mk_tahun' => 'required|numeric',
             'no_sk' => 'required',
@@ -131,8 +129,7 @@ class RiwayatKepangkatanController extends Controller
             $input['nama_pangkat'] = 'Pembina Utama';
         }   
 
-        $input['tmt_mulai'] = $request->tmt_mulai;
-        $input['tmt_selesai'] = $request->tmt_selesai;
+        $input['tmt'] = $request->tmt;
         $input['mk_tahun'] = $request->mk_tahun;
         $input['mk_bulan'] = $request->mk_bulan;
         $input['no_sk'] = $request->no_sk;
@@ -173,8 +170,7 @@ class RiwayatKepangkatanController extends Controller
         $this->validate($request, [
             'periode_kp' => 'required',
             'golongan' => 'required',
-            'tmt_mulai' => 'required',
-            'tmt_selesai' => 'required',
+            'tmt' => 'required',
             'mk_bulan' => 'required|numeric',
             'mk_tahun' => 'required|numeric',
             'no_sk' => 'required',

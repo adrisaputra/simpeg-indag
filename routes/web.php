@@ -32,6 +32,9 @@ use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\InformasiKantorController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\NotulenController;
+use App\Http\Controllers\PengumumanDiklatController;
+use App\Http\Controllers\PengusulanPenghargaanController;
+use App\Http\Controllers\PengusulanHukumanController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -317,6 +320,33 @@ Route::post('/notulen', [NotulenController::class, 'store']);
 Route::get('/notulen/edit/{notulen}', [NotulenController::class, 'edit']);
 Route::put('/notulen/edit/{notulen}', [NotulenController::class, 'update']);
 Route::get('/notulen/hapus/{notulen}',[NotulenController::class, 'delete']);
+
+## Pengumuman Diklat
+Route::get('/pengumuman_diklat', [PengumumanDiklatController::class, 'index']);
+Route::get('/pengumuman_diklat/search', [PengumumanDiklatController::class, 'search']);
+Route::get('/pengumuman_diklat/create', [PengumumanDiklatController::class, 'create']);
+Route::post('/pengumuman_diklat', [PengumumanDiklatController::class, 'store']);
+Route::get('/pengumuman_diklat/edit/{pengumuman_diklat}', [PengumumanDiklatController::class, 'edit']);
+Route::put('/pengumuman_diklat/edit/{pengumuman_diklat}', [PengumumanDiklatController::class, 'update']);
+Route::get('/pengumuman_diklat/hapus/{pengumuman_diklat}',[PengumumanDiklatController::class, 'delete']);
+
+## Pengusulan Penghargaan
+Route::get('/pengusulan_penghargaan', [PengusulanPenghargaanController::class, 'index']);
+Route::get('/pengusulan_penghargaan/search', [PengusulanPenghargaanController::class, 'search']);
+Route::get('/pengusulan_penghargaan/create', [PengusulanPenghargaanController::class, 'create']);
+Route::post('/pengusulan_penghargaan', [PengusulanPenghargaanController::class, 'store']);
+Route::get('/pengusulan_penghargaan/edit/{pengusulan_penghargaan}', [PengusulanPenghargaanController::class, 'edit']);
+Route::put('/pengusulan_penghargaan/edit/{pengusulan_penghargaan}', [PengusulanPenghargaanController::class, 'update']);
+Route::get('/pengusulan_penghargaan/hapus/{pengusulan_penghargaan}',[PengusulanPenghargaanController::class, 'delete']);
+
+## Pengusulan Hukuman
+Route::get('/pengusulan_hukuman', [PengusulanHukumanController::class, 'index']);
+Route::get('/pengusulan_hukuman/search', [PengusulanHukumanController::class, 'search']);
+Route::get('/pengusulan_hukuman/create', [PengusulanHukumanController::class, 'create']);
+Route::post('/pengusulan_hukuman', [PengusulanHukumanController::class, 'store']);
+Route::get('/pengusulan_hukuman/edit/{pengusulan_hukuman}', [PengusulanHukumanController::class, 'edit']);
+Route::put('/pengusulan_hukuman/edit/{pengusulan_hukuman}', [PengusulanHukumanController::class, 'update']);
+Route::get('/pengusulan_hukuman/hapus/{pengusulan_hukuman}',[PengusulanHukumanController::class, 'delete']);
 
 ## User
 Route::get('/user', [UserController::class, 'index']);

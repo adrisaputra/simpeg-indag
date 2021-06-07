@@ -52,22 +52,31 @@ class PegawaiController extends Controller
     {
         $pegawai = $request->get('search');
         if(Auth::user()->group==1){
-            $pegawai = Pegawai::where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
+            $pegawai = Pegawai::where('status_hapus', 0)
+            ->where(function ($query) use ($pegawai) {
+                $query->where('nip', 'LIKE', '%'.$pegawai.'%')
+                    ->orWhere('nama_pegawai', 'LIKE', '%'.$pegawai.'%')
+                    ->orWhere('golongan', 'LIKE', '%'.$pegawai.'%');
+            })
+            ->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
         } else if(Auth::user()->group==2){
             $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->where('nama_pegawai', 'LIKE', '%'.$pegawai.'%')->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
         }
         
         $i=0;
-        foreach($pegawai as $v){ 
-            $absen = DB::table('absen_tbl')->where('pegawai_id',$v->id)->where('tanggal',date('Y-m-d'))->get()->toArray();
-            if(count($absen)>0){
-                $status_kehadiran[$i] = $absen[0]->kehadiran;
-            } else {
-                $status_kehadiran[$i] = "Belum Absen";       
-            } 
-            $i++;
+        if(count($pegawai)>0){
+            foreach($pegawai as $v){ 
+                $absen = DB::table('absen_tbl')->where('pegawai_id',$v->id)->where('tanggal',date('Y-m-d'))->get()->toArray();
+                if(count($absen)>0){
+                    $status_kehadiran[$i] = $absen[0]->kehadiran;
+                } else {
+                    $status_kehadiran[$i] = "Belum Absen";       
+                } 
+                $i++;
+            }
+        } else {
+            $status_kehadiran[0] = "Belum Absen";   
         }	
-
         return view('admin.pegawai.index',compact('pegawai','status_kehadiran'));
     }
 	
