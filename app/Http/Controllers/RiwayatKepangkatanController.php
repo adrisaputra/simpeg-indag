@@ -70,6 +70,7 @@ class RiwayatKepangkatanController extends Controller
             'mk_tahun' => 'required|numeric',
             'no_sk' => 'required',
             'tanggal_sk' => 'required',
+            'pejabat' => 'required',
             'arsip_kepangkatan' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
         ]);
 
@@ -134,6 +135,7 @@ class RiwayatKepangkatanController extends Controller
         $input['mk_bulan'] = $request->mk_bulan;
         $input['no_sk'] = $request->no_sk;
         $input['tanggal_sk'] = $request->tanggal_sk;
+        $input['pejabat'] = $request->pejabat;
 
 		if($request->file('arsip_kepangkatan')){
 			$input['arsip_kepangkatan'] = time().'.'.$request->arsip_kepangkatan->getClientOriginalExtension();
@@ -175,6 +177,7 @@ class RiwayatKepangkatanController extends Controller
             'mk_tahun' => 'required|numeric',
             'no_sk' => 'required',
             'tanggal_sk' => 'required',
+            'pejabat' => 'required',
             'arsip_kepangkatan' => 'mimes:jpg,jpeg,png,pdf|max:500'
         ]);
         

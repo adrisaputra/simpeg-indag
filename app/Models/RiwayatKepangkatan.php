@@ -20,6 +20,7 @@ class RiwayatKepangkatan extends Model
         'mk_bulan',
         'no_sk',
         'tanggal_sk',
+        'pejabat',
         'arsip_kepangkatan',
         'user_id'
     ];

@@ -20,14 +20,14 @@
 			@if(Auth::user()->group==1)
 				<div class="col-lg-4 col-xs-6">
 				<!-- small box -->
-					<div class="small-box bg-aqua">
+					<div class="small-box bg-blue">
 						<div class="inner">
-						<h3>{{ $pegawai }}</h3>
+						<h3>{{ $pns }}</h3>
 
-						<p>Total ASN</p>
+						<p>Total Pegawai</p>
 						</div>
 						<div class="icon">
-						<i class="fa fa-users"></i>
+						<i class="fa fa-id-card"></i>
 						</div>
 						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
@@ -39,10 +39,10 @@
 						<div class="inner">
 						<h3>{{ $pns }}</h3>
 
-						<p>Total PNS</p>
+						<p>Total Honorer</p>
 						</div>
 						<div class="icon">
-						<i class="fa fa-users"></i>
+						<i class="fa fa-id-card"></i>
 						</div>
 						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
@@ -50,14 +50,70 @@
 				<!-- ./col -->
 				<div class="col-lg-4 col-xs-6">
 					<!-- small box -->
+					<div class="small-box bg-aqua">
+						<div class="inner">
+						<h3>{{ $cpns }}</h3>
+
+						<p>Total Kehadiran</p>
+						</div>
+						<div class="icon">
+						<i class="fa fa-user-clock"></i>
+						</div>
+						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-xs-6">
+					<!-- small box -->
+					<div class="small-box bg-red">
+						<div class="inner">
+						<h3>{{ $cpns }}</h3>
+
+						<p>Pensiun</p>
+						</div>
+						<div class="icon">
+						<i class="fa fa-user-times"></i>
+						</div>
+						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-xs-6">
+					<!-- small box -->
 					<div class="small-box bg-yellow">
 						<div class="inner">
 						<h3>{{ $cpns }}</h3>
 
-						<p>Total CPNS</p>
+						<p>Diklat</p>
 						</div>
 						<div class="icon">
-						<i class="fa fa-users"></i>
+						<i class="fa fa-newspaper"></i>
+						</div>
+						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-xs-6">
+					<!-- small box -->
+					<div class="small-box bg-teal">
+						<div class="inner">
+						<h3>{{ $cpns }}</h3>
+
+						<p>Gaji Berkala</p>
+						</div>
+						<div class="icon">
+						<i class="fa fa-wallet"></i>
+						</div>
+						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-xs-6">
+					<!-- small box -->
+					<div class="small-box bg-maroon">
+						<div class="inner">
+						<h3>{{ $cpns }}</h3>
+
+						<p>Naik Pangkat</p>
+						</div>
+						<div class="icon">
+						<i class="fa fa-sort-amount-up"></i>
 						</div>
 						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>

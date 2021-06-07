@@ -70,6 +70,7 @@
 						<th>Pangkat</th>
 						<th>TMT</th>
 						<th>No. SK</th>
+						<th>Pejabat Yang Menetapkan</th>
 						<th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
@@ -80,6 +81,7 @@
 						<td>{{ $v->nama_pangkat }}</td>
 						<td>{{ date('d-m-Y', strtotime($v->tmt)) }}</td>
 						<td>{{ $v->no_sk }}</td>
+						<td>{{ $v->pejabat }}</td>
 						<td>
 							@if($v->arsip_kepangkatan)
 								<a href="{{ asset('upload/arsip_kepangkatan/'.$v->arsip_kepangkatan) }}" class="btn btn-sm btn-primary" >Download File</a>
