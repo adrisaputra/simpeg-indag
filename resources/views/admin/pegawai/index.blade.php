@@ -146,6 +146,7 @@
 									<li><a href="{{ url('riwayat_hukuman/'.$v->id) }}">Hukuman Disiplin</a></li>
 									<li><a href="{{ url('riwayat_kursus/'.$v->id) }}">Kursus</a></li>
 									<li><a href="{{ url('riwayat_gaji/'.$v->id) }}">Gaji</a></li>
+									<li><a href="{{ url('riwayat_kgb/'.$v->id) }}">Kenaikan Gaji Berkala</a></li>
 									<li><a href="{{ url('riwayat_tugas_luar_negeri/'.$v->id) }}">Riwayat Tugas Luar Negeri</a></li>
 								</ul>
 							</div><br>

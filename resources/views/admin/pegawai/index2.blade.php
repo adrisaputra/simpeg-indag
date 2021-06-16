@@ -41,62 +41,123 @@
 					<tr>
 						<td colspan=2>
 							<center>
-								@if($pegawai[0]->foto)
-									<img src="{{ asset('storage/upload/foto_pegawai/thumbnail/'.$pegawai[0]->foto) }}" class="img-circle" alt="User Image"  width="150px" height="150px">
+								@if($pegawai[0]->foto_formal)
+									<img src="{{ asset('storage/upload/foto_formal_pegawai/thumbnail/'.$pegawai[0]->foto_formal) }}" class="img-circle" alt="User Image"  width="150px" height="150px">
 								@else
 									<img src="{{ asset('upload/user/15.jpg') }}" class="img-circle" alt="User Image" width="150px" height="150px">
 								@endif
 								<br><br>
-								<p style="font-size:20px">{{ $pegawai[0]->nama_pegawai }}</p>
-								<p style="font-size:16px">{{ $pegawai[0]->nip }}</p>
+								<p style="font-size:22px;font-weight:bold">{{ $pegawai[0]->nama_pegawai }}</p>
+								<p style="font-size:18px;font-weight:bold">{{ $pegawai[0]->nip }}</p>
 							</center>
 						</td>
 					</tr>
-					<tr>
-						<th style="width: 200px">Status Kepegawaian</th>
-						<td>: {{ $pegawai[0]->status }}</td>
-					</tr>
-					<tr>
-						<th style="width: 200px">Jabatan</th>
-						<td>: {{ $pegawai[0]->jabatan }}</td>
-					</tr>
-					<tr>
-						<th style="width: 200px">Pangkat</th>
-						<td>: {{ $pegawai[0]->golongan }}</td>
+					<tr style="background-color: #2196f3;color:white">
+						<th style="width: 200px;text-align:center;font-size:16px" colspan=2>DATA PRIBADI</th>
 					</tr>
 					<tr>
 						<th style="width: 200px">Tempat Tanggal Lahir</th>
 						<td>: {{ $pegawai[0]->tempat_lahir }}, {{ date('d-m-Y', strtotime($pegawai[0]->tanggal_lahir)) }}</td>
 					</tr>
 					<tr>
-						<th style="width: 200px">Nomor Telepon</th>
-						<td>: {{ $pegawai[0]->no_telepon }} </td>
-					</tr>
-					<tr>
-						<th style="width: 200px">Bank</th>
-						<td>: {{ $pegawai[0]->bank }} ( {{ $pegawai[0]->no_rekening }} )</td>
-					</tr>
-					<tr>
-						<th style="width: 200px">Nomor NPWP</th>
-						<td>: {{ $pegawai[0]->no_npwp }} </td>
+						<th style="width: 200px">Jenis Kelamin</th>
+						<td>: {{ $pegawai[0]->jenis_kelamin}}</td>
 					</tr>
 					<tr>
 						<th style="width: 200px">Alamat</th>
 						<td>: {{ $pegawai[0]->alamat}}</td>
 					</tr>
 					<tr>
-						<th style="width: 200px">Gaji</th>
-						<td>: {{ number_format($pegawai[0]->gaji,0,",",".") }}</td>
+						<th style="width: 200px">Agama</th>
+						<td>: {{ $pegawai[0]->agama}}</td>
 					</tr>
 					<tr>
-						<th style="width: 200px">Nama Penghargaan</th>
-						<td>: {{ $pegawai[0]->nama_penghargaan }}</td>
+						<th style="width: 200px">Gol. Darah</th>
+						<td>: {{ $pegawai[0]->gol_darah}}</td>
 					</tr>
 					<tr>
-						<th style="width: 200px">Foto Penghargaan</th>
-						<td>@if($pegawai[0]->foto_penghargaan)
-								<img src="{{ asset('storage/upload/foto_penghargaan/thumbnail/'.$pegawai[0]->foto_penghargaan) }}" width="130px" height="150px">
-							@endif</td>
+						<th style="width: 200px">Email</th>
+						<td>: {{ $pegawai[0]->email}}</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">No. KTP</th>
+						<td>: {{ $pegawai[0]->no_ktp}}</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">No. BPJS</th>
+						<td>: {{ $pegawai[0]->no_bpjs}}</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Nomor NPWP</th>
+						<td>: {{ $pegawai[0]->no_npwp }} </td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Nomor Karpeg</th>
+						<td>: {{ $pegawai[0]->no_karpeg }} </td>
+					</tr>
+					<tr>
+						<th style="width: 200px">No. Karsu/Karis</th>
+						<td>: {{ $pegawai[0]->no_karsu }} </td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Golongan</th>
+						<td>: {{ $pegawai[0]->golongan }}</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Pendidikan</th>
+						<td>: {{ $pegawai[0]->pendidikan }}</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Status Kepegawaian</th>
+						<td>: {{ $pegawai[0]->status }}</td>
+					</tr>
+					<tr style="background-color: #2196f3;color:white">
+						<th style="width: 200px;text-align:center;font-size:16px" colspan=2>DATA RIWAYAT</th>
+					</tr>
+					<tr>
+						<th style="width: 200px">Riwayat 1</th>
+						<td>
+							<a href="{{ url('riwayat_jabatan/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Jabatan</a>
+							<a href="{{ url('riwayat_angka_kredit/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Angka Kredit</a>
+							<a href="{{ url('riwayat_kepangkatan/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Pangkat</a>
+							<a href="{{ url('riwayat_lhkpn/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">LHKPN</a>
+							<a href="{{ url('riwayat_kompetensi/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Kompetensi</a>
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Riwayat 2</th>
+						<td>
+							<a href="{{ url('riwayat_pendidikan/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Pendidikan</a>
+							<a href="{{ url('riwayat_seminar/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Seminar</a>
+							<a href="{{ url('riwayat_diklat/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Diklat/Sertifikasi</a>
+							<a href="{{ url('riwayat_tugas/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Tugas/Izin Belajar</a>
+							<a href="{{ url('riwayat_karya_ilmiah/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Karya Ilmiah</a>
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Riwayat 3</th>
+						<td>
+							<a href="{{ url('riwayat_penghargaan/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Penghargaan</a>
+							<a href="{{ url('riwayat_cuti/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Cuti</a>
+							<a href="{{ url('riwayat_hukuman/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Hukuman Disiplin</a>
+							<a href="{{ url('riwayat_kursus/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Kursus</a>
+							<a href="{{ url('riwayat_gaji/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Gaji</a>
+							<a href="{{ url('riwayat_tugas_luar_negeri/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Riwayat Tugas Luar Negeri</a>
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Riwayat 4</th>
+						<td>
+							<a href="{{ url('riwayat_pajak/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Laporan Pajak</a>
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 200px">Riwayat Keluarga</th>
+						<td>
+							<a href="{{ url('riwayat_orang_tua/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Orang Tua</a>
+							<a href="{{ url('riwayat_pasangan/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Pasangan</a>
+							<a href="{{ url('riwayat_anak/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Anak</a>
+						</td>
 					</tr>
 				</table>
 				

@@ -24,6 +24,7 @@ use App\Http\Controllers\RiwayatCutiController;
 use App\Http\Controllers\RiwayatKursusController;
 use App\Http\Controllers\RiwayatHukumanController;
 use App\Http\Controllers\RiwayatGajiController;
+use App\Http\Controllers\RiwayatKgbController;
 use App\Http\Controllers\RiwayatTugasLuarNegeriController;
 use App\Http\Controllers\RiwayatPajakController;
 use App\Http\Controllers\RekapitulasiController;
@@ -73,6 +74,9 @@ Route::get('/pegawai/edit/{pegawai}', [PegawaiController::class, 'edit']);
 Route::put('/pegawai/edit/{pegawai}', [PegawaiController::class, 'update']);
 Route::get('/pegawai/pensiun/{pegawai}',[PegawaiController::class, 'delete']);
 Route::post('/pegawai/import_excel', [PegawaiController::class, 'import_excel']);
+Route::get('/pegawai/naik_pangkat', [PegawaiController::class, 'naik_pangkat']);
+Route::get('/pegawai/pensiun', [PegawaiController::class, 'pensiun']);
+Route::get('/pegawai/kgb', [PegawaiController::class, 'kgb']);
 
 ## 
 Route::get('/bidang/nama_bidang/{jabatan_id}', [BidangController::class, 'nama_bidang']);
@@ -239,6 +243,15 @@ Route::post('/riwayat_gaji/{id}', [RiwayatGajiController::class, 'store']);
 Route::get('/riwayat_gaji/edit/{id}/{riwayat_gaji}', [RiwayatGajiController::class, 'edit']);
 Route::put('/riwayat_gaji/edit/{id}/{riwayat_gaji}', [RiwayatGajiController::class, 'update']);
 Route::get('/riwayat_gaji/hapus/{id}/{riwayat_gaji}',[RiwayatGajiController::class, 'delete']);
+
+## Riwayat Kgb
+Route::get('/riwayat_kgb/{id}', [RiwayatKgbController::class, 'index']);
+Route::get('/riwayat_kgb/search/{id}', [RiwayatKgbController::class, 'search']);
+Route::get('/riwayat_kgb/create/{id}', [RiwayatKgbController::class, 'create']);
+Route::post('/riwayat_kgb/{id}', [RiwayatKgbController::class, 'store']);
+Route::get('/riwayat_kgb/edit/{id}/{riwayat_kgb}', [RiwayatKgbController::class, 'edit']);
+Route::put('/riwayat_kgb/edit/{id}/{riwayat_kgb}', [RiwayatKgbController::class, 'update']);
+Route::get('/riwayat_kgb/hapus/{id}/{riwayat_kgb}',[RiwayatKgbController::class, 'delete']);
 
 ## Riwayat Tugas Luar Negeri
 Route::get('/riwayat_tugas_luar_negeri/{id}', [RiwayatTugasLuarNegeriController::class, 'index']);

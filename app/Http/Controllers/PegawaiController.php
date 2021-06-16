@@ -7,6 +7,8 @@ use App\Models\Jabatan;   //nama model
 use App\Models\Bidang;   //nama model
 use App\Models\Seksi;   //nama model
 use App\Models\User;   //nama model
+use App\Models\RiwayatKepangkatan;   //nama model
+use App\Models\RiwayatGaji;   //nama model
 use App\Imports\PegawaiImport;     // Import data Pegawai
 use Maatwebsite\Excel\Facades\Excel; // Excel Library
 use App\Http\Controllers\Controller;
@@ -28,23 +30,26 @@ class PegawaiController extends Controller
     public function index()
     {
         if(Auth::user()->group==1){
-            $pegawai = Pegawai::where('status_hapus', 0)->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
-        } else if(Auth::user()->group==2){
-            $pegawai = Pegawai::where('bidang_id', Auth::user()->bidang_id)->where('status_hapus', 0)->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
-        }
-        
-        $i=0;
-        foreach($pegawai as $v){ 
-            $absen = DB::table('absen_tbl')->where('pegawai_id',$v->id)->where('tanggal',date('Y-m-d'))->get()->toArray();
-            if(count($absen)>0){
-                $status_kehadiran[$i] = $absen[0]->kehadiran;
-            } else {
-                $status_kehadiran[$i] = "Belum Absen";       
-            } 
-            $i++;
-        }	
 
-        return view('admin.pegawai.index',compact('pegawai','status_kehadiran'));
+            $pegawai = Pegawai::where('status_hapus', 0)->orderBy('jabatan_id','ASC')->paginate(25)->onEachSide(1);
+        
+            $i=0;
+            foreach($pegawai as $v){ 
+                $absen = DB::table('absen_tbl')->where('pegawai_id',$v->id)->where('tanggal',date('Y-m-d'))->get()->toArray();
+                if(count($absen)>0){
+                    $status_kehadiran[$i] = $absen[0]->kehadiran;
+                } else {
+                    $status_kehadiran[$i] = "Belum Absen";       
+                } 
+                $i++;
+            }	
+
+            return view('admin.pegawai.index',compact('pegawai','status_kehadiran'));
+
+        } else if(Auth::user()->group==3){
+            $pegawai = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->orderBy('id','DESC')->get()->toArray();
+            return view('admin.pegawai.index2',compact('pegawai'));
+        }
     }
 
 	## Tampilkan Data Search
@@ -492,4 +497,96 @@ class PegawaiController extends Controller
  
         return redirect('/pegawai')->with('status', 'Data Pegawai Berhasil Diimport');
 	}
+
+    public function naik_pangkat()
+    {
+        $title = "Naik Pangkat";
+
+        $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+        $pegawai->toArray();
+
+        $pangkat = RiwayatKepangkatan::where('pegawai_id',$pegawai[0]->id)->orderBy('jenis_golongan','DESC')->get();
+        $pangkat->toArray();
+
+        if(count($pangkat)>0){
+            $naikpangkat = RiwayatKepangkatan::select('*', DB::raw("tmt + INTERVAL '4' YEAR AS naikpangkat_berikutnya"), DB::raw(" DATEDIFF(tmt + INTERVAL '4' YEAR,CURDATE()) as hari"))
+                            ->where('pegawai_id',$pegawai[0]->id)->where('jenis_golongan',$pangkat[0]->jenis_golongan)->get();	
+            $naikpangkat->toArray();	
+
+            if($naikpangkat[0]->golongan=="Golongan I/a"){
+                $golongan_selanjutnya = "Golongan I/b";
+            } else if($naikpangkat[0]->golongan=="Golongan I/b"){
+                $golongan_selanjutnya = "Golongan I/c";
+            } else if($naikpangkat[0]->golongan=="Golongan I/c"){
+                $golongan_selanjutnya = "Golongan I/d";
+            } else if($naikpangkat[0]->golongan=="Golongan I/d"){
+                $golongan_selanjutnya = "Golongan II/a";
+            } else if($naikpangkat[0]->golongan=="Golongan II/a"){
+                $golongan_selanjutnya = "Golongan II/b";
+            } else if($naikpangkat[0]->golongan=="Golongan II/b"){
+                $golongan_selanjutnya = "Golongan II/c";
+            } else if($naikpangkat[0]->golongan=="Golongan II/c"){
+                $golongan_selanjutnya = "Golongan II/d";
+            } else if($naikpangkat[0]->golongan=="Golongan II/d"){
+                $golongan_selanjutnya = "Golongan III/a";
+            } else if($naikpangkat[0]->golongan=="Golongan III/a"){
+                $golongan_selanjutnya = "Golongan III/b";
+            } else if($naikpangkat[0]->golongan=="Golongan III/b"){
+                $golongan_selanjutnya = "Golongan III/c";
+            } else if($naikpangkat[0]->golongan=="Golongan III/c"){
+                $golongan_selanjutnya = "Golongan III/d";
+            } else if($naikpangkat[0]->golongan=="Golongan III/d"){
+                $golongan_selanjutnya = "Golongan IV/a";
+            } else if($naikpangkat[0]->golongan=="Golongan IV/a"){
+                $golongan_selanjutnya = "Golongan IV/b";
+            } else if($naikpangkat[0]->golongan=="Golongan IV/b"){
+                $golongan_selanjutnya = "Golongan IV/c";
+            } else if($naikpangkat[0]->golongan=="Golongan IV/c"){
+                $golongan_selanjutnya = "Golongan IV/d";
+            } else if($naikpangkat[0]->golongan=="Golongan IV/d"){
+                $golongan_selanjutnya = "Golongan IV/e";
+            } 
+        } else {
+            $naikpangkat[0]="Tidak ada";
+            $golongan_selanjutnya="Tidak ada";
+        } 
+        return view('admin.pegawai.naik_pangkat',compact('title','pegawai','naikpangkat','golongan_selanjutnya'));
+    }
+
+    public function pensiun()
+    {
+        $title = "Pensiun";
+
+        $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+        $pegawai->toArray();
+
+        $pensiun = Pegawai::select('*', DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) AS umur'), DB::raw("tanggal_lahir + INTERVAL '60' YEAR AS pensiun"))
+                         ->where('nip',Auth::user()->name)->get();	
+        $pensiun->toArray();	
+
+        return view('admin.pegawai.pensiun',compact('title','pegawai','pensiun'));
+    }
+
+    public function kgb()
+    {
+        $title = "Kenaikan Gaji Berkala";
+
+        $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+        $pegawai->toArray();
+
+        $gaji = RiwayatGaji::where('pegawai_id',$pegawai[0]->id)->orderBy('jenis_golongan','DESC')->get();
+        $gaji->toArray();
+
+        if(count($gaji)>0){
+            $kgb = RiwayatGaji::select('*', DB::raw("tmt + INTERVAL '2' YEAR AS kgb_berikutnya"), DB::raw(" DATEDIFF(tmt + INTERVAL '2' YEAR,CURDATE()) as hari"))
+                             ->where('pegawai_id',$pegawai[0]->id)->where('jenis_golongan',$gaji[0]->jenis_golongan)->get();	
+            $kgb->toArray();	
+        } else {
+            $kgb[0]="Tidak ada";
+        } 
+
+        return view('admin.pegawai.kgb',compact('title','pegawai','gaji','kgb'));
+    }
+
+    
 }

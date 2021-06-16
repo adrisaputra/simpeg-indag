@@ -207,7 +207,6 @@
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Jadwal Diklat</a></li>
                                         </ul>
                                     </li>
                                     <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-notch"></i> Notulensi Rapat</a></li>
@@ -244,20 +243,20 @@
                         @elseif(Auth::user()->group==3)
                             
                             <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-                            <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*')) ? 'active' : '' }}">
+                            <li class="treeview  {{ (request()->is('pegawai/naik_pangkat*','pegawai/pensiun*','pegawai/kgb*')) ? 'active' : '' }}">
                                 <a href="#"> <i class="fa fa-database"></i> <span>Info Pegawai</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai')}}"><i class="fa fa-circle-notch"></i> Naik Pangkat</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai_bidang')}}"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
+                                    <li class="{{ (request()->is('pegawai/naik_pangkat')) ? 'active' : '' }}"><a href="{{ url('pegawai/naik_pangkat')}}"><i class="fa fa-circle-notch"></i> Naik Pangkat</a></li>
+                                    <li class="{{ (request()->is('pegawai/pensiun')) ? 'active' : '' }}"><a href="{{ url('pegawai/pensiun')}}"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
                                     <li class="{{ (request()->is('rekapitulasi_esselon*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_esselon')}}"><i class="fa fa-circle-notch"></i> Diklat</a></li>
-                                    <li class="{{ (request()->is('rekapitulasi_gender_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_gender_bidang')}}"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
+                                    <li class="{{ (request()->is('pegawai/kgb')) ? 'active' : '' }}"><a href="{{ url('pegawai/kgb')}}"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Data Pribadi</span></a></li>
+                            <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}""><a href="{{ url('pegawai')}}"><i class="fa fa-circle-notch"></i> <span>Data Pribadi</span></a></li>
                             <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}""><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-notch"></i> <span>Informasi Kantor</span></a></li>
                             <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Agenda Kerja</span></a></li>
                             <li class="treeview {{ (request()->is('notulen*','arsip*','pengumuman_diklat*','pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
@@ -283,7 +282,6 @@
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Jadwal Diklat</a></li>
                                         </ul>
                                     </li>
                                     <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-notch"></i> Notulensi Rapat</a></li>

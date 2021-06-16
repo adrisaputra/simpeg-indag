@@ -20,7 +20,7 @@ class PengusulanHukumanController extends Controller
     ## Tampikan Data
     public function index()
     {
-        $title = "Pengusulan Hukuman";
+        $title = "Penjatuhan Hukuman";
 		$pengusulan_hukuman = PengusulanHukuman::orderBy('id','DESC')->paginate(10);
 		return view('admin.pengusulan_hukuman.index',compact('title','pengusulan_hukuman'));
     }
@@ -28,7 +28,7 @@ class PengusulanHukumanController extends Controller
 	## Tampilkan Data Search
 	public function search(Request $request)
     {
-        $title = "Pengusulan Hukuman";
+        $title = "Penjatuhan Hukuman";
         $pengusulan_hukuman = $request->get('search');
 		$pengusulan_hukuman = PengusulanHukuman::
                 where(function ($query) use ($pengusulan_hukuman) {
@@ -45,7 +45,7 @@ class PengusulanHukumanController extends Controller
 	## Tampilkan Form Create
 	public function create()
     {
-        $title = "Pengusulan Hukuman";
+        $title = "Penjatuhan Hukuman";
         $pegawai = Pegawai::where('status_hapus', 0)->orderBy('id','DESC')->get();
         $view=view('admin.pengusulan_hukuman.create', compact('title','pegawai'));
         $view=$view->render();
@@ -80,7 +80,7 @@ class PengusulanHukumanController extends Controller
 	## Tampilkan Form Edit
     public function edit(PengusulanHukuman $pengusulan_hukuman)
     {
-        $title = "Pengusulan Hukuman";
+        $title = "Penjatuhan Hukuman";
         $pegawai = Pegawai::where('status_hapus', 0)->orderBy('id','DESC')->get();
         $view=view('admin.pengusulan_hukuman.edit', compact('title','pengusulan_hukuman','pegawai'));
         $view=$view->render();

@@ -13,6 +13,8 @@ class RiwayatKepangkatan extends Model
         'pegawai_id',
         'jenis_golongan',
         'periode_kp',
+        'periode_kp_sebelumnya',
+        'periode_kp_saat_ini',
         'golongan',
         'nama_pangkat',
         'tmt',

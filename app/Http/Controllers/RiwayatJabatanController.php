@@ -21,9 +21,15 @@ class RiwayatJabatanController extends Controller
     ## Tampikan Data
     public function index($id)
     {
-        $riwayat_jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $riwayat_jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+            $riwayat_jabatan = RiwayatJabatan::where('pegawai_id',$pegawai[0]->id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
+        }
         return view('admin.riwayat_jabatan.index',compact('riwayat_jabatan','pegawai'));
     }
 

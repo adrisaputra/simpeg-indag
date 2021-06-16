@@ -64,6 +64,8 @@ class RiwayatKepangkatanController extends Controller
    {
         $this->validate($request, [
             'periode_kp' => 'required',
+            'periode_kp_sebelumnya' => 'required',
+            'periode_kp_saat_ini' => 'required',
             'golongan' => 'required',
             'tmt' => 'required',
             'mk_bulan' => 'required|numeric',
@@ -76,6 +78,8 @@ class RiwayatKepangkatanController extends Controller
 
         $input['pegawai_id'] = $id;
         $input['periode_kp'] = $request->periode_kp;
+        $input['periode_kp_sebelumnya'] = $request->periode_kp_sebelumnya;
+        $input['periode_kp_saat_ini'] = $request->periode_kp_saat_ini;
         $input['golongan'] = $request->golongan;
         if($request->golongan=="Golongan I/a"){
             $input['jenis_golongan'] = 1;
@@ -266,10 +270,12 @@ class RiwayatKepangkatanController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatKepangkatan $riwayat_kepangkatan)
    {
-        $pathToYourFile = public_path('upload/arsip_kepangkatan/'.$riwayat_kepangkatan->arsip_kepangkatan);
-        if(file_exists($pathToYourFile))
-        {
-            unlink($pathToYourFile);
+        if($riwayat_kepangkatan->arsip_kepangkatan){
+            $pathToYourFile = public_path('upload/arsip_kepangkatan/'.$riwayat_kepangkatan->arsip_kepangkatan);
+            if(file_exists($pathToYourFile))
+            {
+                unlink($pathToYourFile);
+            }
         }
 
         $riwayat_kepangkatan->delete();
@@ -277,16 +283,20 @@ class RiwayatKepangkatanController extends Controller
         $golongan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('jenis_golongan','DESC')->limit(1)->get();
         $golongan->toArray();
         
-        if($golongan){
-            $pegawai = Pegawai::find($id);
-            $pegawai->golongan = $golongan[0]->golongan;
-        } else {
-            $pegawai = Pegawai::find($id);
-            $pegawai->golongan = '';
+        if(count($golongan)>0){
+            
+            if($golongan){
+                $pegawai = Pegawai::find($id);
+                $pegawai->golongan = $golongan[0]->golongan;
+            } else {
+                $pegawai = Pegawai::find($id);
+                $pegawai->golongan = '';
+            }
+
+            $pegawai->save();
+        
         }
 
-        $pegawai->save();
-        
         return redirect('/riwayat_kepangkatan/'.$id)->with('status', 'Data Berhasil Dihapus');
    }
 

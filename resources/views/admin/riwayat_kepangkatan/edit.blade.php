@@ -56,6 +56,30 @@
 						</div>
 					</div>
 
+					<div class="form-group @if ($errors->has('periode_kp_sebelumnya')) has-error @endif">
+						<label class="col-sm-3 control-label">{{ __('Periode KP Sebelumnya') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-9">
+							@if ($errors->has('periode_kp_sebelumnya'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('periode_kp_sebelumnya') }}</label>@endif
+							<select class="form-control" name="periode_kp_sebelumnya">
+                                        <option value=""> -Pilih Periode KP Sebelumnya-</option>
+                                        <option value="April" @if($riwayat_kepangkatan->periode_kp_sebelumnya=="April") selected @endif> April</option>
+                                        <option value="Oktober" @if($riwayat_kepangkatan->periode_kp_sebelumnya=="Oktober") selected @endif> Oktober</option>
+                                    </select>
+						</div>
+					</div>
+
+					<div class="form-group @if ($errors->has('periode_kp_saat_ini')) has-error @endif">
+						<label class="col-sm-3 control-label">{{ __('Periode KP Saat Ini') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-9">
+							@if ($errors->has('periode_kp_saat_ini'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('periode_kp_saat_ini') }}</label>@endif
+							<select class="form-control" name="periode_kp_saat_ini">
+                                        <option value=""> -Pilih Periode KP Saat Ini-</option>
+                                        <option value="April" @if($riwayat_kepangkatan->periode_kp_saat_ini=="April") selected @endif> April</option>
+                                        <option value="Oktober" @if($riwayat_kepangkatan->periode_kp_saat_ini=="Oktober") selected @endif> Oktober</option>
+                                    </select>
+						</div>
+					</div>
+
 					<div class="form-group  @if ($errors->has('golongan') || $errors->has('status')) has-error @endif">
 						<label class="col-sm-3 control-label">{{ __('Golongan') }} <span class="required" style="color: #dd4b39;">*</span></label>
 						<div class="col-sm-3" @if($errors->has('golongan') && $errors->has('status')) @elseif ($errors->has('status')) style="padding-top:27px" @endif>
