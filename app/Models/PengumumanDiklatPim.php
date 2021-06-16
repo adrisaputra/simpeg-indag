@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PengumumanDiklat extends Model
+class PengumumanDiklatPim extends Model
 {
     // use HasFactory;
-	protected $table = 'pengumuman_diklat_tbl';
+	protected $table = 'pengumuman_diklat_pim_tbl';
 	protected $fillable =[
         'judul',
         'penyelenggara',

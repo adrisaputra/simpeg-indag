@@ -34,6 +34,7 @@ use App\Http\Controllers\InformasiKantorController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\NotulenController;
 use App\Http\Controllers\PengumumanDiklatController;
+use App\Http\Controllers\PengumumanDiklatPimController;
 use App\Http\Controllers\PengusulanPenghargaanController;
 use App\Http\Controllers\PengusulanHukumanController;
 use App\Http\Controllers\UserController;
@@ -342,6 +343,15 @@ Route::post('/pengumuman_diklat', [PengumumanDiklatController::class, 'store']);
 Route::get('/pengumuman_diklat/edit/{pengumuman_diklat}', [PengumumanDiklatController::class, 'edit']);
 Route::put('/pengumuman_diklat/edit/{pengumuman_diklat}', [PengumumanDiklatController::class, 'update']);
 Route::get('/pengumuman_diklat/hapus/{pengumuman_diklat}',[PengumumanDiklatController::class, 'delete']);
+
+## Pengumuman Diklat PIM
+Route::get('/pengumuman_diklat_pim', [PengumumanDiklatPimController::class, 'index']);
+Route::get('/pengumuman_diklat_pim/search', [PengumumanDiklatPimController::class, 'search']);
+Route::get('/pengumuman_diklat_pim/create', [PengumumanDiklatPimController::class, 'create']);
+Route::post('/pengumuman_diklat_pim', [PengumumanDiklatPimController::class, 'store']);
+Route::get('/pengumuman_diklat_pim/edit/{pengumuman_diklat_pim}', [PengumumanDiklatPimController::class, 'edit']);
+Route::put('/pengumuman_diklat_pim/edit/{pengumuman_diklat_pim}', [PengumumanDiklatPimController::class, 'update']);
+Route::get('/pengumuman_diklat_pim/hapus/{pengumuman_diklat_pim}',[PengumumanDiklatPimController::class, 'delete']);
 
 ## Pengusulan Penghargaan
 Route::get('/pengusulan_penghargaan', [PengusulanPenghargaanController::class, 'index']);

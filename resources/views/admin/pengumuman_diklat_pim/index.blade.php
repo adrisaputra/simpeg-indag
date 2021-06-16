@@ -58,9 +58,9 @@
 							<th style="width: 20%">#aksi</th>
 						@endif
 					</tr>
-					@foreach($pengumuman_diklat as $v)
+					@foreach($pengumuman_diklat_pim as $v)
 					<tr>
-						<td>{{ ($pengumuman_diklat ->currentpage()-1) * $pengumuman_diklat ->perpage() + $loop->index + 1 }}</td>
+						<td>{{ ($pengumuman_diklat_pim ->currentpage()-1) * $pengumuman_diklat_pim ->perpage() + $loop->index + 1 }}</td>
 						<td>{{ $v->judul }}</td>
 						<td>{{ $v->penyelenggara }}</td>
 						<td>{{ $v->bidang }}</td>
@@ -80,7 +80,7 @@
 			</div>
 		<div class="box-footer">
 			<!-- PAGINATION -->
-			<div class="float-right">{{ $pengumuman_diklat->appends(Request::only('search'))->links() }}</div>
+			<div class="float-right">{{ $pengumuman_diklat_pim->appends(Request::only('search'))->links() }}</div>
 		</div>
 	</div>
 	</section>

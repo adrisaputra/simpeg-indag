@@ -19,7 +19,7 @@ class PengumumanDiklatController extends Controller
     ## Tampikan Data
     public function index()
     {
-        $title = "Pengumuman Diklat";
+        $title = "Pengumuman Diklat Teknis";
 		$pengumuman_diklat = DB::table('pengumuman_diklat_tbl')->orderBy('id','DESC')->paginate(10);
 		return view('admin.pengumuman_diklat.index',compact('title','pengumuman_diklat'));
     }
@@ -27,14 +27,16 @@ class PengumumanDiklatController extends Controller
 	## Tampilkan Data Search
 	public function search(Request $request)
     {
-        $title = "Pengumuman Diklat";
+        $title = "Pengumuman Diklat Teknis";
         $pengumuman_diklat = $request->get('search');
 		$pengumuman_diklat = PengumumanDiklat::
                 where(function ($query) use ($pengumuman_diklat) {
                     $query->where('judul', 'LIKE', '%'.$pengumuman_diklat.'%')
                         ->orWhere('penyelenggara', 'LIKE', '%'.$pengumuman_diklat.'%')
                         ->orWhere('bidang', 'LIKE', '%'.$pengumuman_diklat.'%')
-                        ->orWhere('syarat', 'LIKE', '%'.$pengumuman_diklat.'%');
+                        ->orWhere('syarat', 'LIKE', '%'.$pengumuman_diklat.'%')
+                        ->orWhere('tanggal_mulai', 'LIKE', '%'.$pengumuman_diklat.'%')
+                        ->orWhere('tanggal_selesai', 'LIKE', '%'.$pengumuman_diklat.'%');
                 })
                 ->orderBy('id','DESC')->paginate(10);
 		return view('admin.pengumuman_diklat.index',compact('title','pengumuman_diklat'));
@@ -43,7 +45,7 @@ class PengumumanDiklatController extends Controller
 	## Tampilkan Form Create
 	public function create()
     {
-        $title = "Pengumuman Diklat";
+        $title = "Pengumuman Diklat Teknis";
         $view=view('admin.pengumuman_diklat.create', compact('title'));
         $view=$view->render();
         return $view;
@@ -56,13 +58,17 @@ class PengumumanDiklatController extends Controller
             'judul' => 'required',
             'penyelenggara' => 'required',
             'bidang' => 'required',
-            'syarat' => 'required'
+            'syarat' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required'
 		]);
 		
         $input['judul'] = $request->judul;
         $input['penyelenggara'] = $request->penyelenggara;
         $input['bidang'] = $request->bidang;
         $input['syarat'] = $request->syarat;
+        $input['tanggal_mulai'] = $request->tanggal_mulai;
+        $input['tanggal_selesai'] = $request->tanggal_selesai;
         $input['user_id'] = Auth::user()->id;
 
         PengumumanDiklat::create($input);
@@ -74,7 +80,7 @@ class PengumumanDiklatController extends Controller
 	## Tampilkan Form Edit
     public function edit(PengumumanDiklat $pengumuman_diklat)
     {
-        $title = "Pengumuman Diklat";
+        $title = "Pengumuman Diklat Teknis";
         $view=view('admin.pengumuman_diklat.edit', compact('title','pengumuman_diklat'));
         $view=$view->render();
 		return $view;
@@ -87,7 +93,9 @@ class PengumumanDiklatController extends Controller
             'judul' => 'required',
             'penyelenggara' => 'required',
             'bidang' => 'required',
-            'syarat' => 'required'
+            'syarat' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required'
 		]);
 		
         $pengumuman_diklat->fill($request->all());

@@ -204,7 +204,7 @@
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Penyesuaian Ijazah</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
+                                            <li class="{{ (request()->is('pengumuman_diklat_pim*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat_pim')}}"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
                                         </ul>
@@ -279,7 +279,7 @@
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Penyesuaian Ijazah</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
+                                            <li class="{{ (request()->is('pengumuman_diklat_pim*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat_pim')}}"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
                                         </ul>
