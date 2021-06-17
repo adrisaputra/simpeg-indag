@@ -31,6 +31,7 @@ use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\InformasiKantorController;
+use App\Http\Controllers\PeraturanKepegawaianController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\NotulenController;
 use App\Http\Controllers\PengumumanDiklatController;
@@ -352,6 +353,11 @@ Route::post('/pengumuman_diklat_pim', [PengumumanDiklatPimController::class, 'st
 Route::get('/pengumuman_diklat_pim/edit/{pengumuman_diklat_pim}', [PengumumanDiklatPimController::class, 'edit']);
 Route::put('/pengumuman_diklat_pim/edit/{pengumuman_diklat_pim}', [PengumumanDiklatPimController::class, 'update']);
 Route::get('/pengumuman_diklat_pim/hapus/{pengumuman_diklat_pim}',[PengumumanDiklatPimController::class, 'delete']);
+
+## Peraturan Kepegawaian
+Route::get('/peraturan_kepegawaian', [PeraturanKepegawaianController::class, 'index']);
+Route::get('/peraturan_kepegawaian/edit/{peraturan_kepegawaian}', [PeraturanKepegawaianController::class, 'edit']);
+Route::put('/peraturan_kepegawaian/edit/{peraturan_kepegawaian}', [PeraturanKepegawaianController::class, 'update']);
 
 ## Pengusulan Penghargaan
 Route::get('/pengusulan_penghargaan', [PengusulanPenghargaanController::class, 'index']);
