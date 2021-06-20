@@ -34,6 +34,7 @@ class Pegawai extends Model
         'golongan',
         'pendidikan',
         'esselon',
+        'kgb_saat_ini',
         'jabatan_id',
         'bidang_id',
         'seksi_id',

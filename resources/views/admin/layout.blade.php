@@ -184,7 +184,7 @@
                             <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}"><a href="{{ url('pegawai')}}"><i class="fa fa-circle-notch"></i> <span>Tayangan Data</span></a></li>
                             <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}"><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-notch"></i> <span>Informasi Kantor</span></a></li>
                             <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}"><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Agenda Kerja</span></a></li>
-                            <li class="treeview {{ (request()->is('notulen*','arsip*','pengumuman_diklat*','peraturan_kepegawaian*','pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
+                            <li class="treeview {{ (request()->is('notulen*','arsip*','pengumuman_diklat*','peraturan_kepegawaian*','pengumuman_ujian_dinas*','pengumuman_ujian_pangkat*','pengumuman_diklat_pim*','honorer*','pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
                                 <a href="#">
                                     <i class="fa fa-share"></i> <span>Informasi</span>
                                     <span class="pull-right-container">
@@ -192,7 +192,7 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="treeview {{ (request()->is('pengumuman_diklat*','peraturan_kepegawaian*')) ? 'active' : '' }}">
+                                    <li class="treeview {{ (request()->is('pengumuman_diklat*','peraturan_kepegawaian*','pengumuman_ujian_dinas*','pengumuman_ujian_pangkat*','pengumuman_diklat_pim*')) ? 'active' : '' }}">
                                         <a href="#"><i class="fa fa-circle-notch"></i> Pengumuman
                                             <span class="pull-right-container">
                                             <i class="fa fa-angle-left pull-right"></i>
@@ -200,14 +200,15 @@
                                         </a>
                                         <ul class="treeview-menu">
                                             <li class="{{ (request()->is('pengumuman_diklat*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat')}}"><i class="fa fa-circle-notch"></i> Diklat Teknis</a></li>
-                                            <li class="{{ (request()->is('peraturan_kepegawaian*')) ? 'active' : '' }}"><a href="{{ url('peraturan_kepegawaian')}}"><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat / Penyesuaian Ijazah</a></li>
+                                            <li class="{{ (request()->is('peraturan_kepegawaian*')) ? 'active' : '' }}"><a href="{{ url('peraturan_kepegawaian')}}"><i class="fa fa-circle-notch"></i> Peraturan<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kepegawaian</a></li>
+                                            <li class="{{ (request()->is('pengumuman_ujian_dinas*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_ujian_dinas')}}"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
+                                            <li class="{{ (request()->is('pengumuman_ujian_pangkat*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_ujian_pangkat')}}"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / Penyesuaian Ijazah</a></li>
                                             <li class="{{ (request()->is('pengumuman_diklat_pim*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat_pim')}}"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
+                                            <li class="{{ (request()->is('pegawai/kgb*')) ? 'active' : '' }}"><a href="{{ url('pegawai/kgb')}}"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
+                                            <li class="{{ (request()->is('pegawai/pensiun*')) ? 'active' : '' }}"><a href="{{ url('pegawai/pensiun')}}"><i class="fa fa-circle-notch"></i> Pensiun</a></li>
                                         </ul>
                                     </li>
+                                    <li class="{{ (request()->is('honorer*')) ? 'active' : '' }}"><a href="{{ url('honorer') }}"><i class="fa fa-circle-notch"></i> Pegawai Honorer</a></li>
                                     <li class="{{ (request()->is('notulen*')) ? 'active' : '' }}"><a href="{{ url('notulen') }}"><i class="fa fa-circle-notch"></i> Notulensi Rapat</a></li>
                                     <li class="treeview {{ (request()->is('arsip_surat_masuk*','arsip_surat_keluar*')) ? 'active' : '' }}">
                                         <a href="#"><i class="fa fa-circle-notch"></i> Arsip
@@ -258,7 +259,7 @@
                             <li class="{{ (request()->is('pegawai*')) ? 'active' : '' }}""><a href="{{ url('pegawai')}}"><i class="fa fa-circle-notch"></i> <span>Data Pribadi</span></a></li>
                             <li class="{{ (request()->is('informasi_kantor*')) ? 'active' : '' }}""><a href="{{ url('informasi_kantor')}}"><i class="fa fa-circle-notch"></i> <span>Informasi Kantor</span></a></li>
                             <li class="{{ (request()->is('agenda*')) ? 'active' : '' }}""><a href="{{ url('agenda')}}"><i class="fa fa-circle-notch"></i> <span>Agenda Kerja</span></a></li>
-                            <li class="treeview {{ (request()->is('notulen*','arsip*','pengumuman_diklat*','peraturan_kepegawaian*','pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
+                            <li class="treeview {{ (request()->is('notulen*','arsip*','pengumuman_diklat*','peraturan_kepegawaian*','pengumuman_ujian_dinas*','pengumuman_ujian_pangkat*','pengumuman_diklat_pim*','honorer*','pengusulan_penghargaan*','pengusulan_hukuman*')) ? 'active' : '' }}">
                                 <a href="#">
                                     <i class="fa fa-share"></i> <span>Informasi</span>
                                     <span class="pull-right-container">
@@ -266,7 +267,7 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="treeview {{ (request()->is('pengumuman_diklat*','peraturan_kepegawaian*')) ? 'active' : '' }}">
+                                    <li class="treeview {{ (request()->is('pengumuman_diklat*','peraturan_kepegawaian*','pengumuman_ujian_dinas*','pengumuman_ujian_pangkat*','pengumuman_diklat_pim*')) ? 'active' : '' }}">
                                         <a href="#"><i class="fa fa-circle-notch"></i> Pengumuman
                                             <span class="pull-right-container">
                                             <i class="fa fa-angle-left pull-right"></i>
@@ -275,8 +276,8 @@
                                         <ul class="treeview-menu">
                                             <li class="{{ (request()->is('pengumuman_diklat*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat')}}"><i class="fa fa-circle-notch"></i> Diklat Teknis</a></li>
                                             <li class="{{ (request()->is('peraturan_kepegawaian*')) ? 'active' : '' }}"><a href="{{ url('peraturan_kepegawaian')}}"><i class="fa fa-circle-notch"></i> Peraturan Kepegawaian</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat / Penyesuaian Ijazah</a></li>
+                                            <li class="{{ (request()->is('pengumuman_ujian_dinas*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_ujian_dinas')}}"><i class="fa fa-circle-notch"></i> Ujian Dinas</a></li>
+                                            <li class="{{ (request()->is('pengumuman_ujian_pangkat*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_ujian_pangkat')}}"><i class="fa fa-circle-notch"></i> Ujian Kenaikan Pangkat / Penyesuaian Ijazah</a></li>
                                             <li class="{{ (request()->is('pengumuman_diklat_pim*')) ? 'active' : '' }}"><a href="{{ url('pengumuman_diklat_pim')}}"><i class="fa fa-circle-notch"></i> Diklat PIM IV, III, II</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Kenaikan Gaji Berkala</a></li>
                                             <li><a href="#"><i class="fa fa-circle-notch"></i> Pensiun</a></li>

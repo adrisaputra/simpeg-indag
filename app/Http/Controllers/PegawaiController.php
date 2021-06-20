@@ -9,6 +9,7 @@ use App\Models\Seksi;   //nama model
 use App\Models\User;   //nama model
 use App\Models\RiwayatKepangkatan;   //nama model
 use App\Models\RiwayatGaji;   //nama model
+use App\Models\RiwayatKgb;   //nama model
 use App\Imports\PegawaiImport;     // Import data Pegawai
 use Maatwebsite\Excel\Facades\Excel; // Excel Library
 use App\Http\Controllers\Controller;
@@ -571,21 +572,56 @@ class PegawaiController extends Controller
     {
         $title = "Kenaikan Gaji Berkala";
 
-        $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
 
-        $gaji = RiwayatGaji::where('pegawai_id',$pegawai[0]->id)->orderBy('jenis_golongan','DESC')->get();
-        $gaji->toArray();
+            $pegawai = Pegawai::where('status_hapus', 0)
+                    ->whereRaw('YEAR(kgb_saat_ini) = YEAR(DATE_SUB(CURDATE(), INTERVAL 2 YEAR))')
+                    ->paginate(25)->onEachSide(1);
+            
+            $i=0;
+            if(count($pegawai)>0){
+                foreach($pegawai as $v){ 
+                    $gaji[$i] = DB::table('riwayat_kgb_tbl')->where('pegawai_id',$v->id)->orderBy('kgb_saat_ini','DESC')->count();
+                    
+                    if($gaji[$i]>0){
+                        $kgb = RiwayatKgb::select('*', DB::raw("kgb_saat_ini + INTERVAL '2' YEAR AS kgb_berikutnya"), DB::raw(" DATEDIFF(kgb_saat_ini + INTERVAL '2' YEAR,CURDATE()) as hari"))
+                                     ->where('pegawai_id',$v->id)->orderBy('kgb_saat_ini','DESC')->get();	
+                        $kgb->toArray();	
+                        $kgb_terakhir[$i] = $kgb[0]->kgb_saat_ini;
+                        $kgb_saat_ini[$i] = $kgb[0]->kgb_saat_ini;
+                        $kgb_berikutnya[$i] = $kgb[0]->kgb_berikutnya;
+                    } else {
+                        $kgb_terakhir[$i] = "Tidak ada";   
+                        $kgb_saat_ini[$i] = "Tidak ada";   
+                        $kgb_berikutnya[$i] = "Tidak ada";   
+                    } 
+                    $i++;
+                }	
+            } else {
+                $gaji[0]="0";
+                $kgb_terakhir[0] = "Tidak ada";   
+                $kgb_saat_ini[0] = "Tidak ada";   
+                $kgb_berikutnya[0] = "Tidak ada";  
+            }
+            
 
-        if(count($gaji)>0){
-            $kgb = RiwayatGaji::select('*', DB::raw("tmt + INTERVAL '2' YEAR AS kgb_berikutnya"), DB::raw(" DATEDIFF(tmt + INTERVAL '2' YEAR,CURDATE()) as hari"))
-                             ->where('pegawai_id',$pegawai[0]->id)->where('jenis_golongan',$gaji[0]->jenis_golongan)->get();	
-            $kgb->toArray();	
         } else {
-            $kgb[0]="Tidak ada";
-        } 
-
-        return view('admin.pegawai.kgb',compact('title','pegawai','gaji','kgb'));
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+    
+            $gaji = RiwayatGaji::where('pegawai_id',$pegawai[0]->id)->orderBy('jenis_golongan','DESC')->get();
+            $gaji->toArray();
+    
+            if(count($gaji)>0){
+                $kgb = RiwayatGaji::select('*', DB::raw("tmt + INTERVAL '2' YEAR AS kgb_berikutnya"), DB::raw(" DATEDIFF(tmt + INTERVAL '2' YEAR,CURDATE()) as hari"))
+                                 ->where('pegawai_id',$pegawai[0]->id)->where('jenis_golongan',$gaji[0]->jenis_golongan)->get();	
+                $kgb->toArray();	
+            } else {
+                $kgb[0]="Tidak ada";
+            } 
+        }
+        
+        return view('admin.pegawai.kgb',compact('title','pegawai','gaji','kgb_terakhir','kgb_saat_ini','kgb_berikutnya',));
     }
 
     

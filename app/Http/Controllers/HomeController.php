@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pegawai;   //nama model
+use App\Models\Honorer;   //nama model
 use App\Models\Absen;   //nama model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,9 +19,8 @@ class HomeController extends Controller
     {
         if(Auth::user()->group==1){
             $pegawai = Pegawai::where('status_hapus', 0)->count();
-            $pns = Pegawai::where('status', 'PNS')->where('status_hapus', 0)->count();
-            $cpns = Pegawai::where('status', 'CPNS')->where('status_hapus', 0)->count();
-            return view('admin.beranda', compact('pegawai','pns','cpns'));
+            $honorer = Honorer::count();
+            return view('admin.beranda', compact('pegawai','honorer'));
         } else if(Auth::user()->group==3){
             $count = Absen::where('nip', Auth::user()->name)->where('tanggal', date('Y-m-d'))->count();
             $status_kehadiran = Absen::where('nip', Auth::user()->name)->where('tanggal', date('Y-m-d'))->get();

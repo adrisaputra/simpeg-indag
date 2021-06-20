@@ -22,7 +22,7 @@
 				<!-- small box -->
 					<div class="small-box bg-blue">
 						<div class="inner">
-						<h3>{{ $pns }}</h3>
+						<h3>{{ $pegawai }}</h3>
 
 						<p>Total Pegawai</p>
 						</div>
@@ -37,14 +37,14 @@
 					<!-- small box -->
 					<div class="small-box bg-green">
 						<div class="inner">
-						<h3>{{ $pns }}</h3>
+						<h3>{{ $honorer }}</h3>
 
 						<p>Total Honorer</p>
 						</div>
 						<div class="icon">
 						<i class="fa fa-id-card"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('honorer') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->
@@ -52,7 +52,7 @@
 					<!-- small box -->
 					<div class="small-box bg-aqua">
 						<div class="inner">
-						<h3>{{ $cpns }}</h3>
+						<h3>0</h3>
 
 						<p>Total Kehadiran</p>
 						</div>
@@ -66,7 +66,7 @@
 					<!-- small box -->
 					<div class="small-box bg-red">
 						<div class="inner">
-						<h3>{{ $cpns }}</h3>
+						<h3>0</h3>
 
 						<p>Pensiun</p>
 						</div>
@@ -80,7 +80,7 @@
 					<!-- small box -->
 					<div class="small-box bg-yellow">
 						<div class="inner">
-						<h3>{{ $cpns }}</h3>
+						<h3>{{ $honorer }}</h3>
 
 						<p>Diklat</p>
 						</div>
@@ -94,7 +94,7 @@
 					<!-- small box -->
 					<div class="small-box bg-teal">
 						<div class="inner">
-						<h3>{{ $cpns }}</h3>
+						<h3>{{ $honorer }}</h3>
 
 						<p>Gaji Berkala</p>
 						</div>
@@ -108,7 +108,7 @@
 					<!-- small box -->
 					<div class="small-box bg-maroon">
 						<div class="inner">
-						<h3>{{ $cpns }}</h3>
+						<h3>{{ $honorer }}</h3>
 
 						<p>Naik Pangkat</p>
 						</div>

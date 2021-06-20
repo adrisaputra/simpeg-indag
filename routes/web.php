@@ -36,6 +36,9 @@ use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\NotulenController;
 use App\Http\Controllers\PengumumanDiklatController;
 use App\Http\Controllers\PengumumanDiklatPimController;
+use App\Http\Controllers\PengumumanUjianDinasController;
+use App\Http\Controllers\PengumumanUjianPangkatController;
+use App\Http\Controllers\HonorerController;
 use App\Http\Controllers\PengusulanPenghargaanController;
 use App\Http\Controllers\PengusulanHukumanController;
 use App\Http\Controllers\UserController;
@@ -354,10 +357,37 @@ Route::get('/pengumuman_diklat_pim/edit/{pengumuman_diklat_pim}', [PengumumanDik
 Route::put('/pengumuman_diklat_pim/edit/{pengumuman_diklat_pim}', [PengumumanDiklatPimController::class, 'update']);
 Route::get('/pengumuman_diklat_pim/hapus/{pengumuman_diklat_pim}',[PengumumanDiklatPimController::class, 'delete']);
 
+## Pengumuman Ujian Dinas
+Route::get('/pengumuman_ujian_dinas', [PengumumanUjianDinasController::class, 'index']);
+Route::get('/pengumuman_ujian_dinas/search', [PengumumanUjianDinasController::class, 'search']);
+Route::get('/pengumuman_ujian_dinas/create', [PengumumanUjianDinasController::class, 'create']);
+Route::post('/pengumuman_ujian_dinas', [PengumumanUjianDinasController::class, 'store']);
+Route::get('/pengumuman_ujian_dinas/edit/{pengumuman_ujian_dinas}', [PengumumanUjianDinasController::class, 'edit']);
+Route::put('/pengumuman_ujian_dinas/edit/{pengumuman_ujian_dinas}', [PengumumanUjianDinasController::class, 'update']);
+Route::get('/pengumuman_ujian_dinas/hapus/{pengumuman_ujian_dinas}',[PengumumanUjianDinasController::class, 'delete']);
+
+## Pengumuman Ujian Pangkat
+Route::get('/pengumuman_ujian_pangkat', [PengumumanUjianPangkatController::class, 'index']);
+Route::get('/pengumuman_ujian_pangkat/search', [PengumumanUjianPangkatController::class, 'search']);
+Route::get('/pengumuman_ujian_pangkat/create', [PengumumanUjianPangkatController::class, 'create']);
+Route::post('/pengumuman_ujian_pangkat', [PengumumanUjianPangkatController::class, 'store']);
+Route::get('/pengumuman_ujian_pangkat/edit/{pengumuman_ujian_pangkat}', [PengumumanUjianPangkatController::class, 'edit']);
+Route::put('/pengumuman_ujian_pangkat/edit/{pengumuman_ujian_pangkat}', [PengumumanUjianPangkatController::class, 'update']);
+Route::get('/pengumuman_ujian_pangkat/hapus/{pengumuman_ujian_pangkat}',[PengumumanUjianPangkatController::class, 'delete']);
+
 ## Peraturan Kepegawaian
 Route::get('/peraturan_kepegawaian', [PeraturanKepegawaianController::class, 'index']);
 Route::get('/peraturan_kepegawaian/edit/{peraturan_kepegawaian}', [PeraturanKepegawaianController::class, 'edit']);
 Route::put('/peraturan_kepegawaian/edit/{peraturan_kepegawaian}', [PeraturanKepegawaianController::class, 'update']);
+
+## Honorer
+Route::get('/honorer', [HonorerController::class, 'index']);
+Route::get('/honorer/search', [HonorerController::class, 'search']);
+Route::get('/honorer/create', [HonorerController::class, 'create']);
+Route::post('/honorer', [HonorerController::class, 'store']);
+Route::get('/honorer/edit/{honorer}', [HonorerController::class, 'edit']);
+Route::put('/honorer/edit/{honorer}', [HonorerController::class, 'update']);
+Route::get('/honorer/hapus/{honorer}',[HonorerController::class, 'delete']);
 
 ## Pengusulan Penghargaan
 Route::get('/pengusulan_penghargaan', [PengusulanPenghargaanController::class, 'index']);

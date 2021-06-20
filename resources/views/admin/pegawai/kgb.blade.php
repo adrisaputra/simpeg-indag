@@ -20,29 +20,53 @@
 						<th style="text-align:center">NIP</th>
 						<th style="text-align:center">Nama Pegawai</th>
 						<th style="text-align:center">KGB Terakhir</th>
+						<th style="text-align:center">KGB Saat Ini</th>
 						<th style="text-align:center">KGB Selanjutnya</th>
 					</tr>
-					<tr>
-						<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
-						<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
+					@if(Auth::user()->group==1)
+						@foreach($pegawai as $v)
+						<tr>
+							<td style="text-align:center">{{ $v->nip }}</td>
+							<td style="text-align:center">{{ $v->nama_pegawai }}</td>
 
-						@if(@$gaji[0]->tmt)
-							<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($gaji[0]->tmt)) }}</td>
-						@else
-							<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
-						@endif
+							@if($gaji[$loop->index]>0)
+								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($kgb_terakhir[$loop->index])) }}</td>
+								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($kgb_saat_ini[$loop->index])) }}</td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($kgb_berikutnya[$loop->index])) }}</span></td>
+							@else
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
+							@endif
 
-						@if(@$kgb[0]->kgb_berikutnya)
-							<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($kgb[0]->kgb_berikutnya)) }}</span></td>
-						@else
-							<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</spam></td>
-						@endif
-					</tr>
+						</tr>
+						@endforeach
+					@else
+						<tr>
+							<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
+							<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
+
+							@if(@$gaji[0]->tmt)
+								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($gaji[0]->tmt)) }}</td>
+							@else
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
+							@endif
+
+							@if(@$kgb[0]->kgb_berikutnya)
+								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($kgb[0]->kgb_berikutnya)) }}</span></td>
+							@else
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</spam></td>
+							@endif
+						</tr>
+					@endif
 				</table>
 
 			</div>
 		<div class="box-footer">
 			<!-- PAGINATION -->
+			@if(Auth::user()->group==1)
+				<div class="float-right">{{ $pegawai->appends(Request::only('search'))->links() }}</div>
+			@endif
 		</div>
 	</div>
 	</section>

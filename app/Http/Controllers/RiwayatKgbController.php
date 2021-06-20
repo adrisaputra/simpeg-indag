@@ -83,6 +83,13 @@ class RiwayatKgbController extends Controller
        
         RiwayatKgb::create($input);
 
+        $kgb_saat_ini = RiwayatKgb::where('pegawai_id',$id)->orderBy('kgb_saat_ini','DESC')->limit(1)->get();
+        $kgb_saat_ini->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->kgb_saat_ini = $kgb_saat_ini[0]->kgb_saat_ini;
+        $pegawai->save();
+        
         return redirect('/riwayat_kgb/'.$id)->with('status','Data Tersimpan');
    }
 
@@ -129,6 +136,13 @@ class RiwayatKgbController extends Controller
         $riwayat_kgb->user_id = Auth::user()->id;
         $riwayat_kgb->save();
        
+        $kgb_saat_ini = RiwayatKgb::where('pegawai_id',$id)->orderBy('kgb_saat_ini','DESC')->limit(1)->get();
+        $kgb_saat_ini->toArray();
+        
+        $pegawai = Pegawai::find($id);
+        $pegawai->kgb_saat_ini = $kgb_saat_ini[0]->kgb_saat_ini;
+    	$pegawai->save();
+
         return redirect('/riwayat_kgb/'.$id)->with('status', 'Data Berhasil Diubah');
    }
 
@@ -145,6 +159,23 @@ class RiwayatKgbController extends Controller
 
         $riwayat_kgb->delete();
        
+        $kgb_saat_ini = RiwayatKgb::where('pegawai_id',$id)->orderBy('kgb_saat_ini','DESC')->limit(1)->get();
+        $kgb_saat_ini->toArray();
+        
+        if(count($kgb_saat_ini)>0){
+            
+            if($kgb_saat_ini){
+                $pegawai = Pegawai::find($id);
+                $pegawai->kgb_saat_ini = $kgb_saat_ini[0]->kgb_saat_ini;
+            } else {
+                $pegawai = Pegawai::find($id);
+                $pegawai->kgb_saat_ini = '';
+            }
+
+            $pegawai->save();
+        
+        }
+
         return redirect('/riwayat_kgb/'.$id)->with('status', 'Data Berhasil Dihapus');
    }
 }
