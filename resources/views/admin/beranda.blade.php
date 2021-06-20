@@ -18,7 +18,7 @@
 			<!-- Small boxes (Stat box) -->
 			<div class="row">
 			@if(Auth::user()->group==1)
-				<div class="col-lg-4 col-xs-6">
+				<div class="col-lg-6 col-xs-6">
 				<!-- small box -->
 					<div class="small-box bg-blue">
 						<div class="inner">
@@ -33,7 +33,7 @@
 					</div>
 				</div>
 				<!-- ./col -->
-				<div class="col-lg-4 col-xs-6">
+				<div class="col-lg-6 col-xs-6">
 					<!-- small box -->
 					<div class="small-box bg-green">
 						<div class="inner">
@@ -48,37 +48,37 @@
 					</div>
 				</div>
 				<!-- ./col -->
-				<div class="col-lg-4 col-xs-6">
+				<div class="col-lg-3 col-xs-6">
 					<!-- small box -->
 					<div class="small-box bg-aqua">
 						<div class="inner">
-						<h3>0</h3>
+						<h3>{{ $kehadiran }}</h3>
 
 						<p>Total Kehadiran</p>
 						</div>
 						<div class="icon">
 						<i class="fa fa-user-clock"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('absen') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-3 col-xs-6">
 					<!-- small box -->
 					<div class="small-box bg-red">
 						<div class="inner">
-						<h3>0</h3>
+						<h3>{{ $pensiun }}</h3>
 
 						<p>Pensiun</p>
 						</div>
 						<div class="icon">
 						<i class="fa fa-user-times"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('pegawai/pensiun') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
-				<div class="col-lg-3 col-xs-6">
+				<!-- <div class="col-lg-3 col-xs-6"> -->
 					<!-- small box -->
-					<div class="small-box bg-yellow">
+					<!-- <div class="small-box bg-yellow">
 						<div class="inner">
 						<h3>{{ $honorer }}</h3>
 
@@ -89,19 +89,20 @@
 						</div>
 						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
-				</div>
+				</div> -->
 				<div class="col-lg-3 col-xs-6">
 					<!-- small box -->
-					<div class="small-box bg-teal">
+					<!-- <div class="small-box bg-teal"> -->
+					<div class="small-box bg-yellow">
 						<div class="inner">
-						<h3>{{ $honorer }}</h3>
+						<h3>{{ $kgb }}</h3>
 
 						<p>Gaji Berkala</p>
 						</div>
 						<div class="icon">
 						<i class="fa fa-wallet"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('pegawai/kgb') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-3 col-xs-6">
@@ -115,7 +116,7 @@
 						<div class="icon">
 						<i class="fa fa-sort-amount-up"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('pegawai/naik_pangkat') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->

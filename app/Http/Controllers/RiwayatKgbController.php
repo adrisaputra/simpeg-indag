@@ -163,18 +163,17 @@ class RiwayatKgbController extends Controller
         $kgb_saat_ini->toArray();
         
         if(count($kgb_saat_ini)>0){
-            
-            if($kgb_saat_ini){
-                $pegawai = Pegawai::find($id);
-                $pegawai->kgb_saat_ini = $kgb_saat_ini[0]->kgb_saat_ini;
-            } else {
-                $pegawai = Pegawai::find($id);
-                $pegawai->kgb_saat_ini = '';
-            }
-
-            $pegawai->save();
-        
+            $pegawai = Pegawai::find($id);
+            $pegawai->kgb_saat_ini = $kgb_saat_ini[0]->kgb_saat_ini;
+            echo "a";
+        } else {
+            $pegawai = Pegawai::find($id);
+            $pegawai->kgb_saat_ini = '';
+            echo "b";
         }
+
+        $pegawai->save();
+        
 
         return redirect('/riwayat_kgb/'.$id)->with('status', 'Data Berhasil Dihapus');
    }

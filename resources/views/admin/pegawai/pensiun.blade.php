@@ -22,22 +22,43 @@
 						<th style="text-align:center">Tanggal Pensiun</th>
 						<th style="text-align:center">Usia Saat Ini</th>
 					</tr>
-					<tr>
-						<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
-						<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
-						<td style="text-align:center">{{ date('d-m-Y', strtotime($pensiun[0]->tanggal_lahir)) }}</td>
-						<td style="text-align:center"><span class="label label-success">
-						@php
-						$dt = new DateTime($pensiun[0]->pensiun);
+					@if(Auth::user()->group==1)
+						@foreach($pegawai as $v)
+							<tr>
+								<td style="text-align:center">{{ $v->nip }}</td>
+								<td style="text-align:center">{{ $v->nama_pegawai }}</td>
+								<td style="text-align:center">{{ date('d-m-Y', strtotime($v->tanggal_lahir)) }}</td>
+								<td style="text-align:center"><span class="label label-success">
+								@php
+								$dt = new DateTime($v->pensiun);
 
-						$day = $dt->format('j');
-						$dt->modify('first day of +1 month');
-						$dt->modify('+' . (min($day, $dt->format('t')) - 1) . ' days');
-						
-						echo "01".$dt->format('-m-Y'), PHP_EOL;
-						@endphp</td>
-						<td style="text-align:center;font-weight:bold">{{ $pensiun[0]->umur }} Tahun</td>
-					</tr>
+								$day = $dt->format('j');
+								$dt->modify('first day of +1 month');
+								$dt->modify('+' . (min($day, $dt->format('t')) - 1) . ' days');
+								
+								echo "01".$dt->format('-m-Y'), PHP_EOL;
+								@endphp</td>
+								<td style="text-align:center;font-weight:bold">{{ $v->umur }} Tahun</td>
+							</tr>
+						@endforeach
+					@else
+						<tr>
+							<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
+							<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
+							<td style="text-align:center">{{ date('d-m-Y', strtotime($pensiun[0]->tanggal_lahir)) }}</td>
+							<td style="text-align:center"><span class="label label-success">
+							@php
+							$dt = new DateTime($pensiun[0]->pensiun);
+
+							$day = $dt->format('j');
+							$dt->modify('first day of +1 month');
+							$dt->modify('+' . (min($day, $dt->format('t')) - 1) . ' days');
+							
+							echo "01".$dt->format('-m-Y'), PHP_EOL;
+							@endphp</td>
+							<td style="text-align:center;font-weight:bold">{{ $pensiun[0]->umur }} Tahun</td>
+						</tr>
+					@endif
 				</table>
 
 			</div>

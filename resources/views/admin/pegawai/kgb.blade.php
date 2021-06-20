@@ -29,7 +29,7 @@
 							<td style="text-align:center">{{ $v->nip }}</td>
 							<td style="text-align:center">{{ $v->nama_pegawai }}</td>
 
-							@if($gaji[$loop->index]>0)
+							@if($v->kgb_saat_ini)
 								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($kgb_terakhir[$loop->index])) }}</td>
 								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($kgb_saat_ini[$loop->index])) }}</td>
 								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($kgb_berikutnya[$loop->index])) }}</span></td>
@@ -46,16 +46,14 @@
 							<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
 							<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
 
-							@if(@$gaji[0]->tmt)
-								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($gaji[0]->tmt)) }}</td>
+							@if($pegawai[0]->kgb_saat_ini)
+								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($kgb_terakhir[0])) }}</td>
+								<td style="text-align:center;font-weight:bold">{{ date('d-m-Y', strtotime($kgb_saat_ini[0])) }}</td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($kgb_berikutnya[0])) }}</span></td>
 							@else
 								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
-							@endif
-
-							@if(@$kgb[0]->kgb_berikutnya)
-								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($kgb[0]->kgb_berikutnya)) }}</span></td>
-							@else
-								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</spam></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Belum Mengisi Riwayat Gaji</span></td>
 							@endif
 						</tr>
 					@endif
