@@ -35,7 +35,7 @@ class PeraturanKepegawaianController extends Controller
     ## Edit Data
     public function update(Request $request, PeraturanKepegawaian $peraturan_kepegawaian)
     {
-         $this->validate($request, [
+        $this->validate($request, [
             'isi' => 'required'
         ]);
 

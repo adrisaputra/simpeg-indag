@@ -7,9 +7,27 @@ use App\Models\Jabatan;   //nama model
 use App\Models\Bidang;   //nama model
 use App\Models\Seksi;   //nama model
 use App\Models\User;   //nama model
+use App\Models\RiwayatJabatan;   //nama model
+use App\Models\RiwayatAngkaKredit;   //nama model
 use App\Models\RiwayatKepangkatan;   //nama model
+use App\Models\RiwayatLhkpn;   //nama model
+use App\Models\RiwayatKompetensi;   //nama model
+use App\Models\RiwayatPendidikan;   //nama model
+use App\Models\RiwayatSeminar;   //nama model
+use App\Models\RiwayatDiklat;   //nama model
+use App\Models\RiwayatTugas;   //nama model
+use App\Models\RiwayatKaryaIlmiah;   //nama model
+use App\Models\RiwayatPenghargaan;   //nama model
+use App\Models\RiwayatCuti;   //nama model
+use App\Models\RiwayatHukuman;   //nama model
+use App\Models\RiwayatKursus;   //nama model
 use App\Models\RiwayatGaji;   //nama model
 use App\Models\RiwayatKgb;   //nama model
+use App\Models\RiwayatTugasLuarNegeri;   //nama model
+use App\Models\RiwayatPajak;   //nama model
+use App\Models\RiwayatOrangTua;   //nama model
+use App\Models\RiwayatPasangan;   //nama model
+use App\Models\RiwayatAnak;   //nama model
 use App\Imports\PegawaiImport;     // Import data Pegawai
 use Maatwebsite\Excel\Facades\Excel; // Excel Library
 use App\Http\Controllers\Controller;
@@ -18,6 +36,7 @@ use Illuminate\Support\Facades\DB; //untuk membuat query di controller
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Image;
+use PDF;
 
 class PegawaiController extends Controller
 {
@@ -498,6 +517,61 @@ class PegawaiController extends Controller
  
         return redirect('/pegawai')->with('status', 'Data Pegawai Berhasil Diimport');
 	}
+
+    public function download_cv($id)
+    {
+    	$pegawai = Pegawai::where('id',$id)->get();
+    	$pegawai->toArray();
+
+        $riwayat_jabatan = RiwayatJabatan::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_angka_kredit = RiwayatAngkaKredit::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_kepangkatan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_lhkpn = RiwayatLhkpn::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_kompetensi = RiwayatKompetensi::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_pendidikan = RiwayatPendidikan::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_seminar = RiwayatSeminar::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_diklat = RiwayatDiklat::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_tugas = RiwayatTugas::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_karya_ilmiah = RiwayatKaryaIlmiah::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_penghargaan = RiwayatPenghargaan::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_cuti = RiwayatCuti::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_hukuman = RiwayatHukuman::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_kursus = RiwayatKursus::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_gaji = RiwayatGaji::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_kgb = RiwayatKgb::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_tugas_luar_negeri = RiwayatTugasLuarNegeri::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_pajak = RiwayatPajak::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_orang_tua = RiwayatOrangTua::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_pasangan = RiwayatPasangan::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+        $riwayat_anak = RiwayatAnak::where('pegawai_id',$id)->orderBy('id','DESC')->get();
+ 
+    	$pdf = PDF::loadview('admin.pegawai.download_cv',[
+                                'pegawai'=>$pegawai,
+                                'riwayat_jabatan'=>$riwayat_jabatan,
+                                'riwayat_angka_kredit'=>$riwayat_angka_kredit,
+                                'riwayat_kepangkatan'=>$riwayat_kepangkatan,
+                                'riwayat_lhkpn'=>$riwayat_lhkpn,
+                                'riwayat_kompetensi'=>$riwayat_kompetensi,
+                                'riwayat_pendidikan'=>$riwayat_pendidikan,
+                                'riwayat_seminar'=>$riwayat_seminar,
+                                'riwayat_diklat'=>$riwayat_diklat,
+                                'riwayat_tugas'=>$riwayat_tugas,
+                                'riwayat_karya_ilmiah'=>$riwayat_karya_ilmiah,
+                                'riwayat_penghargaan'=>$riwayat_penghargaan,
+                                'riwayat_cuti'=>$riwayat_cuti,
+                                'riwayat_hukuman'=>$riwayat_hukuman,
+                                'riwayat_kursus'=>$riwayat_kursus,
+                                'riwayat_gaji'=>$riwayat_gaji,
+                                'riwayat_kgb'=>$riwayat_kgb,
+                                'riwayat_tugas_luar_negeri'=>$riwayat_tugas_luar_negeri,
+                                'riwayat_pajak'=>$riwayat_pajak,
+                                'riwayat_orang_tua'=>$riwayat_orang_tua,
+                                'riwayat_pasangan'=>$riwayat_pasangan,
+                                'riwayat_anak'=>$riwayat_anak
+                            ]);
+    	return $pdf->download($pegawai[0]->nama_pegawai.'.pdf');
+
+    }
 
     public function naik_pangkat()
     {

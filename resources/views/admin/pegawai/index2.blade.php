@@ -12,28 +12,14 @@
 	
 	<section class="content">
 	<div class="box">   
-		@if(Auth::user()->group==1)
 		<div class="box-header with-border">
 			<div class="box-tools pull-left">
 				<div style="padding-top:10px">
-					<a href="{{ url('/pegawai/create') }}" class="btn btn-success btn-flat" title="Tambah Data">Tambah</a>
-					<a href="{{ url('/pegawai') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
-				</div>
-			</div>
-			<div class="box-tools pull-right">
-				<div class="form-inline">
-					<form action="{{ url('/pegawai/search') }}" method="GET">
-						<div class="input-group margin">
-							<input type="text" class="form-control" name="search" placeholder="Masukkan kata kunci pencarian">
-							<span class="input-group-btn">
-								<button type="submit" class="btn btn-danger btn-flat">cari</button>
-							</span>
-						</div>
-					</form>
+					<a href="{{ url('/pegawai/download_cv/'.$pegawai[0]->id) }}" class="btn btn-success btn-flat" title="Download CV">Download CV</a>
+					<a href="{{ url('/pegawai/edit/'.$pegawai[0]->id) }}" class="btn btn-warning btn-flat" title="Edit Data Pribadi">Edit Data Pribadi</a>    
 				</div>
 			</div>
 		</div>
-		@endif
 			
 			<div class="table-responsive box-body">
 

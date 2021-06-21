@@ -82,6 +82,7 @@ Route::post('/pegawai/import_excel', [PegawaiController::class, 'import_excel'])
 Route::get('/pegawai/naik_pangkat', [PegawaiController::class, 'naik_pangkat']);
 Route::get('/pegawai/pensiun', [PegawaiController::class, 'pensiun']);
 Route::get('/pegawai/kgb', [PegawaiController::class, 'kgb']);
+Route::get('/pegawai/download_cv/{pegawai}',[PegawaiController::class, 'download_cv']);
 
 ## 
 Route::get('/bidang/nama_bidang/{jabatan_id}', [BidangController::class, 'nama_bidang']);

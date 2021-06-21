@@ -164,6 +164,7 @@
 									<li><a href="{{ url('riwayat_anak/'.$v->id) }}">Anak</a></li>
 								</ul>
 							</div><br>
+							<a href="{{ url('/pegawai/download_cv/'.$v->id ) }}" class="btn btn-xs btn-success btn-block">Download CV</a>
 							<a href="{{ url('/pegawai/edit/'.$v->id ) }}" class="btn btn-xs btn-warning btn-block">Edit</a>
 							<div class="btn-group" style="display: block;padding-top:5px">
 								<button type="button" class="btn btn-xs btn-danger btn-block dropdown-toggle" data-toggle="dropdown">Hapus</button>

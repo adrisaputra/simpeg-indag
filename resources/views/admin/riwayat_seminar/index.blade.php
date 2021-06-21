@@ -70,8 +70,8 @@
 						<th>Tingkat</th>
 						<th>Tempat</th>
 						<th>Tanggal</th>
-						<th>Peranan</th>
 						<th>Penyelenggara</th>
+						<th>Tempat</th>
 						<th>Arsip</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
