@@ -503,55 +503,81 @@ class PegawaiController extends Controller
     {
         $title = "Naik Pangkat";
 
-        $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::join('riwayat_kepangkatan_tbl', 'pegawai_tbl.id', '=', 'riwayat_kepangkatan_tbl.pegawai_id')
+                      ->where('status_hapus', 0)
+                      ->paginate(25)->onEachSide(1);
+            
+            foreach($pegawai as $v){
+                echo $v->nama_pegawai."<br>";
 
-        $pangkat = RiwayatKepangkatan::where('pegawai_id',$pegawai[0]->id)->orderBy('jenis_golongan','DESC')->get();
-        $pangkat->toArray();
+                
+                $pangkat = RiwayatKepangkatan::where('pegawai_id',$v->id)->orderBy('jenis_golongan','DESC')->get();
+                $pangkat->toArray();
 
-        if(count($pangkat)>0){
-            $naikpangkat = RiwayatKepangkatan::select('*', DB::raw("tmt + INTERVAL '4' YEAR AS naikpangkat_berikutnya"), DB::raw(" DATEDIFF(tmt + INTERVAL '4' YEAR,CURDATE()) as hari"))
-                            ->where('pegawai_id',$pegawai[0]->id)->where('jenis_golongan',$pangkat[0]->jenis_golongan)->get();	
-            $naikpangkat->toArray();	
+                $naikpangkat = RiwayatKepangkatan::select('*', DB::raw("tmt + INTERVAL '4' YEAR AS naikpangkat_berikutnya"), DB::raw(" DATEDIFF(tmt + INTERVAL '4' YEAR,CURDATE()) as hari"))
+                                ->where('pegawai_id',$v->id)->where('jenis_golongan',$pangkat[0]->jenis_golongan)->get();	
+                $naikpangkat->toArray();	
 
-            if($naikpangkat[0]->golongan=="Golongan I/a"){
-                $golongan_selanjutnya = "Golongan I/b";
-            } else if($naikpangkat[0]->golongan=="Golongan I/b"){
-                $golongan_selanjutnya = "Golongan I/c";
-            } else if($naikpangkat[0]->golongan=="Golongan I/c"){
-                $golongan_selanjutnya = "Golongan I/d";
-            } else if($naikpangkat[0]->golongan=="Golongan I/d"){
-                $golongan_selanjutnya = "Golongan II/a";
-            } else if($naikpangkat[0]->golongan=="Golongan II/a"){
-                $golongan_selanjutnya = "Golongan II/b";
-            } else if($naikpangkat[0]->golongan=="Golongan II/b"){
-                $golongan_selanjutnya = "Golongan II/c";
-            } else if($naikpangkat[0]->golongan=="Golongan II/c"){
-                $golongan_selanjutnya = "Golongan II/d";
-            } else if($naikpangkat[0]->golongan=="Golongan II/d"){
-                $golongan_selanjutnya = "Golongan III/a";
-            } else if($naikpangkat[0]->golongan=="Golongan III/a"){
-                $golongan_selanjutnya = "Golongan III/b";
-            } else if($naikpangkat[0]->golongan=="Golongan III/b"){
-                $golongan_selanjutnya = "Golongan III/c";
-            } else if($naikpangkat[0]->golongan=="Golongan III/c"){
-                $golongan_selanjutnya = "Golongan III/d";
-            } else if($naikpangkat[0]->golongan=="Golongan III/d"){
-                $golongan_selanjutnya = "Golongan IV/a";
-            } else if($naikpangkat[0]->golongan=="Golongan IV/a"){
-                $golongan_selanjutnya = "Golongan IV/b";
-            } else if($naikpangkat[0]->golongan=="Golongan IV/b"){
-                $golongan_selanjutnya = "Golongan IV/c";
-            } else if($naikpangkat[0]->golongan=="Golongan IV/c"){
-                $golongan_selanjutnya = "Golongan IV/d";
-            } else if($naikpangkat[0]->golongan=="Golongan IV/d"){
-                $golongan_selanjutnya = "Golongan IV/e";
-            } 
+                echo $naikpangkat[0]->naikpangkat_berikutnya."<br><br>";
+        
+            }
+
+            // return view('admin.pegawai.naik_pangkat',compact('title','pegawai','naikpangkat','golongan_selanjutnya'));
+
         } else {
-            $naikpangkat[0]="Tidak ada";
-            $golongan_selanjutnya="Tidak ada";
-        } 
-        return view('admin.pegawai.naik_pangkat',compact('title','pegawai','naikpangkat','golongan_selanjutnya'));
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+    
+            $pangkat = RiwayatKepangkatan::where('pegawai_id',$pegawai[0]->id)->orderBy('jenis_golongan','DESC')->get();
+            $pangkat->toArray();
+    
+            if(count($pangkat)>0){
+                $naikpangkat = RiwayatKepangkatan::select('*', DB::raw("tmt + INTERVAL '4' YEAR AS naikpangkat_berikutnya"), DB::raw(" DATEDIFF(tmt + INTERVAL '4' YEAR,CURDATE()) as hari"))
+                                ->where('pegawai_id',$pegawai[0]->id)->where('jenis_golongan',$pangkat[0]->jenis_golongan)->get();	
+                $naikpangkat->toArray();	
+    
+                if($naikpangkat[0]->golongan=="Golongan I/a"){
+                    $golongan_selanjutnya = "Golongan I/b";
+                } else if($naikpangkat[0]->golongan=="Golongan I/b"){
+                    $golongan_selanjutnya = "Golongan I/c";
+                } else if($naikpangkat[0]->golongan=="Golongan I/c"){
+                    $golongan_selanjutnya = "Golongan I/d";
+                } else if($naikpangkat[0]->golongan=="Golongan I/d"){
+                    $golongan_selanjutnya = "Golongan II/a";
+                } else if($naikpangkat[0]->golongan=="Golongan II/a"){
+                    $golongan_selanjutnya = "Golongan II/b";
+                } else if($naikpangkat[0]->golongan=="Golongan II/b"){
+                    $golongan_selanjutnya = "Golongan II/c";
+                } else if($naikpangkat[0]->golongan=="Golongan II/c"){
+                    $golongan_selanjutnya = "Golongan II/d";
+                } else if($naikpangkat[0]->golongan=="Golongan II/d"){
+                    $golongan_selanjutnya = "Golongan III/a";
+                } else if($naikpangkat[0]->golongan=="Golongan III/a"){
+                    $golongan_selanjutnya = "Golongan III/b";
+                } else if($naikpangkat[0]->golongan=="Golongan III/b"){
+                    $golongan_selanjutnya = "Golongan III/c";
+                } else if($naikpangkat[0]->golongan=="Golongan III/c"){
+                    $golongan_selanjutnya = "Golongan III/d";
+                } else if($naikpangkat[0]->golongan=="Golongan III/d"){
+                    $golongan_selanjutnya = "Golongan IV/a";
+                } else if($naikpangkat[0]->golongan=="Golongan IV/a"){
+                    $golongan_selanjutnya = "Golongan IV/b";
+                } else if($naikpangkat[0]->golongan=="Golongan IV/b"){
+                    $golongan_selanjutnya = "Golongan IV/c";
+                } else if($naikpangkat[0]->golongan=="Golongan IV/c"){
+                    $golongan_selanjutnya = "Golongan IV/d";
+                } else if($naikpangkat[0]->golongan=="Golongan IV/d"){
+                    $golongan_selanjutnya = "Golongan IV/e";
+                } 
+            } else {
+                $naikpangkat[0]="Tidak ada";
+                $golongan_selanjutnya="Tidak ada";
+            } 
+            
+            return view('admin.pegawai.naik_pangkat',compact('title','pegawai','naikpangkat','golongan_selanjutnya'));
+        }
+        
     }
 
     public function pensiun()

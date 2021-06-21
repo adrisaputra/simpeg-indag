@@ -50,7 +50,7 @@ class PeraturanKepegawaianController extends Controller
     public function detail(PeraturanKepegawaian $peraturan_kepegawaian)
     {
         $title = "Peraturan Kepegawaian";
-        $view=view('admin.peraturan_kepegawaian.edit', compact('title','peraturan_kepegawaian'));
+        $view=view('admin.peraturan_kepegawaian.detail', compact('title','peraturan_kepegawaian'));
         $view=$view->render();
         return $view;
     }

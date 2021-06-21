@@ -379,6 +379,7 @@ Route::get('/pengumuman_ujian_pangkat/hapus/{pengumuman_ujian_pangkat}',[Pengumu
 Route::get('/peraturan_kepegawaian', [PeraturanKepegawaianController::class, 'index']);
 Route::get('/peraturan_kepegawaian/edit/{peraturan_kepegawaian}', [PeraturanKepegawaianController::class, 'edit']);
 Route::put('/peraturan_kepegawaian/edit/{peraturan_kepegawaian}', [PeraturanKepegawaianController::class, 'update']);
+Route::get('/peraturan_kepegawaian/detail/{peraturan_kepegawaian}', [PeraturanKepegawaianController::class, 'detail']);
 
 ## Honorer
 Route::get('/honorer', [HonorerController::class, 'index']);

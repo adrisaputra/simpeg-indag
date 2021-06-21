@@ -31,6 +31,7 @@ class Pegawai extends Model
         'no_karsu',
         'foto_formal',
         'foto_kedinasan',
+        'tmt',
         'golongan',
         'pendidikan',
         'esselon',

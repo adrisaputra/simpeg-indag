@@ -50,7 +50,7 @@ class InformasiKantorController extends Controller
     public function detail(InformasiKantor $informasi_kantor)
     {
         $title = "Informasi Kantor";
-        $view=view('admin.informasi_kantor.edit', compact('title','informasi_kantor'));
+        $view=view('admin.informasi_kantor.detail', compact('title','informasi_kantor'));
         $view=$view->render();
         return $view;
     }

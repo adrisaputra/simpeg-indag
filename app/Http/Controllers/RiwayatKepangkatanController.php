@@ -154,6 +154,7 @@ class RiwayatKepangkatanController extends Controller
         $golongan->toArray();
         
         $pegawai = Pegawai::find($id);
+        $pegawai->tmt = $golongan[0]->tmt;
         $pegawai->golongan = $golongan[0]->golongan;
         $pegawai->save();
         
@@ -261,6 +262,7 @@ class RiwayatKepangkatanController extends Controller
         $golongan->toArray();
         
         $pegawai = Pegawai::find($id);
+        $pegawai->tmt = $golongan[0]->tmt;
         $pegawai->golongan = $golongan[0]->golongan;
     	$pegawai->save();
 
@@ -287,9 +289,11 @@ class RiwayatKepangkatanController extends Controller
             
             if($golongan){
                 $pegawai = Pegawai::find($id);
+                $pegawai->tmt = $golongan[0]->tmt;
                 $pegawai->golongan = $golongan[0]->golongan;
             } else {
                 $pegawai = Pegawai::find($id);
+                $pegawai->tmt = '';
                 $pegawai->golongan = '';
             }
 
