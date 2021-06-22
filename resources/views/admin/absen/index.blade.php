@@ -92,8 +92,9 @@
 						<td><center>{{ $sakit }}</td>
 						<td><center>{{ $alpa }}</td>
 						<td>
-							<a href="{{ url('/absen/absen_pagi/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-success">Absen Pagi</a>
-							<a href="{{ url('/absen/absen_sore/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-danger">Absen Sore</a>
+							<a href="{{ url('/absen/absen_pagi/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-block btn-success">Absen Pagi</a>
+							<a href="{{ url('/absen/absen_sore/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-block btn-danger">Absen Sore</a>
+							<a href="{{ url('/public/absen/report/'.$v->tanggal ) }}" class="btn btn-xs btn-flat btn-block btn-primary">Download Absen</a>
 						</td>
 					</tr>
 					@endforeach

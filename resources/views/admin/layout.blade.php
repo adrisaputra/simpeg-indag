@@ -8,7 +8,7 @@
         
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('/upload/logo/logo.png') }}" rel="icon">
-        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap/dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap/dist/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/font-awesome/css/all.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/Ionicons/css/ionicons.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">

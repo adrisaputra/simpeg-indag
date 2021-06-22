@@ -571,6 +571,32 @@ class PegawaiController extends Controller
                             ]);
     	return $pdf->download($pegawai[0]->nama_pegawai.'.pdf');
 
+        // $view=view('admin.pegawai.download_cv', compact('pegawai',
+        //                                                 'riwayat_jabatan',
+        //                                                 'riwayat_angka_kredit',
+        //                                                 'riwayat_kepangkatan',
+        //                                                 'riwayat_kepangkatan',
+        //                                                 'riwayat_lhkpn',
+        //                                                 'riwayat_kompetensi',
+        //                                                 'riwayat_pendidikan',
+        //                                                 'riwayat_seminar',
+        //                                                 'riwayat_diklat',
+        //                                                 'riwayat_tugas',
+        //                                                 'riwayat_karya_ilmiah',
+        //                                                 'riwayat_penghargaan',
+        //                                                 'riwayat_cuti',
+        //                                                 'riwayat_hukuman',
+        //                                                 'riwayat_kursus',
+        //                                                 'riwayat_gaji',
+        //                                                 'riwayat_kgb',
+        //                                                 'riwayat_tugas_luar_negeri',
+        //                                                 'riwayat_pajak',
+        //                                                 'riwayat_orang_tua',
+        //                                                 'riwayat_pasangan',
+        //                                                 'riwayat_anak'));
+        // $view=$view->render();
+        // return $view;
+
     }
 
     public function naik_pangkat()

@@ -308,6 +308,7 @@ Route::get('/absen/absen_pagi_search/{tanggal}', [AbsenController::class, 'absen
 Route::get('/absen/absen_sore/{tanggal}', [AbsenController::class, 'absen_sore']);
 Route::put('/absen/edit', [AbsenController::class, 'update']);
 Route::get('/absen/hapus/{absen}',[AbsenController::class, 'delete']);
+Route::get('/absen/report/{tanggal}',[AbsenController::class, 'report']);
 
 ## Informasi Kantor
 Route::get('/informasi_kantor', [InformasiKantorController::class, 'index']);

@@ -1,13 +1,73 @@
 <html>
 <head>
 	<title>CV {{ $pegawai[0]->nama_pegawai }}</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-	<style type="text/css">
-		table tr td,
+<style type="text/css">
+		/* table tr td,
 		table tr th{
 			font-size: 9pt;
+		} */
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			}
+		table {
+		background-color: transparent;
+		}
+		table col[class*="col-"] {
+		position: static;
+		display: table-column;
+		float: none;
+		}
+		table td[class*="col-"],
+		table th[class*="col-"] {
+		position: static;
+		display: table-cell;
+		float: none;
+		}
+		.table {
+		width: 100%;
+		max-width: 100%;
+		margin-bottom: 20px;
+		}
+		.table > thead > tr > th,
+		.table > tbody > tr > th,
+		.table > tfoot > tr > th,
+		.table > thead > tr > td,
+		.table > tbody > tr > td,
+		.table > tfoot > tr > td {
+		padding: 3px;
+		line-height: 1.42857143;
+		vertical-align: top;
+		border-top: 1px solid #ddd;
+		}
+		.table > tbody + tbody {
+		border-top: 2px solid #ddd;
+		}
+		.table .table {
+		background-color: #fff;
+		}
+		
+		.table-bordered {
+		border: 1px solid #ddd;
+		}
+		
+		.table-striped > tbody > tr:nth-of-type(odd) {
+		background-color: #f9f9f9;
+		}
+		.table-bordered > thead > tr > th,
+		.table-bordered > tbody > tr > th,
+		.table-bordered > tfoot > tr > th,
+		.table-bordered > thead > tr > td,
+		.table-bordered > tbody > tr > td,
+		.table-bordered > tfoot > tr > td {
+		/* border: 1px solid #f4f4f4; */
+		border: 1px solid #e1e1e1;
+		}
+		html {
+			font-family: sans-serif;
+		-ms-text-size-adjust: 100%;
+		-webkit-text-size-adjust: 100%;
 		}
 	</style>
 	<style>
@@ -18,6 +78,8 @@
 		page-break-after: avoid;
 		}
 	</style>
+<body>
+	
 	<center>
 		@if($pegawai[0]->foto_formal)
 			<img src="{{ asset('storage/upload/foto_formal_pegawai/thumbnail/'.$pegawai[0]->foto_formal) }}" class="img-circle" alt="User Image"  width="150px" height="150px">
@@ -33,59 +95,59 @@
 			<th style="width: 200px;text-align:center;font-size:14px" colspan=2>DATA PRIBADI</th>
 		</tr>
 		<tr>
-			<th style="width: 200px">Tempat Tanggal Lahir</th>
+			<th style="width: 200px;text-align:left">Tempat Tanggal Lahir</th>
 			<td> {{ $pegawai[0]->tempat_lahir }}, {{ date('d-m-Y', strtotime($pegawai[0]->tanggal_lahir)) }}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Jenis Kelamin</th>
+			<th style="width: 200px;text-align:left">Jenis Kelamin</th>
 			<td> {{ $pegawai[0]->jenis_kelamin}}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Alamat</th>
+			<th style="width: 200px;text-align:left">Alamat</th>
 			<td> {{ $pegawai[0]->alamat}}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Agama</th>
+			<th style="width: 200px;text-align:left">Agama</th>
 			<td> {{ $pegawai[0]->agama}}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Gol. Darah</th>
+			<th style="width: 200px;text-align:left">Gol. Darah</th>
 			<td> {{ $pegawai[0]->gol_darah}}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Email</th>
+			<th style="width: 200px;text-align:left">Email</th>
 			<td> {{ $pegawai[0]->email}}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">No. KTP</th>
+			<th style="width: 200px;text-align:left">No. KTP</th>
 			<td> {{ $pegawai[0]->no_ktp}}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">No. BPJS</th>
+			<th style="width: 200px;text-align:left">No. BPJS</th>
 			<td> {{ $pegawai[0]->no_bpjs}}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Nomor NPWP</th>
+			<th style="width: 200px;text-align:left">Nomor NPWP</th>
 			<td> {{ $pegawai[0]->no_npwp }} </td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Nomor Karpeg</th>
+			<th style="width: 200px;text-align:left">Nomor Karpeg</th>
 			<td> {{ $pegawai[0]->no_karpeg }} </td>
 		</tr>
 		<tr>
-			<th style="width: 200px">No. Karsu/Karis</th>
+			<th style="width: 200px;text-align:left">No. Karsu/Karis</th>
 			<td> {{ $pegawai[0]->no_karsu }} </td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Golongan</th>
+			<th style="width: 200px;text-align:left">Golongan</th>
 			<td> {{ $pegawai[0]->golongan }}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Pendidikan</th>
+			<th style="width: 200px;text-align:left">Pendidikan</th>
 			<td> {{ $pegawai[0]->pendidikan }}</td>
 		</tr>
 		<tr>
-			<th style="width: 200px">Status Kepegawaian</th>
+			<th style="width: 200px;text-align:left">Status Kepegawaian</th>
 			<td> {{ $pegawai[0]->status }}</td>
 		</tr>
 	</table>
