@@ -30,6 +30,7 @@
 						<div class="col-sm-10">
 							@if ($errors->has('nip'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('nip') }}</label>@endif
 							<input type="text" class="form-control" placeholder="NIP" name="nip" value="{{ $pegawai->nip }}" >
+							<input type="hidden" class="form-control" placeholder="NIP" name="nip2" value="{{ $pegawai->nip }}" >
 						</div>
 					</div>
 

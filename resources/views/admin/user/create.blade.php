@@ -64,8 +64,8 @@
  											} ;">
 								<option value="">- Pilih Group-</option>
 								<option value="1" @if(old('group')=="1") selected @endif>Administrator</option>
-								<option value="2" @if(old('group')=="2") selected @endif>Operator Bidang</option>
-								<option value="3" @if(old('group')=="3") selected @endif>Pegawai</option>
+								<!-- <option value="2" @if(old('group')=="2") selected @endif>Operator Bidang</option> -->
+								<!-- <option value="3" @if(old('group')=="3") selected @endif>Pegawai</option> -->
 							</select>
 
 						</div>

@@ -27,7 +27,13 @@
 						<label class="col-sm-2 control-label">{{ __('Nama User') }}</label>
 						<div class="col-sm-10">
 							@if ($errors->has('name'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('name') }}</label>@endif
-							<input type="text" class="form-control" placeholder="Nama User" name="name" value="{{ $user->name }}" >
+							@if($user->group=="3")
+								<input type="text" class="form-control" placeholder="Nama User" value="{{ $user->name }}" disabled>
+								<input type="hidden" class="form-control" placeholder="Nama User" name="name" value="{{ $user->name }}" >
+							@else
+								<input type="text" class="form-control" placeholder="Nama User" name="name" value="{{ $user->name }}" >
+							@endif
+							<input type="hidden" class="form-control" placeholder="Nama User" name="name2" value="{{ $user->name }}" >
 						</div>
 					</div>
 					
@@ -39,7 +45,7 @@
 						</div>
 					</div>
 					
-					<!-- <div class="form-group @if ($errors->has('password')) has-error @endif">
+					<div class="form-group @if ($errors->has('password')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Password') }}</label>
 						<div class="col-sm-10">
 							@if ($errors->has('password'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('password') }}</label>@endif
@@ -53,8 +59,9 @@
 							@if ($errors->has('password_confirmation'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('password_confirmation') }}</label>@endif
 							<input type="password" class="form-control" placeholder="Konfirmasi Password" name="password_confirmation" >
 						</div>
-					</div> -->
-					
+					</div>
+
+					@if($user->group !="3")
 					<div class="form-group @if ($errors->has('group')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Group') }}</label>
 						<div class="col-sm-10">
@@ -72,6 +79,7 @@
 
 						</div>
 					</div>
+					@endif
 
 					@if($user->group =="2")
                               <span id='bidang_id' style='display:inline;'>

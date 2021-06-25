@@ -273,7 +273,6 @@ class PegawaiController extends Controller
 		$input2['group'] = 3;
         User::create($input2);
         
-        
 		return redirect('/pegawai')->with('status','Data Tersimpan');
     }
 
@@ -477,6 +476,13 @@ class PegawaiController extends Controller
 		$pegawai->user_id = Auth::user()->id;
     	$pegawai->save();
 		
+        $cek_user = User::where('name',$request->nip2)->get();
+        $cek_user->toArray();
+
+        $user = User::find($cek_user[0]->id);
+        $user->name = $request->nip;
+    	$user->save();
+        
 		return redirect('/pegawai')->with('status', 'Data Berhasil Diubah');
     }
 

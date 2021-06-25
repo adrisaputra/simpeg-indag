@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;   //nama model
 use App\Models\Bidang;   //nama model
+use App\Models\Pegawai;   //nama model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //untuk membuat query di controller
 use Illuminate\Support\Facades\Auth;
@@ -76,16 +77,24 @@ class UserController extends Controller
 	## Edit Data
     public function update(Request $request, User $user)
     {
-		if($request->password){
-			$this->validate($request, [
-				'name' => 'required|string|max:255',
-				'password' => 'required|string|min:8|confirmed'
-			]);
-		} else {
-			$this->validate($request, [
-				'name' => 'required|string|max:255'
-			]);
-		}
+        if($request->group==3){
+            if($request->password){
+                $this->validate($request, [
+                    'password' => 'required|string|min:8|confirmed'
+                ]);
+            } 
+        } else {
+            if($request->password){
+                $this->validate($request, [
+                    'name' => 'required|string|max:255',
+                    'password' => 'required|string|min:8|confirmed'
+                ]);
+            } else {
+                $this->validate($request, [
+                    'name' => 'required|string|max:255'
+                ]);
+            }
+        }
          
 		if($request->password){
             $user->name = $request->name;
@@ -99,6 +108,14 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->group = $request->group;
+            if($request->group==3){
+                $cek_pegawai = Pegawai::where('nip',$request->name2)->get();
+                $cek_pegawai->toArray();
+
+                $pegawai = Pegawai::find($cek_pegawai[0]->id);
+                $pegawai->nip = $request->name;
+                $pegawai->save();
+            }
             if($request->group==4){
                 $input['seksi'] = $request->seksi;
             }
