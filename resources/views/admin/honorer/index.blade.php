@@ -52,6 +52,7 @@
 						<th>Tempat Lahir</th>
 						<th>Tanggal Lahir</th>
 						<th>Jenis Kelamin</th>
+						<th>SK Honorer</th>
 						@if(Auth::user()->group==1)
 							<th style="width: 20%">#aksi</th>
 						@endif
@@ -63,6 +64,11 @@
 						<td>{{ $v->tempat_lahir }}</td>
 						<td>{{ date('d-m-Y', strtotime($v->tanggal_lahir)) }}</td>
 						<td>{{ $v->jenis_kelamin }}</td>
+						<td>
+							@if($v->sk_honorer)
+								<a href="{{ asset('upload/sk_honorer/'.$v->sk_honorer) }}" class="btn btn-sm btn-primary" >Download SK Honorer</a>
+							@endif
+						</td>
 						@if(Auth::user()->group==1)
 							<td>
 								<a href="{{ url('/'.Request::segment(1).'/edit/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>

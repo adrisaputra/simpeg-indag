@@ -19,6 +19,7 @@ class Honorer extends Model
         'gol_darah',
         'email',
         'pendidikan',
+        'sk_honorer',
         'user_id'
     ];
 }

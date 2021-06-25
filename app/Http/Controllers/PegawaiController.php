@@ -141,7 +141,6 @@ class PegawaiController extends Controller
 			'npwp' => 'mimes:jpg,jpeg,png|max:500',
             'no_karpeg' => 'required',
 			'karpeg' => 'mimes:jpg,jpeg,png|max:500',
-            'no_karsu' => 'required',
 			'karsu' => 'mimes:jpg,jpeg,png|max:500'
         ]);
 
@@ -312,7 +311,6 @@ class PegawaiController extends Controller
 			'npwp' => 'mimes:jpg,jpeg,png|max:500',
             'no_karpeg' => 'required',
 			'karpeg' => 'mimes:jpg,jpeg,png|max:500',
-            'no_karsu' => 'required',
 			'karsu' => 'mimes:jpg,jpeg,png|max:500'
         ]);
 

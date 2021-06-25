@@ -174,7 +174,7 @@
 					</div>
 
 					<div class="form-group @if ($errors->has('no_karsu')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Karsu/Karis') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Karsu/Karis') }}</label>
 						<div class="col-sm-3">
 							@if ($errors->has('no_karsu'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('no_karsu') }}</label>@endif
 							<input type="text" class="form-control" placeholder="No. Karsu/Karis" name="no_karsu" value="{{ old('no_karsu') }}" >

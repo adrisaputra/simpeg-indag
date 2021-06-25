@@ -137,9 +137,21 @@
 						</div>
 					</div>
 
+					<div class="form-group @if ($errors->has('sk_honorer')) has-error @endif">
+						<label class="col-sm-3 control-label">{{ __('Berkas SK Honorer ') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<div class="col-sm-4">
+							@if ($errors->has('sk_honorer'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('foto_formal') }}</label>@endif
+							<input type="file" class="form-control" placeholder="Foto" name="sk_honorer" value="{{ $honorer->sk_honorer }}" >
+							<span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
+							@if($honorer->sk_honorer)
+								<img src="{{ asset('upload/sk_honorer/'.$honorer->sk_honorer) }}" width="150px" height="150px">
+							@endif
+						</div>
+					</div>
+
 					<div class="form-group @if ($errors->has('group')) has-error @endif">
-						<label class="col-sm-2 control-label"></label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label"></label>
+						<div class="col-sm-9">
 							<div>
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Simpan</button>
 								<button type="reset" class="btn btn-danger btn-flat btn-sm" title="Reset Data"> Reset</button>

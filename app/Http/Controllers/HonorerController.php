@@ -63,7 +63,8 @@ class HonorerController extends Controller
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
             'agama' => 'required',
-            'email' => 'email'
+            'email' => 'email',
+			'sk_honorer' => 'required|mimes:jpg,jpeg,png|max:500',
 		]);
 
         $input['nama_pegawai'] = $request->nama_pegawai;
@@ -75,6 +76,12 @@ class HonorerController extends Controller
         $input['gol_darah'] = $request->gol_darah;
         $input['email'] = $request->email;
         $input['pendidikan'] = $request->pendidikan;
+        
+		if($request->file('sk_honorer')){
+			$input['sk_honorer'] = time().'.'.$request->sk_honorer->getClientOriginalExtension();
+			$request->sk_honorer->move(public_path('upload/sk_honorer'), $input['sk_honorer']);
+    	}	
+		
         $input['user_id'] = Auth::user()->id;
 
         Honorer::create($input);
@@ -102,10 +109,26 @@ class HonorerController extends Controller
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
             'agama' => 'required',
-            'email' => 'email'
+            'email' => 'email',
+			'sk_honorer' => 'mimes:jpg,jpeg,png|max:500',
 		]);
 		
+        if($request->file('sk_honorer') && $honorer->sk_honorer){
+            $pathToYourFile = public_path('upload/sk_honorer/'.$honorer->sk_honorer);
+            if(file_exists($pathToYourFile))
+            {
+                unlink($pathToYourFile);
+            }
+		}
+
         $honorer->fill($request->all());
+        
+        if($request->file('sk_honorer')){
+            $filename = time().'.'.$request->sk_honorer->getClientOriginalExtension();
+            $request->sk_honorer->move(public_path('upload/sk_honorer'), $filename);
+            $honorer->sk_honorer = $filename;
+		}
+
         $honorer->user_id = Auth::user()->id;
         $honorer->save();
     

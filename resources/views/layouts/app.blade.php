@@ -6,10 +6,10 @@
         <title>{{ __('SIMPEG INDAG') }}</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link href="{{ asset('/upload/logo/logo.png') }}" rel="icon">
-        <link rel="stylesheet" href="{{ asset('/assets/core-admin/core-component/bootstrap/dist/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets/core-admin/core-component/font-awesome/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets/core-admin/core-component/Ionicons/css/ionicons.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/assets/core-admin/core-dist/css/AdminLTE.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/bootstrap/dist/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/font-awesome/css/all.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-component/Ionicons/css/ionicons.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/core-admin/core-dist/css/AdminLTE.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <link href="https://fonts.googleapis.com/css?family=Anton|Permanent+Marker|Quicksand" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap" rel="stylesheet"> 
