@@ -417,4 +417,6 @@ Route::get('/user/create', [UserController::class, 'create']);
 Route::post('/user', [UserController::class, 'store']);
 Route::get('/user/edit/{user}', [UserController::class, 'edit']);
 Route::put('/user/edit/{user}', [UserController::class, 'update']);
+Route::get('/user/edit_profil/{user}', [UserController::class, 'edit_profil']);
+Route::put('/user/edit_profil/{user}', [UserController::class, 'update_profil']);
 Route::get('/user/hapus/{user}',[UserController::class, 'delete']);

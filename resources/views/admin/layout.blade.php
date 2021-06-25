@@ -98,7 +98,7 @@
             <header class="main-header">
                 <a href="" class="logo">
                     <span class="logo-mini"><b>SIM</b></span>
-                    <span class="logo-lg"><b>SIMPEG</b></span>
+                    <span class="logo-lg"><b>SIDAK</b></span>
                 </a>
                 
                 <nav class="navbar navbar-static-top">
@@ -113,12 +113,20 @@
                             
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ asset('assets/profile-1-20210205190338.png') }}" class="user-image" alt="User Image">                                
+                                @if(Auth::user()->foto)
+                                    <img src="{{ asset('upload/foto/'.Auth::user()->foto) }}" class="user-image" alt="User Image">   
+                                @else
+                                    <img src="{{ asset('assets/profile-1-20210205190338.png') }}" class="user-image" alt="User Image">   
+                                @endif                             
 						  <span class="hidden-xs">{{ Auth::user()->name }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="user-header">
-                                        <img src="{{ asset('assets/profile-1-20210205190338.png') }}" class="img-circle" alt="User Image">                                        
+                                    @if(Auth::user()->foto)
+                                        <img src="{{ asset('upload/foto/'.Auth::user()->foto) }}" class="img-circle" alt="User Image">    
+                                    @else
+                                        <img src="{{ asset('assets/profile-1-20210205190338.png') }}" class="img-circle" alt="User Image">   
+                                    @endif                                          
 								<p>
                                     {{ Auth::user()->name }}                                            
 								    <small>Member since<br> {{ Auth::user()->created_at }} </small>
@@ -127,7 +135,7 @@
                                     
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="{{ url('/password') }}" class="btn btn-default btn-flat">Ganti Password</a>
+                                            <a href="{{ url('/user/edit_profil/'.Auth::user()->id) }}" class="btn btn-default btn-flat">Profil</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -148,7 +156,11 @@
                 <section class="sidebar">
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="{{ asset('assets/profile-1-20210205190338.png') }}" class="img-circle" alt="User Image">                        
+                            @if(Auth::user()->foto)
+                                <img src="{{ asset('upload/foto/'.Auth::user()->foto) }}" class="img-circle" alt="User Image">    
+                            @else
+                                <img src="{{ asset('assets/profile-1-20210205190338.png') }}" class="img-circle" alt="User Image">   
+                            @endif                          
 					</div>
                         <div class="pull-left info">
                             <p>{{ Auth::user()->name }}  </p>                            
