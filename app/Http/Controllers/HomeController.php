@@ -28,7 +28,10 @@ class HomeController extends Controller
                         ->whereRaw('YEAR(kgb_saat_ini) = YEAR(DATE_SUB(CURDATE(), INTERVAL 2 YEAR))')
                         ->count();
             $kehadiran = Absen::where('tanggal', date('Y-m-d'))->where('kehadiran', 'H')->count();
-            return view('admin.beranda', compact('pegawai','honorer','pensiun','kgb','kehadiran'));
+            $naik_pangkat = Pegawai::where('status_hapus', 0)
+                      ->whereRaw('YEAR(tmt) = YEAR(DATE_SUB(CURDATE(), INTERVAL 4 YEAR))')
+                      ->count();
+            return view('admin.beranda', compact('pegawai','honorer','pensiun','kgb','kehadiran','naik_pangkat'));
         } else if(Auth::user()->group==3){
             $count = Absen::where('nip', Auth::user()->name)->where('tanggal', date('Y-m-d'))->count();
             $status_kehadiran = Absen::where('nip', Auth::user()->name)->where('tanggal', date('Y-m-d'))->get();

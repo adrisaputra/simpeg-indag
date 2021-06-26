@@ -109,7 +109,7 @@
 					<!-- small box -->
 					<div class="small-box bg-maroon">
 						<div class="inner">
-						<h3>{{ $honorer }}</h3>
+						<h3>{{ $naik_pangkat }}</h3>
 
 						<p>Naik Pangkat</p>
 						</div>

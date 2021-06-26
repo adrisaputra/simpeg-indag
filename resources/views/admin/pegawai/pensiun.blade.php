@@ -64,6 +64,9 @@
 			</div>
 		<div class="box-footer">
 			<!-- PAGINATION -->
+			@if(Auth::user()->group==1)
+				<div class="float-right">{{ $pegawai->appends(Request::only('search'))->links() }}</div>
+			@endif
 		</div>
 	</div>
 	</section>

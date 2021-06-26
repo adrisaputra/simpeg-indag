@@ -25,20 +25,38 @@
 						<th style="text-align:center">TMT Kenaikan pangkat Selanjutnya</th>
 					</tr>
 					<tr>
-						@if(@$naikpangkat[0]->tmt)
-							<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
-							<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
-							<td style="text-align:center">{{ $naikpangkat[0]->golongan }}</td>
-							<td style="text-align:center">{{ date('d-m-Y', strtotime($naikpangkat[0]->tmt)) }}</td>
-							<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ $golongan_selanjutnya }}</span></td>
-							<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($naikpangkat[0]->naikpangkat_berikutnya)) }}</span></td>
+						@if(Auth::user()->group==1)
+
+							@foreach($pegawai as $v)
+							<tr>
+								<td style="text-align:center">{{ $v->nip }}</td>
+								<td style="text-align:center">{{ $v->nama_pegawai }}</td>
+								<td style="text-align:center">{{ $v->golongan }}</td>
+								<td style="text-align:center">{{ date('d-m-Y', strtotime($v->tmt)) }}</td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ $golongan_selanjutnya }}</span></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($v->naikpangkat_berikutnya)) }}</span></td>
+								
+							</tr>
+							@endforeach
+
 						@else
-							<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
-							<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
-							<td style="text-align:center"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
-							<td style="text-align:center"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
-							<td style="text-align:center;font-weight:bold"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
-							<td style="text-align:center;font-weight:bold"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
+
+							@if(@$pegawai[0]->tmt)
+								<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
+								<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
+								<td style="text-align:center">{{ $pegawai[0]->golongan }}</td>
+								<td style="text-align:center">{{ date('d-m-Y', strtotime($pegawai[0]->tmt)) }}</td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ $golongan_selanjutnya }}</span></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-success">{{ date('d-m-Y', strtotime($pegawai[0]->naikpangkat_berikutnya)) }}</span></td>
+							@else
+								<td style="text-align:center">{{ $pegawai[0]->nip }}</td>
+								<td style="text-align:center">{{ $pegawai[0]->nama_pegawai }}</td>
+								<td style="text-align:center"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
+								<td style="text-align:center"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
+								<td style="text-align:center;font-weight:bold"><span class="label label-danger">Riwayat Pangkat Belum Diisi</span></td>
+							@endif
+
 						@endif
 					</tr>
 				</table>
@@ -46,6 +64,9 @@
 			</div>
 		<div class="box-footer">
 			<!-- PAGINATION -->
+			@if(Auth::user()->group==1)
+				<div class="float-right">{{ $pegawai->appends(Request::only('search'))->links() }}</div>
+			@endif
 		</div>
 	</div>
 	</section>

@@ -128,6 +128,7 @@
 							<a href="{{ url('riwayat_hukuman/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Hukuman Disiplin</a>
 							<a href="{{ url('riwayat_kursus/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Kursus</a>
 							<a href="{{ url('riwayat_gaji/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Gaji</a>
+							<a href="{{ url('riwayat_kgb/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Kenaikan Gaji Berkala</a>
 							<a href="{{ url('riwayat_tugas_luar_negeri/'.$pegawai[0]->id) }}" class="btn btn-info btn-flat btn-sm">Riwayat Tugas Luar Negeri</a>
 						</td>
 					</tr>
