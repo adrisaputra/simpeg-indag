@@ -21,7 +21,7 @@ class UserController extends Controller
     ## Tampikan Data
     public function index()
     {
-		$user = DB::table('users')->orderBy('id','DESC')->paginate(10);
+		$user = DB::table('users')->where('status',0)->orderBy('id','DESC')->paginate(10);
 		return view('admin.user.index',compact('user'));
     }
 	
@@ -29,7 +29,7 @@ class UserController extends Controller
 	public function search(Request $request)
     {
         $user = $request->get('search');
-		$user = User::where('name', 'LIKE', '%'.$user.'%')->orderBy('id','DESC')->paginate(10);
+		$user = User::where('status',0)->where('name', 'LIKE', '%'.$user.'%')->orderBy('id','DESC')->paginate(10);
 		return view('admin.user.index',compact('user'));
     }
 	
@@ -128,9 +128,14 @@ class UserController extends Controller
     ## Hapus Data
     public function delete(User $user)
     {
-        $id = $user->id;
-		$user->delete();
-		
+        $user->status = 1;
+        $user->save();
+        
+        $cek_pegawai = Pegawai::where('nip', $user->name)->value('id');
+        $pegawai = Pegawai::find($cek_pegawai);
+        $pegawai->status_hapus = 4;
+    	$pegawai->save();
+
 		return redirect('/user')->with('status', 'Data Berhasil Dihapus');
     }
 
@@ -166,7 +171,6 @@ class UserController extends Controller
                 }
             } 
         }
-           
 
         if($request->password){
             $this->validate($request, [

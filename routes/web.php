@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\BidangController;
@@ -67,6 +68,8 @@ Route::get('/clear-cache-all', function() {
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::post('/login_w', [LoginController::class, 'authenticate']);
 
 Route::get('/dashboard', [HomeController::class, 'index']);
 

@@ -57,12 +57,7 @@
 						<label class="col-sm-2 control-label">{{ __('Group') }}</label>
 						<div class="col-sm-10">
 							@if ($errors->has('group'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('group') }}</label>@endif
-							<select class="form-control" name="group" onchange=" if (this.selectedIndex=='2'){ 
- 												document.getElementById('bidang_id').style.display = 'inline'; 
- 											} else {
- 												document.getElementById('bidang_id').style.display = 'none'; 
- 											} ;">
-								<option value="">- Pilih Group-</option>
+							<select class="form-control" name="group">
 								<option value="1" @if(old('group')=="1") selected @endif>Administrator</option>
 								<!-- <option value="2" @if(old('group')=="2") selected @endif>Operator Bidang</option> -->
 								<!-- <option value="3" @if(old('group')=="3") selected @endif>Pegawai</option> -->
@@ -70,25 +65,6 @@
 
 						</div>
 					</div>
-
-					@if(old('group') =="2")
-                              <span id='bidang_id' style='display:inline;'>
-                         @else
-                              <span id='bidang_id' style='display:none;'>
-                         @endif
-					<div class="form-group @if ($errors->has('bidang_id')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Bidang') }}</label>
-						<div class="col-sm-10">
-							@if ($errors->has('bidang_id'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('seksi') }}</label>@endif
-							<select class="form-control" name="bidang_id">
-								<option value="">- Pilih Bidang-</option>
-								@foreach($bidang as $v)
-									<option value="{{ $v->id }}" @if(old('bidang')==$v->id) selected @endif>{{ $v->nama_bidang }}</option>
-								@endforeach
-							</select>
-						</div>
-					</div>
-					</span>
 
 					<div class="form-group @if ($errors->has('group')) has-error @endif">
 						<label class="col-sm-2 control-label"></label>

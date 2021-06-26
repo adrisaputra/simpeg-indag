@@ -59,15 +59,15 @@
 						<td>
 							@if ($v->group==1)
 								<span class="label label-danger">Administrator</span>
-							@elseif  ($v->group==2)
-								<span class="label label-success">Operator Bidang</span>
 							@elseif  ($v->group==3)
 								<span class="label label-warning">Pegawai</span>
 							@endif
 						</td>
 						<td>
 							<a href="{{ url('/user/edit/'.$v->id ) }}" class="btn btn-xs btn-flat btn-warning">Edit</a>
-							<a href="{{ url('/user/hapus/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
+							@if ($v->id!=1)
+								<a href="{{ url('/user/hapus/'.$v->id ) }}" class="btn btn-xs btn-flat btn-danger" onclick="return confirm('Anda Yakin ?');">Hapus</a>
+							@endif
 						</td>
 					</tr>
 					@endforeach

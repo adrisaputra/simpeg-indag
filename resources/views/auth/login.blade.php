@@ -7,8 +7,15 @@
                     <img src="{{ asset('/upload/logo/simpeg-indag.png') }}" alt="Chris Wood" class="img-fluid" style="height: 80px;max-width: 100%;max-height: 100%;" >
                 </div><br>
                 <!-- Start Form Login -->
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ url('login_w') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+               
+                    @if ($message = Session::get('status'))
+                        <p class="alert text-center" style="color: #ffffff;background-color: #dd4b39;border-color: #d73925;">
+                            {{ $message }}
+                        </p>
+                    @endif
+
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" placeholder="Nama User" name="name" value="{{ old('name') }}">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>

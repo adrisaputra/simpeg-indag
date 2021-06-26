@@ -29,6 +29,7 @@ class User extends Authenticatable
         'password',
         'group',
         'foto',
+        'status',
         'bidang_id',
     ];
 
