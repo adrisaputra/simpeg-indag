@@ -21,9 +21,17 @@ class RiwayatHukumanController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_hukuman = RiwayatHukuman::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_hukuman.index',compact('riwayat_hukuman','pegawai'));
     }
 
@@ -31,6 +39,16 @@ class RiwayatHukumanController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_hukuman = $request->get('search');
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_hukuman = RiwayatHukuman::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_hukuman) {
                                 $query->where('jenis_hukuman', 'LIKE', '%'.$riwayat_hukuman.'%')
@@ -42,16 +60,22 @@ class RiwayatHukumanController extends Controller
                                 ->orWhere('keterangan', 'LIKE', '%'.$riwayat_hukuman.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_hukuman.index',compact('riwayat_hukuman','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_hukuman.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -94,8 +118,16 @@ class RiwayatHukumanController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatHukuman $riwayat_hukuman)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_hukuman.edit', compact('pegawai','riwayat_hukuman'));
         $view=$view->render();
         return $view;
@@ -139,6 +171,15 @@ class RiwayatHukumanController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatHukuman $riwayat_hukuman)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+        
         $pathToYourFile = public_path('upload/arsip_hukuman/'.$riwayat_hukuman->arsip_hukuman);
         if(file_exists($pathToYourFile))
         {

@@ -21,9 +21,18 @@ class RiwayatGajiController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_gaji = RiwayatGaji::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+
         return view('admin.riwayat_gaji.index',compact('riwayat_gaji','pegawai'));
     }
 
@@ -31,6 +40,16 @@ class RiwayatGajiController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_gaji = $request->get('search');
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_gaji = RiwayatGaji::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_gaji) {
                                 $query->where('jenis_golongan', 'LIKE', '%'.$riwayat_gaji.'%')
@@ -42,16 +61,22 @@ class RiwayatGajiController extends Controller
                                 ->orWhere('sk_pejabat', 'LIKE', '%'.$riwayat_gaji.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_gaji.index',compact('riwayat_gaji','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_gaji.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -144,8 +169,16 @@ class RiwayatGajiController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatGaji $riwayat_gaji)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_gaji.edit', compact('pegawai','riwayat_gaji'));
         $view=$view->render();
         return $view;
@@ -243,6 +276,16 @@ class RiwayatGajiController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatGaji $riwayat_gaji)
    {
+       
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_gaji/'.$riwayat_gaji->arsip_gaji);
         if(file_exists($pathToYourFile))
         {

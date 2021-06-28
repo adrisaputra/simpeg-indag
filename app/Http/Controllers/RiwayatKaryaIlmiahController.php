@@ -21,9 +21,16 @@ class RiwayatKaryaIlmiahController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_karya_ilmiah = RiwayatKaryaIlmiah::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_karya_ilmiah.index',compact('riwayat_karya_ilmiah','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatKaryaIlmiahController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_karya_ilmiah = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_karya_ilmiah = RiwayatKaryaIlmiah::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_karya_ilmiah) {
                                 $query->where('jenis_buku', 'LIKE', '%'.$riwayat_karya_ilmiah.'%')
@@ -40,16 +57,21 @@ class RiwayatKaryaIlmiahController extends Controller
                                     ->orWhere('tahun', 'LIKE', '%'.$riwayat_karya_ilmiah.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_karya_ilmiah.index',compact('riwayat_karya_ilmiah','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_karya_ilmiah.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -89,8 +111,15 @@ class RiwayatKaryaIlmiahController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatKaryaIlmiah $riwayat_karya_ilmiah)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_karya_ilmiah.edit', compact('pegawai','riwayat_karya_ilmiah'));
         $view=$view->render();
         return $view;
@@ -133,6 +162,15 @@ class RiwayatKaryaIlmiahController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatKaryaIlmiah $riwayat_karya_ilmiah)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_karya_ilmiah/'.$riwayat_karya_ilmiah->arsip_karya_ilmiah);
         if(file_exists($pathToYourFile))
         {

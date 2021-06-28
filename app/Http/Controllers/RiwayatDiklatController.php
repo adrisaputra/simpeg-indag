@@ -21,9 +21,18 @@ class RiwayatDiklatController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_diklat = RiwayatDiklat::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+
         return view('admin.riwayat_diklat.index',compact('riwayat_diklat','pegawai'));
     }
 
@@ -31,6 +40,16 @@ class RiwayatDiklatController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_diklat = $request->get('search');
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_diklat = RiwayatDiklat::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_diklat) {
                                 $query->where('kelompok_diklat', 'LIKE', '%'.$riwayat_diklat.'%')
@@ -46,16 +65,22 @@ class RiwayatDiklatController extends Controller
                                     ->orWhere('kualitas', 'LIKE', '%'.$riwayat_diklat.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_diklat.index',compact('riwayat_diklat','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_diklat.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -108,8 +133,16 @@ class RiwayatDiklatController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatDiklat $riwayat_diklat)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_diklat.edit', compact('pegawai','riwayat_diklat'));
         $view=$view->render();
         return $view;
@@ -158,6 +191,16 @@ class RiwayatDiklatController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatDiklat $riwayat_diklat)
    {
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_diklat/'.$riwayat_diklat->arsip_diklat);
         if(file_exists($pathToYourFile))
         {

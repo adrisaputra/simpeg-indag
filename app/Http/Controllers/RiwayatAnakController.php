@@ -21,9 +21,18 @@ class RiwayatAnakController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_anak = RiwayatAnak::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+
         return view('admin.riwayat_anak.index',compact('riwayat_anak','pegawai'));
     }
 
@@ -31,6 +40,16 @@ class RiwayatAnakController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_anak = $request->get('search');
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_anak = RiwayatAnak::where('pegawai_id',$id)
                         ->where(function ($query) use ($riwayat_anak) {
                             $query->where('nama_anak', 'LIKE', '%'.$riwayat_anak.'%')
@@ -40,16 +59,22 @@ class RiwayatAnakController extends Controller
                                 ->orWhere('pendidikan', 'LIKE', '%'.$riwayat_anak.'%');
                         })
                         ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_anak.index',compact('riwayat_anak','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-       $pegawai = Pegawai::where('id',$id)->get();
-       $pegawai->toArray();
+       
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
        $view=view('admin.riwayat_anak.create',compact('pegawai'));
        $view=$view->render();
        return $view;
@@ -88,8 +113,16 @@ class RiwayatAnakController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatAnak $riwayat_anak)
    {
-       $pegawai = Pegawai::where('id',$id)->get();
-       $pegawai->toArray();
+      
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
        $view=view('admin.riwayat_anak.edit', compact('pegawai','riwayat_anak'));
        $view=$view->render();
        return $view;
@@ -131,6 +164,16 @@ class RiwayatAnakController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatAnak $riwayat_anak)
    {
+        
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/akta_kelahiran/'.$riwayat_anak->akta_kelahiran);
         if(file_exists($pathToYourFile))
         {

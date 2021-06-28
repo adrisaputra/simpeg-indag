@@ -21,9 +21,16 @@ class RiwayatKompetensiController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_kompetensi = RiwayatKompetensi::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_kompetensi.index',compact('riwayat_kompetensi','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatKompetensiController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_kompetensi = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_kompetensi = RiwayatKompetensi::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_kompetensi) {
                                 $query->where('nama_kegiatan', 'LIKE', '%'.$riwayat_kompetensi.'%')
@@ -39,16 +56,21 @@ class RiwayatKompetensiController extends Controller
                                     ->orWhere('angkatan', 'LIKE', '%'.$riwayat_kompetensi.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_kompetensi.index',compact('riwayat_kompetensi','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_kompetensi.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -86,8 +108,15 @@ class RiwayatKompetensiController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatKompetensi $riwayat_kompetensi)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_kompetensi.edit', compact('pegawai','riwayat_kompetensi'));
         $view=$view->render();
         return $view;
@@ -129,6 +158,15 @@ class RiwayatKompetensiController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatKompetensi $riwayat_kompetensi)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_kompetensi/'.$riwayat_kompetensi->arsip_kompetensi);
         if(file_exists($pathToYourFile))
         {

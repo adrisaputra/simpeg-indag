@@ -21,9 +21,16 @@ class RiwayatKepangkatanController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_kepangkatan = RiwayatKepangkatan::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_kepangkatan.index',compact('riwayat_kepangkatan','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatKepangkatanController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_kepangkatan = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_kepangkatan = RiwayatKepangkatan::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_kepangkatan) {
                                 $query->where('periode_kp', 'LIKE', '%'.$riwayat_kepangkatan.'%')
@@ -44,16 +61,21 @@ class RiwayatKepangkatanController extends Controller
                                     ->orWhere('tanggal_sk', 'LIKE', '%'.$riwayat_kepangkatan.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_kepangkatan.index',compact('riwayat_kepangkatan','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_kepangkatan.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -164,8 +186,15 @@ class RiwayatKepangkatanController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatKepangkatan $riwayat_kepangkatan)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_kepangkatan.edit', compact('pegawai','riwayat_kepangkatan'));
         $view=$view->render();
         return $view;
@@ -272,6 +301,15 @@ class RiwayatKepangkatanController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatKepangkatan $riwayat_kepangkatan)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         if($riwayat_kepangkatan->arsip_kepangkatan){
             $pathToYourFile = public_path('upload/arsip_kepangkatan/'.$riwayat_kepangkatan->arsip_kepangkatan);
             if(file_exists($pathToYourFile))

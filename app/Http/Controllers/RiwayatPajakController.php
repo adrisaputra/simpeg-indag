@@ -21,9 +21,16 @@ class RiwayatPajakController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_pajak = RiwayatPajak::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_pajak.index',compact('riwayat_pajak','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatPajakController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_pajak = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_pajak = RiwayatPajak::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_pajak) {
                                 $query->where('nama_pajak', 'LIKE', '%'.$riwayat_pajak.'%')
@@ -40,16 +57,21 @@ class RiwayatPajakController extends Controller
                                     ->orWhere('tanggal_sertifikat', 'LIKE', '%'.$riwayat_pajak.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_pajak.index',compact('riwayat_pajak','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_pajak.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -91,8 +113,15 @@ class RiwayatPajakController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatPajak $riwayat_pajak)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_pajak.edit', compact('pegawai','riwayat_pajak'));
         $view=$view->render();
         return $view;
@@ -136,6 +165,15 @@ class RiwayatPajakController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatPajak $riwayat_pajak)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_spt/'.$riwayat_pajak->arsip_spt);
         if(file_exists($pathToYourFile))
         {

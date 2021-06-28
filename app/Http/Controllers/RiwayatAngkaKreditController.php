@@ -21,9 +21,16 @@ class RiwayatAngkaKreditController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
         $riwayat_angka_kredit = RiwayatAngkaKredit::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+
         return view('admin.riwayat_angka_kredit.index',compact('riwayat_angka_kredit','pegawai'));
     }
 
@@ -31,6 +38,14 @@ class RiwayatAngkaKreditController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_angka_kredit = $request->get('search');
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
         $riwayat_angka_kredit = RiwayatAngkaKredit::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_angka_kredit) {
                                 $query->where('jabatan', 'LIKE', '%'.$riwayat_angka_kredit.'%')
@@ -43,16 +58,21 @@ class RiwayatAngkaKreditController extends Controller
                                     ->orWhere('tmt_angka_kredit', 'LIKE', '%'.$riwayat_angka_kredit.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        
         return view('admin.riwayat_angka_kredit.index',compact('riwayat_angka_kredit','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
         $view=view('admin.riwayat_angka_kredit.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -99,8 +119,14 @@ class RiwayatAngkaKreditController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatAngkaKredit $riwayat_angka_kredit)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
         $view=view('admin.riwayat_angka_kredit.edit', compact('pegawai','riwayat_angka_kredit'));
         $view=$view->render();
         return $view;
@@ -147,6 +173,15 @@ class RiwayatAngkaKreditController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatAngkaKredit $riwayat_angka_kredit)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/sk_angka_kredit/'.$riwayat_angka_kredit->sk);
         if(file_exists($pathToYourFile))
         {

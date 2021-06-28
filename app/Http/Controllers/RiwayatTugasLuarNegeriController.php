@@ -21,9 +21,16 @@ class RiwayatTugasLuarNegeriController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_tugas_luar_negeri = RiwayatTugasLuarNegeri::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_tugas_luar_negeri.index',compact('riwayat_tugas_luar_negeri','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatTugasLuarNegeriController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_tugas_luar_negeri = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_tugas_luar_negeri = RiwayatTugasLuarNegeri::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_tugas_luar_negeri) {
                                 $query->where('tipe_kunjungan', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%')
@@ -41,16 +58,21 @@ class RiwayatTugasLuarNegeriController extends Controller
                                 ->orWhere('asal_dana', 'LIKE', '%'.$riwayat_tugas_luar_negeri.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_tugas_luar_negeri.index',compact('riwayat_tugas_luar_negeri','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_tugas_luar_negeri.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -85,8 +107,15 @@ class RiwayatTugasLuarNegeriController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatTugasLuarNegeri $riwayat_tugas_luar_negeri)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_tugas_luar_negeri.edit', compact('pegawai','riwayat_tugas_luar_negeri'));
         $view=$view->render();
         return $view;
@@ -114,6 +143,15 @@ class RiwayatTugasLuarNegeriController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatTugasLuarNegeri $riwayat_tugas_luar_negeri)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_tugas_luar_negeri->delete();
        
         return redirect('/riwayat_tugas_luar_negeri/'.$id)->with('status', 'Data Berhasil Dihapus');

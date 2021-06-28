@@ -21,9 +21,16 @@ class RiwayatPasanganController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_pasangan = RiwayatPasangan::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_pasangan.index',compact('riwayat_pasangan','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatPasanganController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_pasangan = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_pasangan = RiwayatPasangan::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_pasangan) {
                                 $query->where('nama_pasangan', 'LIKE', '%'.$riwayat_pasangan.'%')
@@ -42,16 +59,21 @@ class RiwayatPasanganController extends Controller
                                     ->orWhere('pekerjaan', 'LIKE', '%'.$riwayat_pasangan.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_pasangan.index',compact('riwayat_pasangan','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-       $pegawai = Pegawai::where('id',$id)->get();
-       $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
        $view=view('admin.riwayat_pasangan.create',compact('pegawai'));
        $view=$view->render();
        return $view;
@@ -98,8 +120,15 @@ class RiwayatPasanganController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatPasangan $riwayat_pasangan)
    {
-       $pegawai = Pegawai::where('id',$id)->get();
-       $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
        $view=view('admin.riwayat_pasangan.edit', compact('pegawai','riwayat_pasangan'));
        $view=$view->render();
        return $view;
@@ -156,6 +185,15 @@ class RiwayatPasanganController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatPasangan $riwayat_pasangan)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/surat_nikah/'.$riwayat_pasangan->surat_nikah);
         if(file_exists($pathToYourFile))
         {

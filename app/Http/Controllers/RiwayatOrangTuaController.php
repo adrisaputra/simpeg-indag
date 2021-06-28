@@ -21,9 +21,16 @@ class RiwayatOrangTuaController extends Controller
      ## Tampikan Data
      public function index($id)
      {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
          $riwayat_orang_tua = RiwayatOrangTua::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-         $pegawai = Pegawai::where('id',$id)->get();
-         $pegawai->toArray();
          return view('admin.riwayat_orang_tua.index',compact('riwayat_orang_tua','pegawai'));
      }
  
@@ -31,6 +38,16 @@ class RiwayatOrangTuaController extends Controller
      public function search(Request $request, $id)
      {
          $riwayat_orang_tua = $request->get('search');
+
+         if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
          $riwayat_orang_tua = RiwayatOrangTua::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_orang_tua) {
                                 $query->where('orang_tua', 'LIKE', '%'.$riwayat_orang_tua.'%')
@@ -39,16 +56,21 @@ class RiwayatOrangTuaController extends Controller
                                     ->orWhere('pekerjaan', 'LIKE', '%'.$riwayat_orang_tua.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-         $pegawai = Pegawai::where('id',$id)->get();
-         $pegawai->toArray();
          return view('admin.riwayat_orang_tua.index',compact('riwayat_orang_tua','pegawai'));
      }
 
     ## Tampilkan Form Create
     public function create($id)
     {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
 		$view=view('admin.riwayat_orang_tua.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -84,8 +106,15 @@ class RiwayatOrangTuaController extends Controller
     ## Tampilkan Form Edit
     public function edit($id, RiwayatOrangTua $riwayat_orang_tua)
     {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_orang_tua.edit', compact('pegawai','riwayat_orang_tua'));
         $view=$view->render();
         return $view;
@@ -125,6 +154,15 @@ class RiwayatOrangTuaController extends Controller
     ## Hapus Data
     public function delete($id, RiwayatOrangTua $riwayat_orang_tua)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/kartu_keluarga/'.$riwayat_orang_tua->kartu_keluarga);
         if(file_exists($pathToYourFile))
         {

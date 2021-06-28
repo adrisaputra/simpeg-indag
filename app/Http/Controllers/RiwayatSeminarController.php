@@ -21,9 +21,16 @@ class RiwayatSeminarController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_seminar = RiwayatSeminar::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_seminar.index',compact('riwayat_seminar','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatSeminarController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_seminar = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_seminar = RiwayatSeminar::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_seminar) {
                                 $query->where('nama_seminar', 'LIKE', '%'.$riwayat_seminar.'%')
@@ -41,16 +58,21 @@ class RiwayatSeminarController extends Controller
                                     ->orWhere('tempat', 'LIKE', '%'.$riwayat_seminar.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_seminar.index',compact('riwayat_seminar','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_seminar.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -91,8 +113,15 @@ class RiwayatSeminarController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatSeminar $riwayat_seminar)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_seminar.edit', compact('pegawai','riwayat_seminar'));
         $view=$view->render();
         return $view;
@@ -134,6 +163,15 @@ class RiwayatSeminarController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatSeminar $riwayat_seminar)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_sertifikat_seminar/'.$riwayat_seminar->arsip_sertifikat_seminar);
         if(file_exists($pathToYourFile))
         {

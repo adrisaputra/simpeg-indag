@@ -278,6 +278,10 @@ class PegawaiController extends Controller
     ## Tampilkan Form Edit
     public function edit(Pegawai $pegawai)
     {
+        if(Auth::user()->group==3){
+            $id_pegawai = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('id',$id_pegawai)->first();
+        }
         $jabatan = jabatan::get();
         $bidang = Bidang::get();
         $seksi = Seksi::get();

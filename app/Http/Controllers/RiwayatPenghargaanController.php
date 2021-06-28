@@ -21,9 +21,16 @@ class RiwayatPenghargaanController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_penghargaan = RiwayatPenghargaan::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_penghargaan.index',compact('riwayat_penghargaan','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatPenghargaanController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_penghargaan = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_penghargaan = RiwayatPenghargaan::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_penghargaan) {
                                 $query->where('nama_penghargaan', 'LIKE', '%'.$riwayat_penghargaan.'%')
@@ -39,16 +56,21 @@ class RiwayatPenghargaanController extends Controller
                                     ->orWhere('keterangan', 'LIKE', '%'.$riwayat_penghargaan.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_penghargaan.index',compact('riwayat_penghargaan','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_penghargaan.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -85,8 +107,15 @@ class RiwayatPenghargaanController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatPenghargaan $riwayat_penghargaan)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_penghargaan.edit', compact('pegawai','riwayat_penghargaan'));
         $view=$view->render();
         return $view;
@@ -127,6 +156,15 @@ class RiwayatPenghargaanController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatPenghargaan $riwayat_penghargaan)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_penghargaan/'.$riwayat_penghargaan->arsip_penghargaan);
         if(file_exists($pathToYourFile))
         {

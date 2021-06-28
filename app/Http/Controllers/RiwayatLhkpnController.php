@@ -21,9 +21,16 @@ class RiwayatLhkpnController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_lhkpn = RiwayatLhkpn::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_lhkpn.index',compact('riwayat_lhkpn','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatLhkpnController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_lhkpn = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_lhkpn = RiwayatLhkpn::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_lhkpn) {
                                 $query->where('periode_kp', 'LIKE', '%'.$riwayat_lhkpn.'%')
@@ -45,16 +62,21 @@ class RiwayatLhkpnController extends Controller
                                     ->orWhere('tanggal_sk', 'LIKE', '%'.$riwayat_lhkpn.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_lhkpn.index',compact('riwayat_lhkpn','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_lhkpn.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -94,8 +116,15 @@ class RiwayatLhkpnController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatLhkpn $riwayat_lhkpn)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_lhkpn.edit', compact('pegawai','riwayat_lhkpn'));
         $view=$view->render();
         return $view;
@@ -138,6 +167,15 @@ class RiwayatLhkpnController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatLhkpn $riwayat_lhkpn)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $pathToYourFile = public_path('upload/arsip_lhkpn/'.$riwayat_lhkpn->arsip_lhkpn);
         if(file_exists($pathToYourFile))
         {

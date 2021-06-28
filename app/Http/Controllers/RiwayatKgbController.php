@@ -21,9 +21,16 @@ class RiwayatKgbController extends Controller
     ## Tampikan Data
     public function index($id)
     {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_kgb = RiwayatKgb::where('pegawai_id',$id)->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_kgb.index',compact('riwayat_kgb','pegawai'));
     }
 
@@ -31,6 +38,16 @@ class RiwayatKgbController extends Controller
     public function search(Request $request, $id)
     {
         $riwayat_kgb = $request->get('search');
+
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $riwayat_kgb = RiwayatKgb::where('pegawai_id',$id)
                             ->where(function ($query) use ($riwayat_kgb) {
                                 $query->where('dasar', 'LIKE', '%'.$riwayat_kgb.'%')
@@ -40,16 +57,21 @@ class RiwayatKgbController extends Controller
                                     ->orWhere('kgb_saat_ini', 'LIKE', '%'.$riwayat_kgb.'%');
                             })
                             ->orderBy('id','DESC')->paginate(25)->onEachSide(1);
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
         return view('admin.riwayat_kgb.index',compact('riwayat_kgb','pegawai'));
     }
 
    ## Tampilkan Form Create
    public function create($id)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_kgb.create',compact('pegawai'));
         $view=$view->render();
         return $view;
@@ -96,8 +118,15 @@ class RiwayatKgbController extends Controller
    ## Tampilkan Form Edit
    public function edit($id, RiwayatKgb $riwayat_kgb)
    {
-        $pegawai = Pegawai::where('id',$id)->get();
-        $pegawai->toArray();
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         $view=view('admin.riwayat_kgb.edit', compact('pegawai','riwayat_kgb'));
         $view=$view->render();
         return $view;
@@ -149,6 +178,15 @@ class RiwayatKgbController extends Controller
    ## Hapus Data
    public function delete($id, RiwayatKgb $riwayat_kgb)
    {
+        if(Auth::user()->group==1){
+            $pegawai = Pegawai::where('id',$id)->get();
+            $pegawai->toArray();
+        } else {
+            $id = DB::table('pegawai_tbl')->where('nip',Auth::user()->name)->value('id');
+            $pegawai = Pegawai::where('nip',Auth::user()->name)->get();
+            $pegawai->toArray();
+        }
+
         if($riwayat_kgb->arsip_kgb){
             $pathToYourFile = public_path('upload/arsip_kgb/'.$riwayat_kgb->arsip_kgb);
             if(file_exists($pathToYourFile))
