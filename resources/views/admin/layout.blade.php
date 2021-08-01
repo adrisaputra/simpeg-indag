@@ -242,7 +242,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li class="{{ (request()->is('pengusulan_penghargaan*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_penghargaan')}}"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
-                                        <li class="{{ (request()->is('pengusulan_hukuman*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_hukuman')}}"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
+                                        <li class="{{ (request()->is('pengusulan_hukuman*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_hukuman')}}"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disiplin</a></li>
                                     </ul>
                                     </li>
                                 </ul>
@@ -313,7 +313,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li class="{{ (request()->is('pengusulan_penghargaan*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_penghargaan')}}"><i class="fa fa-circle-notch"></i> Penghargaan</a></li>
-                                        <li class="{{ (request()->is('pengusulan_hukuman*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_hukuman')}}"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman</a></li>
+                                        <li class="{{ (request()->is('pengusulan_hukuman*')) ? 'active' : '' }}"><a href="{{ url('pengusulan_hukuman')}}"><i class="fa fa-circle-notch"></i> Penjatuhan Hukuman<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disiplin</a></li>
                                     </ul>
                                     </li>
                                 </ul>
