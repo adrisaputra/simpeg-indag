@@ -144,7 +144,7 @@
 					</div>
 
 					<div class="form-group @if ($errors->has('no_bpjs')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('BPJS') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('BPJS') }}</label>
 						<div class="col-sm-3">
 							@if ($errors->has('no_bpjs'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('no_bpjs') }}</label>@endif
 							<input type="text" class="form-control" placeholder="No. BPJS" name="no_bpjs" value="{{  $pegawai->no_bpjs }}" >
@@ -180,7 +180,7 @@
 					</div>
 					
 					<div class="form-group @if ($errors->has('no_karpeg')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Karpeg') }} <span class="required" style="color: #dd4b39;">*</span></label>
+						<label class="col-sm-2 control-label">{{ __('Karpeg') }}</label>
 						<div class="col-sm-3">
 							@if ($errors->has('no_karpeg'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('no_karpeg') }}</label>@endif
 							<input type="text" class="form-control" placeholder="No. Karpeg" name="no_karpeg" value="{{ $pegawai->no_karpeg }}" >
@@ -211,6 +211,24 @@
 						<div class="col-sm-2" @if($errors->has('no_karsu')) style="padding-top:27px" @else style="padding-top:2px" @endif >
 							@if($pegawai->karsu)
 								<a href="{{ asset('storage/upload/karsu/'.$pegawai->karsu) }}" target="_blank" class="btn btn-sm btn-primary" >Lihat File</a>
+							@endif
+						</div>
+					</div>
+					
+					<div class="form-group @if ($errors->has('no_taspen')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Taspen') }} </label>
+						<div class="col-sm-3">
+							@if ($errors->has('no_taspen'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('no_taspen') }}</label>@endif
+							<input type="text" class="form-control" placeholder="No. Taspen" name="no_taspen" value="{{ $pegawai->no_taspen }}" >
+						</div>
+						<div class="col-sm-4" @if($errors->has('no_taspen')) style="padding-top:27px" @endif>
+							@if ($errors->has('taspen'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('taspen') }}</label>@endif
+							<input type="file" class="form-control" placeholder="Taspen" name="taspen" value="{{ $pegawai->taspen }}" style="border-color: #d3d7df;">
+							<span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png)</i></span>
+						</div>
+						<div class="col-sm-2" @if($errors->has('no_taspen')) style="padding-top:27px" @else style="padding-top:2px" @endif >
+							@if($pegawai->taspen)
+								<a href="{{ asset('storage/upload/taspen/'.$pegawai->taspen) }}" target="_blank" class="btn btn-sm btn-primary" >Lihat File</a>
 							@endif
 						</div>
 					</div>

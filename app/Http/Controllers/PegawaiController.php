@@ -135,13 +135,12 @@ class PegawaiController extends Controller
 			'foto_kedinasan' => 'mimes:jpg,jpeg,png|max:500',
             'no_ktp' => 'required|digits:16',
 			'ktp' => 'mimes:jpg,jpeg,png|max:500',
-            'no_bpjs' => 'required',
 			'bpjs' => 'mimes:jpg,jpeg,png|max:500',
             'no_npwp' => 'required',
 			'npwp' => 'mimes:jpg,jpeg,png|max:500',
-            'no_karpeg' => 'required',
 			'karpeg' => 'mimes:jpg,jpeg,png|max:500',
-			'karsu' => 'mimes:jpg,jpeg,png|max:500'
+			'karsu' => 'mimes:jpg,jpeg,png|max:500',
+			'taspen' => 'mimes:jpg,jpeg,png|max:500'
         ]);
 
 		$input['nip'] = $request->nip;
@@ -157,6 +156,7 @@ class PegawaiController extends Controller
         $input['no_npwp'] = $request->no_npwp;
         $input['no_karpeg'] = $request->no_karpeg;
         $input['no_karsu'] = $request->no_karsu;
+        $input['no_taspen'] = $request->no_taspen;
         $input['email'] = $request->email;
         $input['status'] = $request->status;
         $input['jabatan_id'] = $request->jabatan_id;
@@ -262,6 +262,19 @@ class PegawaiController extends Controller
             $img->save($thumbnailpath);
         }
         
+		if($request->file('taspen')){
+            $input['taspen'] = time().'.'.$request->file('taspen')->getClientOriginalExtension();
+ 
+            $request->file('taspen')->storeAs('public/upload/taspen', $input['karsu']);
+            $request->file('taspen')->storeAs('public/upload/taspen/thumbnail', $input['karsu']);
+     
+            $thumbnailpath = public_path('storage/upload/taspen/thumbnail/'.$input['karsu']);
+            $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save($thumbnailpath);
+        }
+        
 		$input['user_id'] = Auth::user()->id;
 		
         Pegawai::create($input);
@@ -309,13 +322,12 @@ class PegawaiController extends Controller
 			'foto_kedinasan' => 'mimes:jpg,jpeg,png|max:500',
             'no_ktp' => 'required|digits:16',
 			'ktp' => 'mimes:jpg,jpeg,png|max:500',
-            'no_bpjs' => 'required',
 			'bpjs' => 'mimes:jpg,jpeg,png|max:500',
             'no_npwp' => 'required',
 			'npwp' => 'mimes:jpg,jpeg,png|max:500',
-            'no_karpeg' => 'required',
 			'karpeg' => 'mimes:jpg,jpeg,png|max:500',
-			'karsu' => 'mimes:jpg,jpeg,png|max:500'
+			'karsu' => 'mimes:jpg,jpeg,png|max:500',
+			'taspen' => 'mimes:jpg,jpeg,png|max:500'
         ]);
 
         if($pegawai->foto_formal && $request->file('foto_formal')!=""){
@@ -463,6 +475,22 @@ class PegawaiController extends Controller
             $img->save($thumbnailpath);
 
             $pegawai->karsu = $filename;
+        }
+
+		if($request->file('taspen')){
+
+            $filename = time().'.'.$request->file('taspen')->getClientOriginalExtension();
+           
+            $request->file('taspen')->storeAs('public/upload/taspen', $filename);
+            $request->file('taspen')->storeAs('public/upload/taspen/thumbnail', $filename);
+     
+            $thumbnailpath = public_path('storage/upload/taspen/thumbnail/'.$filename);
+            $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save($thumbnailpath);
+
+            $pegawai->taspen = $filename;
         }
         
         if($request->jabatan_id==4 || $request->jabatan_id==5 || $request->jabatan_id==7 || $request->jabatan_id==8){

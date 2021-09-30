@@ -29,6 +29,8 @@ class Pegawai extends Model
         'karpeg',
         'karsu',
         'no_karsu',
+        'no_taspen',
+        'taspen',
         'foto_formal',
         'foto_kedinasan',
         'tmt',
