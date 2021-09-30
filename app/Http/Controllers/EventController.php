@@ -56,6 +56,7 @@ class EventController extends Controller
 		$event->start = $request->start;
 		$event->end = date('Y-m-d', strtotime( $request->end2 . " +1 days"));
 		$event->end2 = $request->end2;
+		$event->bidang = $request->bidang;
 		$event->uraian = $request->uraian;
         $event->save();
 
