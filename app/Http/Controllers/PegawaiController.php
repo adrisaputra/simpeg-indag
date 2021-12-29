@@ -397,6 +397,22 @@ class PegawaiController extends Controller
             $pegawai->foto_formal = $filename;
         }
         
+		if($request->file('foto_kedinasan')){
+
+            $filename = time().'.'.$request->file('foto_kedinasan')->getClientOriginalExtension();
+           
+            $request->file('foto_kedinasan')->storeAs('public/upload/foto_kedinasan_pegawai', $filename);
+            $request->file('foto_kedinasan')->storeAs('public/upload/foto_kedinasan_pegawai/thumbnail', $filename);
+     
+            $thumbnailpath = public_path('storage/upload/foto_kedinasan_pegawai/thumbnail/'.$filename);
+            $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save($thumbnailpath);
+
+            $pegawai->foto_kedinasan = $filename;
+        }
+        
 		if($request->file('ktp')){
 
             $filename = time().'.'.$request->file('ktp')->getClientOriginalExtension();

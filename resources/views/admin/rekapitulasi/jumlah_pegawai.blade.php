@@ -8,7 +8,6 @@
   height: 350px;
 }
 
-
 </style>
 
 <!-- Resources -->
